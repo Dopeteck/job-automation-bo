@@ -160,43 +160,61 @@ def post_to_blogger(job):
         traceback.print_exc()
 
 # ---------------------------
-# Telegram (synchronous - v13.x)
+# ---------------------------
+# Telegram (sync-safe, plain-text description + single clickable link)
 # ---------------------------
 def post_to_telegram(job):
     try:
+        # use the sync v13.x library
         from telegram import Bot
         from telegram.parsemode import ParseMode
     except Exception as e:
-        raise RuntimeError("Missing python-telegram-bot v13.x. Install python-telegram-bot==13.7") from e
+        print("Telegram library missing or wrong version. Install python-telegram-bot==13.7")
+        raise
 
     bot = Bot(token=TELEGRAM_BOT_TOKEN)
 
-    description_html = job.get("html_description","")
-    safe = sanitize_html_keep_basic(description_html)
-    safe = safe.replace("</p>", "<br>").replace("<p>", "")
-    if len(safe) > 2800:
-        safe = safe[:2800] + "..."
+    # Convert HTML/markup to plain text with line breaks
+    desc_html = job.get("html_description", "") or ""
+    # Use BeautifulSoup to extract text; use '\n' as separator to preserve paragraphs
+    desc_text = BeautifulSoup(desc_html, "html.parser").get_text(separator="\n", strip=True)
+    # Collapse multiple blank lines
+    desc_text = re.sub(r'\n\s*\n+', '\n\n', desc_text).strip()
 
-    msg = (
+    # Truncate safely for Telegram (limit ~4096; keep smaller safety margin)
+    if len(desc_text) > 3000:
+        desc_text = desc_text[:3000] + "..."
+
+    title = html.escape(job.get("title",""))
+    company = html.escape(job.get("company",""))
+    level = html.escape(job.get("level","Not specified"))
+    apply_link = html.escape(job.get("link",""))
+
+    # Build message: plain text body, but keep the Apply link as an HTML anchor (Telegram supports <a>)
+    # We escape the text portions and then include a single <a> for the link.
+    # Note: do NOT include <br> tags — use '\n' for new lines.
+    body_text = (
         f"<b>🔥 NEW JOB</b>\n\n"
-        f"<b>Role:</b> {html.escape(job.get('title',''))}\n"
-        f"<b>Company:</b> {html.escape(job.get('company',''))}\n"
-        f"<b>Seniority:</b> {html.escape(job.get('level','Not specified'))}\n\n"
-        f"{safe}\n\n"
-        f"<b>Apply:</b> <a href=\"{html.escape(job.get('link',''))}\">{html.escape(job.get('link',''))}</a>"
+        f"<b>Role:</b> {title}\n"
+        f"<b>Company:</b> {company}\n"
+        f"<b>Seniority:</b> {level}\n\n"
+        f"{html.escape(desc_text)}\n\n"
+        f"<b>Apply:</b> <a href=\"{apply_link}\">Apply Here</a>"
     )
 
     try:
         bot.send_message(
             chat_id=TELEGRAM_CHANNEL,
-            text=msg,
+            text=body_text,
             parse_mode=ParseMode.HTML,
             disable_web_page_preview=False
         )
-        print("[Telegram] Posted:", job.get("title"))
+        print(f"[Telegram] Posted: {job.get('title')}")
     except Exception as e:
         print("[Telegram] Error posting:", e)
-        traceback.print_exc()
+        # log stack for debugging
+        import traceback; traceback.print_exc()
+
 
 # ---------------------------
 # Fetch job
