@@ -4,7 +4,6 @@ google-api-python-client>=2.100.0
 google-auth>=2.22.0
 google-auth-oauthlib>=1.1.0
 python-dotenv>=1.0.0
-python-telegram-bot>=22.5
+python-telegram-bot==13.14
 feedparser>=6.0.10
 schedule>=1.2.0
-
