@@ -27,7 +27,7 @@ import requests
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN") or "PUT_YOUR_TOKEN_HERE"
 TELEGRAM_CHANNEL = os.getenv("TELEGRAM_CHANNEL") or "@VettedWeb3jobs"
 BLOG_ID = os.getenv("BLOG_ID") or "152513194211999512"
-GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET") or "credentials.json"
+GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET") or "client_secret.json"
 
 # Posting schedule (UTC)
 SCHEDULES = {
