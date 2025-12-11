@@ -1,13 +1,18 @@
+#!/usr/bin/env python3
 """
-master_job_bot.py
-Master automation:
-- Fetch jobs from RSS / JSON sources
-- Detect seniority
-- Post full formatted job (safe HTML) to Blogger
-- Post formatted job (HTML) to Telegram
-- Scheduled posting at 12:00/16:00/20:00 UTC
-- Prepopulate first 9 posts
-- Persist sent job IDs to disk
+job_scraper.py
+
+One-shot job scraper & publisher:
+- Run once and exit (suitable for GitHub Actions)
+- Env vars:
+    TELEGRAM_BOT_TOKEN   (required)
+    TELEGRAM_CHANNEL     (required, e.g. @VettedWeb3jobs)
+    BLOGGER_ID           (required)
+    CATEGORY             (optional) one of: tech, web3, crypto
+    MANUAL               set to "1" for manual run (prepopulate 9 + post one per category)
+- Requires token_blogger.pkl (created via your local OAuth flow)
+- Requires python-telegram-bot==13.7 (sync)
+- Requires feedparser, beautifulsoup4, google-api-python-client, google-auth-oauthlib
 """
 
 import os
@@ -18,25 +23,20 @@ import re
 from datetime import datetime
 from bs4 import BeautifulSoup
 import feedparser
-import schedule
-import requests
+import traceback
 
-# ---------------------------
-# CONFIG (use env vars if available)
-# ---------------------------
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN") or "PUT_YOUR_TOKEN_HERE"
-TELEGRAM_CHANNEL = os.getenv("TELEGRAM_CHANNEL") or "@VettedWeb3jobs"
-BLOG_ID = os.getenv("BLOG_ID") or "152513194211999512"
-GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET") or "client_secret.json"
+# Environment
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHANNEL = os.getenv("TELEGRAM_CHANNEL")
+BLOGGER_ID = os.getenv("BLOGGER_ID")
+CATEGORY = os.getenv("CATEGORY")  # "tech" / "web3" / "crypto" (preferred for scheduled run)
+MANUAL = os.getenv("MANUAL", "0") == "1"
 
-# Posting schedule (UTC)
-SCHEDULES = {
-    "tech": "12:00",
-    "web3": "16:00",
-    "crypto": "20:00"
-}
+SENT_STORE = "sent_jobs.pkl"
+TOKEN_FILE = "token_blogger.pkl"  # must already exist (created locally)
+CLIENT_SECRET_FILE = "client_secret.json"  # if your code needs it locally
 
-# Feeds
+# Feeds - you can expand these lists
 FEEDS = {
     "tech": [
         "https://remoteok.com/remote-jobs.rss",
@@ -52,20 +52,20 @@ FEEDS = {
     ]
 }
 
-# Persistence file for sent jobs
-SENT_STORE = "sent_jobs.pkl"
-
-# Blogger API scope
-SCOPES = ["https://www.googleapis.com/auth/blogger"]
+# Allowed HTML tags for basic formatting
+ALLOWED_TAGS = ["p", "br", "b", "strong", "i", "em", "ul", "ol", "li", "a", "h1", "h2", "h3"]
 
 # ---------------------------
-# HELPERS
+# Utilities
 # ---------------------------
 
 def load_sent_jobs():
-    if os.path.exists(SENT_STORE):
-        with open(SENT_STORE, "rb") as f:
-            return pickle.load(f)
+    try:
+        if os.path.exists(SENT_STORE):
+            with open(SENT_STORE, "rb") as f:
+                return pickle.load(f)
+    except Exception:
+        print("Warning: failed to load sent_jobs.pkl (will recreate).")
     return set()
 
 def save_sent_jobs(s):
@@ -73,8 +73,6 @@ def save_sent_jobs(s):
         pickle.dump(s, f)
 
 sent_jobs = load_sent_jobs()
-
-ALLOWED_TAGS = ["p", "br", "b", "strong", "i", "em", "ul", "ol", "li", "a", "h1", "h2", "h3", "h4"]
 
 def sanitize_html_keep_basic(html_text):
     soup = BeautifulSoup(html_text or "", "html.parser")
@@ -84,15 +82,17 @@ def sanitize_html_keep_basic(html_text):
         if tag.name not in ALLOWED_TAGS:
             tag.unwrap()
         else:
+            # keep only href on <a>
             if tag.name == "a":
                 href = tag.get("href")
                 tag.attrs = {}
-                if href and href.startswith("http"):
+                if href and isinstance(href, str) and href.startswith("http"):
                     tag.attrs["href"] = href
                 else:
                     tag.unwrap()
             else:
                 tag.attrs = {}
+    # collapse excessive whitespace
     text = str(soup)
     text = re.sub(r'\n\s*\n', '\n', text)
     return text.strip()
@@ -106,9 +106,9 @@ def detect_seniority(text):
     if not text:
         return "Not specified"
     t = text.lower()
-    senior_keys = ["senior", "lead", "principal", "manager", "5+ years", "5 years", "seniority"]
+    senior_keys = ["senior", "lead", "principal", "manager", "5+ years", "5 years"]
     mid_keys = ["mid", "intermediate", "2 years", "3 years", "4 years", "2+ years"]
-    junior_keys = ["junior", "entry", "entry-level", "0-1", "graduate", "trainee", "intern"]
+    junior_keys = ["junior", "entry", "entry-level", "intern", "graduate"]
     if any(k in t for k in senior_keys):
         return "Senior"
     if any(k in t for k in mid_keys):
@@ -118,22 +118,21 @@ def detect_seniority(text):
     return "Not specified"
 
 # ---------------------------
-# Blogger API
+# Blogger (uses token_blogger.pkl)
 # ---------------------------
-from googleapiclient.discovery import build
-from google_auth_oauthlib.flow import InstalledAppFlow
-
 def get_blogger_service():
+    try:
+        from googleapiclient.discovery import build
+    except Exception as e:
+        raise RuntimeError("Missing googleapiclient library. Install requirements.") from e
+
     creds = None
-    token_file = "token_blogger.pkl"
-    if os.path.exists(token_file):
-        with open(token_file, "rb") as f:
+    if os.path.exists(TOKEN_FILE):
+        with open(TOKEN_FILE, "rb") as f:
             creds = pickle.load(f)
-    if not creds:
-        flow = InstalledAppFlow.from_client_secrets_file(GOOGLE_CLIENT_SECRET, SCOPES)
-        creds = flow.run_local_server(port=0)
-        with open(token_file, "wb") as f:
-            pickle.dump(creds, f)
+    else:
+        raise RuntimeError(f"{TOKEN_FILE} not found. Create it locally and upload as secret for Actions.")
+
     service = build("blogger", "v3", credentials=creds)
     return service
 
@@ -141,48 +140,67 @@ def post_to_blogger(job):
     try:
         service = get_blogger_service()
         content_html = f"""
-<h2>{html.escape(job['title'])}</h2>
+<h2>{html.escape(job.get('title',''))}</h2>
 <p><b>Company:</b> {html.escape(job.get('company',''))}</p>
 <p><b>Seniority:</b> {html.escape(job.get('level','Not specified'))}</p>
 <hr/>
 {job.get('html_description','')}
-<p><b>Apply:</b> <a href="{html.escape(job['link'])}">{html.escape(job['link'])}</a></p>
+<p><b>Apply:</b> <a href="{html.escape(job.get('link',''))}">{html.escape(job.get('link',''))}</a></p>
 """
         body = {
             "kind": "blogger#post",
-            "blog": {"id": BLOG_ID},
-            "title": job['title'],
+            "blog": {"id": BLOGGER_ID},
+            "title": job.get("title","Job"),
             "content": content_html
         }
-        service.posts().insert(blogId=BLOG_ID, body=body, isDraft=False).execute()
-        print(f"[Blogger] Posted: {job['title']}")
+        resp = service.posts().insert(blogId=BLOGGER_ID, body=body, isDraft=False).execute()
+        print("[Blogger] Posted:", job.get("title"), "->", resp.get("url"))
     except Exception as e:
         print("[Blogger] Error posting:", e)
+        traceback.print_exc()
 
 # ---------------------------
-# Telegram API
+# Telegram (synchronous - v13.x)
 # ---------------------------
-from telegram import Bot, constants
-
-bot = Bot(token=TELEGRAM_BOT_TOKEN)
-
 def post_to_telegram(job):
     try:
-        description_html = job.get('html_description', '')
-        safe = sanitize_html_keep_basic(description_html)
-        safe = safe.replace("</p>", "<br>").replace("<p>", "")
-        if len(safe) > 2800:
-            safe = safe[:2800] + "..."
-        msg = f"<b>🔥 NEW JOB</b>\n\n<b>Role:</b> {html.escape(job['title'])}\n<b>Company:</b> {html.escape(job.get('company',''))}\n<b>Seniority:</b> {html.escape(job.get('level','Not specified'))}\n\n{safe}\n\n<b>Apply:</b> <a href=\"{html.escape(job['link'])}\">{html.escape(job['link'])}</a>"
-        bot.send_message(chat_id=TELEGRAM_CHANNEL, text=msg, parse_mode=constants.ParseMode.HTML, disable_web_page_preview=False)
-        print(f"[Telegram] Posted: {job['title']}")
+        from telegram import Bot
+        from telegram.parsemode import ParseMode
+    except Exception as e:
+        raise RuntimeError("Missing python-telegram-bot v13.x. Install python-telegram-bot==13.7") from e
+
+    bot = Bot(token=TELEGRAM_BOT_TOKEN)
+
+    description_html = job.get("html_description","")
+    safe = sanitize_html_keep_basic(description_html)
+    safe = safe.replace("</p>", "<br>").replace("<p>", "")
+    if len(safe) > 2800:
+        safe = safe[:2800] + "..."
+
+    msg = (
+        f"<b>🔥 NEW JOB</b>\n\n"
+        f"<b>Role:</b> {html.escape(job.get('title',''))}\n"
+        f"<b>Company:</b> {html.escape(job.get('company',''))}\n"
+        f"<b>Seniority:</b> {html.escape(job.get('level','Not specified'))}\n\n"
+        f"{safe}\n\n"
+        f"<b>Apply:</b> <a href=\"{html.escape(job.get('link',''))}\">{html.escape(job.get('link',''))}</a>"
+    )
+
+    try:
+        bot.send_message(
+            chat_id=TELEGRAM_CHANNEL,
+            text=msg,
+            parse_mode=ParseMode.HTML,
+            disable_web_page_preview=False
+        )
+        print("[Telegram] Posted:", job.get("title"))
     except Exception as e:
         print("[Telegram] Error posting:", e)
+        traceback.print_exc()
 
 # ---------------------------
-# Fetch jobs
+# Fetch job
 # ---------------------------
-
 def fetch_one_job_for_category(category):
     feeds = FEEDS.get(category, [])
     for feed in feeds:
@@ -191,76 +209,130 @@ def fetch_one_job_for_category(category):
             if not data or not getattr(data, "entries", None):
                 continue
             for entry in data.entries:
-                link = getattr(entry, "link", None)
+                link = getattr(entry,"link",None)
                 if not link:
                     continue
                 if link in sent_jobs:
                     continue
-                raw_desc = getattr(entry, "summary", "") or getattr(entry, "description", "") or ""
+                raw_desc = getattr(entry,"summary","") or getattr(entry,"description","") or ""
                 html_desc = sanitize_html_keep_basic(raw_desc)
                 plain = clean_text_plain(raw_desc, maxlen=1200)
                 job = {
-                    "title": getattr(entry, "title", "No title"),
-                    "company": getattr(entry, "author", "") or getattr(entry, "company", "") or "",
+                    "title": getattr(entry,"title","No title"),
+                    "company": getattr(entry,"author","") or "",
                     "link": link,
                     "html_description": html_desc,
-                    "plain_description": plain
+                    "plain_description": plain,
+                    "level": detect_seniority(plain)
                 }
-                job['level'] = detect_seniority(job['plain_description'])
                 return job
         except Exception as e:
             print(f"[Fetch] Error fetching from {feed}: {e}")
+            traceback.print_exc()
             continue
     return None
 
 # ---------------------------
-# Posting scheduler
+# Prepopulate (manual)
 # ---------------------------
-
-def post_for_category(category):
-    job = fetch_one_job_for_category(category)
-    if not job:
-        print(f"[Schedule] No new {category} job found at {datetime.utcnow().isoformat()} UTC")
-        return
-    sent_jobs.add(job['link'])
-    save_sent_jobs(sent_jobs)
-    post_to_blogger(job)
-    post_to_telegram(job)
-
 def prepopulate_first_n(n=9):
     if len(sent_jobs) > 0:
-        print("[Prepopulate] Already populated. Skipping prepopulate.")
+        print("[Prepopulate] Already populated. Skipping.")
         return
     print("[Prepopulate] Sending initial posts...")
     count = 0
-    cats = list(FEEDS.keys())
+    cats = ["tech","web3","crypto"]
+    # rotate through categories
     i = 0
-    while count < n and i < n*3:
+    while count < n and i < n * 5:
         cat = cats[i % len(cats)]
         job = fetch_one_job_for_category(cat)
         if job:
-            sent_jobs.add(job['link'])
-            save_sent_jobs(sent_jobs)
-            post_to_blogger(job)
-            post_to_telegram(job)
-            count += 1
-            time.sleep(2)
+            try:
+                sent_jobs.add(job["link"])
+                save_sent_jobs(sent_jobs)
+                post_to_blogger(job)
+                post_to_telegram(job)
+                count += 1
+                time.sleep(1)
+            except Exception as e:
+                print("[Prepopulate] Error posting job:", e)
         i += 1
     print(f"[Prepopulate] Done. Sent {count} starter posts.")
-
-def setup_schedule():
-    for cat, hhmm in SCHEDULES.items():
-        schedule.every().day.at(hhmm).do(post_for_category, category=cat)
-        print(f"[Scheduler] {cat} scheduled at {hhmm} UTC")
 
 # ---------------------------
 # MAIN
 # ---------------------------
 
+def fallback_category_from_utc():
+    """Fallback mapping if CATEGORY env not provided."""
+    hour = datetime.utcnow().hour
+    # map exact hours used in scheduling: 12->tech, 16->web3, 20->crypto
+    if hour == 12:
+        return "tech"
+    if hour == 16:
+        return "web3"
+    if hour == 20:
+        return "crypto"
+    # tolerant ranges if exact hour isn't used
+    if 11 <= hour <= 13:
+        return "tech"
+    if 15 <= hour <= 17:
+        return "web3"
+    if 19 <= hour <= 21:
+        return "crypto"
+    # default
+    return "tech"
+
+def main():
+    print("job_scraper.py start - MANUAL =", MANUAL, "CATEGORY env =", CATEGORY)
+    # sanity checks
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHANNEL or not BLOGGER_ID:
+        print("ERROR: TELEGRAM_BOT_TOKEN, TELEGRAM_CHANNEL, and BLOGGER_ID must be set in environment.")
+        return
+
+    # Manual run: prepopulate 9 starter posts and then one per category
+    if MANUAL:
+        try:
+            prepopulate_first_n(9)
+        except Exception as e:
+            print("Prepopulate error:", e)
+        # post one for each category immediately
+        for cat in ["tech","web3","crypto"]:
+            print("Manual posting for category:", cat)
+            job = fetch_one_job_for_category(cat)
+            if job:
+                sent_jobs.add(job["link"])
+                save_sent_jobs(sent_jobs)
+                post_to_blogger(job)
+                post_to_telegram(job)
+            else:
+                print("No job found for", cat)
+        print("Manual run finished.")
+        return
+
+    # Automated scheduled run
+    run_cat = CATEGORY or fallback_category_from_utc()
+    print("Scheduled run - category:", run_cat)
+    job = fetch_one_job_for_category(run_cat)
+    if not job:
+        print("No new", run_cat, "job found.")
+        return
+
+    sent_jobs.add(job["link"])
+    save_sent_jobs(sent_jobs)
+
+    try:
+        post_to_blogger(job)
+    except Exception as e:
+        print("Blogger post error:", e)
+
+    try:
+        post_to_telegram(job)
+    except Exception as e:
+        print("Telegram post error:", e)
+
+    print("Scheduled run finished.")
+
 if __name__ == "__main__":
-    print("Starting master job bot...")
-    prepopulate_first_n(9)
-    setup_schedule()
-    while True:
-        schedule.run_pending()
-        time.sleep(5)
+    main()
