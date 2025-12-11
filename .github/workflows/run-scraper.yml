@@ -2,7 +2,9 @@ name: Run Job Automation
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "0 12 * * *"   # 12:00 UTC -> tech
+    - cron: "0 16 * * *"   # 16:00 UTC -> web3
+    - cron: "0 20 * * *"   # 20:00 UTC -> crypto
   workflow_dispatch:
 
 jobs:
@@ -16,7 +18,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
@@ -29,13 +31,28 @@ jobs:
 
       - name: Prepare Blogger credentials file
         run: |
-          echo '${{ secrets.BLOGGER_CREDENTIALS_JSON }}' > credentials.json
+          echo '${{ secrets.BLOGGER_CREDENTIALS_JSON }}' > client_secret.json
 
-      - name: Run Scraper
+      - name: Determine CATEGORY and run scraper
         env:
           BLOGGER_ID: ${{ secrets.BLOGGER_ID }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
         run: |
+          # compute UTC hour and map to category
+          hour=$(date -u +"%H")
+          echo "UTC hour is: $hour"
+          if [ "$hour" -eq "12" ]; then
+            export CATEGORY=tech
+          elif [ "$hour" -eq "16" ]; then
+            export CATEGORY=web3
+          elif [ "$hour" -eq "20" ]; then
+            export CATEGORY=crypto
+          else
+            # fallback for manual runs or unexpected times
+            export CATEGORY=tech
+          fi
+          echo "Running for CATEGORY=$CATEGORY"
           python job_scraper.py
+
 
