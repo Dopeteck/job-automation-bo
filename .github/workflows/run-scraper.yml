@@ -53,6 +53,7 @@ jobs:
             export CATEGORY=tech
           fi
           echo "Running for CATEGORY=$CATEGORY"
-          python job_scraper.py
+          - run: python master_job_bot.py --immediate
+
 
 
