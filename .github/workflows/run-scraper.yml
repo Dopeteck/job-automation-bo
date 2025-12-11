@@ -31,35 +31,44 @@ jobs:
         run: |
           echo '${{ secrets.BLOGGER_CREDENTIALS_JSON }}' > client_secret.json
 
-      # Manual run: run all categories + prepopulate
-      - name: Manual run
+      # Manual run: run all categories + prepopulate (FORCE enabled here)
+      - name: Manual run (prepopulate + all categories)
         if: github.event_name == 'workflow_dispatch'
         env:
           MANUAL: "1"
+          FORCE_PREPOPULATE: "1"                      # <-- One-time force flag (temporary)
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
           BLOGGER_ID: ${{ secrets.BLOGGER_ID }}
         run: python job_scraper.py
 
       # Auto run: determine category based on UTC hour
-      - name: Automatic scheduled run
+      - name: Automatic scheduled run - compute category
         if: github.event_name == 'schedule'
         run: |
           HOUR=$(date -u +"%H")
           if [ "$HOUR" -eq 12 ]; then echo "tech" > cat.txt; fi
           if [ "$HOUR" -eq 16 ]; then echo "web3" > cat.txt; fi
           if [ "$HOUR" -eq 20 ]; then echo "crypto" > cat.txt; fi
+          # fallback: if not exact hour, map ranges
+          if [ ! -f cat.txt ]; then
+            if [ "$HOUR" -ge 11 ] && [ "$HOUR" -le 13 ]; then echo "tech" > cat.txt; fi
+            if [ "$HOUR" -ge 15 ] && [ "$HOUR" -le 17 ]; then echo "web3" > cat.txt; fi
+            if [ "$HOUR" -ge 19 ] && [ "$HOUR" -le 21 ]; then echo "crypto" > cat.txt; fi
+          fi
 
-      - name: Run category
+      - name: Run category (scheduled)
         if: github.event_name == 'schedule'
         env:
-          CATEGORY: ${{ steps.run.outputs.category }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
           BLOGGER_ID: ${{ secrets.BLOGGER_ID }}
         run: |
           CATEGORY=$(cat cat.txt)
+          echo "Scheduled run for CATEGORY=$CATEGORY"
+          export CATEGORY
           python job_scraper.py
+
 
 
 
