@@ -28,7 +28,9 @@ BLOGGER_ID = os.getenv("BLOGGER_ID")
 
 
 # Telegram
-from telegram import Bot, ParseMode
+from telegram import Bot
+from telegram.constants import ParseMode
+
 
 # Blogger (Google API)
 from googleapiclient.discovery import build
