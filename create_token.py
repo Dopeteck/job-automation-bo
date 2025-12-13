@@ -2,7 +2,7 @@
 from google_auth_oauthlib.flow import InstalledAppFlow
 import pickle, os
 
-SCOPES = ["https://www.googleapis.com/auth/blogger"]
+SCOPES = ["https://www.googleapis.com/auth/blogger", "https://www.googleapis.com/auth/documents"]
 
 flow = InstalledAppFlow.from_client_secrets_file("client_secret.json", SCOPES)
 creds = flow.run_local_server(port=0)
