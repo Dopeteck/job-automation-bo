@@ -2,17 +2,18 @@
 """
 job_scraper.py
 
-One-shot job scraper & publisher:
-- Run once and exit (suitable for GitHub Actions)
-- Env vars:
+One-shot job scraper & publisher (updated with Mercor + referral support)
+- ENV:
     TELEGRAM_BOT_TOKEN   (required)
     TELEGRAM_CHANNEL     (required, e.g. @VettedWeb3jobs)
     BLOGGER_ID           (required)
     CATEGORY             (optional) one of: tech, web3, crypto
     MANUAL               set to "1" for manual run (prepopulate 9 + post one per category)
-- Requires token_blogger.pkl (created via your local OAuth flow)
-- Requires python-telegram-bot==13.7 (sync)
-- Requires feedparser, beautifulsoup4, google-api-python-client, google-auth-oauthlib
+    FORCE_PREPOPULATE    set to "1" to force sending starter posts even if sent_jobs exists
+    REF_MERCOR           (optional) your Mercor referral code
+    REF_GENERIC          (optional) fallback referral code for some boards
+- Requires token_blogger.pkl (uploaded to Actions) for Blogger posting
+- Uses python-telegram-bot==13.7 (sync)
 """
 
 import os
@@ -24,23 +25,32 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 import feedparser
 import traceback
+import requests
+from urllib.parse import urlparse, parse_qsl, urlencode, urlunparse
 
-# Environment
+# ---------------------------
+# ENV / CONFIG
+# ---------------------------
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHANNEL = os.getenv("TELEGRAM_CHANNEL")
 BLOGGER_ID = os.getenv("BLOGGER_ID")
-CATEGORY = os.getenv("CATEGORY")  # "tech" / "web3" / "crypto" (preferred for scheduled run)
+CATEGORY = os.getenv("CATEGORY")  # "tech" / "web3" / "crypto"
 MANUAL = os.getenv("MANUAL", "0") == "1"
+FORCE_PREPOPULATE = os.getenv("FORCE_PREPOPULATE", "0") == "1"
+
+# Referral codes (set as envs / GitHub secrets)
+REF_MERCOR = os.getenv("REF_MERCOR")    # e.g. "MYMERCORCODE"
+REF_GENERIC = os.getenv("REF_GENERIC")  # fallback
 
 SENT_STORE = "sent_jobs.pkl"
-TOKEN_FILE = "token_blogger.pkl"  # must already exist (created locally)
-CLIENT_SECRET_FILE = "client_secret.json"  # if your code needs it locally
+TOKEN_FILE = "token_blogger.pkl"
 
-# Feeds - you can expand these lists
+# Feeds (added WeWorkRemotely; Mercor handled specially)
 FEEDS = {
     "tech": [
         "https://remoteok.com/remote-jobs.rss",
-        "https://stackoverflow.com/jobs/feed"
+        "https://stackoverflow.com/jobs/feed",
+        "https://weworkremotely.com/remote-jobs.rss"
     ],
     "web3": [
         "https://web3.career/rss",
@@ -49,16 +59,27 @@ FEEDS = {
     "crypto": [
         "https://crypto.jobs/rss",
         "https://cryptojobslist.com/jobs.rss"
+    ],
+    # special "mercor" feed handled by HTML scraping
+    "mercor": [
+        "https://www.mercor.com/careers",   # example (adjust if Mercor careers URL differs)
+        "https://work.mercor.com/"
     ]
 }
 
-# Allowed HTML tags for basic formatting
 ALLOWED_TAGS = ["p", "br", "b", "strong", "i", "em", "ul", "ol", "li", "a", "h1", "h2", "h3"]
+
+# Referral mapping: domain -> (ref_code_env_var_value, param_name)
+REFERRAL_SITES = {
+    "mercor.com": (REF_MERCOR, "ref"),
+    "work.mercor.com": (REF_MERCOR, "ref"),
+    "remoteok.com": (REF_GENERIC, "ref"),
+    "weworkremotely.com": (REF_GENERIC, "ref")
+}
 
 # ---------------------------
 # Utilities
 # ---------------------------
-
 def load_sent_jobs():
     try:
         if os.path.exists(SENT_STORE):
@@ -82,7 +103,6 @@ def sanitize_html_keep_basic(html_text):
         if tag.name not in ALLOWED_TAGS:
             tag.unwrap()
         else:
-            # keep only href on <a>
             if tag.name == "a":
                 href = tag.get("href")
                 tag.attrs = {}
@@ -92,7 +112,6 @@ def sanitize_html_keep_basic(html_text):
                     tag.unwrap()
             else:
                 tag.attrs = {}
-    # collapse excessive whitespace
     text = str(soup)
     text = re.sub(r'\n\s*\n', '\n', text)
     return text.strip()
@@ -118,21 +137,56 @@ def detect_seniority(text):
     return "Not specified"
 
 # ---------------------------
-# Blogger (uses token_blogger.pkl)
+# Referral helper
+# ---------------------------
+def apply_referral(url, site_key=None):
+    """Append referral parameter to url when a code exists for that site."""
+    if not url:
+        return url
+    parsed = urlparse(url)
+    domain = parsed.netloc.lower()
+
+    # determine param name & code
+    ref_code = None
+    param_name = "ref"
+    # explicit site_key first
+    if site_key and site_key in REFERRAL_SITES and REFERRAL_SITES[site_key][0]:
+        ref_code, param_name = REFERRAL_SITES[site_key]
+    else:
+        # match domain substrings
+        for dom, (code, pname) in REFERRAL_SITES.items():
+            if dom in domain and code:
+                ref_code, param_name = (code, pname)
+                break
+        if not ref_code:
+            ref_code = REF_GENERIC
+
+    if not ref_code:
+        return url
+
+    # preserve existing query params, avoid duplication
+    q = dict(parse_qsl(parsed.query))
+    if param_name in q:
+        return url
+    q[param_name] = ref_code
+    new_query = urlencode(q)
+    new_parsed = parsed._replace(query=new_query)
+    return urlunparse(new_parsed)
+
+# ---------------------------
+# Blogger
 # ---------------------------
 def get_blogger_service():
     try:
         from googleapiclient.discovery import build
     except Exception as e:
         raise RuntimeError("Missing googleapiclient library. Install requirements.") from e
-
     creds = None
     if os.path.exists(TOKEN_FILE):
         with open(TOKEN_FILE, "rb") as f:
             creds = pickle.load(f)
     else:
         raise RuntimeError(f"{TOKEN_FILE} not found. Create it locally and upload as secret for Actions.")
-
     service = build("blogger", "v3", credentials=creds)
     return service
 
@@ -160,12 +214,10 @@ def post_to_blogger(job):
         traceback.print_exc()
 
 # ---------------------------
-# ---------------------------
-# Telegram (sync-safe, plain-text description + single clickable link)
+# Telegram (sync-safe)
 # ---------------------------
 def post_to_telegram(job):
     try:
-        # use the sync v13.x library
         from telegram import Bot
         from telegram.parsemode import ParseMode
     except Exception as e:
@@ -173,15 +225,9 @@ def post_to_telegram(job):
         raise
 
     bot = Bot(token=TELEGRAM_BOT_TOKEN)
-
-    # Convert HTML/markup to plain text with line breaks
     desc_html = job.get("html_description", "") or ""
-    # Use BeautifulSoup to extract text; use '\n' as separator to preserve paragraphs
     desc_text = BeautifulSoup(desc_html, "html.parser").get_text(separator="\n", strip=True)
-    # Collapse multiple blank lines
     desc_text = re.sub(r'\n\s*\n+', '\n\n', desc_text).strip()
-
-    # Truncate safely for Telegram (limit ~4096; keep smaller safety margin)
     if len(desc_text) > 3000:
         desc_text = desc_text[:3000] + "..."
 
@@ -190,9 +236,6 @@ def post_to_telegram(job):
     level = html.escape(job.get("level","Not specified"))
     apply_link = html.escape(job.get("link",""))
 
-    # Build message: plain text body, but keep the Apply link as an HTML anchor (Telegram supports <a>)
-    # We escape the text portions and then include a single <a> for the link.
-    # Note: do NOT include <br> tags — use '\n' for new lines.
     body_text = (
         f"<b>🔥 NEW JOB</b>\n\n"
         f"<b>Role:</b> {title}\n"
@@ -212,37 +255,82 @@ def post_to_telegram(job):
         print(f"[Telegram] Posted: {job.get('title')}")
     except Exception as e:
         print("[Telegram] Error posting:", e)
-        # log stack for debugging
-        import traceback; traceback.print_exc()
-
+        traceback.print_exc()
 
 # ---------------------------
-# Fetch job
+# Fetch job (RSS + Mercor HTML scraping)
 # ---------------------------
 def fetch_one_job_for_category(category):
     feeds = FEEDS.get(category, [])
     for feed in feeds:
         try:
+            # Mercor HTML scraping special-case
+            if "mercor" in feed or "work.mercor" in feed:
+                try:
+                    resp = requests.get(feed, timeout=15, headers={"User-Agent":"jobbot/1.0"})
+                    if resp.status_code != 200:
+                        continue
+                    soup = BeautifulSoup(resp.text, "html.parser")
+                    candidates = []
+                    # look for anchors likely to be job links
+                    for a in soup.find_all("a", href=True):
+                        href = a["href"]
+                        if "/job" in href.lower() or "/jobs" in href.lower() or "career" in href.lower():
+                            full = href if href.startswith("http") else requests.compat.urljoin(feed, href)
+                            title_text = a.get_text(strip=True) or None
+                            candidates.append((full, title_text))
+                    seen_links = set()
+                    for link, title_text in candidates:
+                        if not link or link in sent_jobs or link in seen_links:
+                            continue
+                        seen_links.add(link)
+                        # optional fetch job page for description
+                        desc_html = ""
+                        try:
+                            r2 = requests.get(link, timeout=10, headers={"User-Agent":"jobbot/1.0"})
+                            if r2.status_code == 200:
+                                page_soup = BeautifulSoup(r2.text, "html.parser")
+                                desc_el = page_soup.find(class_="description") or page_soup.find(class_="job-description") or page_soup.find("article") or page_soup.find("div", {"id":"job-description"})
+                                desc_html = str(desc_el) if desc_el else ""
+                        except Exception:
+                            desc_html = ""
+                        job = {
+                            "title": title_text or "Job at Mercor",
+                            "company": "Mercor",
+                            "link": apply_referral(link, "mercor.com"),
+                            "html_description": sanitize_html_keep_basic(desc_html),
+                            "plain_description": clean_text_plain(desc_html)
+                        }
+                        job["level"] = detect_seniority(job["plain_description"])
+                        return job
+                    continue
+                except Exception as e:
+                    print("[Fetch] Mercor scraping error:", e)
+                    traceback.print_exc()
+                    continue
+
+            # Default RSS flow
             data = feedparser.parse(feed)
             if not data or not getattr(data, "entries", None):
                 continue
             for entry in data.entries:
-                link = getattr(entry,"link",None)
+                link = getattr(entry, "link", None)
                 if not link:
                     continue
                 if link in sent_jobs:
                     continue
-                raw_desc = getattr(entry,"summary","") or getattr(entry,"description","") or ""
+                raw_desc = getattr(entry, "summary", "") or getattr(entry, "description", "") or ""
                 html_desc = sanitize_html_keep_basic(raw_desc)
                 plain = clean_text_plain(raw_desc, maxlen=1200)
+                link_with_ref = apply_referral(link)
                 job = {
-                    "title": getattr(entry,"title","No title"),
-                    "company": getattr(entry,"author","") or "",
-                    "link": link,
+                    "title": getattr(entry, "title", "No title"),
+                    "company": getattr(entry, "author", "") or getattr(entry, "company", "") or "",
+                    "link": link_with_ref,
                     "html_description": html_desc,
-                    "plain_description": plain,
-                    "level": detect_seniority(plain)
+                    "plain_description": plain
                 }
+                job['level'] = detect_seniority(job['plain_description'])
                 return job
         except Exception as e:
             print(f"[Fetch] Error fetching from {feed}: {e}")
@@ -254,15 +342,17 @@ def fetch_one_job_for_category(category):
 # Prepopulate (manual)
 # ---------------------------
 def prepopulate_first_n(n=9):
-    if len(sent_jobs) > 0:
+    if len(sent_jobs) > 0 and not FORCE_PREPOPULATE:
         print("[Prepopulate] Already populated. Skipping.")
         return
+    if FORCE_PREPOPULATE:
+        print("[Prepopulate] FORCE enabled - will send starter posts even if sent_jobs exists.")
     print("[Prepopulate] Sending initial posts...")
     count = 0
     cats = ["tech","web3","crypto"]
-    # rotate through categories
     i = 0
-    while count < n and i < n * 5:
+    # rotate through categories to get a balanced starter set
+    while count < n and i < n * 6:
         cat = cats[i % len(cats)]
         job = fetch_one_job_for_category(cat)
         if job:
@@ -275,46 +365,41 @@ def prepopulate_first_n(n=9):
                 time.sleep(1)
             except Exception as e:
                 print("[Prepopulate] Error posting job:", e)
+                traceback.print_exc()
         i += 1
     print(f"[Prepopulate] Done. Sent {count} starter posts.")
 
 # ---------------------------
-# MAIN
+# Main & fallback mapping
 # ---------------------------
-
 def fallback_category_from_utc():
-    """Fallback mapping if CATEGORY env not provided."""
     hour = datetime.utcnow().hour
-    # map exact hours used in scheduling: 12->tech, 16->web3, 20->crypto
     if hour == 12:
         return "tech"
     if hour == 16:
         return "web3"
     if hour == 20:
         return "crypto"
-    # tolerant ranges if exact hour isn't used
     if 11 <= hour <= 13:
         return "tech"
     if 15 <= hour <= 17:
         return "web3"
     if 19 <= hour <= 21:
         return "crypto"
-    # default
     return "tech"
 
 def main():
-    print("job_scraper.py start - MANUAL =", MANUAL, "CATEGORY env =", CATEGORY)
-    # sanity checks
+    print("job_scraper.py start - MANUAL =", MANUAL, "CATEGORY env =", CATEGORY, "FORCE_PREPOPULATE =", FORCE_PREPOPULATE)
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHANNEL or not BLOGGER_ID:
         print("ERROR: TELEGRAM_BOT_TOKEN, TELEGRAM_CHANNEL, and BLOGGER_ID must be set in environment.")
         return
 
-    # Manual run: prepopulate 9 starter posts and then one per category
     if MANUAL:
         try:
             prepopulate_first_n(9)
         except Exception as e:
             print("Prepopulate error:", e)
+            traceback.print_exc()
         # post one for each category immediately
         for cat in ["tech","web3","crypto"]:
             print("Manual posting for category:", cat)
@@ -322,14 +407,19 @@ def main():
             if job:
                 sent_jobs.add(job["link"])
                 save_sent_jobs(sent_jobs)
-                post_to_blogger(job)
-                post_to_telegram(job)
+                try:
+                    post_to_blogger(job)
+                except Exception as e:
+                    print("Blogger post error:", e)
+                try:
+                    post_to_telegram(job)
+                except Exception as e:
+                    print("Telegram post error:", e)
             else:
                 print("No job found for", cat)
         print("Manual run finished.")
         return
 
-    # Automated scheduled run
     run_cat = CATEGORY or fallback_category_from_utc()
     print("Scheduled run - category:", run_cat)
     job = fetch_one_job_for_category(run_cat)
@@ -344,11 +434,13 @@ def main():
         post_to_blogger(job)
     except Exception as e:
         print("Blogger post error:", e)
+        traceback.print_exc()
 
     try:
         post_to_telegram(job)
     except Exception as e:
         print("Telegram post error:", e)
+        traceback.print_exc()
 
     print("Scheduled run finished.")
 
