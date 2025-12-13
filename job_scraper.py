@@ -209,6 +209,7 @@ def post_to_blogger(job):
         }
         resp = service.posts().insert(blogId=BLOGGER_ID, body=body, isDraft=False).execute()
         print("[Blogger] Posted:", job.get("title"), "->", resp.get("url"))
+        time.sleep(10)
     except Exception as e:
         print("[Blogger] Error posting:", e)
         traceback.print_exc()
