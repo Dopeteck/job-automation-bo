@@ -1,8 +1,8 @@
-name: Weekly Substack Digest
+name: Weekly Digest
 
 on:
   schedule:
-    - cron: "0 10 * * 0"   # Sunday
+    - cron: "0 8 * * 1"  # Every Monday
   workflow_dispatch:
 
 jobs:
@@ -11,19 +11,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      - run: |
-          pip install --upgrade pip
-          pip install python-dotenv
+      - name: Install dependencies
+        run: |
+          pip install openai google-api-python-client
 
-      - name: Generate Weekly Digest
-        run: python weekly_digest.py
+      - name: Run weekly digest
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python weekly_digest.py
 
-      - name: Upload Digest Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: weekly-digest
-          path: weekly_digest.md
