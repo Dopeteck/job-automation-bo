@@ -1,50 +1,106 @@
 #!/usr/bin/env python3
+"""
+Blogger Publisher — SEO & Long-form
+"""
 
-import json, pickle, os
+import os, json, html, pickle
 from pathlib import Path
+from openai import OpenAI
 from googleapiclient.discovery import build
 
+DATA_PATH = Path("data/jobs_log.json")
+POSTED_PATH = Path("data/blogger_posted.json")
+TOKEN_FILE = "token_blogger.pkl"
+
 BLOGGER_ID = os.getenv("BLOGGER_ID")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-DATA = Path("../data/jobs_log.json")
-SENT = Path("data/blogger_sent.json")
-TOKEN = "token_blogger.pkl"
+client = OpenAI(api_key=OPENAI_API_KEY)
 
-def load(p): return json.load(open(p)) if p.exists() else []
-def save(p,d): json.dump(d, open(p,"w"), indent=2)
+def load_json(path, default):
+    if path.exists():
+        return json.loads(path.read_text())
+    return default
+
+def save_json(path, data):
+    path.parent.mkdir(exist_ok=True)
+    path.write_text(json.dumps(data, indent=2))
+
+def ai_summary(job):
+    prompt = f"""
+Write a helpful job overview in bullet points.
+
+Include:
+- What you'll do
+- Who it's for
+- Why it's interesting
+
+Job:
+Title: {job['title']}
+Company: {job['company']}
+Description: {job.get('short_desc','')}
+"""
+    r = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[{"role":"user","content":prompt}],
+        max_tokens=180
+    )
+    return r.choices[0].message.content.strip()
+
+def build_html(job, summary):
+    bullets = "".join(
+        f"<li>{html.escape(x)}</li>"
+        for x in summary.splitlines() if x.strip()
+    )
+
+    return f"""
+<h2>{html.escape(job['title'])}</h2>
+
+<p><b>Company:</b> {html.escape(job['company'])}</p>
+<p><b>Level:</b> {job.get('level','Not specified')}</p>
+
+<h3>Why this role stands out</h3>
+<ul>{bullets}</ul>
+
+<p>
+<a href="{job['link']}">
+👉 Apply directly here
+</a>
+</p>
+
+<hr>
+<p><i>More curated remote jobs daily on Telegram.</i></p>
+"""
 
 def main():
-    with open(TOKEN,"rb") as f:
+    jobs = load_json(DATA_PATH, [])
+    posted = set(load_json(POSTED_PATH, []))
+
+    with open(TOKEN_FILE, "rb") as f:
         creds = pickle.load(f)
 
-    service = build("blogger","v3",credentials=creds)
+    service = build("blogger", "v3", credentials=creds)
 
-    jobs = load(DATA)
-    sent = set(load(SENT))
-
-    for j in jobs:
-        if j["id"] in sent:
+    for job in reversed(jobs):
+        if job["id"] in posted:
             continue
 
-        content = f"""
-<h3>{j['title']}</h3>
-<p><b>Company:</b> {j['company']}</p>
-<p><b>Level:</b> {j['level']}</p>
-<p>{j['short_desc']}</p>
-<p><a href="{j['link']}">👉 Apply here</a></p>
-"""
+        summary = ai_summary(job)
+        content = build_html(job, summary)
 
         service.posts().insert(
             blogId=BLOGGER_ID,
-            body={"title": j["title"], "content": content},
+            body={
+                "title": f"{job['title']} at {job['company']} (Remote)",
+                "content": content
+            },
             isDraft=False
         ).execute()
 
-        sent.add(j["id"])
-        break   # one post per run
-
-    save(SENT, list(sent))
-    print("Blogger post published.")
+        posted.add(job["id"])
+        save_json(POSTED_PATH, list(posted))
+        break  # ONE post per run
 
 if __name__ == "__main__":
     main()
+
