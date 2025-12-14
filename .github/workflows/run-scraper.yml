@@ -12,42 +12,48 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # -------------------------
+      # 1️⃣ Checkout repo
+      # -------------------------
       - uses: actions/checkout@v3
 
+      # -------------------------
+      # 2️⃣ Python setup
+      # -------------------------
       - uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
+      # -------------------------
+      # 3️⃣ Install deps
+      # -------------------------
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install python-telegram-bot==13.7
           pip install -r requirements.txt
+          pip install python-telegram-bot==13.7
+          pip install google-api-python-client google-auth google-auth-oauthlib
 
+      # -------------------------
+      # 4️⃣ Restore Blogger token
+      # -------------------------
       - name: Restore Blogger token
         run: |
           echo "${{ secrets.BLOGGER_TOKEN_B64 }}" | base64 --decode > token_blogger.pkl
 
-      - name: Restore Blogger credentials
-        run: |
-          echo '${{ secrets.BLOGGER_CREDENTIALS_JSON }}' > client_secret.json
-
       # =========================
-      # MANUAL RUN (ONE-TIME POPULATE)
+      # 🟡 MANUAL RUN
+      # (Scrape + log ONLY)
       # =========================
-      - name: Manual run (prepopulate + all categories)
+      - name: Manual scrape (populate job log)
         if: github.event_name == 'workflow_dispatch'
         env:
           MANUAL: "1"
-          FORCE_PREPOPULATE: "1"
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
-          BLOGGER_ID: ${{ secrets.BLOGGER_ID }}
-          MERCOR_REF: ${{ secrets.MERCOR_REF }}
-        run: python job_scraper.py
+        run: |
+          python job_scraper.py
 
       # =========================
-      # SCHEDULED RUN
+      # 🟢 SCHEDULED SCRAPE
       # =========================
       - name: Compute category
         if: github.event_name == 'schedule'
@@ -57,17 +63,26 @@ jobs:
           if [ "$HOUR" -eq 16 ]; then echo "web3" > cat.txt; fi
           if [ "$HOUR" -eq 20 ]; then echo "crypto" > cat.txt; fi
 
-      - name: Run category
+      - name: Run scraper (log only)
         if: github.event_name == 'schedule'
+        env:
+          CATEGORY: ""
+        run: |
+          export CATEGORY=$(cat cat.txt)
+          echo "Scraping CATEGORY=$CATEGORY"
+          python job_scraper.py
+
+      # =========================
+      # 🔵 PUBLISHER
+      # =========================
+      - name: Publish to Telegram & Blogger
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
           BLOGGER_ID: ${{ secrets.BLOGGER_ID }}
-          MERCOR_REF: ${{ secrets.MERCOR_REF }}
         run: |
-          export CATEGORY=$(cat cat.txt)
-          echo "Running CATEGORY=$CATEGORY"
-          python job_scraper.py
+          python publishers/publish_jobs.py
+
 
 
 
