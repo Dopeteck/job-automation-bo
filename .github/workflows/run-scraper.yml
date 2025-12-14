@@ -1,14 +1,12 @@
-name: Run Job Automation
+name: Weekly Digest
 
 on:
   schedule:
-    - cron: "0 12 * * *"
-    - cron: "0 16 * * *"
-    - cron: "0 20 * * *"
+    - cron: "0 8 * * 1"  # Every Monday (08:00 UTC)
   workflow_dispatch:
 
 jobs:
-  run:
+  digest:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,18 +18,19 @@ jobs:
       # -------------------------
       # 2️⃣ Python setup
       # -------------------------
-      - uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
       # -------------------------
-      # 3️⃣ Install deps
+      # 3️⃣ Install dependencies
       # -------------------------
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install python-telegram-bot==13.7
+          pip install openai
           pip install google-api-python-client google-auth google-auth-oauthlib
 
       # -------------------------
@@ -41,47 +40,16 @@ jobs:
         run: |
           echo "${{ secrets.BLOGGER_TOKEN_B64 }}" | base64 --decode > token_blogger.pkl
 
-      # =========================
-      # 🟡 MANUAL RUN
-      # (Scrape + log ONLY)
-      # =========================
-      - name: Manual scrape (populate job log)
-        if: github.event_name == 'workflow_dispatch'
+      # -------------------------
+      # 5️⃣ Run weekly digest
+      # -------------------------
+      - name: Run weekly digest
         env:
-          MANUAL: "1"
-        run: |
-          python job_scraper.py
-
-      # =========================
-      # 🟢 SCHEDULED SCRAPE
-      # =========================
-      - name: Compute category
-        if: github.event_name == 'schedule'
-        run: |
-          HOUR=$(date -u +"%H")
-          if [ "$HOUR" -eq 12 ]; then echo "tech" > cat.txt; fi
-          if [ "$HOUR" -eq 16 ]; then echo "web3" > cat.txt; fi
-          if [ "$HOUR" -eq 20 ]; then echo "crypto" > cat.txt; fi
-
-      - name: Run scraper (log only)
-        if: github.event_name == 'schedule'
-        env:
-          CATEGORY: ""
-        run: |
-          export CATEGORY=$(cat cat.txt)
-          echo "Scraping CATEGORY=$CATEGORY"
-          python job_scraper.py
-
-      # =========================
-      # 🔵 PUBLISHER
-      # =========================
-      - name: Publish to Telegram & Blogger
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           BLOGGER_ID: ${{ secrets.BLOGGER_ID }}
         run: |
-          python publishers/publish_jobs.py
+          python weekly_digest.py
+
 
 
 
