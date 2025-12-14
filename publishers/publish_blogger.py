@@ -6,7 +6,7 @@ from googleapiclient.discovery import build
 
 BLOGGER_ID = os.getenv("BLOGGER_ID")
 
-DATA = Path("data/jobs_log.json")
+DATA = Path("../data/jobs_log.json")
 SENT = Path("data/blogger_sent.json")
 TOKEN = "token_blogger.pkl"
 

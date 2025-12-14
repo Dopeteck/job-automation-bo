@@ -7,7 +7,7 @@ from telegram import Bot
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHANNEL   = os.getenv("TELEGRAM_CHANNEL")
 
-DATA = Path("data/jobs_log.json")
+DATA = Path("../data/jobs_log.json")
 SENT = Path("data/telegram_sent.json")
 
 def load(p): return json.load(open(p)) if p.exists() else []
