@@ -1,84 +1,68 @@
 #!/usr/bin/env python3
 
-import json, os, html, pickle
+import json, os, html
 from pathlib import Path
 from googleapiclient.discovery import build
+import pickle
 
-DATA = Path("data")
-LOG_FILE = DATA / "jobs_log.json"
-SENT_FILE = DATA / "sent_blogger.json"
-TOKEN = "token_blogger.pkl"
+LOG_FILE = Path("data/jobs_log.json")
+TOKEN_FILE = "token_blogger.pkl"
+BLOG_ID = os.getenv("BLOGGER_ID")
 
-BLOGGER_ID = os.getenv("BLOGGER_ID")
+def load_jobs():
+    return json.loads(LOG_FILE.read_text())
 
-DATA.mkdir(exist_ok=True)
-
-def load_json(path, default):
-    if not path.exists() or path.stat().st_size == 0:
-        return default
-    try:
-        return json.loads(path.read_text())
-    except:
-        return default
-
-def save_json(path, data):
-    path.write_text(json.dumps(data, indent=2))
+def save_jobs(jobs):
+    LOG_FILE.write_text(json.dumps(jobs, indent=2))
 
 def main():
-    jobs = load_json(LOG_FILE, [])
-    sent = set(load_json(SENT_FILE, []))
-
-    job = next((j for j in jobs if j["id"] not in sent), None)
-
-    if not job:
-        print("No new Blogger jobs.")
-        return
-
-    with open(TOKEN, "rb") as f:
+    with open(TOKEN_FILE, "rb") as f:
         creds = pickle.load(f)
 
     service = build("blogger", "v3", credentials=creds)
+    jobs = load_jobs()
 
-    seo_title = f"{job['title']} at {job['company']} – Remote {job['level']} Role"
+    for job in jobs:
+        pub = job.setdefault("published", {})
+        if pub.get("blogger"):
+            continue
 
-    content = f"""
-<h1>{html.escape(job['title'])}</h1>
+        title = f"{job['title']} at {job['company']} ({job['level']})"
+
+        content = f"""
+<h2>{html.escape(job['title'])}</h2>
 
 <p><strong>Company:</strong> {html.escape(job['company'])}</p>
+<p><strong>Category:</strong> {job['category'].upper()}</p>
 <p><strong>Level:</strong> {job['level']}</p>
-<p><strong>Category:</strong> {job['category'].title()}</p>
 
-<h2>Job Description</h2>
+<h3>Job Description</h3>
 <p>{html.escape(job['short_desc'])}</p>
 
-<h2>Why This Role Is Worth Applying For</h2>
-<ul>
-<li>Fully remote opportunity</li>
-<li>Competitive compensation</li>
-<li>High-growth team</li>
-</ul>
+<h3>Why This Role Matters</h3>
+<p>This is a remote opportunity in the {job['category']} space, ideal for professionals seeking global exposure and career growth.</p>
 
-<p>
-<a href="{job['link']}">
-<strong>👉 Apply for this remote role here</strong>
-</a>
-</p>
+<p><a href="{job['link']}"><strong>👉 Apply Here</strong></a></p>
 
-<p><em>More verified remote jobs posted daily.</em></p>
+<p><em>More curated remote jobs daily on Telegram.</em></p>
 """
 
-    service.posts().insert(
-        blogId=BLOGGER_ID,
-        body={"title": seo_title, "content": content},
-        isDraft=False
-    ).execute()
+        service.posts().insert(
+            blogId=BLOG_ID,
+            body={"title": title, "content": content},
+            isDraft=False
+        ).execute()
 
-    sent.add(job["id"])
-    save_json(SENT_FILE, list(sent))
-    print("Blogger post published.")
+        job["published"]["blogger"] = True
+        save_jobs(jobs)
+        print("Posted ONE job to Blogger")
+        return
+
+    print("No unpublished jobs for Blogger")
 
 if __name__ == "__main__":
     main()
+
 
 
 
