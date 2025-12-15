@@ -1,15 +1,9 @@
 #!/usr/bin/env python3
 """
-job_scraper.py — LOG ONLY (PRODUCTION SAFE)
-Scrapes jobs and appends to data/jobs_log.json
-NO posting. NO AI. NO publishers.
+job_scraper.py — LOG ONLY (FINAL)
 """
 
-import os
-import json
-import re
-import requests
-import hashlib
+import json, re, hashlib, requests
 from datetime import datetime
 from pathlib import Path
 from urllib.parse import urlparse
@@ -17,18 +11,12 @@ from urllib.parse import urlparse
 import feedparser
 from bs4 import BeautifulSoup
 
-# =========================
-# CONFIG
-# =========================
 DATA_DIR = Path("data")
 DATA_DIR.mkdir(exist_ok=True)
 LOG_FILE = DATA_DIR / "jobs_log.json"
 
 CATEGORY = os.getenv("CATEGORY", "tech")
 
-# =========================
-# FEEDS
-# =========================
 FEEDS = {
     "tech": [
         "https://remoteok.com/remote-jobs.rss",
@@ -45,142 +33,92 @@ FEEDS = {
     ]
 }
 
-# =========================
-# HELPERS
-# =========================
 def load_log():
-    if not LOG_FILE.exists():
-        return []
-    try:
-        with open(LOG_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        print("⚠️ Corrupted jobs_log.json — resetting")
-        return []
+    if LOG_FILE.exists():
+        return json.loads(LOG_FILE.read_text())
+    return []
 
-def save_log(entries):
-    with open(LOG_FILE, "w", encoding="utf-8") as f:
-        json.dump(entries, f, indent=2)
+def save_log(data):
+    LOG_FILE.write_text(json.dumps(data, indent=2))
 
-def clean_text(html, limit=180):
+def clean_text(html, limit=250):
     text = BeautifulSoup(html or "", "html.parser").get_text(" ", strip=True)
-    text = re.sub(r"\s+", " ", text)
-    return text[:limit]
+    return re.sub(r"\s+", " ", text)[:limit]
 
 def detect_level(text):
-    t = (text or "").lower()
-    if any(k in t for k in ["senior", "lead", "principal"]):
-        return "Senior"
-    if any(k in t for k in ["junior", "entry", "intern"]):
-        return "Junior"
-    if any(k in t for k in ["mid", "intermediate"]):
-        return "Mid-level"
+    t = text.lower()
+    if any(x in t for x in ["senior","lead","principal"]): return "Senior"
+    if any(x in t for x in ["junior","intern","entry"]): return "Junior"
+    if any(x in t for x in ["mid","intermediate"]): return "Mid"
     return "Not specified"
 
 def make_id(source, link):
-    h = hashlib.md5(link.encode("utf-8")).hexdigest()[:10]
-    return f"{source}_{h}"
+    return f"{source}_{hashlib.md5(link.encode()).hexdigest()[:8]}"
 
-def normalize_source(feed_url):
-    domain = urlparse(feed_url).netloc
-    if "remoteok" in domain:
-        return "RemoteOK"
-    if "weworkremotely" in domain:
-        return "WeWorkRemotely"
-    if "remotive" in domain:
-        return "Remotive"
-    if "cryptojobslist" in domain:
-        return "CryptoJobsList"
-    if "web3.career" in domain:
-        return "Web3Career"
-    if "crypto.jobs" in domain:
-        return "CryptoJobs"
-    return domain
-
-# =========================
-# MERCOR
-# =========================
 def fetch_mercor():
     url = "https://api.mercor.com/api/jobs/public"
     try:
-        r = requests.get(url, timeout=15)
-        data = r.json()
-    except Exception:
+        data = requests.get(url, timeout=15).json()
+    except:
         return []
 
     jobs = []
-    for j in data.get("jobs", [])[:10]:
+    for j in data.get("jobs", [])[:15]:
         desc = j.get("description", "")
-        slug = j.get("slug")
-        if not slug:
-            continue
-
-        link = f"https://www.mercor.com/jobs/{slug}"
-
+        link = f"https://www.mercor.com/jobs/{j['slug']}"
         jobs.append({
             "id": make_id("mercor", link),
-            "title": j.get("title", "Job"),
+            "title": j.get("title"),
             "company": "Mercor",
-            "category": CATEGORY,
+            "category": "tech",
             "level": detect_level(desc),
             "source": "Mercor",
             "link": link,
             "timestamp": datetime.utcnow().isoformat() + "Z",
-            "short_desc": clean_text(desc)
+            "short_desc": clean_text(desc),
+            "published_telegram": False,
+            "published_blogger": False
         })
-
     return jobs
 
-# =========================
-# RSS
-# =========================
 def fetch_rss(category):
     jobs = []
     for feed in FEEDS.get(category, []):
-        parsed = feedparser.parse(feed)
-        source_name = normalize_source(feed)
-
-        for e in parsed.entries[:10]:
-            link = getattr(e, "link", None)
-            if not link:
-                continue
-
+        data = feedparser.parse(feed)
+        source = urlparse(feed).netloc.split(".")[0]
+        for e in data.entries[:15]:
+            link = getattr(e, "link", "")
             raw = getattr(e, "summary", "") or getattr(e, "description", "")
-            company = getattr(e, "author", "") or source_name
-
             jobs.append({
-                "id": make_id(source_name.lower(), link),
+                "id": make_id(source, link),
                 "title": getattr(e, "title", "Job"),
-                "company": company,
+                "company": getattr(e, "author", source),
                 "category": category,
                 "level": detect_level(raw),
-                "source": source_name,
+                "source": source,
                 "link": link,
                 "timestamp": datetime.utcnow().isoformat() + "Z",
-                "short_desc": clean_text(raw)
+                "short_desc": clean_text(raw),
+                "published_telegram": False,
+                "published_blogger": False
             })
-
     return jobs
 
-# =========================
-# MAIN
-# =========================
 def main():
     existing = load_log()
-    seen_ids = {j["id"] for j in existing}
+    seen = {j["id"] for j in existing}
 
-    new_jobs = []
-
+    new = []
     for job in fetch_mercor() + fetch_rss(CATEGORY):
-        if job["id"] not in seen_ids:
-            new_jobs.append(job)
+        if job["id"] not in seen:
+            new.append(job)
 
-    if not new_jobs:
-        print("No new jobs found.")
-        return
-
-    save_log(existing + new_jobs)
-    print(f"✅ Logged {len(new_jobs)} new jobs.")
+    if new:
+        save_log(existing + new)
+        print(f"Logged {len(new)} jobs")
+    else:
+        print("No new jobs")
 
 if __name__ == "__main__":
     main()
+
