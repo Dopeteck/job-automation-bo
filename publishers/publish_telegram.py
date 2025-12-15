@@ -1,85 +1,64 @@
 #!/usr/bin/env python3
 """
-Publish jobs from data/jobs_log.json to Telegram
+Telegram Publisher
+- Publishes ONLY unpublished jobs
+- Marks jobs as published
+- Short, high-CTR format
 """
 
-import os
-import json
-import html
+import json, os, html
 from pathlib import Path
 from telegram import Bot
 
-# =========================
-# CONFIG
-# =========================
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-TELEGRAM_CHANNEL = os.getenv("TELEGRAM_CHANNEL")
+DATA_FILE = Path("data/jobs_log.json")
 
-LOG_FILE = Path("data/jobs_log.json")
-POSTED_FILE = Path("data/telegram_posted.json")
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+CHANNEL   = os.getenv("TELEGRAM_CHANNEL")
 
-POST_LIMIT = 3  # max per run
+def load_jobs():
+    if not DATA_FILE.exists():
+        return []
+    return json.loads(DATA_FILE.read_text(encoding="utf-8"))
 
-# =========================
-# HELPERS
-# =========================
-def load_json(path, default):
-    if path.exists():
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return default
+def save_jobs(jobs):
+    DATA_FILE.write_text(json.dumps(jobs, indent=2), encoding="utf-8")
 
-def save_json(path, data):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
-
-# =========================
-# MAIN
-# =========================
 def main():
-    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHANNEL:
-        raise RuntimeError("Telegram credentials missing")
-
-    jobs = load_json(LOG_FILE, [])
-    posted = set(load_json(POSTED_FILE, []))
-
-    bot = Bot(token=TELEGRAM_BOT_TOKEN)
-
+    bot = Bot(BOT_TOKEN)
+    jobs = load_jobs()
     sent = 0
-    new_posted = []
 
     for job in jobs:
-        if job["id"] in posted:
+        published = job.setdefault("published", {})
+        if published.get("telegram"):
             continue
 
-        text = (
-            f"<b>🔥 New Job</b>\n\n"
-            f"<b>{html.escape(job['title'])}</b>\n"
-            f"{html.escape(job.get('company',''))}\n"
-            f"Level: {job.get('level','Not specified')}\n\n"
-            f"{html.escape(job.get('short_desc',''))}\n\n"
-            f"<a href='{job['link']}'>👉 Apply Here</a>"
+        msg = (
+            f"🔥 <b>{html.escape(job['title'])}</b>\n"
+            f"{html.escape(job['company'])}\n"
+            f"Level: {job['level']}\n\n"
+            f"{html.escape(job['short_desc'])}\n\n"
+            f"<a href='{job['link']}'>👉 Apply Now</a>"
         )
 
         bot.send_message(
-            chat_id=TELEGRAM_CHANNEL,
-            text=text,
+            chat_id=CHANNEL,
+            text=msg,
             parse_mode="HTML",
             disable_web_page_preview=False
         )
 
-        new_posted.append(job["id"])
+        published["telegram"] = True
         sent += 1
 
-        if sent >= POST_LIMIT:
+        if sent >= 3:  # throttle per run
             break
 
-    if new_posted:
-        save_json(POSTED_FILE, list(posted.union(new_posted)))
-
-    print(f"Telegram: posted {sent} jobs")
+    save_jobs(jobs)
+    print(f"Telegram: published {sent} jobs")
 
 if __name__ == "__main__":
     main()
+
 
 
