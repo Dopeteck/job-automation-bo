@@ -1,5 +1,8 @@
 name: Run Job Automation
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: "0 12 * * *"
@@ -25,7 +28,7 @@ jobs:
           python-version: "3.10"
 
       # -------------------------
-      # 3️⃣ Install dependencies
+      # 3️⃣ Install deps
       # -------------------------
       - name: Install dependencies
         run: |
@@ -42,8 +45,7 @@ jobs:
           echo "${{ secrets.BLOGGER_TOKEN_B64 }}" | base64 --decode > token_blogger.pkl
 
       # =========================
-      # 🟡 MANUAL RUN
-      # (Scrape + log ONLY)
+      # 🟡 MANUAL RUN (SCRAPE ONLY)
       # =========================
       - name: Manual scrape (populate job log)
         if: github.event_name == 'workflow_dispatch'
@@ -69,31 +71,35 @@ jobs:
           python job_scraper.py
 
       # =========================
-      # 🧠 PERSIST LOG FILE
+      # 🧠 COMMIT JOB LOG
       # =========================
       - name: Commit jobs log
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add data/jobs_log.json
-          git commit -m "Update jobs log" || echo "No changes to commit"
+          git commit -m "Update jobs log" || echo "No changes"
           git push
 
       # =========================
-      # 🔵 PUBLISHERS
+      # 🔵 TELEGRAM PUBLISHER
       # =========================
       - name: Publish to Telegram
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
         run: |
-          python publishers/telegram_publisher.py
+          python publishers/publish_telegram.py
 
+      # =========================
+      # 🟢 BLOGGER PUBLISHER
+      # =========================
       - name: Publish to Blogger
         env:
           BLOGGER_ID: ${{ secrets.BLOGGER_ID }}
         run: |
-          python publishers/blogger_publisher.py
+          python publishers/publish_blogger.py
+
 
 
 
