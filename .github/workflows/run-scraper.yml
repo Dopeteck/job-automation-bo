@@ -25,7 +25,7 @@ jobs:
           python-version: "3.10"
 
       # -------------------------
-      # 3️⃣ Install deps
+      # 3️⃣ Install dependencies
       # -------------------------
       - name: Install dependencies
         run: |
@@ -47,8 +47,6 @@ jobs:
       # =========================
       - name: Manual scrape (populate job log)
         if: github.event_name == 'workflow_dispatch'
-        env:
-          MANUAL: "1"
         run: |
           python job_scraper.py
 
@@ -65,23 +63,38 @@ jobs:
 
       - name: Run scraper (log only)
         if: github.event_name == 'schedule'
-        env:
-          CATEGORY: ""
         run: |
           export CATEGORY=$(cat cat.txt)
           echo "Scraping CATEGORY=$CATEGORY"
           python job_scraper.py
 
       # =========================
-      # 🔵 PUBLISHER
+      # 🧠 PERSIST LOG FILE
       # =========================
-      - name: Publish to Telegram & Blogger
+      - name: Commit jobs log
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/jobs_log.json
+          git commit -m "Update jobs log" || echo "No changes to commit"
+          git push
+
+      # =========================
+      # 🔵 PUBLISHERS
+      # =========================
+      - name: Publish to Telegram
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
+        run: |
+          python publishers/telegram_publisher.py
+
+      - name: Publish to Blogger
+        env:
           BLOGGER_ID: ${{ secrets.BLOGGER_ID }}
         run: |
-          python publishers/publish_jobs.py
+          python publishers/blogger_publisher.py
+
 
 
 
