@@ -17,7 +17,7 @@ def main():
     service = build("blogger","v3",credentials=creds)
 
     for job in jobs:
-        if job["published_blogger"]:
+        if job.get("published_blogger"):
             continue
 
         body = f"""
