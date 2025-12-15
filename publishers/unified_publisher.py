@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """
 Unified Publisher — Telegram + Blogger
-Publishes newest unseen jobs from multiple sources,
-deduplicates using job IDs from scraper.
+Publishes ONE unseen job per run.
+State is stored ONLY in jobs_log.json (no pickle files).
 """
 
 import os
 import json
-import pickle
 import html
 from pathlib import Path
 from telegram import Bot
@@ -21,40 +20,33 @@ TELEGRAM_CHANNEL   = os.getenv("TELEGRAM_CHANNEL")
 BLOGGER_ID         = os.getenv("BLOGGER_ID")
 TOKEN_FILE         = "token_blogger.pkl"
 
-# 👉 CHANGE THESE ONCE
+# CHANGE THESE
 SUBSTACK_URL = "https://YOUR_SUBSTACK_URL"
 TELEGRAM_PUBLIC_URL = "https://t.me/YOUR_TELEGRAM_CHANNEL"
 
 # -----------------------
-# PATHS
+# PATH
 # -----------------------
 LOG_FILE = Path("data/jobs_log.json")
-SENT_FILE = Path("data/published_jobs.pkl")
 
 # -----------------------
-# STATE
+# LOAD / SAVE JOBS
 # -----------------------
-def load_sent():
-    if SENT_FILE.exists():
-        with open(SENT_FILE, "rb") as f:
-            return pickle.load(f)
-    return set()
-
-def save_sent(sent):
-    SENT_FILE.parent.mkdir(exist_ok=True)
-    with open(SENT_FILE, "wb") as f:
-        pickle.dump(sent, f)
-
 def load_jobs():
     if LOG_FILE.exists():
-        return json.loads(LOG_FILE.read_text())
+        with open(LOG_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
     return []
 
+def save_jobs(jobs):
+    LOG_FILE.write_text(json.dumps(jobs, indent=2))
+
 # -----------------------
-# TELEGRAM (UNCHANGED)
+# TELEGRAM
 # -----------------------
 def post_telegram(job):
     bot = Bot(TELEGRAM_BOT_TOKEN)
+
     msg = (
         f"<b>🔥 NEW REMOTE JOB</b>\n\n"
         f"<b>{html.escape(job['title'])}</b>\n"
@@ -63,10 +55,15 @@ def post_telegram(job):
         f"{html.escape(job.get('short_desc',''))}\n\n"
         f"<a href='{job['link']}'>👉 Apply Now</a>"
     )
-    bot.send_message(chat_id=TELEGRAM_CHANNEL, text=msg, parse_mode="HTML")
+
+    bot.send_message(
+        chat_id=TELEGRAM_CHANNEL,
+        text=msg,
+        parse_mode="HTML"
+    )
 
 # -----------------------
-# BLOGGER (SEO OPTIMIZED)
+# BLOGGER (SEO OPTIMISED)
 # -----------------------
 def post_blogger(job):
     with open(TOKEN_FILE, "rb") as f:
@@ -82,13 +79,14 @@ def post_blogger(job):
     desc = html.escape(job.get("short_desc", ""))
 
     content = f"""
-<h2>{title} – Remote Job</h2>
+<h2>{title} – Remote Job Opportunity</h2>
 
 <p>
-The <b>{title}</b> position at <b>{company}</b> is a fully remote opportunity
-ideal for professionals seeking <b>{level.lower()} remote jobs</b>.
-This role is suitable for candidates looking for <b>work from home jobs</b>,
-<b>{category.lower()} roles</b>, and flexible online careers.
+The <b>{title}</b> position at <b>{company}</b> is a fully remote role
+designed for professionals seeking <b>{level.lower()} remote jobs</b>.
+This opportunity is ideal for candidates searching for
+<b>work from home jobs</b>, <b>{category.lower()} roles</b>,
+and location-independent careers.
 </p>
 
 <h3>Job Details</h3>
@@ -104,10 +102,10 @@ This role is suitable for candidates looking for <b>work from home jobs</b>,
 <p>{desc}</p>
 
 <p>
-This position is ideal for job seekers searching for
+This role is suitable for professionals looking for
 <b>remote {category.lower()} jobs</b>,
-<b>{level.lower()} work from home roles</b>,
-and global career opportunities.
+<b>{level.lower()} work-from-home positions</b>,
+and global online opportunities.
 </p>
 
 <h3>How to Apply</h3>
@@ -120,21 +118,15 @@ and global career opportunities.
 <hr/>
 
 <h3>📬 Stay Updated on Remote Jobs</h3>
-
-<p>
-Never miss new <b>remote job opportunities</b>.
-Subscribe below to get the latest jobs delivered instantly:
-</p>
-
 <ul>
   <li>
-    📩 <b>Substack Newsletter:</b><br/>
+    📩 <b>Substack Newsletter</b><br/>
     <a href="{SUBSTACK_URL}" target="_blank">
-      Get remote jobs in your inbox
+      Get curated remote jobs delivered to your inbox
     </a>
   </li>
   <li>
-    📢 <b>Telegram Channel:</b><br/>
+    📢 <b>Telegram Channel</b><br/>
     <a href="{TELEGRAM_PUBLIC_URL}" target="_blank">
       Join our Telegram for instant job alerts
     </a>
@@ -154,33 +146,34 @@ Subscribe below to get the latest jobs delivered instantly:
     ).execute()
 
 # -----------------------
-# MAIN
+# MAIN (ONE JOB ONLY)
 # -----------------------
 def main():
     jobs = load_jobs()
-    sent = load_sent()
 
-    jobs = sorted(jobs, key=lambda x: x.get("timestamp",""), reverse=True)
+    # newest first
+    jobs = sorted(jobs, key=lambda x: x.get("timestamp", ""), reverse=True)
 
     for job in jobs:
-        jid = job["id"]
-        if jid in sent:
+        if job.get("published"):
             continue
 
-        try:
-            post_telegram(job)
-            post_blogger(job)
-        except Exception as e:
-            print(f"Publish error: {e}")
-            continue
+        # publish exactly ONE job
+        post_telegram(job)
+        post_blogger(job)
 
-        sent.add(jid)
-        save_sent(sent)
+        # mark as published IN jobs_log.json
+        job["published"] = True
+        save_jobs(jobs)
 
-        print(f"✅ Published: {job['title']} ({job['source']})")
-        break
+        print(f"✅ Published ONE job: {job['title']} ({job['source']})")
+        return  # HARD STOP — guarantees 1 job only
+
+    print("No unpublished jobs found.")
 
 if __name__ == "__main__":
+    import pickle
     main()
+
 
 
