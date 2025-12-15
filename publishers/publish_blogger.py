@@ -1,139 +1,101 @@
 #!/usr/bin/env python3
 """
-Publish jobs from data/jobs_log.json to Blogger
-SEO-optimized, NO OpenAI dependency
+Blogger Publisher
+- SEO-optimized long-form content
+- Zero repetition
+- Google-friendly structure
 """
 
-import os
-import json
-import html
+import json, os, html, pickle
 from pathlib import Path
-from datetime import datetime
 from googleapiclient.discovery import build
-import pickle
 
-# =========================
-# CONFIG
-# =========================
-BLOGGER_ID = os.getenv("BLOGGER_ID")
+DATA_FILE = Path("data/jobs_log.json")
 TOKEN_FILE = "token_blogger.pkl"
+BLOG_ID = os.getenv("BLOGGER_ID")
 
-LOG_FILE = Path("data/jobs_log.json")
-POSTED_FILE = Path("data/blogger_posted.json")
+def load_jobs():
+    if not DATA_FILE.exists():
+        return []
+    return json.loads(DATA_FILE.read_text(encoding="utf-8"))
 
-POST_LIMIT = 1  # one strong SEO post per run
+def save_jobs(jobs):
+    DATA_FILE.write_text(json.dumps(jobs, indent=2), encoding="utf-8")
 
-# =========================
-# HELPERS
-# =========================
-def load_json(path, default):
-    if path.exists():
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return default
-
-def save_json(path, data):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
-
-# =========================
-# HTML BUILDER (SEO)
-# =========================
-def build_html(job):
-    title = html.escape(job["title"])
-    company = html.escape(job.get("company", ""))
-    level = job.get("level", "Not specified")
-    category = job.get("category", "Remote Jobs").title()
-    desc = html.escape(job.get("short_desc", ""))
-
-    keywords = f"{title}, {company}, remote {category}, {level} jobs"
-
-    return f"""
-<article>
-  <h1>{title} ({level})</h1>
-
-  <p><strong>Company:</strong> {company}</p>
-  <p><strong>Category:</strong> {category}</p>
-  <p><strong>Work Type:</strong> Fully Remote</p>
-
-  <h2>Job Overview</h2>
-  <p>{desc}</p>
-
-  <h2>Why This Role Matters</h2>
-  <p>
-    This {level.lower()} role at {company} is ideal for professionals seeking
-    long-term growth, competitive compensation, and the flexibility of remote work.
-  </p>
-
-  <h2>Who Should Apply</h2>
-  <ul>
-    <li>Experienced professionals in {category}</li>
-    <li>Candidates seeking fully remote opportunities</li>
-    <li>People looking for career stability and growth</li>
-  </ul>
-
-  <h2>How to Apply</h2>
-  <p>
-    👉 <a href="{job['link']}" target="_blank" rel="noopener">
-    Apply directly on the company website
-    </a>
-  </p>
-
-  <hr/>
-
-  <p><strong>Looking for more jobs?</strong><br/>
-  Join our Telegram channel and get daily remote job alerts.</p>
-
-  <meta name="keywords" content="{keywords}">
-</article>
-"""
-
-# =========================
-# MAIN
-# =========================
-def main():
-    if not BLOGGER_ID:
-        raise RuntimeError("BLOGGER_ID missing")
-
-    jobs = load_json(LOG_FILE, [])
-    posted = set(load_json(POSTED_FILE, []))
-
+def blogger_service():
     with open(TOKEN_FILE, "rb") as f:
         creds = pickle.load(f)
+    return build("blogger", "v3", credentials=creds)
 
-    service = build("blogger", "v3", credentials=creds)
+def seo_post(job):
+    title = f"{job['title']} at {job['company']} (Remote)"
 
-    count = 0
-    new_posted = []
+    body = f"""
+<h1>{html.escape(job['title'])} – Remote Job</h1>
+
+<p><strong>Company:</strong> {html.escape(job['company'])}</p>
+<p><strong>Experience Level:</strong> {job['level']}</p>
+<p><strong>Category:</strong> {job['category'].title()}</p>
+
+<h2>Job Overview</h2>
+<p>{html.escape(job['short_desc'])}</p>
+
+<h2>Why This Role Is Worth Applying For</h2>
+<ul>
+  <li>Fully remote opportunity</li>
+  <li>Competitive compensation</li>
+  <li>Career growth in a fast-moving team</li>
+</ul>
+
+<h2>How to Apply</h2>
+<p>
+👉 <a href="{job['link']}" rel="nofollow noopener" target="_blank">
+Apply directly on the company website
+</a>
+</p>
+
+<hr />
+<p>
+📌 <em>More remote tech, Web3, and crypto jobs are posted daily.</em><br />
+Join our Telegram for instant alerts.
+</p>
+"""
+
+    return title, body
+
+def main():
+    service = blogger_service()
+    jobs = load_jobs()
+    published_count = 0
 
     for job in jobs:
-        if job["id"] in posted:
+        published = job.setdefault("published", {})
+        if published.get("blogger"):
             continue
 
-        content = build_html(job)
+        title, body = seo_post(job)
 
         service.posts().insert(
-            blogId=BLOGGER_ID,
+            blogId=BLOG_ID,
             body={
-                "title": f"{job['title']} – Remote {job.get('level','')} Job",
-                "content": content
+                "title": title,
+                "content": body
             },
             isDraft=False
         ).execute()
 
-        new_posted.append(job["id"])
-        count += 1
+        published["blogger"] = True
+        published_count += 1
 
-        if count >= POST_LIMIT:
+        if published_count >= 2:  # SEO pacing
             break
 
-    if new_posted:
-        save_json(POSTED_FILE, list(posted.union(new_posted)))
-
-    print(f"Blogger: published {count} post(s)")
+    save_jobs(jobs)
+    print(f"Blogger: published {published_count} posts")
 
 if __name__ == "__main__":
     main()
+
 
 
 
