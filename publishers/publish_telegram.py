@@ -14,7 +14,7 @@ def main():
     bot = Bot(BOT_TOKEN)
 
     for job in jobs:
-        if job["published_telegram"]:
+        if job.get["published_telegram"]:
             continue
 
         msg = (
