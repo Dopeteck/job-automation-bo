@@ -1,64 +1,67 @@
 #!/usr/bin/env python3
-"""
-Telegram Publisher
-- Publishes ONLY unpublished jobs
-- Marks jobs as published
-- Short, high-CTR format
-"""
-
-import json, os, html
+import json, os, random, html
 from pathlib import Path
 from telegram import Bot
 
-DATA_FILE = Path("data/jobs_log.json")
+DATA = Path("data")
+LOG_FILE = DATA / "jobs_log.json"
+SENT_FILE = DATA / "telegram_sent.json"
 
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-CHANNEL   = os.getenv("TELEGRAM_CHANNEL")
+CHANNEL = os.getenv("TELEGRAM_CHANNEL")
 
-def load_jobs():
-    if not DATA_FILE.exists():
-        return []
-    return json.loads(DATA_FILE.read_text(encoding="utf-8"))
+def load_json(path, default):
+    if path.exists():
+        return json.loads(path.read_text())
+    return default
 
-def save_jobs(jobs):
-    DATA_FILE.write_text(json.dumps(jobs, indent=2), encoding="utf-8")
+def save_json(path, data):
+    path.write_text(json.dumps(data, indent=2))
+
+def pick_job(jobs, sent_ids):
+    # Prefer Mercor / non-RemoteOK
+    preferred = [
+        j for j in jobs
+        if j["id"] not in sent_ids
+        and j["source"].lower() != "remoteok"
+    ]
+    pool = preferred if preferred else [
+        j for j in jobs if j["id"] not in sent_ids
+    ]
+    return random.choice(pool) if pool else None
 
 def main():
-    bot = Bot(BOT_TOKEN)
-    jobs = load_jobs()
-    sent = 0
+    jobs = load_json(LOG_FILE, [])
+    sent = set(load_json(SENT_FILE, []))
 
-    for job in jobs:
-        published = job.setdefault("published", {})
-        if published.get("telegram"):
-            continue
+    job = pick_job(jobs, sent)
+    if not job:
+        print("No new Telegram job.")
+        return
 
-        msg = (
-            f"🔥 <b>{html.escape(job['title'])}</b>\n"
-            f"{html.escape(job['company'])}\n"
-            f"Level: {job['level']}\n\n"
-            f"{html.escape(job['short_desc'])}\n\n"
-            f"<a href='{job['link']}'>👉 Apply Now</a>"
-        )
+    msg = (
+        f"🔥 <b>Remote Job</b>\n\n"
+        f"<b>{html.escape(job['title'])}</b>\n"
+        f"{html.escape(job['company'])}\n"
+        f"Level: {job['level']}\n\n"
+        f"{html.escape(job['short_desc'])}\n\n"
+        f"<a href='{job['link']}'>👉 Apply here</a>"
+    )
 
-        bot.send_message(
-            chat_id=CHANNEL,
-            text=msg,
-            parse_mode="HTML",
-            disable_web_page_preview=False
-        )
+    Bot(BOT_TOKEN).send_message(
+        chat_id=CHANNEL,
+        text=msg,
+        parse_mode="HTML",
+        disable_web_page_preview=False
+    )
 
-        published["telegram"] = True
-        sent += 1
-
-        if sent >= 3:  # throttle per run
-            break
-
-    save_jobs(jobs)
-    print(f"Telegram: published {sent} jobs")
+    sent.add(job["id"])
+    save_json(SENT_FILE, list(sent))
+    print("Telegram post sent.")
 
 if __name__ == "__main__":
     main()
+
 
 
 
