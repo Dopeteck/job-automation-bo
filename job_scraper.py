@@ -2,7 +2,7 @@
 """
 job_scraper.py — LOG ONLY (FINAL)
 """
-
+import os
 import json, re, hashlib, requests
 from datetime import datetime
 from pathlib import Path
