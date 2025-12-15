@@ -29,7 +29,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install python-telegram-bot==13.7
-          pip install google-api-python-client google-auth google-auth-oauthlib
+          pip install google-api-python-client google-auth google-auth-oauthlib beautifulsoup4 feedparser requests
 
       # 4️⃣ Blogger token
       - name: Restore Blogger token
@@ -46,9 +46,9 @@ jobs:
         if: github.event_name == 'schedule'
         run: |
           HOUR=$(date -u +"%H")
-          if [ "$HOUR" -eq 12 ]; then echo "tech" > cat.txt; fi
-          if [ "$HOUR" -eq 16 ]; then echo "web3" > cat.txt; fi
-          if [ "$HOUR" -eq 20 ]; then echo "crypto" > cat.txt; fi
+          if [ "$HOUR" -eq 12 ]; then echo "tech,web3,crypto" > cat.txt; fi
+          if [ "$HOUR" -eq 16 ]; then echo "tech,web3,crypto" > cat.txt; fi
+          if [ "$HOUR" -eq 20 ]; then echo "tech,web3,crypto" > cat.txt; fi
 
       - name: Run scraper
         if: github.event_name == 'schedule'
@@ -65,27 +65,10 @@ jobs:
           git commit -m "Update jobs log" || echo "No changes"
           git push
 
-      # 🔵 TELEGRAM (ONE JOB ONLY)
-      - name: Publish Telegram
+      # 🔵 & 🟢 PUBLISH (TELEGRAM + BLOGGER ONE JOB ONLY)
+      - name: Publish Jobs
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
-        run: python publishers/publish_telegram.py
-
-      # 🟢 BLOGGER (ONE JOB ONLY)
-      - name: Publish Blogger
-        env:
           BLOGGER_ID: ${{ secrets.BLOGGER_ID }}
-        run: python publishers/publish_blogger.py
-
-
-
-
-
-
-
-
-
-
-
-
+        run: python publishers/unified_publisher.py
