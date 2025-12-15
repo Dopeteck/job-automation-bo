@@ -1,53 +1,39 @@
 #!/usr/bin/env python3
 
-import json, os, html
+import json, html, os
 from pathlib import Path
 from telegram import Bot
 
 LOG_FILE = Path("data/jobs_log.json")
 
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-CHANNEL = os.getenv("TELEGRAM_CHANNEL")
-
-def load_jobs():
-    return json.loads(LOG_FILE.read_text())
-
-def save_jobs(jobs):
-    LOG_FILE.write_text(json.dumps(jobs, indent=2))
+CHANNEL   = os.getenv("TELEGRAM_CHANNEL")
 
 def main():
+    jobs = json.loads(LOG_FILE.read_text())
     bot = Bot(BOT_TOKEN)
-    jobs = load_jobs()
 
     for job in jobs:
-        pub = job.setdefault("published", {})
-        if pub.get("telegram"):
+        if job["published_telegram"]:
             continue
 
         msg = (
-            f"<b>{html.escape(job['title'])}</b>\n"
+            f"🔥 <b>{html.escape(job['title'])}</b>\n"
             f"{html.escape(job['company'])}\n"
-            f"{job['level']} • {job['category'].upper()}\n\n"
+            f"Level: {job['level']}\n\n"
             f"{html.escape(job['short_desc'])}\n\n"
             f"<a href='{job['link']}'>👉 Apply here</a>"
         )
 
-        bot.send_message(
-            chat_id=CHANNEL,
-            text=msg,
-            parse_mode="HTML",
-            disable_web_page_preview=False
-        )
+        bot.send_message(chat_id=CHANNEL, text=msg, parse_mode="HTML")
 
-        job["published"]["telegram"] = True
-        save_jobs(jobs)
-        print("Posted ONE job to Telegram")
-        return
-
-    print("No unpublished jobs for Telegram")
+        job["published_telegram"] = True
+        LOG_FILE.write_text(json.dumps(jobs, indent=2))
+        break  # ✅ POST ONLY ONE
 
 if __name__ == "__main__":
     main()
+
 
 
 
