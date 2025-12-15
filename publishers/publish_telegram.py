@@ -1,79 +1,85 @@
 #!/usr/bin/env python3
 """
-Telegram Publisher — High CTR
+Publish jobs from data/jobs_log.json to Telegram
 """
 
-import os, json, html
+import os
+import json
+import html
 from pathlib import Path
 from telegram import Bot
-from openai import OpenAI
 
-DATA_PATH = Path("data/jobs_log.json")
-POSTED_PATH = Path("data/telegram_posted.json")
+# =========================
+# CONFIG
+# =========================
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHANNEL = os.getenv("TELEGRAM_CHANNEL")
 
-BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-CHANNEL   = os.getenv("TELEGRAM_CHANNEL")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+LOG_FILE = Path("data/jobs_log.json")
+POSTED_FILE = Path("data/telegram_posted.json")
 
-client = OpenAI(api_key=OPENAI_API_KEY)
+POST_LIMIT = 3  # max per run
 
+# =========================
+# HELPERS
+# =========================
 def load_json(path, default):
     if path.exists():
-        return json.loads(path.read_text())
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
     return default
 
 def save_json(path, data):
-    path.parent.mkdir(exist_ok=True)
-    path.write_text(json.dumps(data, indent=2))
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
 
-def ai_summary(job):
-    prompt = f"""
-Summarize this job in 3 short bullet points.
-Be concise and appealing.
-
-Title: {job['title']}
-Company: {job['company']}
-Description: {job.get('short_desc','')}
-"""
-    r = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role":"user","content":prompt}],
-        max_tokens=90
-    )
-    return r.choices[0].message.content.strip()
-
-def format_message(job, summary):
-    bullets = "\n".join(f"• {html.escape(x)}" for x in summary.splitlines() if x.strip())
-    return (
-        f"🔥 <b>{html.escape(job['title'])}</b>\n"
-        f"<i>{html.escape(job['company'])}</i>\n\n"
-        f"{bullets}\n\n"
-        f"👉 <a href='{job['link']}'>Apply here</a>"
-    )
-
+# =========================
+# MAIN
+# =========================
 def main():
-    jobs = load_json(DATA_PATH, [])
-    posted = set(load_json(POSTED_PATH, []))
-    bot = Bot(BOT_TOKEN)
+    if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHANNEL:
+        raise RuntimeError("Telegram credentials missing")
 
-    for job in reversed(jobs):
+    jobs = load_json(LOG_FILE, [])
+    posted = set(load_json(POSTED_FILE, []))
+
+    bot = Bot(token=TELEGRAM_BOT_TOKEN)
+
+    sent = 0
+    new_posted = []
+
+    for job in jobs:
         if job["id"] in posted:
             continue
 
-        summary = ai_summary(job)
-        msg = format_message(job, summary)
+        text = (
+            f"<b>🔥 New Job</b>\n\n"
+            f"<b>{html.escape(job['title'])}</b>\n"
+            f"{html.escape(job.get('company',''))}\n"
+            f"Level: {job.get('level','Not specified')}\n\n"
+            f"{html.escape(job.get('short_desc',''))}\n\n"
+            f"<a href='{job['link']}'>👉 Apply Here</a>"
+        )
 
         bot.send_message(
-            chat_id=CHANNEL,
-            text=msg,
+            chat_id=TELEGRAM_CHANNEL,
+            text=text,
             parse_mode="HTML",
             disable_web_page_preview=False
         )
 
-        posted.add(job["id"])
-        save_json(POSTED_PATH, list(posted))
-        break  # ONE job per run
+        new_posted.append(job["id"])
+        sent += 1
+
+        if sent >= POST_LIMIT:
+            break
+
+    if new_posted:
+        save_json(POSTED_FILE, list(posted.union(new_posted)))
+
+    print(f"Telegram: posted {sent} jobs")
 
 if __name__ == "__main__":
     main()
+
 
