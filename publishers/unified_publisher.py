@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """
 Unified Publisher — Telegram + Blogger
-Publishes ONE unseen job per run.
-State is stored ONLY in jobs_log.json (no pickle files).
+- Uses publish flags inside jobs_log.json
+- Publishes ONE job per run
+- Telegram: short & clean
+- Blogger: rich, SEO-optimized
 """
 
 import os
@@ -13,29 +15,21 @@ from telegram import Bot
 from googleapiclient.discovery import build
 
 # -----------------------
-# ENV VARIABLES
+# ENV
 # -----------------------
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHANNEL   = os.getenv("TELEGRAM_CHANNEL")
 BLOGGER_ID         = os.getenv("BLOGGER_ID")
 TOKEN_FILE         = "token_blogger.pkl"
 
-# CHANGE THESE
-SUBSTACK_URL = "https://YOUR_SUBSTACK_URL"
-TELEGRAM_PUBLIC_URL = "https://t.me/YOUR_TELEGRAM_CHANNEL"
-
-# -----------------------
-# PATH
-# -----------------------
 LOG_FILE = Path("data/jobs_log.json")
 
 # -----------------------
-# LOAD / SAVE JOBS
+# LOAD / SAVE
 # -----------------------
 def load_jobs():
     if LOG_FILE.exists():
-        with open(LOG_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
+        return json.loads(LOG_FILE.read_text())
     return []
 
 def save_jobs(jobs):
@@ -48,12 +42,12 @@ def post_telegram(job):
     bot = Bot(TELEGRAM_BOT_TOKEN)
 
     msg = (
-        f"<b>🔥 NEW REMOTE JOB</b>\n\n"
+        f"🔥 <b>New Remote Job</b>\n\n"
         f"<b>{html.escape(job['title'])}</b>\n"
         f"{html.escape(job['company'])}\n"
-        f"{job['level']}\n\n"
+        f"Level: {job['level']}\n\n"
         f"{html.escape(job.get('short_desc',''))}\n\n"
-        f"<a href='{job['link']}'>👉 Apply Now</a>"
+        f"<a href='{job['link']}'>👉 Apply here</a>"
     )
 
     bot.send_message(
@@ -63,117 +57,107 @@ def post_telegram(job):
     )
 
 # -----------------------
-# BLOGGER (SEO OPTIMISED)
+# BLOGGER (SEO OPTIMIZED)
 # -----------------------
 def post_blogger(job):
     with open(TOKEN_FILE, "rb") as f:
-        creds = pickle.load(f)
+        creds = __import__("pickle").load(f)
 
     service = build("blogger", "v3", credentials=creds)
 
-    title = html.escape(job["title"])
-    company = html.escape(job["company"])
-    level = job["level"]
-    category = html.escape(job.get("category", "Remote Jobs"))
-    source = html.escape(job.get("source", "Remote"))
-    desc = html.escape(job.get("short_desc", ""))
+    title = f"{job['title']} – Remote {job['level']} Position at {job['company']}"
 
     content = f"""
-<h2>{title} – Remote Job Opportunity</h2>
+<h2>{html.escape(job['title'])} – Remote Job Opportunity</h2>
 
 <p>
-The <b>{title}</b> position at <b>{company}</b> is a fully remote role
-designed for professionals seeking <b>{level.lower()} remote jobs</b>.
-This opportunity is ideal for candidates searching for
-<b>work from home jobs</b>, <b>{category.lower()} roles</b>,
-and location-independent careers.
+<strong>{html.escape(job['company'])}</strong> is hiring a
+<strong>{job['level']} {html.escape(job['title'])}</strong> for a fully remote role.
+This position is open to qualified candidates worldwide.
 </p>
 
-<h3>Job Details</h3>
+<h3>Job Overview</h3>
+<p>
+{html.escape(job.get('short_desc',''))}
+</p>
+
+<h3>Why Apply for This Role?</h3>
 <ul>
-  <li><b>Company:</b> {company}</li>
-  <li><b>Experience Level:</b> {level}</li>
-  <li><b>Category:</b> {category}</li>
-  <li><b>Source:</b> {source}</li>
-  <li><b>Location:</b> Remote / Worldwide</li>
+  <li>100% remote work</li>
+  <li>Work with a reputable company</li>
+  <li>Career growth opportunities</li>
 </ul>
-
-<h3>Job Description</h3>
-<p>{desc}</p>
-
-<p>
-This role is suitable for professionals looking for
-<b>remote {category.lower()} jobs</b>,
-<b>{level.lower()} work-from-home positions</b>,
-and global online opportunities.
-</p>
 
 <h3>How to Apply</h3>
 <p>
+Interested candidates should apply directly using the link below:
+</p>
+
+<p>
 <a href="{job['link']}" target="_blank" rel="nofollow noopener">
-👉 Apply directly on the company website
+👉 Apply for this job
 </a>
 </p>
 
-<hr/>
+<hr>
 
 <h3>📬 Stay Updated on Remote Jobs</h3>
+<p>
+Want more high-quality remote job opportunities like this?
+</p>
+
 <ul>
   <li>
-    📩 <b>Substack Newsletter</b><br/>
-    <a href="{SUBSTACK_URL}" target="_blank">
-      Get curated remote jobs delivered to your inbox
+    👉 <a href="https://your-substack-url-here" target="_blank">
+    Subscribe to our Substack newsletter
     </a>
   </li>
   <li>
-    📢 <b>Telegram Channel</b><br/>
-    <a href="{TELEGRAM_PUBLIC_URL}" target="_blank">
-      Join our Telegram for instant job alerts
+    👉 <a href="https://t.me/your_telegram_channel_here" target="_blank">
+    Join our Telegram job alerts channel
     </a>
   </li>
 </ul>
 
-<p><i>We publish new remote jobs daily across tech, Web3, and crypto.</i></p>
+<p>
+<em>New remote jobs posted daily.</em>
+</p>
 """
 
     service.posts().insert(
         blogId=BLOGGER_ID,
         body={
-            "title": f"{job['title']} – Remote Job",
+            "title": title,
             "content": content
         },
         isDraft=False
     ).execute()
 
 # -----------------------
-# MAIN (ONE JOB ONLY)
+# MAIN
 # -----------------------
 def main():
     jobs = load_jobs()
 
-    # newest first
-    jobs = sorted(jobs, key=lambda x: x.get("timestamp", ""), reverse=True)
-
     for job in jobs:
-        if job.get("published"):
+        # ✅ Skip if already published
+        if job.get("published_telegram") or job.get("published_blogger"):
             continue
 
-        # publish exactly ONE job
+        # Publish ONE job
         post_telegram(job)
         post_blogger(job)
 
-        # mark as published IN jobs_log.json
-        job["published"] = True
+        # ✅ Update flags (THIS IS THE FIX)
+        job["published_telegram"] = True
+        job["published_blogger"] = True
+
         save_jobs(jobs)
 
         print(f"✅ Published ONE job: {job['title']} ({job['source']})")
-        return  # HARD STOP — guarantees 1 job only
+        return  # ⛔ HARD STOP — guarantees only ONE job per run
 
-    print("No unpublished jobs found.")
+    print("No unpublished jobs found")
 
 if __name__ == "__main__":
-    import pickle
     main()
-
-
-
