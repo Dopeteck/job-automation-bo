@@ -15,21 +15,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # -------------------------
-      # 1️⃣ Checkout repo
-      # -------------------------
+      # 1️⃣ Checkout
       - uses: actions/checkout@v3
 
-      # -------------------------
-      # 2️⃣ Python setup
-      # -------------------------
+      # 2️⃣ Python
       - uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      # -------------------------
-      # 3️⃣ Install deps
-      # -------------------------
+      # 3️⃣ Dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -37,24 +31,17 @@ jobs:
           pip install python-telegram-bot==13.7
           pip install google-api-python-client google-auth google-auth-oauthlib
 
-      # -------------------------
-      # 4️⃣ Restore Blogger token
-      # -------------------------
+      # 4️⃣ Blogger token
       - name: Restore Blogger token
         run: |
           echo "${{ secrets.BLOGGER_TOKEN_B64 }}" | base64 --decode > token_blogger.pkl
 
-      # =========================
-      # 🟡 MANUAL RUN (SCRAPE ONLY)
-      # =========================
-      - name: Manual scrape (populate job log)
+      # 🟡 MANUAL SCRAPE (LOG ONLY)
+      - name: Manual scrape
         if: github.event_name == 'workflow_dispatch'
-        run: |
-          python job_scraper.py
+        run: python job_scraper.py
 
-      # =========================
       # 🟢 SCHEDULED SCRAPE
-      # =========================
       - name: Compute category
         if: github.event_name == 'schedule'
         run: |
@@ -63,16 +50,13 @@ jobs:
           if [ "$HOUR" -eq 16 ]; then echo "web3" > cat.txt; fi
           if [ "$HOUR" -eq 20 ]; then echo "crypto" > cat.txt; fi
 
-      - name: Run scraper (log only)
+      - name: Run scraper
         if: github.event_name == 'schedule'
         run: |
           export CATEGORY=$(cat cat.txt)
-          echo "Scraping CATEGORY=$CATEGORY"
           python job_scraper.py
 
-      # =========================
-      # 🧠 COMMIT JOB LOG
-      # =========================
+      # 🧠 COMMIT LOG (IMPORTANT)
       - name: Commit jobs log
         run: |
           git config user.name "github-actions"
@@ -81,24 +65,19 @@ jobs:
           git commit -m "Update jobs log" || echo "No changes"
           git push
 
-      # =========================
-      # 🔵 TELEGRAM PUBLISHER
-      # =========================
-      - name: Publish to Telegram
+      # 🔵 TELEGRAM (ONE JOB ONLY)
+      - name: Publish Telegram
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHANNEL: ${{ secrets.TELEGRAM_CHANNEL }}
-        run: |
-          python publishers/publish_telegram.py
+        run: python publishers/publish_telegram.py
 
-      # =========================
-      # 🟢 BLOGGER PUBLISHER
-      # =========================
-      - name: Publish to Blogger
+      # 🟢 BLOGGER (ONE JOB ONLY)
+      - name: Publish Blogger
         env:
           BLOGGER_ID: ${{ secrets.BLOGGER_ID }}
-        run: |
-          python publishers/publish_blogger.py
+        run: python publishers/publish_blogger.py
+
 
 
 
