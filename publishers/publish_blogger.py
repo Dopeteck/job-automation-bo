@@ -1,100 +1,86 @@
 #!/usr/bin/env python3
-"""
-Blogger Publisher
-- SEO-optimized long-form content
-- Zero repetition
-- Google-friendly structure
-"""
-
-import json, os, html, pickle
+import json, os, html, random
 from pathlib import Path
 from googleapiclient.discovery import build
+import pickle
 
-DATA_FILE = Path("data/jobs_log.json")
+DATA = Path("data")
+LOG_FILE = DATA / "jobs_log.json"
+SENT_FILE = DATA / "blogger_sent.json"
+
+BLOGGER_ID = os.getenv("BLOGGER_ID")
 TOKEN_FILE = "token_blogger.pkl"
-BLOG_ID = os.getenv("BLOGGER_ID")
 
-def load_jobs():
-    if not DATA_FILE.exists():
-        return []
-    return json.loads(DATA_FILE.read_text(encoding="utf-8"))
+def load_json(path, default):
+    if path.exists():
+        return json.loads(path.read_text())
+    return default
 
-def save_jobs(jobs):
-    DATA_FILE.write_text(json.dumps(jobs, indent=2), encoding="utf-8")
+def save_json(path, data):
+    path.write_text(json.dumps(data, indent=2))
 
-def blogger_service():
-    with open(TOKEN_FILE, "rb") as f:
-        creds = pickle.load(f)
-    return build("blogger", "v3", credentials=creds)
+def pick_job(jobs, sent_ids):
+    pool = [j for j in jobs if j["id"] not in sent_ids]
+    return random.choice(pool) if pool else None
 
-def seo_post(job):
-    title = f"{job['title']} at {job['company']} (Remote)"
-
-    body = f"""
-<h1>{html.escape(job['title'])} – Remote Job</h1>
+def seo_content(job):
+    return f"""
+<h2>{html.escape(job['title'])} – Remote Job</h2>
 
 <p><strong>Company:</strong> {html.escape(job['company'])}</p>
-<p><strong>Experience Level:</strong> {job['level']}</p>
+<p><strong>Level:</strong> {job['level']}</p>
 <p><strong>Category:</strong> {job['category'].title()}</p>
 
-<h2>Job Overview</h2>
+<h3>Role Overview</h3>
 <p>{html.escape(job['short_desc'])}</p>
 
-<h2>Why This Role Is Worth Applying For</h2>
+<h3>Why This Role Is Worth Applying For</h3>
 <ul>
   <li>Fully remote opportunity</li>
   <li>Competitive compensation</li>
-  <li>Career growth in a fast-moving team</li>
+  <li>Work with a globally distributed team</li>
 </ul>
 
-<h2>How to Apply</h2>
+<h3>How to Apply</h3>
 <p>
-👉 <a href="{job['link']}" rel="nofollow noopener" target="_blank">
-Apply directly on the company website
-</a>
+  <a href="{job['link']}" target="_blank">
+    👉 Apply for this position
+  </a>
 </p>
 
-<hr />
-<p>
-📌 <em>More remote tech, Web3, and crypto jobs are posted daily.</em><br />
-Join our Telegram for instant alerts.
-</p>
+<p><em>More remote jobs posted daily.</em></p>
 """
 
-    return title, body
-
 def main():
-    service = blogger_service()
-    jobs = load_jobs()
-    published_count = 0
+    jobs = load_json(LOG_FILE, [])
+    sent = set(load_json(SENT_FILE, []))
 
-    for job in jobs:
-        published = job.setdefault("published", {})
-        if published.get("blogger"):
-            continue
+    job = pick_job(jobs, sent)
+    if not job:
+        print("No new Blogger job.")
+        return
 
-        title, body = seo_post(job)
+    with open(TOKEN_FILE, "rb") as f:
+        creds = pickle.load(f)
 
-        service.posts().insert(
-            blogId=BLOG_ID,
-            body={
-                "title": title,
-                "content": body
-            },
-            isDraft=False
-        ).execute()
+    service = build("blogger", "v3", credentials=creds)
 
-        published["blogger"] = True
-        published_count += 1
+    service.posts().insert(
+        blogId=BLOGGER_ID,
+        body={
+            "title": f"{job['title']} – Remote {job['category'].title()} Job",
+            "content": seo_content(job)
+        },
+        isDraft=False
+    ).execute()
 
-        if published_count >= 2:  # SEO pacing
-            break
-
-    save_jobs(jobs)
-    print(f"Blogger: published {published_count} posts")
+    sent.add(job["id"])
+    save_json(SENT_FILE, list(sent))
+    print("Blogger post published.")
 
 if __name__ == "__main__":
     main()
+
 
 
 
