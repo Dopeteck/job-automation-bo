@@ -3,7 +3,7 @@
 job_scraper.py — LOG ONLY (FINAL, DEDUP SAFE)
 - Canonical URL normalization
 - Stable UID generation
-- Prevents RemoteOK reposts permanently
+- In-memory + on-disk dedup
 """
 
 import os
@@ -60,22 +60,18 @@ def clean_text(html_text, limit=250):
 
 def detect_level(text):
     t = (text or "").lower()
-    if any(x in t for x in ["senior", "lead", "principal"]):
+    if any(x in t for x in ("senior", "lead", "principal")):
         return "Senior"
-    if any(x in t for x in ["junior", "intern", "entry"]):
+    if any(x in t for x in ("junior", "intern", "entry")):
         return "Junior"
-    if any(x in t for x in ["mid", "intermediate"]):
+    if any(x in t for x in ("mid", "intermediate")):
         return "Mid"
     return "Not specified"
 
 # -----------------------
-# 🔐 DEDUP CORE (CRITICAL)
+# 🔐 DEDUP CORE
 # -----------------------
 def canonical_link(link: str) -> str:
-    """
-    Remove query params, fragments, trailing slashes.
-    Fixes RemoteOK duplication.
-    """
     p = urlparse(link)
     return urlunparse((p.scheme, p.netloc, p.path.rstrip("/"), "", "", ""))
 
@@ -88,9 +84,11 @@ def make_id(source, title, company, link):
 # SOURCES
 # -----------------------
 def fetch_mercor():
-    url = "https://api.mercor.com/api/jobs/public"
     try:
-        data = requests.get(url, timeout=15).json()
+        data = requests.get(
+            "https://api.mercor.com/api/jobs/public",
+            timeout=15
+        ).json()
     except Exception:
         return []
 
@@ -141,23 +139,33 @@ def fetch_rss(category):
     return jobs
 
 # -----------------------
-# MAIN
+# MAIN (FIXED)
 # -----------------------
 def main():
     existing = load_log()
-    seen_ids = {j["id"] for j in existing}
+
+    # seen IDs = disk + current run
+    seen_ids = {job["id"] for job in existing}
 
     new_jobs = []
 
+    # RSS feeds
     for cat in CATEGORY:
         cat = cat.strip().lower()
-        new_jobs.extend(
-            job for job in fetch_rss(cat) if job["id"] not in seen_ids
-        )
+        for job in fetch_rss(cat):
+            if job["id"] in seen_ids:
+                continue
 
-    new_jobs.extend(
-        job for job in fetch_mercor() if job["id"] not in seen_ids
-    )
+            new_jobs.append(job)
+            seen_ids.add(job["id"])   # 🔑 CRITICAL FIX
+
+    # Mercor
+    for job in fetch_mercor():
+        if job["id"] in seen_ids:
+            continue
+
+        new_jobs.append(job)
+        seen_ids.add(job["id"])      # 🔑 CRITICAL FIX
 
     if new_jobs:
         save_log(existing + new_jobs)
