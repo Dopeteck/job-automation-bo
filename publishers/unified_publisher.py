@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 """
 Unified Publisher — Telegram + Blogger
-- Uses publish flags inside jobs_log.json
 - Publishes ONE job per run
-- Telegram: short & clean
-- Blogger: rich, SEO-optimized
+- Uses flags inside jobs_log.json
 """
 
 import os
 import json
 import html
+import pickle
 from pathlib import Path
 from telegram import Bot
 from googleapiclient.discovery import build
@@ -53,15 +52,16 @@ def post_telegram(job):
     bot.send_message(
         chat_id=TELEGRAM_CHANNEL,
         text=msg,
-        parse_mode="HTML"
+        parse_mode="HTML",
+        disable_web_page_preview=True
     )
 
 # -----------------------
-# BLOGGER (SEO OPTIMIZED)
+# BLOGGER
 # -----------------------
 def post_blogger(job):
     with open(TOKEN_FILE, "rb") as f:
-        creds = __import__("pickle").load(f)
+        creds = pickle.load(f)
 
     service = build("blogger", "v3", credentials=creds)
 
@@ -73,26 +73,12 @@ def post_blogger(job):
 <p>
 <strong>{html.escape(job['company'])}</strong> is hiring a
 <strong>{job['level']} {html.escape(job['title'])}</strong> for a fully remote role.
-This position is open to qualified candidates worldwide.
 </p>
 
 <h3>Job Overview</h3>
-<p>
-{html.escape(job.get('short_desc',''))}
-</p>
-
-<h3>Why Apply for This Role?</h3>
-<ul>
-  <li>100% remote work</li>
-  <li>Work with a reputable company</li>
-  <li>Career growth opportunities</li>
-</ul>
+<p>{html.escape(job.get('short_desc',''))}</p>
 
 <h3>How to Apply</h3>
-<p>
-Interested candidates should apply directly using the link below:
-</p>
-
 <p>
 <a href="{job['link']}" target="_blank" rel="nofollow noopener">
 👉 Apply for this job
@@ -100,37 +86,13 @@ Interested candidates should apply directly using the link below:
 </p>
 
 <hr>
-
-<h3>📬 Stay Updated on Remote Jobs</h3>
-<p>
-Want more high-quality remote job opportunities like this?
-</p>
-
-<ul>
-  <li>
-    👉 <a href="https://your-substack-url-here" target="_blank">
-    Subscribe to our Substack newsletter
-    </a>
-  </li>
-  <li>
-    👉 <a href="https://t.me/your_telegram_channel_here" target="_blank">
-    Join our Telegram job alerts channel
-    </a>
-  </li>
-</ul>
-
-<p>
-<em>New remote jobs posted daily.</em>
-</p>
+<p><em>New remote jobs posted daily.</em></p>
 """
 
     service.posts().insert(
         blogId=BLOGGER_ID,
-        body={
-            "title": title,
-            "content": content
-        },
-        isDraft=False
+        body={"title": title, "content": content},
+        isDraft=False,
     ).execute()
 
 # -----------------------
@@ -140,24 +102,20 @@ def main():
     jobs = load_jobs()
 
     for job in jobs:
-        # ✅ Skip if already published
         if job.get("published_telegram") or job.get("published_blogger"):
             continue
 
-        # Publish ONE job
         post_telegram(job)
         post_blogger(job)
 
-        # ✅ Update flags (THIS IS THE FIX)
         job["published_telegram"] = True
         job["published_blogger"] = True
 
         save_jobs(jobs)
+        print(f"✅ Published: {job['title']}")
+        return  # HARD STOP (one job per run)
 
-        print(f"✅ Published ONE job: {job['title']} ({job['source']})")
-        return  # ⛔ HARD STOP — guarantees only ONE job per run
-
-    print("No unpublished jobs found")
+    print("ℹ️ No unpublished jobs")
 
 if __name__ == "__main__":
     main()
