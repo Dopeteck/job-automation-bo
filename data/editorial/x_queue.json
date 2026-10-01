@@ -2,48 +2,32 @@
   {
     "id": "x-03fbdbc4bea8c465dd95",
     "source_id": "03fbdbc4bea8c465dd95",
-    "text": "Airbnb launched a new AI-powered search as part of its fall update, marking a deliberate move into agent-friendly software architecture.",
+    "text": "Airbnb rolled out new AI search features in its fall update while CEO Brian Chesky argues that traditional chatbots fall short for multi-user travel planning and browsing.",
     "thread": [
       {
-        "text": "Airbnb launched a new AI-powered search as part of its fall update, marking a deliberate move into agent-friendly software architecture."
+        "text": "Airbnb rolled out new AI search features in its fall update while CEO Brian Chesky argues that traditional chatbots fall short for multi-user travel planning and browsing."
       },
       {
-        "text": "CEO Brian Chesky explained that pure chatbots fail for e-commerce because users enjoy browsing and group trip planning together."
+        "text": "Chesky highlights that e-commerce requires richer interfaces than rigid chat boxes, pointing toward multiplayer AI and agent-friendly software infrastructure."
       },
       {
-        "text": "Build a multi-turn search UI mock and verify its usability by testing whether users can compare at least three items simultaneously.\n\nSource: TechCrunch"
+        "text": "Practice interface design by sketching a paper wireframe for a shared group shopping cart. Record success by ensuring three distinct users can edit filters concurrently.\n\nSource: TechCrunch"
       }
     ]
   },
   {
     "id": "x-7173f2ea8acf1821b7ad",
     "source_id": "7173f2ea8acf1821b7ad",
-    "text": "AI startup Photon raised $4.5M after reaching over 40,000 developer sign-ups for its messaging-based agent infrastructure.",
+    "text": "Startup Photon secured $4.5M in seed funding to help developers build AI agents that function across messaging channels like iMessage, WhatsApp, and email.",
     "thread": [
       {
-        "text": "AI startup Photon raised $4.5M after reaching over 40,000 developer sign-ups for its messaging-based agent infrastructure."
+        "text": "Startup Photon secured $4.5M in seed funding to help developers build AI agents that function across messaging channels like iMessage, WhatsApp, and email."
       },
       {
-        "text": "The platform provides a unified API and CLI enabling developers to build agents that operate over iMessage, WhatsApp, and SMS."
+        "text": "The company reports surpassing 40,000 developer sign-ups by offering a unified API, CLI, and observability suite designed to bypass traditional mobile app downloads."
       },
       {
-        "text": "Write a simple webhook handler to process incoming messages and verify success by running a local curl test to confirm a 200 status.\n\nSource: TechCrunch"
-      }
-    ]
-  },
-  {
-    "id": "x-2cbeca2fbdb491ac9ce1",
-    "source_id": "2cbeca2fbdb491ac9ce1",
-    "text": "OpenAI announced GPT-6.1 Sol, delivering near-Astra intelligence for coding and computer use at lower token costs.",
-    "thread": [
-      {
-        "text": "OpenAI announced GPT-6.1 Sol, delivering near-Astra intelligence for coding and computer use at lower token costs."
-      },
-      {
-        "text": "The model is priced at one-fifth of Astra’s standard API input and output token prices for professional developer workflows."
-      },
-      {
-        "text": "Send a test coding prompt via the API and log the token usage metrics to compare cost efficiency against your previous baseline.\n\nSource: OpenAI News"
+        "text": "Draft a simple sequence diagram on paper outlining how an automated text message bot handles user input. Check your work by tracing three error recovery states.\n\nSource: TechCrunch"
       }
     ]
   }
