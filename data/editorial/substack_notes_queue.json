@@ -2,11 +2,11 @@
   {
     "id": "note-2c7ad737b37975563dd6",
     "source_id": "2c7ad737b37975563dd6",
-    "text": "Recent insights from Stack Overflow track the evolution of developer workflows. While overall AI tool adoption climbed to 79% by 2025, enthusiasm among learners has tempered as skepticism toward output accuracy grew. Establishing clear verification protocols for automated code is essential for maintaining software reliability. Source: Stack Overflow Blog\n\nSource: Stack Overflow Blog"
+    "text": "Stack Overflow analysis compares developer survey data across recent years, highlighting rapid AI tool adoption alongside a growth in user skepticism.\n\nKey points:\n• AI tool adoption among developers reached 79% in 2025.\n• Skepticism among students and developers quadrupled as users encountered inaccurate outputs.\n• ChatGPT and GitHub Copilot remain the primary gateways for out-of-the-box assistants.\n\nWhy it matters: Understanding shifts in developer sentiment and trust helps professionals calibrate how much to rely on automated tooling versus human judgment.\n\nTry this: Review your own workflow to identify tasks where human verification is essential before accepting AI-generated code.\n\nSource: Stack Overflow Blog"
   },
   {
     "id": "note-2cbeca2fbdb491ac9ce1",
     "source_id": "2cbeca2fbdb491ac9ce1",
-    "text": "OpenAI's introduction of GPT-6.1 Sol brings near-Astra intelligence for coding and computer use at a fraction of standard API prices. Engineering teams can leverage these cost efficiencies to scale automated testing and development pipelines safely. Source: OpenAI News\n\nSource: OpenAI News"
+    "text": "OpenAI News announced the launch of GPT-6.1 Sol, targeting coding and computer use at a fraction of standard token prices.\n\nKey points:\n• GPT-6.1 Sol provides near-Astra intelligence for coding and professional work.\n• API input and output token prices are set at one-fifth of standard Astra rates.\n\nWhy it matters: Lower-cost access to advanced coding models allows developers to experiment more freely with automated workflows and agent-based applications.\n\nTry this: Experiment with the new model endpoint on a small personal script to test its performance on routine coding tasks.\n\nSource: OpenAI News"
   }
 ]

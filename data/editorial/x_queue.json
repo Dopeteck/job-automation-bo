@@ -2,11 +2,11 @@
   {
     "id": "x-2c7ad737b37975563dd6",
     "source_id": "2c7ad737b37975563dd6",
-    "text": "Developer AI tool usage reached 79% by 2025 according to Stack Overflow. Practical idea: Maintain rigorous code reviews since student and developer skepticism toward automated output accuracy has risen. Source: Stack Overflow Blog\n\nSource: Stack Overflow Blog"
+    "text": "Developer survey data shows AI tool usage grew from 62% in 2024 to 79% in 2025.\n\nIdea: Critically evaluate AI outputs.\nSource: Stack Overflow Blog"
   },
   {
     "id": "x-2cbeca2fbdb491ac9ce1",
     "source_id": "2cbeca2fbdb491ac9ce1",
-    "text": "OpenAI announced GPT-6.1 Sol for coding and professional tasks at reduced token prices. Practical idea: Test new lower-cost models against your current workflows to optimize API spending. Source: OpenAI News\n\nSource: OpenAI News"
+    "text": "OpenAI introduced GPT-6.1 Sol for coding and professional tasks at reduced token prices.\n\nIdea: Test new model capabilities.\nSource: OpenAI News"
   }
 ]
