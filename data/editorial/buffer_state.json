@@ -1,0 +1,14 @@
+{
+  "connection_test_v1": {
+    "x": {
+      "post_id": "6abe77efdab61c9bf248348b",
+      "channel_id": "6abe6f09ea19ca0bde441138",
+      "save_to_draft": true
+    },
+    "substack": {
+      "post_id": "6abe77efdab61c9bf24834a8",
+      "channel_id": "6abe70bfea19ca0bde441f84",
+      "save_to_draft": true
+    }
+  }
+}
