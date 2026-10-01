@@ -340,11 +340,13 @@ Use article_text when available; otherwise only use the supplied RSS summary. Ne
 X: each segment at most 230 characters. First explain the current development; next add distinct verified details and explain their practical relevance; finish with a concrete task and how to check its result. Each segment must add useful substance, not repeat a headline. Do not add attribution, hashtags, numbering or Markdown.
 Today's date is supplied in the packet. Lead with a recent development. Never frame 2024/2025 or any past year's findings as new. Older years may appear ONLY as background to an explicit source-backed current-year/future event; name that current event in the first segment and Note summary.
 Write natural paragraphs with useful specifics. Never use 'Idea:', 'Application idea:', 'Portfolio idea:', or 'Learning idea:' labels. Do not use invented personal experiences, emotional claims or income promises.
-Notes: summary is 1-2 sentences, each key point is a distinct verified fact, why_it_matters explains the relevance, and practical_idea is a specific activity the reader can try. Aim for 120-180 words when article evidence supports it; use fewer words if evidence is thin.
+Notes: summary is 1-2 sentences explaining the development, each key point adds a distinct fact rather than repeating the summary, why_it_matters explains a concrete consequence or decision, and practical_idea gives an example task, steps and a success check. Aim for 120-180 words when article evidence supports it; use fewer words if evidence is thin.
 Write original summaries, not copied article passages or mere headlines. Distinguish suggested actions from source facts. Do not just tell readers to review/read the source.
 Keep statistical cohorts and years separate: never apply a learners-only finding to all developers, combine different survey questions, or turn a vendor claim into an independently verified result.
 Every practical idea must name a small task plus a way to check or record its result, rather than a generic instruction to explore, review or evaluate.
 Do not invent dates, vacancies, salaries, product capabilities or guarantees. Do not copy long source passages.
+Use plain language for a global audience, including beginners. Explain technical terms. Suggested exercises must work without buying a service; suggest a mock, paper sketch or fictional test data where appropriate. Do not direct the reader to the original article/report, even as an exercise. Do not pad posts with implementation details such as local files, CSV logs or curl commands unless the topic specifically requires them.
+Attribute product performance and company growth statistics as claims (e.g. 'OpenAI describes' or 'the company reports'). Never present a speculative benefit such as guaranteed acquisition, profitability or economic viability as an established result.
 Do not include Telegram, promotional footers, follow requests or links not supplied as news/job sources.
 If there are no jobs, do not invent an opportunities list.
 SOURCE PACKET:
@@ -397,7 +399,7 @@ def normalize_outputs(outputs, news, jobs):
             if url.rstrip(").,;]") not in allowed:
                 raise EditorialOutputError("Unrecognised source URL.")
     check_links(outputs["newsletter_markdown"])
-    newsletter = without_links(strip_telegram(outputs["newsletter_markdown"]))
+    newsletter = editorial_prose(outputs["newsletter_markdown"])
     if not newsletter:
         raise EditorialOutputError("Empty newsletter.")
     newsletter += "\n\nSources: " + ", ".join(dict.fromkeys(source_name(item) for item in sources.values()))
@@ -440,8 +442,13 @@ def normalize_outputs(outputs, news, jobs):
             if not text:
                 raise EditorialOutputError("Empty social post after removing links.")
             full_text = " ".join(part["text"] for part in thread) if thread else text
+            if re.search(r"\b(read|review|visit|check out)\b.{0,35}\b(article|published report|source website)\b", full_text, re.I):
+                raise EditorialOutputError("Social post redirects the reader instead of giving the information.")
             older_years = [int(y) for y in re.findall(r"\b20\d{2}\b", full_text) if int(y) < local_today().year]
-            if older_years and not re.search(r"\b" + str(local_today().year) + r"\b", text.split("\n\n")[0]):
+            lead_years = [int(y) for y in re.findall(r"\b20\d{2}\b", text.split("\n\n")[0])]
+            source = sources[source_id]
+            has_current_evidence = current_topic("Retrospective: " + source.get("title", ""), source.get("summary", "") + " " + source.get("article_text", ""))
+            if older_years and (not any(y >= local_today().year for y in lead_years) or not has_current_evidence):
                 raise EditorialOutputError("Historical findings lack an explicit current hook.")
             if key == "x_posts" and thread is None:
                 text = fit_news_x(text, sources[source_id], idea)

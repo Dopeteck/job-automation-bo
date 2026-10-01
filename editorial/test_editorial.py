@@ -110,6 +110,14 @@ class EditorialChecks(unittest.TestCase):
                 buffer.publish_queue(path, "x", "channel", 2, state)
                 self.assertEqual(create.call_count, 2)
 
+    def test_rejects_article_redirect_and_unbacked_current_year_hook(self):
+        packet = {"newsletter_markdown": "Career advice", "x_posts": [{"source_id": "source-1", "segments": ["A current development with useful context.", "A distinct verified detail.", "Review the published report for three challenges."]}], "substack_notes": [{"source_id": "source-1", "text": "Useful information and an exercise."}]}
+        with self.assertRaises(editor.EditorialOutputError):
+            editor.normalize_outputs(packet, NEWS, [])
+        packet["x_posts"][0]["segments"] = ["A new 2026 announcement.", "The 2025 findings were different.", "Try a small task and check its output."]
+        with self.assertRaises(editor.EditorialOutputError):
+            editor.normalize_outputs(packet, NEWS, [])
+
     def test_retrospectives_need_a_specific_current_development(self):
         self.assertFalse(editor.current_topic("A look back before we look forward: survey retrospective", "Compare the 2024 and 2025 results.", 2026))
         self.assertFalse(editor.current_topic("Getting ready for 2026 results: a look back", "Earlier findings.", 2026))
