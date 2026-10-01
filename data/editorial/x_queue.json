@@ -1,12 +1,50 @@
 [
   {
-    "id": "x-2c7ad737b37975563dd6",
-    "source_id": "2c7ad737b37975563dd6",
-    "text": "Developer survey data shows AI tool usage grew from 62% in 2024 to 79% in 2025.\n\nIdea: Critically evaluate AI outputs.\nSource: Stack Overflow Blog"
+    "id": "x-03fbdbc4bea8c465dd95",
+    "source_id": "03fbdbc4bea8c465dd95",
+    "text": "Airbnb launched a new AI-powered search as part of its fall update, marking a deliberate move into agent-friendly software architecture.",
+    "thread": [
+      {
+        "text": "Airbnb launched a new AI-powered search as part of its fall update, marking a deliberate move into agent-friendly software architecture."
+      },
+      {
+        "text": "CEO Brian Chesky explained that pure chatbots fail for e-commerce because users enjoy browsing and group trip planning together."
+      },
+      {
+        "text": "Build a multi-turn search UI mock and verify its usability by testing whether users can compare at least three items simultaneously.\n\nSource: TechCrunch"
+      }
+    ]
+  },
+  {
+    "id": "x-7173f2ea8acf1821b7ad",
+    "source_id": "7173f2ea8acf1821b7ad",
+    "text": "AI startup Photon raised $4.5M after reaching over 40,000 developer sign-ups for its messaging-based agent infrastructure.",
+    "thread": [
+      {
+        "text": "AI startup Photon raised $4.5M after reaching over 40,000 developer sign-ups for its messaging-based agent infrastructure."
+      },
+      {
+        "text": "The platform provides a unified API and CLI enabling developers to build agents that operate over iMessage, WhatsApp, and SMS."
+      },
+      {
+        "text": "Write a simple webhook handler to process incoming messages and verify success by running a local curl test to confirm a 200 status.\n\nSource: TechCrunch"
+      }
+    ]
   },
   {
     "id": "x-2cbeca2fbdb491ac9ce1",
     "source_id": "2cbeca2fbdb491ac9ce1",
-    "text": "OpenAI introduced GPT-6.1 Sol for coding and professional tasks at reduced token prices.\n\nIdea: Test new model capabilities.\nSource: OpenAI News"
+    "text": "OpenAI announced GPT-6.1 Sol, delivering near-Astra intelligence for coding and computer use at lower token costs.",
+    "thread": [
+      {
+        "text": "OpenAI announced GPT-6.1 Sol, delivering near-Astra intelligence for coding and computer use at lower token costs."
+      },
+      {
+        "text": "The model is priced at one-fifth of Astra’s standard API input and output token prices for professional developer workflows."
+      },
+      {
+        "text": "Send a test coding prompt via the API and log the token usage metrics to compare cost efficiency against your previous baseline.\n\nSource: OpenAI News"
+      }
+    ]
   }
 ]

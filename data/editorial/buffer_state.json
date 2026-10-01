@@ -23,6 +23,7 @@
     "note-2c7ad737b37975563dd6",
     "note-2cbeca2fbdb491ac9ce1",
     "note-5ebc8c5fe5825fa3a1b4",
+    "note-7173f2ea8acf1821b7ad",
     "note-bb9832a0eb3c66ffc8c6"
   ],
   "x": [
@@ -37,5 +38,8 @@
     "source_id": "5ebc8c5fe5825fa3a1b4",
     "scheduled_for": "2026-10-02T09:52:00+01:00",
     "description": "Replaced survey retrospective queued posts with current SBDC announcement; X three-part thread and practical Substack brief."
-  }
+  },
+  "x_thread_draft": [
+    "x-03fbdbc4bea8c465dd95"
+  ]
 }

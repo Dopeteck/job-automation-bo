@@ -1,12 +1,22 @@
 [
   {
-    "id": "note-2c7ad737b37975563dd6",
-    "source_id": "2c7ad737b37975563dd6",
-    "text": "Stack Overflow analysis compares developer survey data across recent years, highlighting rapid AI tool adoption alongside a growth in user skepticism.\n\nKey points:\n• AI tool adoption among developers reached 79% in 2025.\n• Skepticism among learners rose from 6.4% in 2024 to 26.3% in 2025; this is a learners-only finding.\n• ChatGPT and GitHub Copilot remain the primary gateways for out-of-the-box assistants.\n\nWhy it matters: Understanding shifts in developer sentiment and trust helps professionals calibrate how much to rely on automated tooling versus human judgment.\n\nTry this: Choose one small AI-assisted coding task, run your own test cases, and record one error you caught and how you corrected it.\n\nSource: Stack Overflow Blog"
+    "id": "note-03fbdbc4bea8c465dd95",
+    "source_id": "03fbdbc4bea8c465dd95",
+    "text": "Airbnb rolled out an AI-powered search in its fall update while CEO Brian Chesky outlined plans for multiplayer and agentic interfaces.\n\n• Airbnb released new AI-powered search features in its fall update.\n• Brian Chesky stated that single-user chatbots are poorly suited for collaborative travel planning.\n• The company plans to explore multiplayer AI interfaces over the next three to six months.\n\nUnderstanding how major platforms transition away from rigid chatbot templates helps developers design better human-AI interaction models.\n\nDraft a multi-user interface wireframe and record the feedback session notes in a local markdown file to evaluate collaboration friction.\n\nSource: TechCrunch"
+  },
+  {
+    "id": "note-7173f2ea8acf1821b7ad",
+    "source_id": "7173f2ea8acf1821b7ad",
+    "text": "Photon secured $4.5 million in seed funding after gaining over 40,000 developer sign-ups for its messaging-based agent platform.\n\n• Photon provides tools allowing developers to build agents over iMessage, WhatsApp, and email.\n• The startup reported 10x revenue growth and under 3% churn in four months.\n• The seed round was co-led by Gradient and A* with backing from Vercel.\n\nMessaging-first agent deployment lowers user acquisition bottlenecks by meeting consumers inside apps they already use daily.\n\nBuild a simple chat integration script and verify its functionality by logging successful message delivery counts in a CSV file.\n\nSource: TechCrunch"
   },
   {
     "id": "note-2cbeca2fbdb491ac9ce1",
     "source_id": "2cbeca2fbdb491ac9ce1",
-    "text": "OpenAI News announced the launch of GPT-6.1 Sol, targeting coding and computer use at a fraction of standard token prices.\n\nKey points:\n• GPT-6.1 Sol provides near-Astra intelligence for coding and professional work.\n• API input and output token prices are set at one-fifth of standard Astra rates.\n\nWhy it matters: Lower-cost access to advanced coding models allows developers to experiment more freely with automated workflows and agent-based applications.\n\nTry this: Experiment with the new model endpoint on a small personal script to test its performance on routine coding tasks.\n\nSource: OpenAI News"
+    "text": "OpenAI launched GPT-6.1 Sol to provide high-capability intelligence for coding and professional tasks at reduced API rates.\n\n• GPT-6.1 Sol delivers near-Astra intelligence for coding and computer use.\n• API pricing is set at one-fifth of Astra’s standard input and output token rates.\n\nLower-cost frontier models make running complex automated coding workflows economically viable for independent developers.\n\nRun a standard test script through the API and save the response time and token count metrics into a local performance log.\n\nSource: OpenAI News"
+  },
+  {
+    "id": "note-5ebc8c5fe5825fa3a1b4",
+    "source_id": "5ebc8c5fe5825fa3a1b4",
+    "text": "OpenAI partnered with America’s SBDC to provide hands-on AI training and local support for small businesses.\n\n• OpenAI is partnering with America’s SBDC for small business AI training.\n• The initiative includes a new report detailing how small teams utilize artificial intelligence.\n\nSmall business AI adoption trends highlight practical tooling needs and operational use cases for developer solutions.\n\nReview the published small team AI report and record three key adoption challenges in a local spreadsheet for project planning.\n\nSource: OpenAI News"
   }
 ]

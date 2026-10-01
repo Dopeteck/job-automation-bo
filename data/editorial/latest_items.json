@@ -1,18 +1,6 @@
 {
   "news": [
     {
-      "id": "2c7ad737b37975563dd6",
-      "source": "Stack Overflow Blog",
-      "domain": "stackoverflow.blog",
-      "category": "career",
-      "title": "A look back before we look forward: A Developer Survey retrospective",
-      "summary": "This analysis compares the 2024 and 2025 Developer Survey data across three connected stories: the evolution of AI, humans at work, and demographics and community.",
-      "link": "https://stackoverflow.blog/2026/10/01/a-look-back-before-we-look-forward-a-developer-survey-retrospective/",
-      "published_at": "2026-10-01T14:47:33+00:00",
-      "score": 28,
-      "evidence": "article"
-    },
-    {
       "id": "5ebc8c5fe5825fa3a1b4",
       "source": "OpenAI News",
       "domain": "openai.com",
@@ -61,14 +49,14 @@
       "evidence": "rss"
     },
     {
-      "id": "36141bd2315fccaa5a99",
-      "source": "Stack Overflow Blog",
-      "domain": "stackoverflow.blog",
-      "category": "career",
-      "title": "Getting ready for 2026 results: A look back on Developer Survey findings",
-      "summary": "",
-      "link": "https://stackoverflow.blog/2026/09/30/getting-ready-for-2026-results-a-look-back-on-developer-survey-findings/",
-      "published_at": "2026-09-30T14:00:00+00:00",
+      "id": "7173f2ea8acf1821b7ad",
+      "source": "TechCrunch",
+      "domain": "techcrunch.com",
+      "category": "tech",
+      "title": "Photon held a funeral for mobile apps. Now it has $4.5M to help replace them with agents.",
+      "summary": "The startup helps developers build AI agents that work over iMessage, SMS/RCS, email, and other messaging platforms. It's a bet that consumers will increasingly use agents instead of downloading apps.",
+      "link": "https://techcrunch.com/2026/10/01/photon-held-a-funeral-for-mobile-apps-now-it-has-4-5m-to-help-replace-them-with-agents/",
+      "published_at": "2026-10-01T14:00:00+00:00",
       "score": 20,
       "evidence": "article"
     }
