@@ -21,9 +21,11 @@ jobs:
       - name: Generate editorial drafts
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
-          PUBLICATION_NAME: ${{ vars.PUBLICATION_NAME }}
-          TELEGRAM_URL: ${{ vars.TELEGRAM_URL }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.0-flash' }}
+          PUBLICATION_NAME: ${{ vars.PUBLICATION_NAME || 'Web3 Job Tech Alpha Vault' }}
+          TELEGRAM_URL: ${{ vars.TELEGRAM_URL || 'https://t.me/VettedWeb3jobs' }}
+          X_HANDLE: ${{ vars.X_HANDLE || '@HenryMortu' }}
+          SUBSTACK_URL: ${{ vars.SUBSTACK_URL || 'https://substack.com/@web3jobtechalphavault' }}
         run: python editorial/editorial_pipeline.py
       - name: Commit generated drafts
         run: |
