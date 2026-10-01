@@ -2,7 +2,7 @@
   {
     "id": "note-2c7ad737b37975563dd6",
     "source_id": "2c7ad737b37975563dd6",
-    "text": "Stack Overflow analysis compares developer survey data across recent years, highlighting rapid AI tool adoption alongside a growth in user skepticism.\n\nKey points:\n• AI tool adoption among developers reached 79% in 2025.\n• Skepticism among students and developers quadrupled as users encountered inaccurate outputs.\n• ChatGPT and GitHub Copilot remain the primary gateways for out-of-the-box assistants.\n\nWhy it matters: Understanding shifts in developer sentiment and trust helps professionals calibrate how much to rely on automated tooling versus human judgment.\n\nTry this: Review your own workflow to identify tasks where human verification is essential before accepting AI-generated code.\n\nSource: Stack Overflow Blog"
+    "text": "Stack Overflow analysis compares developer survey data across recent years, highlighting rapid AI tool adoption alongside a growth in user skepticism.\n\nKey points:\n• AI tool adoption among developers reached 79% in 2025.\n• Skepticism among learners rose from 6.4% in 2024 to 26.3% in 2025; this is a learners-only finding.\n• ChatGPT and GitHub Copilot remain the primary gateways for out-of-the-box assistants.\n\nWhy it matters: Understanding shifts in developer sentiment and trust helps professionals calibrate how much to rely on automated tooling versus human judgment.\n\nTry this: Choose one small AI-assisted coding task, run your own test cases, and record one error you caught and how you corrected it.\n\nSource: Stack Overflow Blog"
   },
   {
     "id": "note-2cbeca2fbdb491ac9ce1",
