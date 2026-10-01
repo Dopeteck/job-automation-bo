@@ -1,0 +1,76 @@
+name: Tech Career Editorial Engine
+
+on:
+  workflow_dispatch:
+    inputs:
+      buffer_drafts:
+        description: 'Upload generated posts as unpublished Buffer drafts'
+        type: boolean
+        default: false
+  push:
+    branches: [feature/tech-career-editorial-v1]
+    paths:
+      - 'editorial/**'
+      - 'publishers/buffer_publisher.py'
+      - '.github/workflows/editorial-engine.yml'
+  schedule:
+    - cron: "30 6 * * 1-5"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: editorial-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  editorial:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install editorial dependencies
+        run: pip install requests beautifulsoup4 feedparser
+      - name: Check quota fallback and promotion rules
+        run: python -m unittest editorial.test_editorial
+      - name: Generate editorial drafts
+        env:
+          GEMINI_API_KEY: ${{ github.event_name != 'push' && secrets.GEMINI_API_KEY || '' }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
+          TELEGRAM_PROMO_START: ${{ vars.TELEGRAM_PROMO_START || '2026-10-15' }}
+          PUBLICATION_NAME: ${{ vars.PUBLICATION_NAME || 'Web3 Job Tech Alpha Vault' }}
+          TELEGRAM_URL: ${{ vars.TELEGRAM_URL || 'https://t.me/VettedWeb3jobs' }}
+          X_HANDLE: ${{ vars.X_HANDLE || '@HenryMortu' }}
+          SUBSTACK_URL: ${{ vars.SUBSTACK_URL || 'https://substack.com/@web3jobtechalphavault' }}
+        run: python editorial/editorial_pipeline.py
+      - name: Upload draft review package
+        uses: actions/upload-artifact@v4
+        with:
+          name: editorial-drafts
+          path: |
+            data/editorial/latest_digest.md
+            data/editorial/latest_items.json
+            data/editorial/x_queue.json
+            data/editorial/substack_notes_queue.json
+      - name: Send X and Substack Notes to Buffer
+        if: ${{ github.event_name != 'push' }}
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_X_CHANNEL_ID: ${{ vars.BUFFER_X_CHANNEL_ID || '6abe6f09ea19ca0bde441138' }}
+          BUFFER_SUBSTACK_CHANNEL_ID: ${{ vars.BUFFER_SUBSTACK_CHANNEL_ID || '6abe70bfea19ca0bde441f84' }}
+          BUFFER_SAVE_AS_DRAFT: ${{ inputs.buffer_drafts == true || vars.BUFFER_AUTOPUBLISH != 'true' }}
+          BUFFER_MAX_X_PER_RUN: "1"
+          BUFFER_MAX_SUBSTACK_PER_RUN: "1"
+        run: python publishers/buffer_publisher.py
+      - name: Save drafts and posting history
+        if: ${{ always() }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/editorial
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: refresh editorial drafts and posting history"
+            git push
+          fi

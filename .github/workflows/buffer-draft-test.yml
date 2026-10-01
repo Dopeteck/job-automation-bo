@@ -1,0 +1,73 @@
+name: Buffer Draft Connection Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/tech-career-editorial-v1]
+    paths: ['.github/workflows/buffer-draft-test.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: editorial-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test-drafts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Verify Buffer key by creating unpublished drafts
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_SAVE_AS_DRAFT: "true"
+          BUFFER_X_CHANNEL_ID: ${{ vars.BUFFER_X_CHANNEL_ID || '6abe6f09ea19ca0bde441138' }}
+          BUFFER_SUBSTACK_CHANNEL_ID: ${{ vars.BUFFER_SUBSTACK_CHANNEL_ID || '6abe70bfea19ca0bde441f84' }}
+        run: |
+          python - <<'PY'
+          from publishers import buffer_publisher as buffer
+
+          if not buffer.KEY:
+              raise SystemExit("BUFFER_API_KEY repository secret is missing or empty.")
+          assert buffer.SAVE_AS_DRAFT, "Connection tests must use drafts."
+          state = buffer.load(buffer.STATE, {})
+          completed = state.setdefault("connection_test_v1", {})
+          posts = [
+              ("x", buffer.X_CHANNEL, "Before applying for a remote job, check eligible countries, required working hours and payment terms. Remote does not always mean worldwide. Match your application to the role, then keep a simple follow-up tracker."),
+              ("substack", buffer.SUBSTACK_CHANNEL, "Remote job applications: a five-minute eligibility check\n\nBefore spending an hour on an application, check:\n\n1. Location: which countries can the employer hire in?\n2. Working hours: can you meet the required time-zone overlap?\n3. Contract: is this employment or freelance work, and how is payment described?\n4. Evidence: which two requirements can you demonstrate with a clear example?\n5. Tracking: save the original vacancy, application date and follow-up date.\n\nRemote does not always mean worldwide. A short eligibility check helps you focus your effort on roles you can realistically take."),
+          ]
+          for name, channel, text in posts:
+              if not channel:
+                  raise SystemExit(f"Missing channel ID for {name}.")
+              if name in completed:
+                  print(f"{name}: previously confirmed draft {completed[name]['post_id']}; skipping duplicate.")
+                  continue
+              post = buffer.create_post(channel, text)
+              completed[name] = {"post_id": post["id"], "channel_id": channel, "save_to_draft": True}
+              buffer.save(buffer.STATE, state)
+              print(f"{name}: confirmed unpublished draft {post['id']}.")
+          PY
+      - name: Save confirmed draft history
+        if: ${{ always() }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f data/editorial/buffer_state.json ]; then
+            git add data/editorial/buffer_state.json
+            if ! git diff --cached --quiet; then
+              git commit -m "chore: record confirmed Buffer connection drafts"
+              git push
+            fi
+          fi
+      - name: Upload confirmed draft history
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: buffer-draft-connection-test
+          path: data/editorial/buffer_state.json
+          if-no-files-found: ignore

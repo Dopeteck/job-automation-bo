@@ -1,0 +1,72 @@
+{
+  "news": [
+    {
+      "id": "2c7ad737b37975563dd6",
+      "source": "Stack Overflow Blog",
+      "domain": "stackoverflow.blog",
+      "category": "career",
+      "title": "A look back before we look forward: A Developer Survey retrospective",
+      "summary": "This analysis compares the 2024 and 2025 Developer Survey data across three connected stories: the evolution of AI, humans at work, and demographics and community.",
+      "link": "https://stackoverflow.blog/2026/10/01/a-look-back-before-we-look-forward-a-developer-survey-retrospective/",
+      "published_at": "2026-10-01T14:47:33+00:00",
+      "score": 28
+    },
+    {
+      "id": "5ebc8c5fe5825fa3a1b4",
+      "source": "OpenAI News",
+      "domain": "openai.com",
+      "category": "ai",
+      "title": "Helping small businesses put AI to work",
+      "summary": "OpenAI is partnering with America’s SBDC to expand hands-on AI training and local support for small businesses, alongside a new report on how small teams are using AI.",
+      "link": "https://openai.com/index/helping-small-businesses-put-ai-to-work",
+      "published_at": "2026-09-30T10:00:00+00:00",
+      "score": 26
+    },
+    {
+      "id": "03fbdbc4bea8c465dd95",
+      "source": "TechCrunch",
+      "domain": "techcrunch.com",
+      "category": "tech",
+      "title": "Brian Chesky interview: AI agents need their own operating system",
+      "summary": "Brian Chesky on making Airbnb agent-friendly, the state of consumer AI, and why the world needs an AI-native operating system.",
+      "link": "https://techcrunch.com/2026/10/01/brian-chesky-interview-ai-agents-need-their-own-operating-system/",
+      "published_at": "2026-10-01T15:12:00+00:00",
+      "score": 25
+    },
+    {
+      "id": "1771e34265ddcee9e76e",
+      "source": "GitHub Blog",
+      "domain": "github.blog",
+      "category": "tech",
+      "title": "Developer policy update: Transparency, state policy, and what’s ahead",
+      "summary": "Explore GitHub’s latest transparency data and learn more about policy updates affecting developers and open source. The post Developer policy update: Transparency, state policy, and what’s ahead appeared first on The GitHub Blog .",
+      "link": "https://github.blog/news-insights/policy-news-and-insights/developer-policy-update-transparency-state-policy-and-whats-ahead/",
+      "published_at": "2026-09-29T15:00:00+00:00",
+      "score": 24
+    },
+    {
+      "id": "bb9832a0eb3c66ffc8c6",
+      "source": "TechCrunch",
+      "domain": "techcrunch.com",
+      "category": "tech",
+      "title": "Google releases Gemini 4 Argon, called its most powerful model yet",
+      "summary": "Google has released its latest Gemini model, marketing it as a workhorse for coding and cybersecurity work.",
+      "link": "https://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/",
+      "published_at": "2026-09-30T23:43:07+00:00",
+      "score": 23
+    },
+    {
+      "id": "2cbeca2fbdb491ac9ce1",
+      "source": "OpenAI News",
+      "domain": "openai.com",
+      "category": "ai",
+      "title": "Introducing GPT-6.1 Sol",
+      "summary": "Meet GPT-6.1 Sol: near-Astra intelligence for coding, computer use, and professional work at one-fifth of Astra’s standard API input and output token prices.",
+      "link": "https://openai.com/index/introducing-gpt-6-1-sol",
+      "published_at": "2026-09-29T10:00:00+00:00",
+      "score": 20
+    }
+  ],
+  "jobs": [],
+  "drafting_mode": "fallback"
+}

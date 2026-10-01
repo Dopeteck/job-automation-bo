@@ -1,0 +1,7 @@
+[
+  {"name":"GitHub Blog","url":"https://github.blog/feed/","category":"tech","priority":5},
+  {"name":"Google AI","url":"https://blog.google/technology/ai/rss/","category":"ai","priority":5},
+  {"name":"OpenAI News","url":"https://openai.com/news/rss.xml","category":"ai","priority":5},
+  {"name":"Stack Overflow Blog","url":"https://stackoverflow.blog/feed/","category":"career","priority":4},
+  {"name":"TechCrunch","url":"https://techcrunch.com/feed/","category":"tech","priority":3}
+]
