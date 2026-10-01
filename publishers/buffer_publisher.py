@@ -12,6 +12,7 @@ API = "https://api.buffer.com"
 KEY = os.getenv("BUFFER_API_KEY", "").strip()
 X_CHANNEL = os.getenv("BUFFER_X_CHANNEL_ID", "").strip()
 SUBSTACK_CHANNEL = os.getenv("BUFFER_SUBSTACK_CHANNEL_ID", "").strip()
+SAVE_AS_DRAFT = os.getenv("BUFFER_SAVE_AS_DRAFT", "true").strip().lower() != "false"
 MAX_X = int(os.getenv("BUFFER_MAX_X_PER_RUN", "2"))
 MAX_SUBSTACK = int(os.getenv("BUFFER_MAX_SUBSTACK_PER_RUN", "1"))
 
@@ -32,7 +33,7 @@ def create_post(channel_id, text):
       }
     }
     """
-    variables = {"input":{"text":text,"channelId":channel_id,"schedulingType":"automatic","mode":"addToQueue"}}
+    variables = {"input":{"text":text,"channelId":channel_id,"schedulingType":"automatic","mode":"addToQueue","saveToDraft":SAVE_AS_DRAFT}}
     r = requests.post(API, headers={"Authorization":f"Bearer {KEY}","Content-Type":"application/json"}, json={"query":query,"variables":variables}, timeout=45)
     r.raise_for_status()
     body = r.json()
@@ -50,6 +51,7 @@ def publish_queue(path, key, channel_id, limit, state):
     if not channel_id:
         print(f"Skipping {key}: no channel ID configured.")
         return
+    key = f"{key}_draft" if SAVE_AS_DRAFT else key
     sent = set(state.get(key, []))
     count = 0
     for item in load(path, []):
