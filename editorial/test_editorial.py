@@ -116,6 +116,9 @@ class EditorialChecks(unittest.TestCase):
         post = editor.fit_x("Emoji: " + "🧑" * 300, NEWS[0]["link"])
         self.assertLessEqual(editor.x_weight(post), 280)
         self.assertTrue(post.endswith(NEWS[0]["link"]))
+        headline_only = copy.deepcopy(NEWS)
+        headline_only[0]["summary"] = ""
+        self.assertEqual(editor.fallback(headline_only, [])["x_posts"], [])
 
 if __name__ == "__main__":
     unittest.main()
