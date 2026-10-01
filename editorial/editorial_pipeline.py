@@ -17,8 +17,10 @@ OUT.mkdir(parents=True, exist_ok=True)
 SOURCES = Path(__file__).with_name("sources.json")
 JOBS = ROOT / "data" / "jobs_log.json"
 
-PUBLICATION = os.getenv("PUBLICATION_NAME", "Tech Career Signal")
-TELEGRAM_URL = os.getenv("TELEGRAM_URL", "").strip()
+PUBLICATION = os.getenv("PUBLICATION_NAME", "Web3 Job Tech Alpha Vault").strip() or "Web3 Job Tech Alpha Vault"
+TELEGRAM_URL = os.getenv("TELEGRAM_URL", "https://t.me/VettedWeb3jobs").strip()
+X_HANDLE = os.getenv("X_HANDLE", "@HenryMortu").strip()
+SUBSTACK_URL = os.getenv("SUBSTACK_URL", "https://substack.com/@web3jobtechalphavault").strip()
 GEMINI_KEY = os.getenv("GEMINI_API_KEY", "").strip()
 GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash").strip()
 
@@ -117,7 +119,7 @@ def fallback(news, jobs):
     md += ["## Career move of the week","", "Choose one role you want, identify the three repeated skills in its requirements, and build one small proof-of-work project around one of them.","","## Opportunities",""]
     for j in jobs:
         md.append(f"- **{j['title']} — {j['company']}** ({j['level']}) — {j['link']}")
-    md += ["","---",cta(),""]
+    md += ["","---",cta(), f"Follow on X: {X_HANDLE}", f"Read/subscribe on Substack: {SUBSTACK_URL}", ""]
     xq=[]; nq=[]
     for n in news[:5]:
         xq.append({"id":"x-"+n["id"],"source_id":n["id"],"text":(n["title"]+"\n\nWhy it matters for tech careers: "+n["summary"][:170]+"\n\n"+n["link"])[:275]})
@@ -126,7 +128,7 @@ def fallback(news, jobs):
 
 def ai_outputs(news, jobs):
     if not GEMINI_KEY: return None
-    packet = {"publication_name":PUBLICATION,"telegram_cta":cta(),"news":news,"jobs":jobs}
+    packet = {"publication_name":PUBLICATION,"telegram_cta":cta(),"x_handle":X_HANDLE,"substack_url":SUBSTACK_URL,"news":news,"jobs":jobs}
     prompt = """You are the editor of a practical tech-career publication. Using ONLY the supplied source packet, return JSON with newsletter_markdown, x_posts, and substack_notes. Focus on AI/tech developments that affect careers, concrete career advice, useful tools/skills, and a few strong jobs. Do not invent facts. Include source URLs for factual news. X posts must be useful standalone insights, not link spam. Substack Notes may be conversational. Newsletter structure: opening; 3-5 developments; what it means for careers; one practical move; 3-5 jobs; Telegram CTA.\n\nSOURCE PACKET:\n""" + json.dumps(packet, ensure_ascii=False)
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={GEMINI_KEY}"
     payload = {"contents":[{"parts":[{"text":prompt}]}],"generationConfig":{"temperature":0.35,"responseMimeType":"application/json"}}
