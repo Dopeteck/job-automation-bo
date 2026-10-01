@@ -225,8 +225,8 @@ Return a JSON object with:
 newsletter_markdown: a string with an opening, sourced developments, practical career steps and jobs only if supplied;
 x_posts: an array of up to 5 objects, each containing source_id (the exact supplied item id) and text;
 substack_notes: an array of up to 5 objects, each containing source_id and text.
-Each social post must cite the exact URL belonging to its source_id.
-X posts must use at most 180 characters of prose plus exactly one source URL. No hashtags or Markdown on X.
+Social text must contain prose only, with NO URLs: the publisher adds the exact source URL using source_id.
+X posts must use at most 180 characters of prose. No hashtags or Markdown on X.
 Notes should explain what changed and suggest a concrete next step; distinguish advice from source facts.
 Do not invent dates, vacancies, salaries, product capabilities or guarantees. Do not copy long source passages.
 Do not include Telegram, promotional footers, follow requests or links not supplied as news/job sources.
@@ -293,11 +293,15 @@ def normalize_outputs(outputs, news, jobs):
                 continue
             text = strip_telegram(row["text"])
             link = sources[source_id]["link"]
-            if not text or link not in text:
-                raise EditorialOutputError("Missing source citation.")
+            if not text:
+                raise EditorialOutputError("Empty social post.")
             check_links(text)
-            if key == "x_posts" and x_weight(text) > 280:
-                raise EditorialOutputError("X post too long.")
+            if key == "x_posts":
+                # Source ids are validated above; code owns citations and length.
+                body = text.replace(link, "").strip()
+                text = fit_x(body, link)
+            elif link not in text:
+                text += "\n\nSource: " + link
             seen.add(source_id)
             normalized.append({"id": prefix + source_id, "source_id": source_id, "text": text})
         result[key] = normalized
