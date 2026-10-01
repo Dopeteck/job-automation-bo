@@ -2,26 +2,16 @@
   {
     "id": "x-2c7ad737b37975563dd6",
     "source_id": "2c7ad737b37975563dd6",
-    "text": "Stack Overflow compares 2024 and 2025 survey data to track AI evolution, human work shifts, and developer community demographics.\n\nhttps://stackoverflow.blog/2026/10/01/a-look-back-before-we-look-forward-a-developer-survey-retrospective/"
-  },
-  {
-    "id": "x-5ebc8c5fe5825fa3a1b4",
-    "source_id": "5ebc8c5fe5825fa3a1b4",
-    "text": "OpenAI partners with America’s SBDC to expand hands-on AI training for small businesses and releases insights on small team usage.\n\nhttps://openai.com/index/helping-small-businesses-put-ai-to-work"
-  },
-  {
-    "id": "x-03fbdbc4bea8c465dd95",
-    "source_id": "03fbdbc4bea8c465dd95",
-    "text": "Brian Chesky shares insights on AI agents, agent-friendly platforms, and the need for an AI-native operating system.\n\nhttps://techcrunch.com/2026/10/01/brian-chesky-interview-ai-agents-need-their-own-operating-system/"
+    "text": "Stack Overflow published a developer survey retrospective comparing 2024 and 2025 data on AI, humans at work, and demographics.\n\nhttps://stackoverflow.blog/2026/10/01/a-look-back-before-we-look-forward-a-developer-survey-retrospective/"
   },
   {
     "id": "x-bb9832a0eb3c66ffc8c6",
     "source_id": "bb9832a0eb3c66ffc8c6",
-    "text": "Google released Gemini 4 Argon, marketed as its most powerful model yet for coding and cybersecurity workloads.\n\nhttps://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/"
+    "text": "Google released Gemini 4 Argon, marketed as a new workhorse model designed for coding and cybersecurity tasks.\n\nhttps://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/"
   },
   {
     "id": "x-2cbeca2fbdb491ac9ce1",
     "source_id": "2cbeca2fbdb491ac9ce1",
-    "text": "OpenAI introduced GPT-6.1 Sol for coding, computer use, and professional tasks at a lower token price point.\n\nhttps://openai.com/index/introducing-gpt-6-1-sol"
+    "text": "OpenAI introduced GPT-6.1 Sol, offering intelligence for coding and professional work at reduced token pricing.\n\nhttps://openai.com/index/introducing-gpt-6-1-sol"
   }
 ]
