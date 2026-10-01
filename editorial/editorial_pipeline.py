@@ -210,6 +210,9 @@ def fallback(news, jobs):
 class GeminiUnavailable(RuntimeError):
     pass
 
+class EditorialOutputError(ValueError):
+    """Fixed validation messages that are safe to include in public logs."""
+
 def ai_outputs(news, jobs):
     if not GEMINI_KEY:
         return None
@@ -223,7 +226,7 @@ newsletter_markdown: a string with an opening, sourced developments, practical c
 x_posts: an array of up to 5 objects, each containing source_id (the exact supplied item id) and text;
 substack_notes: an array of up to 5 objects, each containing source_id and text.
 Each social post must cite the exact URL belonging to its source_id.
-X posts must fit 280 weighted characters (each URL counts as 23).
+X posts must use at most 180 characters of prose plus exactly one source URL. No hashtags or Markdown on X.
 Notes should explain what changed and suggest a concrete next step; distinguish advice from source facts.
 Do not invent dates, vacancies, salaries, product capabilities or guarantees. Do not copy long source passages.
 Do not include Telegram, promotional footers, follow requests or links not supplied as news/job sources.
@@ -231,8 +234,18 @@ If there are no jobs, do not invent an opportunities list.
 SOURCE PACKET:
 """ + json.dumps(packet, ensure_ascii=False)
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
+    source_ids = [str(item["id"]) for item in news + jobs if item.get("id") and item.get("link")]
+    posts_schema = {"type": "array", "minItems": 1, "maxItems": 5, "items": {
+        "type": "object", "properties": {
+            "source_id": {"type": "string", "enum": source_ids},
+            "text": {"type": "string"}}, "required": ["source_id", "text"]}}
+    schema = {"type": "object", "properties": {
+        "newsletter_markdown": {"type": "string"},
+        "x_posts": posts_schema, "substack_notes": posts_schema},
+        "required": ["newsletter_markdown", "x_posts", "substack_notes"]}
     payload = {"contents": [{"parts": [{"text": prompt}]}],
-               "generationConfig": {"temperature": 0.3, "responseMimeType": "application/json", "maxOutputTokens": 6000}}
+               "generationConfig": {"temperature": 0.3, "maxOutputTokens": 6000,
+                   "responseFormat": {"text": {"mimeType": "application/json", "schema": schema}}}}
     try:
         response = requests.post(url, headers={"x-goog-api-key": GEMINI_KEY}, json=payload, timeout=50)
     except requests.RequestException:
@@ -253,38 +266,38 @@ SOURCE PACKET:
 def normalize_outputs(outputs, news, jobs):
     """Reject malformed AI packets rather than sending unusable posts."""
     if not isinstance(outputs, dict) or not isinstance(outputs.get("newsletter_markdown"), str):
-        raise ValueError("Missing newsletter.")
+        raise EditorialOutputError("Missing newsletter.")
     sources = {str(item["id"]): item for item in news + jobs if item.get("id") and item.get("link")}
     allowed = {item["link"] for item in sources.values()}
     def check_links(text):
         for url in re.findall(r"https?://[^\s<>]+", text):
             if url.rstrip(").,;]") not in allowed:
-                raise ValueError("Unrecognised source URL.")
+                raise EditorialOutputError("Unrecognised source URL.")
     newsletter = strip_telegram(outputs["newsletter_markdown"])
     if not newsletter:
-        raise ValueError("Empty newsletter.")
+        raise EditorialOutputError("Empty newsletter.")
     check_links(newsletter)
     result = {"newsletter_markdown": newsletter}
     for key, prefix in (("x_posts", "x-"), ("substack_notes", "note-")):
         rows = outputs.get(key)
         if not isinstance(rows, list) or (sources and not rows):
-            raise ValueError("Missing post array.")
+            raise EditorialOutputError("Missing post array.")
         normalized, seen = [], set()
         for row in rows[:5]:
             if not isinstance(row, dict) or not isinstance(row.get("text"), str):
-                raise ValueError("Invalid post.")
+                raise EditorialOutputError("Invalid post.")
             source_id = str(row.get("source_id", ""))
             if source_id not in sources:
-                raise ValueError("Unknown source id.")
+                raise EditorialOutputError("Unknown source id.")
             if source_id in seen:
                 continue
             text = strip_telegram(row["text"])
             link = sources[source_id]["link"]
             if not text or link not in text:
-                raise ValueError("Missing source citation.")
+                raise EditorialOutputError("Missing source citation.")
             check_links(text)
             if key == "x_posts" and x_weight(text) > 280:
-                raise ValueError("X post too long.")
+                raise EditorialOutputError("X post too long.")
             seen.add(source_id)
             normalized.append({"id": prefix + source_id, "source_id": source_id, "text": text})
         result[key] = normalized
@@ -318,6 +331,8 @@ def build_outputs(news, jobs):
             print("Gemini returned a validated source packet.")
         except GeminiUnavailable as exc:
             print(f"{exc} Using RSS/job fallback for this run.")
+        except EditorialOutputError as exc:
+            print(f"Gemini output validation failed: {exc} Using RSS/job fallback.")
         except Exception:
             # Never log API keys, full HTTP errors or source/model payloads.
             print("Gemini output validation failed; using RSS/job fallback.")
