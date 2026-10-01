@@ -83,6 +83,19 @@ class EditorialChecks(unittest.TestCase):
         self.assertIn("Workflow advice", result["x_posts"][0]["text"])
         self.assertIn("Sources: Example", result["newsletter_markdown"])
 
+    def test_structured_posts_keep_key_points_idea_and_single_attribution(self):
+        packet = {"newsletter_markdown": "Career advice", "x_posts": [{"source_id": "source-1", "fact": "Source-backed finding. Source: Example", "idea": "Test one real workflow."}], "substack_notes": [{"source_id": "source-1", "summary": "A workflow guide.", "key_points": ["First verified point.", "Second verified point."], "why_it_matters": "Useful for practice.", "practical_idea": "Try a small task and record one correction."}]}
+        result = editor.normalize_outputs(packet, NEWS, [])
+        self.assertIn("Idea:", result["x_posts"][0]["text"])
+        self.assertEqual(result["x_posts"][0]["text"].count("Source: Example"), 1)
+        note = result["substack_notes"][0]["text"]
+        self.assertIn("Key points:\n•", note)
+        self.assertIn("Why it matters:", note)
+        self.assertIn("Try this:", note)
+        del packet["substack_notes"][0]["practical_idea"]
+        with self.assertRaises(editor.EditorialOutputError):
+            editor.normalize_outputs(packet, NEWS, [])
+
     def test_publisher_records_one_promotion_and_deduplicates(self):
         rows = [{"id": f"post-{i}", "text": "Advice\nCheck out our Telegram: https://t.me/VettedWeb3jobs", "promotion_week": "2026-W42"} for i in range(2)]
         with tempfile.TemporaryDirectory() as folder:
