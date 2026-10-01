@@ -1,0 +1,43 @@
+name: Tech Career Editorial Engine
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  editorial:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Generate editorial drafts
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          PUBLICATION_NAME: ${{ vars.PUBLICATION_NAME }}
+          TELEGRAM_URL: ${{ vars.TELEGRAM_URL }}
+        run: python editorial/editorial_pipeline.py
+      - name: Commit generated drafts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/editorial/latest_digest.md data/editorial/latest_items.json data/editorial/x_queue.json data/editorial/substack_notes_queue.json
+          git diff --cached --quiet || git commit -m "chore: refresh editorial drafts"
+          git push
+      - name: Queue X and Substack Notes in Buffer
+        if: ${{ vars.BUFFER_AUTOPUBLISH == 'true' }}
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          BUFFER_X_CHANNEL_ID: ${{ vars.BUFFER_X_CHANNEL_ID }}
+          BUFFER_SUBSTACK_CHANNEL_ID: ${{ vars.BUFFER_SUBSTACK_CHANNEL_ID }}
+          BUFFER_MAX_X_PER_RUN: "2"
+          BUFFER_MAX_SUBSTACK_PER_RUN: "1"
+        run: python publishers/buffer_publisher.py
