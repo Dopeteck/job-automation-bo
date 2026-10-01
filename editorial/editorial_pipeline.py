@@ -252,6 +252,9 @@ def fallback(news, jobs):
         md.append(f"- **{j['title']} — {j['company']}** ({j['level']})")
     xq, nq = [], []
     for n in news[:5]:
+        # Without AI, a bare headline cannot support a useful news summary.
+        if not n.get("summary"):
+            continue
         xq.append({"id": "x-" + n["id"], "source_id": n["id"],
                    "text": fit_news_x(without_links(n["summary"]) or n["title"], n, brief_action(n))})
         nq.append({"id": "note-" + n["id"], "source_id": n["id"],
@@ -288,6 +291,8 @@ Use article_text when available; otherwise only use the supplied RSS summary. Ne
 X fact: at most 140 characters; idea: at most 60 characters. Do not add attribution, hashtags or Markdown.
 Notes: summary is 1-2 sentences, each key point is a distinct verified fact, why_it_matters explains the relevance, and practical_idea is a specific activity the reader can try. Aim for 120-180 words when article evidence supports it; use fewer words if evidence is thin.
 Write original summaries, not copied article passages or mere headlines. Distinguish suggested actions from source facts. Do not just tell readers to review/read the source.
+Keep statistical cohorts and years separate: never apply a learners-only finding to all developers, combine different survey questions, or turn a vendor claim into an independently verified result.
+Every practical idea must name a small task plus a way to check or record its result, rather than a generic instruction to explore, review or evaluate.
 Do not invent dates, vacancies, salaries, product capabilities or guarantees. Do not copy long source passages.
 Do not include Telegram, promotional footers, follow requests or links not supplied as news/job sources.
 If there are no jobs, do not invent an opportunities list.
