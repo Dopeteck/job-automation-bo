@@ -35,3 +35,11 @@ Variables:
 - `BUFFER_AUTOPUBLISH` (`false` first)
 
 The Buffer publisher uses `createPost` with `mode: addToQueue`, so Buffer controls the next posting slot.
+
+## Connected brand targets
+
+- X: `@HenryMortu`
+- Substack: `https://substack.com/@web3jobtechalphavault`
+- Telegram: `https://t.me/VettedWeb3jobs`
+
+Buffer still needs the X and Substack channels connected in its Channels page before automated publishing can be enabled.
