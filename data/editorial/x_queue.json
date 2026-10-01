@@ -2,16 +2,11 @@
   {
     "id": "x-2c7ad737b37975563dd6",
     "source_id": "2c7ad737b37975563dd6",
-    "text": "Stack Overflow published a developer survey retrospective comparing 2024 and 2025 data on AI, humans at work, and demographics.\n\nhttps://stackoverflow.blog/2026/10/01/a-look-back-before-we-look-forward-a-developer-survey-retrospective/"
-  },
-  {
-    "id": "x-bb9832a0eb3c66ffc8c6",
-    "source_id": "bb9832a0eb3c66ffc8c6",
-    "text": "Google released Gemini 4 Argon, marketed as a new workhorse model designed for coding and cybersecurity tasks.\n\nhttps://techcrunch.com/2026/09/30/google-releases-gemini-4-argon-called-its-most-powerful-model-yet/"
+    "text": "Developer AI tool usage reached 79% by 2025 according to Stack Overflow. Practical idea: Maintain rigorous code reviews since student and developer skepticism toward automated output accuracy has risen. Source: Stack Overflow Blog\n\nSource: Stack Overflow Blog"
   },
   {
     "id": "x-2cbeca2fbdb491ac9ce1",
     "source_id": "2cbeca2fbdb491ac9ce1",
-    "text": "OpenAI introduced GPT-6.1 Sol, offering intelligence for coding and professional work at reduced token pricing.\n\nhttps://openai.com/index/introducing-gpt-6-1-sol"
+    "text": "OpenAI announced GPT-6.1 Sol for coding and professional tasks at reduced token prices. Practical idea: Test new lower-cost models against your current workflows to optimize API spending. Source: OpenAI News\n\nSource: OpenAI News"
   }
 ]
