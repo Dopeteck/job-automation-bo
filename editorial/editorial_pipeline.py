@@ -245,7 +245,7 @@ SOURCE PACKET:
         "required": ["newsletter_markdown", "x_posts", "substack_notes"]}
     payload = {"contents": [{"parts": [{"text": prompt}]}],
                "generationConfig": {"temperature": 0.3, "maxOutputTokens": 6000,
-                   "responseFormat": {"text": {"mimeType": "application/json", "schema": schema}}}}
+                   "responseMimeType": "application/json", "responseJsonSchema": schema}}
     try:
         response = requests.post(url, headers={"x-goog-api-key": GEMINI_KEY}, json=payload, timeout=50)
     except requests.RequestException:
