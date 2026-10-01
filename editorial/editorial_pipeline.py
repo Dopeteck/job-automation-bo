@@ -32,6 +32,15 @@ CAREER_TERMS = {
     "github":2,"coding":3,"programming":3,"cybersecurity":3,"data":2
 }
 
+CAREER_ANCHORS = re.compile(r"\b(jobs?|careers?|hiring|skills?|developers?|remote|salary|interviews?|resumes?|freelance|certification|learning|courses?|training|businesses?|workflows?|productivity|coding|programming)\b", re.I)
+
+def career_relevant(title, summary):
+    text = f"{title} {summary}"
+    # Model-training research and corporate disputes are not worker training.
+    if re.search(r"\b(spying|accused|model.distillation|frontier AI training)\b", text, re.I):
+        return False
+    return bool(CAREER_ANCHORS.search(text))
+
 def load_json(path, default):
     try:
         return json.loads(Path(path).read_text(encoding="utf-8"))
@@ -56,7 +65,7 @@ def score(title, summary, priority, published):
     text = f"{title} {summary}".lower()
     total = int(priority) * 3
     for term, weight in CAREER_TERMS.items():
-        if term in text:
+        if re.search(r"\b" + re.escape(term) + r"\b", text):
             total += weight
     age_h = max(0, (datetime.now(timezone.utc)-published).total_seconds()/3600)
     total += 8 if age_h <= 24 else 5 if age_h <= 48 else 2 if age_h <= 96 else 0
@@ -66,12 +75,21 @@ def collect_news():
     cutoff = datetime.now(timezone.utc) - timedelta(days=4)
     items = []
     for src in load_json(SOURCES, []):
-        feed = feedparser.parse(src["url"])
+        try:
+            response = requests.get(src["url"], timeout=20, headers={"User-Agent":"TechCareerEditorial/1.0"})
+            response.raise_for_status()
+            feed = feedparser.parse(response.content)
+            print(f"Source {src['name']}: {len(feed.entries)} entries")
+        except requests.RequestException:
+            print(f"Source {src['name']}: unavailable; skipping")
+            continue
         for e in feed.entries[:12]:
             title = clean(getattr(e, "title", ""), 220)
             link = getattr(e, "link", "")
             summary = clean(getattr(e, "summary", "") or getattr(e, "description", ""))
             if not title or not link:
+                continue
+            if not career_relevant(title, summary):
                 continue
             published = entry_time(e)
             if published < cutoff:
@@ -122,7 +140,12 @@ def fallback(news, jobs):
     md += ["","---",cta(), f"Follow on X: {X_HANDLE}", f"Read/subscribe on Substack: {SUBSTACK_URL}", ""]
     xq=[]; nq=[]
     for n in news[:5]:
-        xq.append({"id":"x-"+n["id"],"source_id":n["id"],"text":(n["title"]+"\n\nWhy it matters for tech careers: "+n["summary"][:170]+"\n\n"+n["link"])[:275]})
+        # X counts an HTTPS URL as 23 characters. Preserve the entire URL.
+        body = n["title"] + "\n\n" + n["summary"]
+        budget = 280 - 23 - 2
+        if len(body) > budget:
+            body = body[:budget-1].rstrip() + "…"
+        xq.append({"id":"x-"+n["id"],"source_id":n["id"],"text":body+"\n\n"+n["link"]})
         nq.append({"id":"note-"+n["id"],"source_id":n["id"],"text":n["title"]+"\n\n"+n["summary"]+"\n\nCareer angle: watch how this changes the skills, tools or hiring expectations people need to pay attention to.\n\n"+n["link"]})
     return {"newsletter_markdown":"\n".join(md),"x_posts":xq,"substack_notes":nq}
 

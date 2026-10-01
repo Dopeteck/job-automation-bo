@@ -39,9 +39,14 @@ def create_post(channel_id, text):
     if body.get("errors"): raise RuntimeError(body["errors"])
     result = body.get("data",{}).get("createPost",{})
     if result.get("message"): raise RuntimeError(result["message"])
-    return result.get("post",{})
+    post = result.get("post",{})
+    if not post.get("id"):
+        raise RuntimeError("Buffer did not confirm a created post; leaving item unsent.")
+    return post
 
 def publish_queue(path, key, channel_id, limit, state):
+    if limit <= 0:
+        return
     if not channel_id:
         print(f"Skipping {key}: no channel ID configured.")
         return
