@@ -58,6 +58,53 @@ def clean(value, limit=700):
     text = BeautifulSoup(value or "", "html.parser").get_text(" ", strip=True)
     return re.sub(r"\s+", " ", text).strip()[:limit]
 
+def without_links(text):
+    text = re.sub(r"\[([^\]]+)\]\(https?://[^\s)]+\)", r"\1", text)
+    text = re.sub(r"(?:https?://|www\.)[^\s<>]+", "", text, flags=re.I)
+    return "\n".join(re.sub(r"[ \t]+", " ", line).strip() for line in text.splitlines()).strip()
+
+def source_name(item):
+    return without_links(item.get("source") or item.get("company") or item.get("domain") or "Source")
+
+def article_excerpt(html):
+    """Read article paragraphs only; ignore navigation, comments and scripts."""
+    soup = BeautifulSoup(html, "html.parser")
+    for element in soup.select("script, style, nav, footer, header, aside, form, [class*='comment'], [class*='newsletter']"):
+        element.decompose()
+    body = soup.select_one(".entry-content, .article-content, [itemprop='articleBody'], article")
+    if body is None:
+        return ""
+    paragraphs, seen = [], set()
+    for element in body.select("p, li"):
+        text = clean(str(element), 800)
+        if len(text) < 55 or text in seen:
+            continue
+        seen.add(text)
+        paragraphs.append(text)
+    text = "\n".join(paragraphs)
+    return text[:5000] if len(text) >= 250 else ""
+
+def enrich_news(news):
+    allowed = {urlparse(src["url"]).hostname for src in load_json(SOURCES, [])}
+    for item in news:
+        item["evidence"] = "rss"
+        parsed = urlparse(item["link"])
+        if parsed.scheme != "https" or parsed.hostname not in allowed:
+            continue
+        try:
+            response = requests.get(item["link"], timeout=15, allow_redirects=False,
+                                    headers={"User-Agent": "TechCareerEditorial/1.0"})
+            response.raise_for_status()
+            if response.status_code != 200:
+                continue
+            excerpt = article_excerpt(response.text)
+            if excerpt:
+                item["article_text"] = excerpt
+                item["evidence"] = "article"
+        except requests.RequestException:
+            pass
+    return news
+
 def item_id(source, title, link):
     return hashlib.sha256(f"{source}|{title}|{link}".lower().encode()).hexdigest()[:20]
 
@@ -179,32 +226,43 @@ def career_action(item):
         return "Portfolio idea: build a small example, add a clear README, and explain one decision you made. A sample you can explain is more useful than copied code."
     return "Learning idea: pick one skill mentioned in the source and make a small, clearly labelled sample showing how you would use it."
 
+def brief_action(item):
+    text = f"{item.get('title', '')} {item.get('summary', '')}".lower()
+    if re.search(r"\b(survey|salary|hiring|jobs?)\b", text):
+        return "Try: compare your skills with 3 current vacancies."
+    if re.search(r"\b(ai|automation|workflow|gemini|gpt)\b", text):
+        return "Try: test one real task and check the result."
+    return "Try: build a small sample of one relevant skill."
+
+def fit_news_x(body, item, takeaway=""):
+    suffix = ("\n" + takeaway if takeaway else "") + "\nSource: " + source_name(item)
+    return fit_x(body, "", suffix.strip())
+
 def fallback(news, jobs):
     today = local_today().strftime("%B %d, %Y")
     md = [f"# {PUBLICATION} — {today}", "", "AI, tech, careers and opportunities worth paying attention to.", "", "## What changed", ""]
     for n in news[:4]:
-        md += [f"### {n['title']}", n["summary"] or "Read the source for details.", f"Practical next step: {career_action(n)}", f"Source: {n['source']} — {n['link']}", ""]
+        md += [f"### {n['title']}", without_links(n["summary"]) or "Only the headline is available; no further details are confirmed.", career_action(n), f"Source: {source_name(n)}", ""]
     if not news:
         md += ["No fresh, dated news passed the relevance checks today.", ""]
     md += ["## Career move", "", "Choose one role, identify three repeated skills in its vacancies, and build a small sample demonstrating one of them.", "", "## Opportunities", ""]
     if not jobs:
         md.append("No recent jobs are available in the jobs log for this edition.")
     for j in jobs:
-        md.append(f"- **{j['title']} — {j['company']}** ({j['level']}) — {j['link']}")
-    md += ["", f"Follow on X: {X_HANDLE}", f"Read/subscribe on Substack: {SUBSTACK_URL}", ""]
+        md.append(f"- **{j['title']} — {j['company']}** ({j['level']})")
     xq, nq = [], []
     for n in news[:5]:
         xq.append({"id": "x-" + n["id"], "source_id": n["id"],
-                   "text": fit_x(n["title"], n["link"])})
+                   "text": fit_news_x(without_links(n["summary"]) or n["title"], n, brief_action(n))})
         nq.append({"id": "note-" + n["id"], "source_id": n["id"],
-                   "text": n["title"] + "\n\n" + (n["summary"] or "Read the source for details.") + "\n\n" + career_action(n) + "\n\nSource: " + n["link"]})
+                   "text": n["title"] + "\n\nKey point: " + (without_links(n["summary"]) or "Only the headline is available; no further details are confirmed.") + "\n\n" + career_action(n) + "\n\nSource: " + source_name(n)})
     # Recent job entries can also supply posts when news is sparse.
     for j in jobs[:max(0, 5 - len(xq))]:
         if not j.get("id") or not j.get("link"):
             continue
         body = f"{j['title']} — {j['company']}. Check the original vacancy for location, contract and application requirements."
-        xq.append({"id": "x-job-" + str(j["id"]), "source_id": str(j["id"]), "text": fit_x(body, j["link"])})
-        nq.append({"id": "note-job-" + str(j["id"]), "source_id": str(j["id"]), "text": body + "\n\n" + j["link"]})
+        xq.append({"id": "x-job-" + str(j["id"]), "source_id": str(j["id"]), "text": fit_news_x(body, j)})
+        nq.append({"id": "note-job-" + str(j["id"]), "source_id": str(j["id"]), "text": body + "\n\nSource: " + source_name(j)})
     return {"newsletter_markdown": "\n".join(md), "x_posts": xq, "substack_notes": nq}
 
 class GeminiUnavailable(RuntimeError):
@@ -225,9 +283,11 @@ Return a JSON object with:
 newsletter_markdown: a string with an opening, sourced developments, practical career steps and jobs only if supplied;
 x_posts: an array of up to 5 objects, each containing source_id (the exact supplied item id) and text;
 substack_notes: an array of up to 5 objects, each containing source_id and text.
-Social text must contain prose only, with NO URLs: the publisher adds the exact source URL using source_id.
-X posts must use at most 180 characters of prose. No hashtags or Markdown on X.
-Notes should explain what changed and suggest a concrete next step; distinguish advice from source facts.
+All published text must stand alone: NO URLs, no 'read the article' or 'click for details'. Code appends the source NAME using source_id.
+Use article_text when available; otherwise only use the supplied RSS summary. Never imply you read an unavailable full article.
+X: one specific source-backed fact and one useful practical idea, within 220 characters before attribution. No hashtags or Markdown.
+Notes: 120-220 words when evidence supports it: a clear opening, 2-3 concrete key points, why it matters, and one practical idea. Use fewer words and fewer points if evidence is thin.
+Write original summaries, not copied article passages or mere headlines. Distinguish suggested actions from source facts. Do not just tell readers to review/read the source.
 Do not invent dates, vacancies, salaries, product capabilities or guarantees. Do not copy long source passages.
 Do not include Telegram, promotional footers, follow requests or links not supplied as news/job sources.
 If there are no jobs, do not invent an opportunities list.
@@ -273,10 +333,11 @@ def normalize_outputs(outputs, news, jobs):
         for url in re.findall(r"https?://[^\s<>]+", text):
             if url.rstrip(").,;]") not in allowed:
                 raise EditorialOutputError("Unrecognised source URL.")
-    newsletter = strip_telegram(outputs["newsletter_markdown"])
+    check_links(outputs["newsletter_markdown"])
+    newsletter = without_links(strip_telegram(outputs["newsletter_markdown"]))
     if not newsletter:
         raise EditorialOutputError("Empty newsletter.")
-    check_links(newsletter)
+    newsletter += "\n\nSources: " + ", ".join(dict.fromkeys(source_name(item) for item in sources.values()))
     result = {"newsletter_markdown": newsletter}
     for key, prefix in (("x_posts", "x-"), ("substack_notes", "note-")):
         rows = outputs.get(key)
@@ -296,12 +357,14 @@ def normalize_outputs(outputs, news, jobs):
             if not text:
                 raise EditorialOutputError("Empty social post.")
             check_links(text)
+            text = without_links(text)
+            text = "\n".join(line for line in text.splitlines() if not re.match(r"^\s*(?:\*\*)?Source(?:s)?\s*:", line, re.I)).strip()
+            if not text:
+                raise EditorialOutputError("Empty social post after removing links.")
             if key == "x_posts":
-                # Source ids are validated above; code owns citations and length.
-                body = text.replace(link, "").strip()
-                text = fit_x(body, link)
-            elif link not in text:
-                text += "\n\nSource: " + link
+                text = fit_news_x(text, sources[source_id])
+            else:
+                text += "\n\nSource: " + source_name(sources[source_id])
             seen.add(source_id)
             normalized.append({"id": prefix + source_id, "source_id": source_id, "text": text})
         result[key] = normalized
@@ -347,9 +410,11 @@ def build_outputs(news, jobs):
     return apply_promotion(outputs), mode
 
 def main():
-    news, jobs = collect_news(), select_jobs()
+    news, jobs = enrich_news(collect_news()), select_jobs()
     outputs, mode = build_outputs(news, jobs)
-    (OUT / "latest_items.json").write_text(json.dumps({"news": news, "jobs": jobs, "drafting_mode": mode}, indent=2, ensure_ascii=False), encoding="utf-8")
+    # Retain verification URLs, but don't republish scraped article text.
+    evidence = [{key: value for key, value in item.items() if key != "article_text"} for item in news]
+    (OUT / "latest_items.json").write_text(json.dumps({"news": evidence, "jobs": jobs, "drafting_mode": mode}, indent=2, ensure_ascii=False), encoding="utf-8")
     (OUT / "latest_digest.md").write_text(outputs["newsletter_markdown"].strip() + "\n", encoding="utf-8")
     (OUT / "x_queue.json").write_text(json.dumps(outputs["x_posts"], indent=2, ensure_ascii=False), encoding="utf-8")
     (OUT / "substack_notes_queue.json").write_text(json.dumps(outputs["substack_notes"], indent=2, ensure_ascii=False), encoding="utf-8")

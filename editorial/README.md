@@ -1,6 +1,6 @@
 # Tech Career Editorial Engine
 
-GitHub Actions collects dated RSS stories and recent entries from the existing jobs log. It builds X posts, Substack Notes and an unpublished newsletter document. Buffer handles X and Notes posting; the newsletter is not automatically emailed.
+GitHub Actions collects dated RSS stories, reads accessible article paragraphs from the configured publishers, and selects recent entries from the existing jobs log. It builds X posts, Substack Notes and an unpublished newsletter document. Buffer handles X and Notes posting; the newsletter is not automatically emailed.
 
 ## Drafting and quota fallback
 
@@ -8,9 +8,9 @@ GitHub Actions collects dated RSS stories and recent entries from the existing j
 - The default model is `gemini-3.5-flash-lite`, which currently has a free tier. The retired `gemini-2.0-flash` is no longer used.
 - Make one bounded Gemini request per scheduled run, after collecting source material. The API key is supplied through an HTTP header, never a URL or logs.
 - HTTP 429, unavailable service, timeout, incomplete JSON, invalid source IDs/URLs select the RSS/job template fallback immediately. There are no quota retries or paid-model failovers.
-- Source citations are added in code using validated source IDs. X text is shortened to fit while keeping its citation.
+- Posts contain original, standalone summaries, key points and practical ideas. Source names are added in code using validated source IDs; source URLs stay in internal metadata and are not published. X text is shortened to fit while retaining attribution.
 - The next scheduled run tries Gemini again. Missing keys also use fallback.
-- Fallback keeps source URLs intact and adds concrete practical suggestions; it cannot provide the same editorial judgement as Gemini.
+- Fallback uses the publisher RSS summary plus a practical idea and source name, never a title-and-link post. If an article cannot be read, Gemini uses only the available RSS facts. The fallback cannot provide the same editorial judgement as Gemini.
 - Undated, stale, future-dated and irrelevant feed entries are skipped. If no items pass, queues are empty and no post is uploaded.
 - Gemini free-tier pricing is determined by the key's Google project. Code cannot convert a paid project into a free project.
 
@@ -19,7 +19,7 @@ GitHub Actions collects dated RSS stories and recent entries from the existing j
 Telegram promotion is removed from generated text before saving.
 No Telegram invitation appears before **October 15, 2026**, in Africa/Lagos.
 From that date, Thursday runs may append: "Check out our Telegram for job listings: https://t.me/VettedWeb3jobs".
-The publisher records the ISO week and allows at most one promotional upload per channel per week. X posts with insufficient space keep the source citation and omit the invitation.
+The publisher records the ISO week and allows at most one promotional upload per channel per week. X posts with insufficient space keep the named attribution and omit the invitation.
 The X profile website field is separate from post automation; a reminder is set for October 15 to add the link.
 
 ## Schedule and review
