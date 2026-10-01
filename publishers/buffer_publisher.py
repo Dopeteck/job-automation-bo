@@ -63,7 +63,9 @@ def publish_queue(path, key, channel_id, limit, state):
     if not channel_id:
         print(f"Skipping {key}: no channel ID configured.")
         return
-    key = f"{key}_draft" if SAVE_AS_DRAFT else key
+    # Revised thread drafts can be reviewed even if a legacy single post exists.
+    has_threads = key == "x" and any(item.get("thread") for item in load(path, []))
+    key = f"{key}_thread_draft" if SAVE_AS_DRAFT and has_threads else f"{key}_draft" if SAVE_AS_DRAFT else key
     sent = set(state.get(key, []))
     promo_key = f"{key}_promotion_weeks"
     promoted = set(state.get(promo_key, []))
