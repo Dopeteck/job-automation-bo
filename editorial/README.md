@@ -8,9 +8,10 @@ GitHub Actions collects dated RSS stories, reads accessible article paragraphs f
 - The default model is `gemini-3.5-flash-lite`, which currently has a free tier. The retired `gemini-2.0-flash` is no longer used.
 - Make one bounded Gemini request per scheduled run, after collecting source material. The API key is supplied through an HTTP header, never a URL or logs.
 - HTTP 429, unavailable service, timeout, incomplete JSON, invalid source IDs/URLs select the RSS/job template fallback immediately. There are no quota retries or paid-model failovers.
-- Posts contain original, standalone summaries, key points and practical ideas. Source names are added in code using validated source IDs; source URLs stay in internal metadata and are not published. X text is shortened to fit while retaining attribution.
+- Posts contain original, standalone summaries, key points and practical ideas. Source names are added in code using validated source IDs; source URLs stay in internal metadata and are not published. X uses 3–4 post threads: the current development, useful facts and relevance, then a concrete task and result check. Each reply fits 280 characters and the final reply names the source.
 - The next scheduled run tries Gemini again. Missing keys also use fallback.
 - Fallback uses the publisher RSS summary plus a practical idea and source name, never a title-and-link post. If an article cannot be read, Gemini uses only the available RSS facts. The fallback cannot provide the same editorial judgement as Gemini.
+- News must have a date within 72 hours. Retrospective or past-year headline topics require an explicit current/future release or event; a recent article timestamp alone is insufficient. Older statistics are background only and generated posts must lead with a current-year hook.
 - Undated, stale, future-dated and irrelevant feed entries are skipped. If no items pass, queues are empty and no post is uploaded.
 - Gemini free-tier pricing is determined by the key's Google project. Code cannot convert a paid project into a free project.
 
@@ -24,8 +25,8 @@ The X profile website field is separate from post automation; a reminder is set 
 
 ## Schedule and review
 
-The workflow runs weekdays at **07:30 WAT** (`30 6 * * 1-5`) from the repository's default branch.
-It uploads at most one X post and one Substack Note per run.
+The workflow runs weekdays at **10:30 WAT** (`30 9 * * 1-5`) from the repository's default branch.
+It uploads at most one X thread and one Substack Note per run. Runs occur after the morning Buffer slot so the free plan’s one scheduled X thread has time to publish before the next is queued. A confirmed thread queue limit leaves X unsent and lets Substack continue.
 Autopublishing was enabled and verified on October 1, 2026. Both Buffer channels have one Monday–Friday slot between 09:00 and 10:00 WAT.
 `BUFFER_AUTOPUBLISH=true` queues posts into Buffer's next configured slot.
 With that variable absent or false, scheduled runs create unpublished Buffer drafts.

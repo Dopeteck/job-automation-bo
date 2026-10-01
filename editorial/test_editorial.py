@@ -26,8 +26,8 @@ class EditorialChecks(unittest.TestCase):
                 with contextlib.redirect_stdout(log):
                     result, mode = editor.build_outputs(NEWS, [])
                 self.assertEqual(mode, "fallback")
-                self.assertIn("Source: Example", result["x_posts"][0]["text"])
-                self.assertIn("Try:", result["x_posts"][0]["text"])
+                self.assertIn("Source: Example", json.dumps(result["x_posts"][0]))
+                self.assertIn("test one task", json.dumps(result["x_posts"][0]))
                 self.assertNotIn("https://", json.dumps(result))
                 self.assertNotIn("secret-should-not-appear", log.getvalue())
                 self.assertEqual(call.call_count, 1)
@@ -84,14 +84,15 @@ class EditorialChecks(unittest.TestCase):
         self.assertIn("Sources: Example", result["newsletter_markdown"])
 
     def test_structured_posts_keep_key_points_idea_and_single_attribution(self):
-        packet = {"newsletter_markdown": "Career advice", "x_posts": [{"source_id": "source-1", "fact": "Source-backed finding. Source: Example", "idea": "Test one real workflow."}], "substack_notes": [{"source_id": "source-1", "summary": "A workflow guide.", "key_points": ["First verified point.", "Second verified point."], "why_it_matters": "Useful for practice.", "practical_idea": "Try a small task and record one correction."}]}
+        packet = {"newsletter_markdown": "Career advice", "x_posts": [{"source_id": "source-1", "segments": ["Source-backed finding.", "A second verified detail with practical relevance.", "Idea: Test one real workflow and record one correction."]}], "substack_notes": [{"source_id": "source-1", "summary": "A workflow guide.", "key_points": ["First verified point.", "Second verified point."], "why_it_matters": "Useful for practice.", "practical_idea": "Try a small task and record one correction."}]}
         result = editor.normalize_outputs(packet, NEWS, [])
-        self.assertIn("Idea:", result["x_posts"][0]["text"])
-        self.assertEqual(result["x_posts"][0]["text"].count("Source: Example"), 1)
+        self.assertNotIn("Idea:", json.dumps(result))
+        self.assertIn("record one correction", result["x_posts"][0]["thread"][-1]["text"])
+        self.assertEqual(json.dumps(result["x_posts"][0]).count("Source: Example"), 1)
         note = result["substack_notes"][0]["text"]
-        self.assertIn("Key points:\n•", note)
-        self.assertIn("Why it matters:", note)
-        self.assertIn("Try this:", note)
+        self.assertIn("• First verified point.", note)
+        self.assertIn("Useful for practice.", note)
+        self.assertIn("record one correction", note)
         del packet["substack_notes"][0]["practical_idea"]
         with self.assertRaises(editor.EditorialOutputError):
             editor.normalize_outputs(packet, NEWS, [])
@@ -108,6 +109,43 @@ class EditorialChecks(unittest.TestCase):
                 self.assertNotIn("Telegram", create.call_args_list[1].args[1])
                 buffer.publish_queue(path, "x", "channel", 2, state)
                 self.assertEqual(create.call_count, 2)
+
+    def test_retrospectives_need_a_specific_current_development(self):
+        self.assertFalse(editor.current_topic("A look back before we look forward: survey retrospective", "Compare the 2024 and 2025 results.", 2026))
+        self.assertFalse(editor.current_topic("Getting ready for 2026 results: a look back", "Earlier findings.", 2026))
+        self.assertFalse(editor.current_topic("The 2024 AI report", "Published in 2024; a look ahead to 2026.", 2026))
+        self.assertTrue(editor.current_topic("2026 report released: comparison with 2025", "A new report.", 2026))
+        self.assertTrue(editor.current_topic("New AI workflow training announced", "Includes examples from 2025.", 2026))
+        self.assertFalse(editor.current_topic("2026 survey retrospective", "Published in 2026.", 2027))
+
+    def test_thread_api_keeps_root_and_replies_and_handles_free_limit(self):
+        thread = [{"text": "First fact"}, {"text": "Second fact"}, {"text": "Specific task and check. Source: Example"}]
+        response = Mock()
+        response.json.return_value = {"data": {"createPost": {"post": {"id": "confirmed"}}}}
+        with patch.object(buffer.requests, "post", return_value=response) as post:
+            buffer.create_post("channel", "stale root", thread)
+        payload = post.call_args.kwargs["json"]["variables"]["input"]
+        self.assertEqual(payload["text"], thread[0]["text"])
+        self.assertEqual(payload["metadata"]["twitter"]["thread"], thread)
+        response.json.return_value = {"data": {"createPost": {"message": "Free plan allows only one scheduled thread at a time"}}}
+        with patch.object(buffer.requests, "post", return_value=response), patch.object(buffer, "SAVE_AS_DRAFT", False):
+            with self.assertRaises(buffer.ThreadQueueFull):
+                buffer.create_post("channel", thread[0]["text"], thread)
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder)/"queue.json"
+            path.write_text(json.dumps([{"id": "thread-1", "text": thread[0]["text"], "thread": thread}]))
+            state = {}
+            with patch.object(buffer, "SAVE_AS_DRAFT", False), patch.object(buffer, "create_post", side_effect=buffer.ThreadQueueFull("Already queued")):
+                buffer.publish_queue(path, "x", "channel", 1, state)
+            self.assertEqual(state, {})
+
+    def test_thread_pause_removes_promotion_from_every_reply(self):
+        result = editor.fallback(NEWS, [])
+        result["x_posts"][0]["thread"][-1]["text"] += "\nTelegram: https://t.me/VettedWeb3jobs"
+        result = editor.apply_promotion(result, date(2026, 10, 1))
+        self.assertNotIn("t.me", json.dumps(result))
+        self.assertEqual(result["x_posts"][0]["text"], result["x_posts"][0]["thread"][0]["text"])
+        self.assertTrue(all(editor.x_weight(part["text"]) <= 280 for part in result["x_posts"][0]["thread"]))
 
     def test_source_freshness_and_x_budget(self):
         self.assertIsNone(editor.entry_time(Mock(published_parsed=None, updated_parsed=None)))

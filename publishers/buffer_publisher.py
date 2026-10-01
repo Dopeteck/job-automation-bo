@@ -24,7 +24,10 @@ def save(path, value):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
     Path(path).write_text(json.dumps(value, indent=2), encoding="utf-8")
 
-def create_post(channel_id, text):
+class ThreadQueueFull(RuntimeError):
+    pass
+
+def create_post(channel_id, text, thread=None):
     query = """
     mutation CreatePost($input: CreatePostInput!) {
       createPost(input: $input) {
@@ -34,12 +37,21 @@ def create_post(channel_id, text):
     }
     """
     variables = {"input":{"text":text,"channelId":channel_id,"schedulingType":"automatic","mode":"addToQueue","saveToDraft":SAVE_AS_DRAFT}}
+    if thread:
+        if not isinstance(thread, list) or len(thread) < 2 or any(not isinstance(part, dict) or not isinstance(part.get("text"), str) or not part["text"].strip() for part in thread):
+            raise ValueError("Invalid X thread; leaving item unsent.")
+        variables["input"]["text"] = thread[0]["text"]
+        variables["input"]["metadata"] = {"twitter": {"thread": [{"text": part["text"]} for part in thread]}}
     r = requests.post(API, headers={"Authorization":f"Bearer {KEY}","Content-Type":"application/json"}, json={"query":query,"variables":variables}, timeout=45)
     r.raise_for_status()
     body = r.json()
     if body.get("errors"): raise RuntimeError(body["errors"])
     result = body.get("data",{}).get("createPost",{})
-    if result.get("message"): raise RuntimeError(result["message"])
+    if result.get("message"):
+        message = result["message"]
+        if thread and not SAVE_AS_DRAFT and re.search(r"thread", message, re.I) and re.search(r"limit|one .*at a time|only .*one|free plan|upgrade", message, re.I):
+            raise ThreadQueueFull("An X thread is already queued; try again after it publishes.")
+        raise RuntimeError(message)
     post = result.get("post",{})
     if not post.get("id"):
         raise RuntimeError("Buffer did not confirm a created post; leaving item unsent.")
@@ -59,11 +71,20 @@ def publish_queue(path, key, channel_id, limit, state):
     for item in load(path, []):
         item_id = item.get("id"); text = (item.get("text") or "").strip()
         if not item_id or not text or item_id in sent: continue
+        thread = [{"text": part["text"]} for part in item.get("thread", [])] or None
         promotion_week = item.get("promotion_week")
         if promotion_week and promotion_week in promoted:
             text = "\n".join(line for line in text.splitlines() if not re.search(r"telegram|t\.me/|VettedWeb3jobs", line, re.I)).strip()
+            if thread:
+                for part in thread:
+                    part["text"] = "\n".join(line for line in part["text"].splitlines() if not re.search(r"telegram|t\.me/|VettedWeb3jobs", line, re.I)).strip()
+                text = thread[0]["text"]
             promotion_week = None
-        post = create_post(channel_id, text)
+        try:
+            post = create_post(channel_id, text, thread) if thread else create_post(channel_id, text)
+        except ThreadQueueFull as exc:
+            print(str(exc))
+            return
         sent.add(item_id); state[key] = sorted(sent)
         if promotion_week:
             promoted.add(promotion_week); state[promo_key] = sorted(promoted)

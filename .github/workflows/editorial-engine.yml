@@ -14,7 +14,7 @@ on:
       - 'publishers/buffer_publisher.py'
       - '.github/workflows/editorial-engine.yml'
   schedule:
-    - cron: "30 6 * * 1-5"
+    - cron: "30 9 * * 1-5"
 
 permissions:
   contents: write
