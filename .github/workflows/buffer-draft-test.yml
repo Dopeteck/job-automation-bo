@@ -38,8 +38,8 @@ jobs:
           state = buffer.load(buffer.STATE, {})
           completed = state.setdefault("connection_test_v1", {})
           posts = [
-              ("x", buffer.X_CHANNEL, "Before applying for a remote job, check eligible countries, required working hours and payment terms. Remote does not always mean worldwide. Match your application to the role, then keep a simple follow-up tracker.\n\nJob alerts: https://t.me/VettedWeb3jobs"),
-              ("substack", buffer.SUBSTACK_CHANNEL, "Remote job applications: a five-minute eligibility check\n\nBefore spending an hour on an application, check:\n\n1. Location: which countries can the employer hire in?\n2. Working hours: can you meet the required time-zone overlap?\n3. Contract: is this employment or freelance work, and how is payment described?\n4. Evidence: which two requirements can you demonstrate with a clear example?\n5. Tracking: save the original vacancy, application date and follow-up date.\n\nRemote does not always mean worldwide. A short eligibility check helps you focus your effort on roles you can realistically take.\n\nFor live job alerts: https://t.me/VettedWeb3jobs"),
+              ("x", buffer.X_CHANNEL, "Before applying for a remote job, check eligible countries, required working hours and payment terms. Remote does not always mean worldwide. Match your application to the role, then keep a simple follow-up tracker."),
+              ("substack", buffer.SUBSTACK_CHANNEL, "Remote job applications: a five-minute eligibility check\n\nBefore spending an hour on an application, check:\n\n1. Location: which countries can the employer hire in?\n2. Working hours: can you meet the required time-zone overlap?\n3. Contract: is this employment or freelance work, and how is payment described?\n4. Evidence: which two requirements can you demonstrate with a clear example?\n5. Tracking: save the original vacancy, application date and follow-up date.\n\nRemote does not always mean worldwide. A short eligibility check helps you focus your effort on roles you can realistically take."),
           ]
           for name, channel, text in posts:
               if not channel:

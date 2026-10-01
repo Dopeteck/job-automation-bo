@@ -33,10 +33,13 @@ jobs:
           python-version: "3.12"
       - name: Install editorial dependencies
         run: pip install requests beautifulsoup4 feedparser
+      - name: Check quota fallback and promotion rules
+        run: python -m unittest editorial.test_editorial
       - name: Generate editorial drafts
         env:
           GEMINI_API_KEY: ${{ github.event_name != 'push' && secrets.GEMINI_API_KEY || '' }}
-          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-2.0-flash' }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
+          TELEGRAM_PROMO_START: ${{ vars.TELEGRAM_PROMO_START || '2026-10-15' }}
           PUBLICATION_NAME: ${{ vars.PUBLICATION_NAME || 'Web3 Job Tech Alpha Vault' }}
           TELEGRAM_URL: ${{ vars.TELEGRAM_URL || 'https://t.me/VettedWeb3jobs' }}
           X_HANDLE: ${{ vars.X_HANDLE || '@HenryMortu' }}
@@ -52,7 +55,7 @@ jobs:
             data/editorial/x_queue.json
             data/editorial/substack_notes_queue.json
       - name: Send X and Substack Notes to Buffer
-        if: ${{ github.event_name != 'push' && (inputs.buffer_drafts == true || vars.BUFFER_AUTOPUBLISH == 'true') }}
+        if: ${{ github.event_name != 'push' }}
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_X_CHANNEL_ID: ${{ vars.BUFFER_X_CHANNEL_ID || '6abe6f09ea19ca0bde441138' }}

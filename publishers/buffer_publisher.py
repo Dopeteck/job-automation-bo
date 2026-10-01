@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Queue X posts and Substack Notes through Buffer GraphQL API."""
 
-import json, os
+import json, os, re
 from pathlib import Path
 import requests
 
@@ -53,13 +53,23 @@ def publish_queue(path, key, channel_id, limit, state):
         return
     key = f"{key}_draft" if SAVE_AS_DRAFT else key
     sent = set(state.get(key, []))
+    promo_key = f"{key}_promotion_weeks"
+    promoted = set(state.get(promo_key, []))
     count = 0
     for item in load(path, []):
         item_id = item.get("id"); text = (item.get("text") or "").strip()
         if not item_id or not text or item_id in sent: continue
+        promotion_week = item.get("promotion_week")
+        if promotion_week and promotion_week in promoted:
+            text = "\n".join(line for line in text.splitlines() if not re.search(r"telegram|t\.me/|VettedWeb3jobs", line, re.I)).strip()
+            promotion_week = None
         post = create_post(channel_id, text)
-        sent.add(item_id); state[key] = sorted(sent); save(STATE, state)
-        print(f"Queued {key}: {item_id} -> {post.get('id','unknown')}")
+        sent.add(item_id); state[key] = sorted(sent)
+        if promotion_week:
+            promoted.add(promotion_week); state[promo_key] = sorted(promoted)
+        save(STATE, state)
+        action = "Saved draft" if SAVE_AS_DRAFT else "Queued"
+        print(f"{action} {key}: {item_id} -> {post['id']}")
         count += 1
         if count >= limit: break
 
