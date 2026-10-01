@@ -7,7 +7,8 @@ GitHub Actions collects dated RSS stories and recent entries from the existing j
 - Set the repository secret `GEMINI_API_KEY` to a key from a Google AI Studio **Free tier** project. Do not enable paid billing if zero cost is required.
 - The default model is `gemini-3.5-flash-lite`, which currently has a free tier. The retired `gemini-2.0-flash` is no longer used.
 - Make one bounded Gemini request per scheduled run, after collecting source material. The API key is supplied through an HTTP header, never a URL or logs.
-- HTTP 429, unavailable service, timeout, incomplete JSON, invalid source IDs/URLs or oversized X posts select the RSS/job template fallback immediately. There are no quota retries or paid-model failovers.
+- HTTP 429, unavailable service, timeout, incomplete JSON, invalid source IDs/URLs select the RSS/job template fallback immediately. There are no quota retries or paid-model failovers.
+- Source citations are added in code using validated source IDs. X text is shortened to fit while keeping its citation.
 - The next scheduled run tries Gemini again. Missing keys also use fallback.
 - Fallback keeps source URLs intact and adds concrete practical suggestions; it cannot provide the same editorial judgement as Gemini.
 - Undated, stale, future-dated and irrelevant feed entries are skipped. If no items pass, queues are empty and no post is uploaded.
@@ -25,6 +26,7 @@ The X profile website field is separate from post automation; a reminder is set 
 
 The workflow runs weekdays at **07:30 WAT** (`30 6 * * 1-5`) from the repository's default branch.
 It uploads at most one X post and one Substack Note per run.
+Autopublishing was enabled and verified on October 1, 2026. Both Buffer channels have one Monday–Friday slot between 09:00 and 10:00 WAT.
 `BUFFER_AUTOPUBLISH=true` queues posts into Buffer's next configured slot.
 With that variable absent or false, scheduled runs create unpublished Buffer drafts.
 The manual `buffer_drafts` option always creates drafts, even when autopublishing is enabled.
