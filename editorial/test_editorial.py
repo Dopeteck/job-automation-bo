@@ -49,6 +49,17 @@ class EditorialChecks(unittest.TestCase):
         self.assertEqual(editor.cta(date(2026, 10, 16)), "")
         self.assertEqual(editor.strip_telegram("Advice\nhttps://t.me/other"), "Advice")
 
+    def test_gemini_prose_receives_verified_citations_and_length_limit(self):
+        packet = {"newsletter_markdown": "Career advice", "x_posts": [{"source_id": "source-1", "text": "🧑" * 300}], "substack_notes": [{"source_id": "source-1", "text": "Test one workflow and check the result."}]}
+        response = Mock(ok=True, status_code=200)
+        response.json.return_value = {"candidates": [{"finishReason": "STOP", "content": {"parts": [{"text": json.dumps(packet)}]}}]}
+        with patch.object(editor, "GEMINI_KEY", "test-secret"), patch.object(editor.requests, "post", return_value=response), patch.object(editor, "cta", return_value=""):
+            result, mode = editor.build_outputs(NEWS, [])
+        self.assertEqual(mode, "gemini")
+        self.assertLessEqual(editor.x_weight(result["x_posts"][0]["text"]), 280)
+        for key in ("x_posts", "substack_notes"):
+            self.assertTrue(result[key][0]["text"].endswith(NEWS[0]["link"]))
+
     def test_publisher_records_one_promotion_and_deduplicates(self):
         rows = [{"id": f"post-{i}", "text": "Advice\nCheck out our Telegram: https://t.me/VettedWeb3jobs", "promotion_week": "2026-W42"} for i in range(2)]
         with tempfile.TemporaryDirectory() as folder:
