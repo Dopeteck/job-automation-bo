@@ -1,33 +1,33 @@
 [
   {
-    "id": "x-03fbdbc4bea8c465dd95",
-    "source_id": "03fbdbc4bea8c465dd95",
-    "text": "Airbnb rolled out new AI search features in its fall update while CEO Brian Chesky argues that traditional chatbots fall short for multi-user travel planning and browsing.",
+    "id": "x-39a10a9498a86678b717",
+    "source_id": "39a10a9498a86678b717",
+    "text": "Skip Labs builds a programming language for reactive programming and constraint-based tooling for AI agents.",
     "thread": [
       {
-        "text": "Airbnb rolled out new AI search features in its fall update while CEO Brian Chesky argues that traditional chatbots fall short for multi-user travel planning and browsing."
+        "text": "Skip Labs builds a programming language for reactive programming and constraint-based tooling for AI agents."
       },
       {
-        "text": "Chesky highlights that e-commerce requires richer interfaces than rigid chat boxes, pointing toward multiplayer AI and agent-friendly software infrastructure."
+        "text": "These tooling constraints aim to find a balance between human tolerance and automated agent efficiency."
       },
       {
-        "text": "Practice interface design by sketching a paper wireframe for a shared group shopping cart. Record success by ensuring three distinct users can edit filters concurrently.\n\nSource: TechCrunch"
+        "text": "Write down a workflow bottleneck and sketch a rule to limit errors, then test it on paper.\n\nSource: Stack Overflow Blog"
       }
     ]
   },
   {
-    "id": "x-7173f2ea8acf1821b7ad",
-    "source_id": "7173f2ea8acf1821b7ad",
-    "text": "Startup Photon secured $4.5M in seed funding to help developers build AI agents that function across messaging channels like iMessage, WhatsApp, and email.",
+    "id": "x-5ebc8c5fe5825fa3a1b4",
+    "source_id": "5ebc8c5fe5825fa3a1b4",
+    "text": "OpenAI reports a new partnership with America's SBDC to expand hands-on AI training for small businesses.",
     "thread": [
       {
-        "text": "Startup Photon secured $4.5M in seed funding to help developers build AI agents that function across messaging channels like iMessage, WhatsApp, and email."
+        "text": "OpenAI reports a new partnership with America's SBDC to expand hands-on AI training for small businesses."
       },
       {
-        "text": "The company reports surpassing 40,000 developer sign-ups by offering a unified API, CLI, and observability suite designed to bypass traditional mobile app downloads."
+        "text": "This initiative includes local support and a new report detailing how small teams apply artificial intelligence."
       },
       {
-        "text": "Draft a simple sequence diagram on paper outlining how an automated text message bot handles user input. Check your work by tracing three error recovery states.\n\nSource: TechCrunch"
+        "text": "List three AI use cases for a local business and check if your logic matches standard workflows.\n\nSource: OpenAI News"
       }
     ]
   }

@@ -1,6 +1,30 @@
 {
   "news": [
     {
+      "id": "016c88a453ff4d5990c6",
+      "source": "GitHub Blog",
+      "domain": "github.blog",
+      "category": "tech",
+      "title": "AI is rewriting the developer career ladder. Here’s how to stand out.",
+      "summary": "Learn three ways to get noticed and grow your career as AI reshapes how developers build software. The post AI is rewriting the developer career ladder. Here’s how to stand out. appeared first on The GitHub Blog .",
+      "link": "https://github.blog/ai-and-ml/ai-is-rewriting-the-developer-career-ladder-heres-how-to-stand-out/",
+      "published_at": "2026-10-02T15:00:00+00:00",
+      "score": 36,
+      "evidence": "rss"
+    },
+    {
+      "id": "39a10a9498a86678b717",
+      "source": "Stack Overflow Blog",
+      "domain": "stackoverflow.blog",
+      "category": "career",
+      "title": "Constraints that make developers faster",
+      "summary": "Ryan chats with Julien Verlaguet, CEO at Skip Labs, about finding the balance between human tolerance and tooling constraints, the spectrum of typed programming languages, and building cost-effective tooling for AI agents.",
+      "link": "https://stackoverflow.blog/2026/10/02/constraints-that-make-developers-faster/",
+      "published_at": "2026-10-02T07:40:00+00:00",
+      "score": 26,
+      "evidence": "article"
+    },
+    {
       "id": "5ebc8c5fe5825fa3a1b4",
       "source": "OpenAI News",
       "domain": "openai.com",
@@ -9,56 +33,8 @@
       "summary": "OpenAI is partnering with America’s SBDC to expand hands-on AI training and local support for small businesses, alongside a new report on how small teams are using AI.",
       "link": "https://openai.com/index/helping-small-businesses-put-ai-to-work",
       "published_at": "2026-09-30T10:00:00+00:00",
-      "score": 26,
+      "score": 23,
       "evidence": "rss"
-    },
-    {
-      "id": "03fbdbc4bea8c465dd95",
-      "source": "TechCrunch",
-      "domain": "techcrunch.com",
-      "category": "tech",
-      "title": "Brian Chesky interview: AI agents need their own operating system",
-      "summary": "Brian Chesky on making Airbnb agent-friendly, the state of consumer AI, and why the world needs an AI-native operating system.",
-      "link": "https://techcrunch.com/2026/10/01/brian-chesky-interview-ai-agents-need-their-own-operating-system/",
-      "published_at": "2026-10-01T15:12:00+00:00",
-      "score": 25,
-      "evidence": "article"
-    },
-    {
-      "id": "1771e34265ddcee9e76e",
-      "source": "GitHub Blog",
-      "domain": "github.blog",
-      "category": "tech",
-      "title": "Developer policy update: Transparency, state policy, and what’s ahead",
-      "summary": "Explore GitHub’s latest transparency data and learn more about policy updates affecting developers and open source. The post Developer policy update: Transparency, state policy, and what’s ahead appeared first on The GitHub Blog .",
-      "link": "https://github.blog/news-insights/policy-news-and-insights/developer-policy-update-transparency-state-policy-and-whats-ahead/",
-      "published_at": "2026-09-29T15:00:00+00:00",
-      "score": 24,
-      "evidence": "rss"
-    },
-    {
-      "id": "2cbeca2fbdb491ac9ce1",
-      "source": "OpenAI News",
-      "domain": "openai.com",
-      "category": "ai",
-      "title": "Introducing GPT-6.1 Sol",
-      "summary": "Meet GPT-6.1 Sol: near-Astra intelligence for coding, computer use, and professional work at one-fifth of Astra’s standard API input and output token prices.",
-      "link": "https://openai.com/index/introducing-gpt-6-1-sol",
-      "published_at": "2026-09-29T10:00:00+00:00",
-      "score": 20,
-      "evidence": "rss"
-    },
-    {
-      "id": "7173f2ea8acf1821b7ad",
-      "source": "TechCrunch",
-      "domain": "techcrunch.com",
-      "category": "tech",
-      "title": "Photon held a funeral for mobile apps. Now it has $4.5M to help replace them with agents.",
-      "summary": "The startup helps developers build AI agents that work over iMessage, SMS/RCS, email, and other messaging platforms. It's a bet that consumers will increasingly use agents instead of downloading apps.",
-      "link": "https://techcrunch.com/2026/10/01/photon-held-a-funeral-for-mobile-apps-now-it-has-4-5m-to-help-replace-them-with-agents/",
-      "published_at": "2026-10-01T14:00:00+00:00",
-      "score": 20,
-      "evidence": "article"
     }
   ],
   "jobs": [],

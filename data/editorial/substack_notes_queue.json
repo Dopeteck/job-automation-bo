@@ -1,22 +1,12 @@
 [
   {
-    "id": "note-03fbdbc4bea8c465dd95",
-    "source_id": "03fbdbc4bea8c465dd95",
-    "text": "Airbnb introduced an updated AI-powered search feature as part of its fall release. CEO Brian Chesky emphasized that chatbots lack the collaborative multi-user capabilities needed for complex planning tasks like travel booking.\n\n• Airbnb views current chatbot interfaces as a transitional midpoint rather than an e-commerce endgame.\n• The company is actively exploring multiplayer AI features for groups planning trips together.\n• Future platform enhancements focus on agent-friendly infrastructure and robust developer software kits.\n\nProduct teams must design collaborative interfaces rather than relying solely on single-user chat prompts when building shopping or planning applications.\n\nSketch a paper wireframe for a shared trip-planning dashboard that supports simultaneous inputs from two users. Verify the design by checking whether all participants can view live filter updates on a single screen.\n\nSource: TechCrunch"
-  },
-  {
-    "id": "note-7173f2ea8acf1821b7ad",
-    "source_id": "7173f2ea8acf1821b7ad",
-    "text": "Messaging agent platform Photon raised $4.5 million in seed funding after accumulating over 40,000 developer sign-ups. The tool lets developers build agents that operate across messaging apps like iMessage and WhatsApp.\n\n• Photon provides a managed platform and open-source tools with high uptime and compliance standards.\n• The startup reports rapid revenue growth and low customer churn across various vertical use cases.\n• Founders anticipate a future ecosystem driven by agent-to-agent communication layers.\n\nDevelopers can reach end users directly within existing messaging apps, reducing friction associated with traditional app store discovery.\n\nMap out a flowchart on paper showing how an automated assistant responds to a user text query. Check the success of your design by tracing three distinct user intents from initial prompt to resolution.\n\nSource: TechCrunch"
+    "id": "note-39a10a9498a86678b717",
+    "source_id": "39a10a9498a86678b717",
+    "text": "Skip Labs develops specialized programming languages and constraint-based tooling aimed at supporting AI agents and reactive programming.\n\n• Skip Labs builds a programming language designed specifically for reactive programming.\n• The company creates constraint-based tooling tailored for AI agents.\n\nUnderstanding how tooling constraints guide AI agents helps developers design cleaner, more cost-effective automation systems.\n\nList three rigid rules for an AI assistant prompt in a text file, run a test prompt, and verify that the output adheres strictly to the constraints.\n\nSource: Stack Overflow Blog"
   },
   {
     "id": "note-5ebc8c5fe5825fa3a1b4",
     "source_id": "5ebc8c5fe5825fa3a1b4",
-    "text": "OpenAI partnered with America's SBDC to expand hands-on artificial intelligence training and local support for small businesses. The initiative is accompanied by a new report examining how small teams utilize AI tools.\n\n• The partnership targets local support and practical training for small enterprises.\n• An accompanying report highlights real-world AI adoption trends among compact teams.\n\nUnderstanding small team adoption patterns helps developers build accessible, practical AI integration workflows.\n\nWrite down a three-step checklist on paper for introducing an automated customer FAQ script to a local business. Verify completion by confirming each step requires zero paid external software.\n\nSource: OpenAI News"
-  },
-  {
-    "id": "note-2cbeca2fbdb491ac9ce1",
-    "source_id": "2cbeca2fbdb491ac9ce1",
-    "text": "OpenAI introduced GPT-6.1 Sol, a model tailored for coding and professional workflows. The model is priced at one-fifth of standard Astra API token rates.\n\n• GPT-6.1 Sol targets coding, computer use, and professional tasks.\n• API pricing is set at twenty percent of standard Astra input and output token rates.\n\nLower API token pricing reduces operational overhead for developers building high-volume coding assistants and agent workflows.\n\nCalculate the projected monthly token expense on paper for a fictional app processing 50,000 requests at the new discount rate. Check your math by recalculating the total against standard pricing tiers.\n\nSource: OpenAI News"
+    "text": "OpenAI partners with America’s SBDC to provide localized training and releases a report on small business AI adoption.\n\n• OpenAI is partnering with America’s SBDC to expand hands-on AI training.\n• The initiative provides local support alongside a report on small team AI usage.\n\nLocalized training initiatives highlight practical regional adoption trends that developers can leverage for consulting or technical support roles.\n\nOutline a basic three-step AI training agenda for a local business on a blank sheet of paper and check it against common introductory AI guides.\n\nSource: OpenAI News"
   }
 ]
