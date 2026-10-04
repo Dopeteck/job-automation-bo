@@ -19,7 +19,7 @@ SOURCES = Path(__file__).with_name("sources.json")
 JOBS = ROOT / "data" / "jobs_log.json"
 
 PUBLICATION = os.getenv("PUBLICATION_NAME", "Web3 Job Tech Alpha Vault").strip() or "Web3 Job Tech Alpha Vault"
-TELEGRAM_URL = os.getenv("TELEGRAM_URL", "https://t.me/VettedWeb3jobs").strip()
+TELEGRAM_URL = os.getenv("TELEGRAM_URL", "https://t.me/RemoteJobsTechHub").strip()
 X_HANDLE = os.getenv("X_HANDLE", "@HenryMortu").strip()
 SUBSTACK_URL = os.getenv("SUBSTACK_URL", "https://substack.com/@web3jobtechalphavault").strip()
 GEMINI_KEY = os.getenv("GEMINI_API_KEY", "").strip()
@@ -245,7 +245,7 @@ def cta(day=None):
 def strip_telegram(text):
     return "\n".join(
         line for line in text.splitlines()
-        if not re.search(r"telegram|t\.me/|telegram\.me/|@?VettedWeb3jobs", line, re.I)
+        if not re.search(r"telegram|t\.me/|telegram\.me/|@?(?:VettedWeb3jobs|RemoteJobsTechHub)", line, re.I)
     ).strip()
 
 def x_weight(text):

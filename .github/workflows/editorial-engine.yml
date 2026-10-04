@@ -41,7 +41,7 @@ jobs:
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
           TELEGRAM_PROMO_START: ${{ vars.TELEGRAM_PROMO_START || '2026-10-15' }}
           PUBLICATION_NAME: ${{ vars.PUBLICATION_NAME || 'Web3 Job Tech Alpha Vault' }}
-          TELEGRAM_URL: ${{ vars.TELEGRAM_URL || 'https://t.me/VettedWeb3jobs' }}
+          TELEGRAM_URL: ${{ vars.TELEGRAM_URL || 'https://t.me/RemoteJobsTechHub' }}
           X_HANDLE: ${{ vars.X_HANDLE || '@HenryMortu' }}
           SUBSTACK_URL: ${{ vars.SUBSTACK_URL || 'https://substack.com/@web3jobtechalphavault' }}
         run: python editorial/editorial_pipeline.py

@@ -19,7 +19,7 @@ GitHub Actions collects dated RSS stories, reads accessible article paragraphs f
 
 Telegram promotion is removed from generated text before saving.
 No Telegram invitation appears before **October 15, 2026**, in Africa/Lagos.
-From that date, Thursday runs may append: "Check out our Telegram for job listings: https://t.me/VettedWeb3jobs".
+From that date, Thursday runs may append: "Check out our Telegram for job listings: https://t.me/RemoteJobsTechHub".
 The publisher records the ISO week and allows at most one promotional upload per channel per week. X posts with insufficient space keep the named attribution and omit the invitation.
 The X profile website field is separate from post automation; a reminder is set for October 15 to add the link.
 
@@ -42,7 +42,7 @@ Variables: `PUBLICATION_NAME`, `GEMINI_MODEL`, `TELEGRAM_URL`, `TELEGRAM_PROMO_S
 Connected targets:
 - X: @HenryMortu, channel `6abe6f09ea19ca0bde441138`
 - Substack: Web3 Jobs & Tech Alpha Vault, channel `6abe70bfea19ca0bde441f84`
-- Telegram: https://t.me/VettedWeb3jobs
+- Telegram: https://t.me/RemoteJobsTechHub
 
 Buffer Free currently supports 3 channels, 10 queued posts per channel and 3,000 API requests per 30 days. Use standard GitHub-hosted runners for the free public-repository workflow.
 
