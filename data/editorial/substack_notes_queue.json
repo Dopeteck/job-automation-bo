@@ -1,12 +1,7 @@
 [
   {
-    "id": "note-39a10a9498a86678b717",
-    "source_id": "39a10a9498a86678b717",
-    "text": "Skip Labs develops specialized programming languages and constraint-based tooling aimed at supporting AI agents and reactive programming.\n\n• Skip Labs builds a programming language designed specifically for reactive programming.\n• The company creates constraint-based tooling tailored for AI agents.\n\nUnderstanding how tooling constraints guide AI agents helps developers design cleaner, more cost-effective automation systems.\n\nList three rigid rules for an AI assistant prompt in a text file, run a test prompt, and verify that the output adheres strictly to the constraints.\n\nSource: Stack Overflow Blog"
-  },
-  {
-    "id": "note-5ebc8c5fe5825fa3a1b4",
-    "source_id": "5ebc8c5fe5825fa3a1b4",
-    "text": "OpenAI partners with America’s SBDC to provide localized training and releases a report on small business AI adoption.\n\n• OpenAI is partnering with America’s SBDC to expand hands-on AI training.\n• The initiative provides local support alongside a report on small team AI usage.\n\nLocalized training initiatives highlight practical regional adoption trends that developers can leverage for consulting or technical support roles.\n\nOutline a basic three-step AI training agenda for a local business on a blank sheet of paper and check it against common introductory AI guides.\n\nSource: OpenAI News"
+    "id": "note-dea5c3401855c54ac2b7",
+    "source_id": "dea5c3401855c54ac2b7",
+    "text": "HackerRank has introduced Chakra, an AI interviewer agent that evaluates developer candidates by observing how they work through real-world code tasks alongside an AI assistant.\n\n• The startup reports that Chakra conducted over 500,000 interviews during a six-month beta test with companies like Snowflake and Capgemini.\n• The tool is designed to measure critical thinking, problem framing, and AI fluency instead of just checking final code output.\n• HackerRank states that suspicious-activity flags were 70% to 80% lower in these AI-assisted sessions compared to traditional assessments.\n\nHiring processes are shifting toward evaluating how developers collaborate with AI tools and articulate their technical judgment rather than relying solely on traditional take-home tests.\n\nPractice solving a small coding challenge while actively documenting your intermediate decisions and prompt strategies in a text file, then review your notes to ensure you can explain why you chose your specific approach.\n\nSource: TechCrunch"
   }
 ]

@@ -1,33 +1,20 @@
 [
   {
-    "id": "x-39a10a9498a86678b717",
-    "source_id": "39a10a9498a86678b717",
-    "text": "Skip Labs builds a programming language for reactive programming and constraint-based tooling for AI agents.",
+    "id": "x-dea5c3401855c54ac2b7",
+    "source_id": "dea5c3401855c54ac2b7",
+    "text": "HackerRank has launched Chakra, an AI agent that conducts technical interviews and evaluates candidate reasoning in real time during coding tasks.",
     "thread": [
       {
-        "text": "Skip Labs builds a programming language for reactive programming and constraint-based tooling for AI agents."
+        "text": "HackerRank has launched Chakra, an AI agent that conducts technical interviews and evaluates candidate reasoning in real time during coding tasks."
       },
       {
-        "text": "These tooling constraints aim to find a balance between human tolerance and automated agent efficiency."
+        "text": "The system has already conducted over 500,000 interviews during testing with early participants like Snowflake and Capgemini."
       },
       {
-        "text": "Write down a workflow bottleneck and sketch a rule to limit errors, then test it on paper.\n\nSource: Stack Overflow Blog"
-      }
-    ]
-  },
-  {
-    "id": "x-5ebc8c5fe5825fa3a1b4",
-    "source_id": "5ebc8c5fe5825fa3a1b4",
-    "text": "OpenAI reports a new partnership with America's SBDC to expand hands-on AI training for small businesses.",
-    "thread": [
-      {
-        "text": "OpenAI reports a new partnership with America's SBDC to expand hands-on AI training for small businesses."
+        "text": "Assessments focus on AI fluency and critical thinking rather than final output, aiming to combine multiple interview rounds into one."
       },
       {
-        "text": "This initiative includes local support and a new report detailing how small teams apply artificial intelligence."
-      },
-      {
-        "text": "List three AI use cases for a local business and check if your logic matches standard workflows.\n\nSource: OpenAI News"
+        "text": "Practice explaining your workflow on a mock coding problem and write down how you adapted your solution to new constraints.\n\nSource: TechCrunch"
       }
     ]
   }
