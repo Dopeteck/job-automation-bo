@@ -1,15 +1,27 @@
 {
   "news": [
     {
-      "id": "dea5c3401855c54ac2b7",
-      "source": "TechCrunch",
-      "domain": "techcrunch.com",
-      "category": "tech",
-      "title": "HackerRank’s AI interviewer offers a glimpse into what job interviews could become",
-      "summary": "HackerRank’s AI interviewer has already conducted more than 500,000 interviews, with Snowflake, Snorkel, and Capgemini among its early testers.",
-      "link": "https://techcrunch.com/2026/10/05/hackerranks-ai-interviewer-offers-a-glimpse-into-what-job-interviews-could-become/",
-      "published_at": "2026-10-05T16:43:35+00:00",
-      "score": 24,
+      "id": "165fad68da33d8994875",
+      "source": "Stack Overflow Blog",
+      "domain": "stackoverflow.blog",
+      "category": "career",
+      "title": "Tales from the 2026 Developer Survey results",
+      "summary": "Ryan chats with Erin Yepis, Senior Analyst at Stack Overflow, about the results from this year’s Annual Developer Survey, including the overwhelming daily usage of AI coding assistants despite lingering developer trust issues, the critical role of well-organized documentation in providing verifiable context to mitigate AI hallucinations, and the evolving ways developers are shifting away from active community posting in favor of passive knowledge consumption.",
+      "link": "https://stackoverflow.blog/2026/10/06/tales-from-the-2026-developer-survey-results/",
+      "published_at": "2026-10-06T17:00:00+00:00",
+      "score": 29,
+      "evidence": "rss"
+    },
+    {
+      "id": "fbe0eea7b43a19620fa0",
+      "source": "Stack Overflow Blog",
+      "domain": "stackoverflow.blog",
+      "category": "career",
+      "title": "The results of the 2026 Developer Survey are here!",
+      "summary": "Below, we’ll highlight some of the results we found interesting about what's going in the life of technologists, their technologies, AI usage, and more.",
+      "link": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/",
+      "published_at": "2026-10-06T14:00:00+00:00",
+      "score": 26,
       "evidence": "article"
     }
   ],

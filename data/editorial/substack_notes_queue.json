@@ -1,7 +1,12 @@
 [
   {
-    "id": "note-dea5c3401855c54ac2b7",
-    "source_id": "dea5c3401855c54ac2b7",
-    "text": "HackerRank has introduced Chakra, an AI interviewer agent that evaluates developer candidates by observing how they work through real-world code tasks alongside an AI assistant.\n\n• The startup reports that Chakra conducted over 500,000 interviews during a six-month beta test with companies like Snowflake and Capgemini.\n• The tool is designed to measure critical thinking, problem framing, and AI fluency instead of just checking final code output.\n• HackerRank states that suspicious-activity flags were 70% to 80% lower in these AI-assisted sessions compared to traditional assessments.\n\nHiring processes are shifting toward evaluating how developers collaborate with AI tools and articulate their technical judgment rather than relying solely on traditional take-home tests.\n\nPractice solving a small coding challenge while actively documenting your intermediate decisions and prompt strategies in a text file, then review your notes to ensure you can explain why you chose your specific approach.\n\nSource: TechCrunch"
+    "id": "note-fbe0eea7b43a19620fa0",
+    "source_id": "fbe0eea7b43a19620fa0",
+    "text": "The Stack Overflow 2026 Developer Survey captures insights from over 30,000 technologists regarding work habits, programming language rankings, and high daily reliance on AI tools.\n\n• 73% of surveyed AI users utilize coding assistants on a daily basis.\n• Organizations of one reported among respondents grew from 4% to 10%.\n• SQL surpassed HTML/CSS to claim the number two spot in language usage.\n\nHigh daily reliance on AI coding agents means engineering teams must prioritize clean documentation and context management to reduce costly code hallucinations.\n\nWrite a one-page specification for a mock utility function, feed it to an AI coding assistant, and verify that its generated code strictly follows your documented parameters.\n\nSource: Stack Overflow Blog"
+  },
+  {
+    "id": "note-165fad68da33d8994875",
+    "source_id": "165fad68da33d8994875",
+    "text": "Stack Overflow analysis highlights how developers navigate daily AI usage while managing trust issues and changing community engagement habits.\n\n• Developers increasingly rely on passive knowledge consumption over active community posting.\n• Verifiable source attribution is heavily demanded by developers evaluating AI outputs.\n\nUnderstanding where developers look for reliable answers helps teams build better internal knowledge bases that integrate smoothly with modern developer workflows.\n\nOrganize a local project folder with explicit code comments and a structured requirements list, then check if an AI debugging tool correctly references those specific local files.\n\nSource: Stack Overflow Blog"
   }
 ]
