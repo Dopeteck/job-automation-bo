@@ -13,6 +13,30 @@
       "evidence": "rss"
     },
     {
+      "id": "12abc4e68d67628b52b1",
+      "source": "OpenAI News",
+      "domain": "openai.com",
+      "category": "ai",
+      "title": "Advancing computer use with Ironclad",
+      "summary": "Learn how OpenAI and Ironclad are training and evaluating AI agents on complex contracting workflows to advance computer use for professional work.",
+      "link": "https://openai.com/index/advancing-computer-use-with-ironclad",
+      "published_at": "2026-10-06T10:00:00+00:00",
+      "score": 26,
+      "evidence": "rss"
+    },
+    {
+      "id": "3263012f4d06c382ed2d",
+      "source": "OpenAI News",
+      "domain": "openai.com",
+      "category": "ai",
+      "title": "How Jump Trading is scaling quant research with ChatGPT",
+      "summary": "Jump Trading uses OpenAI to expand quantitative research. See how longer-running AI workflows combine multiple data sources with human review.",
+      "link": "https://openai.com/index/jump-trading",
+      "published_at": "2026-10-06T12:00:00+00:00",
+      "score": 25,
+      "evidence": "rss"
+    },
+    {
       "id": "fbe0eea7b43a19620fa0",
       "source": "Stack Overflow Blog",
       "domain": "stackoverflow.blog",
@@ -21,7 +45,7 @@
       "summary": "Below, we’ll highlight some of the results we found interesting about what's going in the life of technologists, their technologies, AI usage, and more.",
       "link": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/",
       "published_at": "2026-10-06T14:00:00+00:00",
-      "score": 26,
+      "score": 23,
       "evidence": "article"
     }
   ],
