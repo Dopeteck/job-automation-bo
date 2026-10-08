@@ -1,16 +1,26 @@
 [
   {
-    "source_id": "3263012f4d06c382ed2d",
-    "source_published_at": "2026-10-06T12:00:00+00:00",
-    "guide_id": "workflow-check-v1",
-    "id": "note-3263012f4d06c382ed2d",
-    "text": "A bot that answers every question can make a terrible demo.\n\nTry one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.\n\nThe current context: OpenAI News published “How Jump Trading is scaling quant research with ChatGPT”. The following is our practice exercise, not a finding from that report.\n\nBuild a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies. This is a practice exercise, not a claim about a particular product.\n\nMy rule: show the awkward cases beside the successful ones. A small demo with visible limits is easier to assess than a big promise with no test results.\n\nWhich reply would make you stop trusting a bot?\n\nSource: OpenAI News"
+    "id": "note-238e9451b5c554620320",
+    "source_id": "238e9451b5c554620320",
+    "text": "The first session with a coding agent is crisp, but by session thirty, it starts contradicting itself.\n\nStack Overflow explains that agent failures are usually configuration failures, solved by building a robust harness with tiered context, a short session constitution, and durable decision logs.\n\n• Model capability is only a fraction of what determines long-term agent success.\n• Tiered context files prevent agents from blowing token budgets and forgetting module structures.\n• Append-only decision logs stop agents and humans from silently reversing load-bearing architecture choices.\n\nWithout a disciplined harness, code quality decays rapidly over months of automated edits.\n\nCreate a root CONTEXT.md file for a personal project outlining your build command and invariants. Test an agent session and record whether it adheres to the instructions without re-prompting.\n\nSource: Stack Overflow Blog",
+    "source_published_at": "2026-10-07T20:09:22+00:00"
   },
   {
-    "source_id": "238e9451b5c554620320",
-    "source_published_at": "2026-10-07T20:09:22+00:00",
-    "guide_id": "code-check-v1",
-    "id": "note-238e9451b5c554620320",
-    "text": "The code runs. Then someone asks why it works.\n\nIf AI helped build your project, keep the evidence: a normal input, an empty input and a wrong input. Show what failed and what you changed.\n\nThe current context: Stack Overflow Blog published “Part 6: An operating system for coding agents: the disciplined build”. The following is our practice exercise, not a finding from that report.\n\nFor your next small project, write the expected result before asking AI. Test those three inputs. Check one unfamiliar function against its official documentation. Save the results beside the demo.\n\nMy rule: a portfolio should show your judgment. Add a short README explaining the problem, checks and limitations. Include one AI suggestion you rejected and why.\n\nWhat would you test first?\n\nSource: Stack Overflow Blog"
+    "id": "note-aa4eeca0fa3edf4aa73d",
+    "source_id": "aa4eeca0fa3edf4aa73d",
+    "text": "Developers aren't becoming more careless with secrets; they're simply being outpaced by AI code generation.\n\nGitHub shares nine quarters of data showing that push protection and context-ware classifiers are necessary because manual remediation cannot scale with accelerated code creation.\n\n• Screened pushes grew significantly while per-push credential exposure rates remained stable.\n• Mean time to manually revoke a secret can take weeks or months.\n• A new ModernBERT classifier assesses candidate secrets in under two milliseconds to catch unstructured exposures.\n\nRelying solely on human carefulness fails when software creation volume outstrips review capacity.\n\nDraft a pre-commit hook rule that checks for a test token format in your repository. Attempt a commit with dummy credentials and record whether the hook intercepts the file.\n\nSource: GitHub Blog",
+    "source_published_at": "2026-10-07T17:45:34+00:00"
+  },
+  {
+    "id": "note-c767ce637ed01167226f",
+    "source_id": "c767ce637ed01167226f",
+    "text": "Work that used to take specialists days can now be completed in minutes with automated workflows.\n\nOracle describes using ChatGPT Work and Codex across recruiting, engineering, and operations to turn specialist knowledge into repeatable processes.\n\n• Talent acquisition built market intelligence tools that cut compensation research time drastically.\n• Site reliability engineers use Codex to pull up playbooks during system incidents.\n• Engineering leads stress the importance of providing prototypes and maintaining code ownership.\n\nStandardizing internal workflows with AI tools changes how baseline operational cycles are measured.\n\nWrite a prompt template for a repetitive debugging task you perform weekly. Run it against a past error log and record any formatting errors or missing context.\n\nSource: OpenAI News",
+    "source_published_at": "2026-10-08T16:00:00+00:00"
+  },
+  {
+    "id": "note-3263012f4d06c382ed2d",
+    "source_id": "3263012f4d06c382ed2d",
+    "text": "Quantitative trading firms are expanding agentic research to tackle complex, ambiguous market predictions.\n\nJump Trading uses GPT-6 Astra for long-running workflows that combine alternative data sources, automated code generation, and strict human review.\n\n• Predicting asset prices slightly better than a coin flip at scale is enough for successful strategies.\n• Agents can run multi-day tasks that pull from diverse data sources and evaluate findings.\n• Regulated environments require clear system boundaries and mandatory human review of outputs.\n\nLong-running autonomous workflows require robust observability and human validation to manage compliance risks.\n\nSet up a multi-step script that fetches public financial data, normalizes the schema, and writes a summary file. Record the exact runtime and note any data ingestion failures.\n\nSource: OpenAI News",
+    "source_published_at": "2026-10-06T12:00:00+00:00"
   }
 ]

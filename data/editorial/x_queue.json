@@ -1,38 +1,26 @@
 [
   {
-    "source_id": "3263012f4d06c382ed2d",
-    "source_published_at": "2026-10-06T12:00:00+00:00",
-    "guide_id": "workflow-check-v1",
-    "id": "x-3263012f4d06c382ed2d",
-    "text": "A bot that answers every question can make a terrible demo.\n\nTry one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.",
-    "thread": [
-      {
-        "text": "A bot that answers every question can make a terrible demo.\n\nTry one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over."
-      },
-      {
-        "text": "Build a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies. This is a practice exercise, not a claim about a particular product."
-      },
-      {
-        "text": "My rule: show the awkward cases beside the successful ones. A small demo with visible limits is easier to assess than a big promise with no test results.\n\nWhich reply would make you stop trusting a bot?\n\nSource: OpenAI News"
-      }
-    ]
+    "id": "x-238e9451b5c554620320",
+    "source_id": "238e9451b5c554620320",
+    "text": "Your coding agent is brilliant on day one and lost by day thirty. The fix isn't waiting for a smarter model; it's a harness of rules, tiered context, and durable memory files that stop the agent from forgetting its own decisions.\n\nSource: Stack Overflow Blog",
+    "source_published_at": "2026-10-07T20:09:22+00:00"
   },
   {
-    "source_id": "238e9451b5c554620320",
-    "source_published_at": "2026-10-07T20:09:22+00:00",
-    "guide_id": "code-check-v1",
-    "id": "x-238e9451b5c554620320",
-    "text": "The code runs. Then someone asks why it works.\n\nIf AI helped build your project, keep the evidence: a normal input, an empty input and a wrong input. Show what failed and what you changed.",
-    "thread": [
-      {
-        "text": "The code runs. Then someone asks why it works.\n\nIf AI helped build your project, keep the evidence: a normal input, an empty input and a wrong input. Show what failed and what you changed."
-      },
-      {
-        "text": "For your next small project, write the expected result before asking AI. Test those three inputs. Check one unfamiliar function against its official documentation. Save the results beside the demo."
-      },
-      {
-        "text": "My rule: a portfolio should show your judgment. Add a short README explaining the problem, checks and limitations. Include one AI suggestion you rejected and why.\n\nWhat would you test first?\n\nSource: Stack Overflow Blog"
-      }
-    ]
+    "id": "x-aa4eeca0fa3edf4aa73d",
+    "source_id": "aa4eeca0fa3edf4aa73d",
+    "text": "A new credential appears in public code about every two seconds. With AI agents pushing code faster than humans can review, manual secret revocation can't keep up. Platforms are moving protection upstream with context-aware classifiers.\n\nSource: GitHub Blog",
+    "source_published_at": "2026-10-07T17:45:34+00:00"
+  },
+  {
+    "id": "x-c767ce637ed01167226f",
+    "source_id": "c767ce637ed01167226f",
+    "text": "Oracle reports turning multi-day recruitment and engineering workflows into minutes using ChatGPT Work and Codex. The team emphasizes that you still have to own the code and provide working prototypes instead of abstract specs.\n\nSource: OpenAI News",
+    "source_published_at": "2026-10-08T16:00:00+00:00"
+  },
+  {
+    "id": "x-3263012f4d06c382ed2d",
+    "source_id": "3263012f4d06c382ed2d",
+    "text": "Jump Trading uses GPT-6 Astra for long-running quantitative research workflows. The firm combines multi-source data analysis with human review to ensure complex predictive models stay compliant and accurate.\n\nSource: OpenAI News",
+    "source_published_at": "2026-10-06T12:00:00+00:00"
   }
 ]

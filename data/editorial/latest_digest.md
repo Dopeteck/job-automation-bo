@@ -1,31 +1,31 @@
-# Web3 Job Tech Alpha Vault — 2026-10-09
+Your demo works on day one. Then a month later, your coding agent forgets the architecture decisions you spent hours setting up, contradicts itself, and quietly stops writing tests. The code runs, but the awkward question is: how do you keep an AI from slowly rotting your repository? Stack Overflow explores why coding agents break down over time and how to build an operating system around them instead of waiting for a smarter model. On the security side, GitHub reports that secret leakage is pacing code creation, with a new credential appearing in public code every two seconds. Meanwhile, Oracle describes turning days of specialist tasks into minutes using ChatGPT Work and Codex, and Jump Trading highlights using GPT-6 Astra for long-running quantitative research workflows.
 
-A bot that answers every question can make a terrible demo.
+### Building an Operating System for Coding Agents
 
-Try one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.
+When you use an agent for thirty sessions, it starts re-discovering the same files and guessing test commands. Stack Overflow points out that benchmark scores show a harness change can lift an agent dramatically, proving that model intelligence is only a fraction of the equation. Most agent failures are configuration failures—a missing guardrail or a messy context window.
 
-The current context: OpenAI News published “How Jump Trading is scaling quant research with ChatGPT”. The following is our practice exercise, not a finding from that report.
+To keep an agent productive for months, you need a disciplined harness:
 
-Build a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies. This is a practice exercise, not a claim about a particular product.
+* A short constitution read on every session that lays down non-negotiable rules like writing tests in the same diff.
+* Tiered context files, such as a root map and per-module details, so the agent doesn't blow its context budget.
+* Durable per-fact memory files and an append-only decision log to stop agents from silently reversing load-bearing choices.
 
-My rule: show the awkward cases beside the successful ones. A small demo with visible limits is easier to assess than a big promise with no test results.
+Practice exercise: Create a markdown file named CONTEXT.md for a personal project. List your build command, test command, and three core project invariants in under 150 words. Run your usual workflow and record whether the agent successfully reads the file without prompting.
 
-Which reply would make you stop trusting a bot?
+### Scaling Secret Protection for Accelerated Code
 
-Source: OpenAI News
+GitHub reports that one in three pull requests now involves an AI agent, and code creation is accelerating past human remediation capacity. Public scanning identifies credential matches constantly, while manual revocation can take weeks or months. Telling developers to be more careful doesn't scale.
 
----
+GitHub introduces a fine-tuned ModernBERT classifier designed to assess candidate secrets in context in under two milliseconds. This classifier powers push protection to catch unstructured secrets before they enter repository history, more than doubling preventable exposures.
 
-The code runs. Then someone asks why it works.
+Practice exercise: Write a regex or pattern matcher for a dummy API token format used in your local test environment. Commit a mock file containing the token and record whether your local pre-commit hook successfully blocks the push.
 
-If AI helped build your project, keep the evidence: a normal input, an empty input and a wrong input. Show what failed and what you changed.
+### Turning Days into Minutes at Oracle
 
-The current context: Stack Overflow Blog published “Part 6: An operating system for coding agents: the disciplined build”. The following is our practice exercise, not a finding from that report.
+Oracle describes using ChatGPT Work and Codex to transform specialist workflows across recruiting, engineering, and operations. Talent acquisition built a market intelligence tool that compiles compensation and location benchmarks in minutes rather than days. In production engineering, site reliability engineers use Codex to pull up playbooks during incidents.
 
-For your next small project, write the expected result before asking AI. Test those three inputs. Check one unfamiliar function against its official documentation. Save the results beside the demo.
+Key lessons from Oracle include providing prototypes instead of specifications, setting strict system design guardrails, and working alongside the code to maintain maintainability.
 
-My rule: a portfolio should show your judgment. Add a short README explaining the problem, checks and limitations. Include one AI suggestion you rejected and why.
+Practice exercise: Pick a repetitive manual task you do during debugging, such as gathering logs or checking error states. Write a single prompt template that retrieves the same information. Test it against three past incidents and record any discrepancies between your manual notes and the tool output.
 
-What would you test first?
-
-Source: Stack Overflow Blog
+Sources: OpenAI News, GitHub Blog, Stack Overflow Blog

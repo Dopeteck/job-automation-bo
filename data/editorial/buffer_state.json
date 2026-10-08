@@ -78,20 +78,21 @@
   },
   "pending_uploads": {},
   "last_publish_report": {
-    "x_draft": {
+    "x_draft_image_review_v1": {
       "queued": 1,
       "skipped": 0,
-      "draft": true
+      "draft": true,
+      "with_image": 1,
+      "text_only": 0,
+      "image_fallbacks": 0
     },
-    "substack_draft": {
+    "substack_draft_image_review_v1": {
       "queued": 1,
       "skipped": 0,
-      "draft": true
-    },
-    "x_thread_draft": {
-      "queued": 1,
-      "skipped": 0,
-      "draft": true
+      "draft": true,
+      "with_image": 1,
+      "text_only": 0,
+      "image_fallbacks": 0
     }
   },
   "confirmed_uploads": {
@@ -126,6 +127,44 @@
       "text": "A bot that answers every question can make a terrible demo.\n\nTry one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.\n\nThe current context: OpenAI News published \u201cHow Jump Trading is scaling quant research with ChatGPT\u201d. The following is our practice exercise, not a finding from that report.\n\nBuild a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies. This is a practice exercise, not a claim about a particular product.\n\nMy rule: show the awkward cases beside the successful ones. A small demo with visible limits is easier to assess than a big promise with no test results.\n\nWhich reply would make you stop trusting a bot?\n\nSource: OpenAI News",
       "confirmed_at": "2026-10-08T23:05:26.737729+00:00",
       "draft": true
+    },
+    "x_draft_image_review_v1:x-238e9451b5c554620320": {
+      "post_id": "6ac826ec04f06b2e8f6ffb16",
+      "channel_id": "6abe6f09ea19ca0bde441138",
+      "due_at": null,
+      "text": "Your coding agent is brilliant on day one and lost by day thirty. The fix isn't waiting for a smarter model; it's a harness of rules, tiered context, and durable memory files that stop the agent from forgetting its own decisions.\n\nSource: Stack Overflow Blog",
+      "confirmed_at": "2026-10-08T23:27:40.732760+00:00",
+      "draft": true,
+      "platform_key": "x_draft_image_review_v1",
+      "source_id": "238e9451b5c554620320",
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-8532928",
+      "image_topic": "workflow",
+      "image_source_page": "https://www.pexels.com/photo/an-open-notebook-planner-on-white-surface-8532928/",
+      "image_creator": "Hanna Pad",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
+    },
+    "substack_draft_image_review_v1:note-238e9451b5c554620320": {
+      "post_id": "6ac826ed7d9f9f33011aed97",
+      "channel_id": "6abe70bfea19ca0bde441f84",
+      "due_at": null,
+      "text": "The first session with a coding agent is crisp, but by session thirty, it starts contradicting itself.\n\nStack Overflow explains that agent failures are usually configuration failures, solved by building a robust harness with tiered context, a short session constitution, and durable decision logs.\n\n\u2022 Model capability is only a fraction of what determines long-term agent success.\n\u2022 Tiered context files prevent agents from blowing token budgets and forgetting module structures.\n\u2022 Append-only decision logs stop agents and humans from silently reversing load-bearing architecture choices.\n\nWithout a disciplined harness, code quality decays rapidly over months of automated edits.\n\nCreate a root CONTEXT.md file for a personal project outlining your build command and invariants. Test an agent session and record whether it adheres to the instructions without re-prompting.\n\nSource: Stack Overflow Blog",
+      "confirmed_at": "2026-10-08T23:27:41.114607+00:00",
+      "draft": true,
+      "platform_key": "substack_draft_image_review_v1",
+      "source_id": "238e9451b5c554620320",
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-8532928",
+      "image_topic": "workflow",
+      "image_source_page": "https://www.pexels.com/photo/an-open-notebook-planner-on-white-surface-8532928/",
+      "image_creator": "Hanna Pad",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
     }
   },
   "x_thread_draft_guides": [
@@ -133,5 +172,11 @@
   ],
   "substack_draft_guides": [
     "workflow-check-v1"
+  ],
+  "x_draft_image_review_v1": [
+    "x-238e9451b5c554620320"
+  ],
+  "substack_draft_image_review_v1": [
+    "note-238e9451b5c554620320"
   ]
 }
