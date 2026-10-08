@@ -173,6 +173,7 @@ def publish_queue(path, key, channel_id, limit, state):
 def main():
     if not KEY: raise SystemExit("BUFFER_API_KEY is not configured.")
     state = load(STATE, {"x":[],"substack":[]})
+    state["last_publish_report"] = {}
     failures = []
     for filename, platform, channel, limit in (
         ("x_queue.json", "x", X_CHANNEL, MAX_X),
