@@ -10,21 +10,45 @@
       "link": "https://openai.com/index/oracle",
       "published_at": "2026-10-08T16:00:00+00:00",
       "score": 26,
-      "evidence": "rss"
+      "evidence": "article"
     },
     {
-      "id": "3bd81423eaa04073fd5d",
-      "source": "TechCrunch",
-      "domain": "techcrunch.com",
+      "id": "aa4eeca0fa3edf4aa73d",
+      "source": "GitHub Blog",
+      "domain": "github.blog",
       "category": "tech",
-      "title": "A startup founder who served time in prison is looking to court an untapped market: ex-cons",
-      "summary": "Richard Bronson, a former Stratton Oakmont partner who served time in federal prison for securities violations, has launched Commissary Club, a startup that uses AI to help people leaving prison find jobs, housing, community, and even dates.",
-      "link": "https://techcrunch.com/2026/10/08/a-startup-founder-who-served-time-in-prison-is-looking-to-court-an-untapped-market-ex-cons/",
-      "published_at": "2026-10-08T16:45:00+00:00",
-      "score": 24,
+      "title": "Secret protection must scale with software",
+      "summary": "Developers aren’t becoming more careless; they’re being outpaced. The tools that let developers create more software should also take on more of the work of protecting it. The post Secret protection must scale with software appeared first on The GitHub Blog .",
+      "link": "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
+      "published_at": "2026-10-07T17:45:34+00:00",
+      "score": 22,
+      "evidence": "article"
+    },
+    {
+      "id": "3263012f4d06c382ed2d",
+      "source": "OpenAI News",
+      "domain": "openai.com",
+      "category": "ai",
+      "title": "How Jump Trading is scaling quant research with ChatGPT",
+      "summary": "Jump Trading uses OpenAI to expand quantitative research. See how longer-running AI workflows combine multiple data sources with human review.",
+      "link": "https://openai.com/index/jump-trading",
+      "published_at": "2026-10-06T12:00:00+00:00",
+      "score": 22,
+      "evidence": "article"
+    },
+    {
+      "id": "238e9451b5c554620320",
+      "source": "Stack Overflow Blog",
+      "domain": "stackoverflow.blog",
+      "category": "career",
+      "title": "Part 6: An operating system for coding agents: the disciplined build",
+      "summary": "Coding agents are great for an afternoon and mediocre for a quarter. Here’s the small set of files and rules — with the actual configs — that keeps quality from decaying across months and thousands of edits, whether you run one agent or a fleet of them on the same repo.",
+      "link": "https://stackoverflow.blog/2026/10/07/part-6-an-operating-system-for-coding-agents-the-disciplined-build/",
+      "published_at": "2026-10-07T20:09:22+00:00",
+      "score": 20,
       "evidence": "article"
     }
   ],
   "jobs": [],
-  "drafting_mode": "gemini"
+  "drafting_mode": "fallback"
 }

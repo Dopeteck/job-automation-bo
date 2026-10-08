@@ -1,14 +1,16 @@
 [
   {
-    "id": "note-c767ce637ed01167226f",
-    "source_id": "c767ce637ed01167226f",
-    "text": "Turning complex engineering and operational tasks from days of work into minutes requires standardizing specialist knowledge into automated pipelines.\n\nOpenAI reports that Oracle uses ChatGPT Work and Codex to build fast, repeatable workflows spanning engineering, operations, and recruiting.\n\n• Oracle integrates ChatGPT Work and Codex across multiple departments.\n• The implementation targets recruiting, engineering, and operations.\n• The stated goal is to convert days of specialist work into minutes.\n\nDemonstrating how enterprise tools compress multi-day operational cycles into minutes provides a benchmark for evaluating internal team productivity tooling.\n\nDraft a one-page process map for a repetitive engineering task your team handles, then write out a prompt template designed to cut its duration by half. Record the estimated time saved in a spreadsheet log.\n\nSource: OpenAI News",
-    "source_published_at": "2026-10-08T16:00:00+00:00"
+    "source_id": "3263012f4d06c382ed2d",
+    "source_published_at": "2026-10-06T12:00:00+00:00",
+    "guide_id": "workflow-check-v1",
+    "id": "note-3263012f4d06c382ed2d",
+    "text": "A bot that answers every question can make a terrible demo.\n\nTry one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.\n\nThe current context: OpenAI News published “How Jump Trading is scaling quant research with ChatGPT”. The following is our practice exercise, not a finding from that report.\n\nBuild a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies. This is a practice exercise, not a claim about a particular product.\n\nMy rule: show the awkward cases beside the successful ones. A small demo with visible limits is easier to assess than a big promise with no test results.\n\nWhich reply would make you stop trusting a bot?\n\nSource: OpenAI News"
   },
   {
-    "id": "note-3bd81423eaa04073fd5d",
-    "source_id": "3bd81423eaa04073fd5d",
-    "text": "Finding employment after prison remains a massive hurdle, leading founders to build targeted AI platforms for populations left behind by traditional hiring channels.\n\nTechCrunch covers the launch of Commissary Club, an AI-driven employment and social platform founded by Richard Bronson to help ex-cons find jobs, housing, and community.\n\n• Founder Richard Bronson partnered with technical co-founder Roman Kissin to build the platform.\n• The site offers job search assistance, housing resources, a community forum, and dating features.\n• The platform offers the first ten applications free before switching to a paid per-application fee model.\n\nTargeting overlooked demographic segments with specialized technical workflows opens up distinct startup market opportunities that general platforms ignore.\n\nSketch a wireframe for a niche job board focused on a specific specialized skill set, defining the exact data fields needed for candidate profiles. Save the wireframe as an image file and verify that the user dashboard displays all required metadata clearly.\n\nSource: TechCrunch",
-    "source_published_at": "2026-10-08T16:45:00+00:00"
+    "source_id": "238e9451b5c554620320",
+    "source_published_at": "2026-10-07T20:09:22+00:00",
+    "guide_id": "code-check-v1",
+    "id": "note-238e9451b5c554620320",
+    "text": "The code runs. Then someone asks why it works.\n\nIf AI helped build your project, keep the evidence: a normal input, an empty input and a wrong input. Show what failed and what you changed.\n\nThe current context: Stack Overflow Blog published “Part 6: An operating system for coding agents: the disciplined build”. The following is our practice exercise, not a finding from that report.\n\nFor your next small project, write the expected result before asking AI. Test those three inputs. Check one unfamiliar function against its official documentation. Save the results beside the demo.\n\nMy rule: a portfolio should show your judgment. Add a short README explaining the problem, checks and limitations. Include one AI suggestion you rejected and why.\n\nWhat would you test first?\n\nSource: Stack Overflow Blog"
   }
 ]

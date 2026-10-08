@@ -23,6 +23,7 @@
     "note-03fbdbc4bea8c465dd95",
     "note-2c7ad737b37975563dd6",
     "note-2cbeca2fbdb491ac9ce1",
+    "note-3263012f4d06c382ed2d",
     "note-5ebc8c5fe5825fa3a1b4",
     "note-7173f2ea8acf1821b7ad",
     "note-bb9832a0eb3c66ffc8c6",
@@ -53,6 +54,7 @@
   },
   "x_thread_draft": [
     "x-03fbdbc4bea8c465dd95",
+    "x-3263012f4d06c382ed2d",
     "x-7173f2ea8acf1821b7ad"
   ],
   "channel_latest_due": {
@@ -85,6 +87,11 @@
       "queued": 1,
       "skipped": 0,
       "draft": true
+    },
+    "x_thread_draft": {
+      "queued": 1,
+      "skipped": 0,
+      "draft": true
     }
   },
   "confirmed_uploads": {
@@ -103,6 +110,28 @@
       "text": "Turning complex engineering and operational tasks from days of work into minutes requires standardizing specialist knowledge into automated pipelines.\n\nOpenAI reports that Oracle uses ChatGPT Work and Codex to build fast, repeatable workflows spanning engineering, operations, and recruiting.\n\n\u2022 Oracle integrates ChatGPT Work and Codex across multiple departments.\n\u2022 The implementation targets recruiting, engineering, and operations.\n\u2022 The stated goal is to convert days of specialist work into minutes.\n\nDemonstrating how enterprise tools compress multi-day operational cycles into minutes provides a benchmark for evaluating internal team productivity tooling.\n\nDraft a one-page process map for a repetitive engineering task your team handles, then write out a prompt template designed to cut its duration by half. Record the estimated time saved in a spreadsheet log.\n\nSource: OpenAI News",
       "confirmed_at": "2026-10-08T23:01:49.803873+00:00",
       "draft": true
+    },
+    "x_thread_draft:x-3263012f4d06c382ed2d": {
+      "post_id": "6ac821b6f07e682de697eba6",
+      "channel_id": "6abe6f09ea19ca0bde441138",
+      "due_at": null,
+      "text": "A bot that answers every question can make a terrible demo.\n\nTry one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.",
+      "confirmed_at": "2026-10-08T23:05:26.563450+00:00",
+      "draft": true
+    },
+    "substack_draft:note-3263012f4d06c382ed2d": {
+      "post_id": "6ac821b67d9f9f33011a208b",
+      "channel_id": "6abe70bfea19ca0bde441f84",
+      "due_at": null,
+      "text": "A bot that answers every question can make a terrible demo.\n\nTry one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.\n\nThe current context: OpenAI News published \u201cHow Jump Trading is scaling quant research with ChatGPT\u201d. The following is our practice exercise, not a finding from that report.\n\nBuild a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies. This is a practice exercise, not a claim about a particular product.\n\nMy rule: show the awkward cases beside the successful ones. A small demo with visible limits is easier to assess than a big promise with no test results.\n\nWhich reply would make you stop trusting a bot?\n\nSource: OpenAI News",
+      "confirmed_at": "2026-10-08T23:05:26.737729+00:00",
+      "draft": true
     }
-  }
+  },
+  "x_thread_draft_guides": [
+    "workflow-check-v1"
+  ],
+  "substack_draft_guides": [
+    "workflow-check-v1"
+  ]
 }

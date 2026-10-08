@@ -1,16 +1,31 @@
-# Web3 Job Tech Alpha Vault
+# Web3 Job Tech Alpha Vault — 2026-10-09
 
-Welcome to today's edition. We explore how major platforms and startups are applying artificial intelligence to streamline specialist workflows and target underserved markets.
+A bot that answers every question can make a terrible demo.
 
-## Sourced Developments
+Try one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.
 
-### Oracle's AI-Powered Workflows (OpenAI News)
-OpenAI reports that Oracle utilizes ChatGPT Work and Codex to transform specialist knowledge into fast, repeatable workflows across recruiting, engineering, and operations, turning days of work into minutes.
+The current context: OpenAI News published “How Jump Trading is scaling quant research with ChatGPT”. The following is our practice exercise, not a finding from that report.
 
-### Commissary Club Launches AI Employment Platform (TechCrunch)
-TechCrunch reports that Richard Bronson, a former Stratton Oakmont partner who served federal prison time, has launched Commissary Club. Built with technical co-founder Roman Kissin, the employment-focused social media platform uses AI to help individuals leaving prison find jobs, housing, community, and dates. The platform uses a freemium model charging users for applications after an initial free tier.
+Build a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies. This is a practice exercise, not a claim about a particular product.
 
-## Practical Career Steps
-When designing user onboarding flows for specialized or niche platforms like Commissary Club, build a clear threshold for free actions before introducing paid tiers. Document your workflow steps in a mock specification sheet to test friction points.
+My rule: show the awkward cases beside the successful ones. A small demo with visible limits is easier to assess than a big promise with no test results.
 
-Sources: OpenAI News, TechCrunch
+Which reply would make you stop trusting a bot?
+
+Source: OpenAI News
+
+---
+
+The code runs. Then someone asks why it works.
+
+If AI helped build your project, keep the evidence: a normal input, an empty input and a wrong input. Show what failed and what you changed.
+
+The current context: Stack Overflow Blog published “Part 6: An operating system for coding agents: the disciplined build”. The following is our practice exercise, not a finding from that report.
+
+For your next small project, write the expected result before asking AI. Test those three inputs. Check one unfamiliar function against its official documentation. Save the results beside the demo.
+
+My rule: a portfolio should show your judgment. Add a short README explaining the problem, checks and limitations. Include one AI suggestion you rejected and why.
+
+What would you test first?
+
+Source: Stack Overflow Blog
