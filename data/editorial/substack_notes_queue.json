@@ -1,27 +1,14 @@
 [
   {
-    "id": "note-165fad68da33d8994875",
-    "source_id": "165fad68da33d8994875",
-    "text": "Ryan chats with Erin Yepis, Senior Analyst at Stack Overflow, about the results from this year’s Annual Developer Survey, including the overwhelming daily usage of AI coding assistants despite lingering developer trust issues, the critical role of well-organized documentation in providing verifiable context to mitigate AI hallucinations, and the evolving ways developers are shifting away from active community posting in favor of passive knowledge consumption.\n\ncompare the skills discussed here with three vacancies for your target role. Check location eligibility before applying.\n\nSource: Stack Overflow Blog"
+    "id": "note-c767ce637ed01167226f",
+    "source_id": "c767ce637ed01167226f",
+    "text": "Turning complex engineering and operational tasks from days of work into minutes requires standardizing specialist knowledge into automated pipelines.\n\nOpenAI reports that Oracle uses ChatGPT Work and Codex to build fast, repeatable workflows spanning engineering, operations, and recruiting.\n\n• Oracle integrates ChatGPT Work and Codex across multiple departments.\n• The implementation targets recruiting, engineering, and operations.\n• The stated goal is to convert days of specialist work into minutes.\n\nDemonstrating how enterprise tools compress multi-day operational cycles into minutes provides a benchmark for evaluating internal team productivity tooling.\n\nDraft a one-page process map for a repetitive engineering task your team handles, then write out a prompt template designed to cut its duration by half. Record the estimated time saved in a spreadsheet log.\n\nSource: OpenAI News",
+    "source_published_at": "2026-10-08T16:00:00+00:00"
   },
   {
-    "id": "note-aa4eeca0fa3edf4aa73d",
-    "source_id": "aa4eeca0fa3edf4aa73d",
-    "text": "Developers aren’t becoming more careless; they’re being outpaced. The tools that let developers create more software should also take on more of the work of protecting it. The post Secret protection must scale with software appeared first on The GitHub Blog .\n\nbuild a small example, add a clear README, and explain one decision you made. A sample you can explain is more useful than copied code.\n\nSource: GitHub Blog"
-  },
-  {
-    "id": "note-12abc4e68d67628b52b1",
-    "source_id": "12abc4e68d67628b52b1",
-    "text": "Learn how OpenAI and Ironclad are training and evaluating AI agents on complex contracting workflows to advance computer use for professional work.\n\nTry this: test one task from your own workflow, check the result manually, and record where the tool helps or fails. Never use private client data in a public demo.\n\nSource: OpenAI News"
-  },
-  {
-    "id": "note-3263012f4d06c382ed2d",
-    "source_id": "3263012f4d06c382ed2d",
-    "text": "Jump Trading uses OpenAI to expand quantitative research. See how longer-running AI workflows combine multiple data sources with human review.\n\nTry this: test one task from your own workflow, check the result manually, and record where the tool helps or fails. Never use private client data in a public demo.\n\nSource: OpenAI News"
-  },
-  {
-    "id": "note-fbe0eea7b43a19620fa0",
-    "source_id": "fbe0eea7b43a19620fa0",
-    "text": "Below, we’ll highlight some of the results we found interesting about what's going in the life of technologists, their technologies, AI usage, and more.\n\ncompare the skills discussed here with three vacancies for your target role. Check location eligibility before applying.\n\nSource: Stack Overflow Blog"
+    "id": "note-3bd81423eaa04073fd5d",
+    "source_id": "3bd81423eaa04073fd5d",
+    "text": "Finding employment after prison remains a massive hurdle, leading founders to build targeted AI platforms for populations left behind by traditional hiring channels.\n\nTechCrunch covers the launch of Commissary Club, an AI-driven employment and social platform founded by Richard Bronson to help ex-cons find jobs, housing, and community.\n\n• Founder Richard Bronson partnered with technical co-founder Roman Kissin to build the platform.\n• The site offers job search assistance, housing resources, a community forum, and dating features.\n• The platform offers the first ten applications free before switching to a paid per-application fee model.\n\nTargeting overlooked demographic segments with specialized technical workflows opens up distinct startup market opportunities that general platforms ignore.\n\nSketch a wireframe for a niche job board focused on a specific specialized skill set, defining the exact data fields needed for candidate profiles. Save the wireframe as an image file and verify that the user dashboard displays all required metadata clearly.\n\nSource: TechCrunch",
+    "source_published_at": "2026-10-08T16:45:00+00:00"
   }
 ]

@@ -15,6 +15,7 @@
     "x-03fbdbc4bea8c465dd95",
     "x-2c7ad737b37975563dd6",
     "x-2cbeca2fbdb491ac9ce1",
+    "x-3bd81423eaa04073fd5d",
     "x-5ebc8c5fe5825fa3a1b4",
     "x-bb9832a0eb3c66ffc8c6"
   ],
@@ -24,7 +25,8 @@
     "note-2cbeca2fbdb491ac9ce1",
     "note-5ebc8c5fe5825fa3a1b4",
     "note-7173f2ea8acf1821b7ad",
-    "note-bb9832a0eb3c66ffc8c6"
+    "note-bb9832a0eb3c66ffc8c6",
+    "note-c767ce637ed01167226f"
   ],
   "x": [
     "x-12abc4e68d67628b52b1",
@@ -71,5 +73,36 @@
       "2026-10-09T09:52:00+01:00",
       "2026-10-12T09:35:00+01:00"
     ]
+  },
+  "pending_uploads": {},
+  "last_publish_report": {
+    "x_draft": {
+      "queued": 1,
+      "skipped": 0,
+      "draft": true
+    },
+    "substack_draft": {
+      "queued": 1,
+      "skipped": 0,
+      "draft": true
+    }
+  },
+  "confirmed_uploads": {
+    "x_draft:x-3bd81423eaa04073fd5d": {
+      "post_id": "6ac820ddf07e682de697b6e7",
+      "channel_id": "6abe6f09ea19ca0bde441138",
+      "due_at": null,
+      "text": "Building software for underserved communities requires balancing strong mission goals with sustainable monetization. Commissary Club uses AI to help formerly incarcerated individuals navigate housing and jobs, but charges for applications after a free tier.\n\nSource: TechCrunch",
+      "confirmed_at": "2026-10-08T23:01:49.496648+00:00",
+      "draft": true
+    },
+    "substack_draft:note-c767ce637ed01167226f": {
+      "post_id": "6ac820dd04f06b2e8f6f243f",
+      "channel_id": "6abe70bfea19ca0bde441f84",
+      "due_at": null,
+      "text": "Turning complex engineering and operational tasks from days of work into minutes requires standardizing specialist knowledge into automated pipelines.\n\nOpenAI reports that Oracle uses ChatGPT Work and Codex to build fast, repeatable workflows spanning engineering, operations, and recruiting.\n\n\u2022 Oracle integrates ChatGPT Work and Codex across multiple departments.\n\u2022 The implementation targets recruiting, engineering, and operations.\n\u2022 The stated goal is to convert days of specialist work into minutes.\n\nDemonstrating how enterprise tools compress multi-day operational cycles into minutes provides a benchmark for evaluating internal team productivity tooling.\n\nDraft a one-page process map for a repetitive engineering task your team handles, then write out a prompt template designed to cut its duration by half. Record the estimated time saved in a spreadsheet log.\n\nSource: OpenAI News",
+      "confirmed_at": "2026-10-08T23:01:49.803873+00:00",
+      "draft": true
+    }
   }
 }

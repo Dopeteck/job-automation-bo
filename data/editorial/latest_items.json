@@ -1,66 +1,30 @@
 {
   "news": [
     {
-      "id": "165fad68da33d8994875",
-      "source": "Stack Overflow Blog",
-      "domain": "stackoverflow.blog",
-      "category": "career",
-      "title": "Tales from the 2026 Developer Survey results",
-      "summary": "Ryan chats with Erin Yepis, Senior Analyst at Stack Overflow, about the results from this year’s Annual Developer Survey, including the overwhelming daily usage of AI coding assistants despite lingering developer trust issues, the critical role of well-organized documentation in providing verifiable context to mitigate AI hallucinations, and the evolving ways developers are shifting away from active community posting in favor of passive knowledge consumption.",
-      "link": "https://stackoverflow.blog/2026/10/06/tales-from-the-2026-developer-survey-results/",
-      "published_at": "2026-10-06T17:00:00+00:00",
+      "id": "c767ce637ed01167226f",
+      "source": "OpenAI News",
+      "domain": "openai.com",
+      "category": "ai",
+      "title": "How Oracle turns days of work into minutes with ChatGPT and Codex",
+      "summary": "Across recruiting, engineering, and operations, Oracle turns specialist knowledge into fast, repeatable workflows with ChatGPT Work and Codex.",
+      "link": "https://openai.com/index/oracle",
+      "published_at": "2026-10-08T16:00:00+00:00",
       "score": 26,
       "evidence": "rss"
     },
     {
-      "id": "aa4eeca0fa3edf4aa73d",
-      "source": "GitHub Blog",
-      "domain": "github.blog",
+      "id": "3bd81423eaa04073fd5d",
+      "source": "TechCrunch",
+      "domain": "techcrunch.com",
       "category": "tech",
-      "title": "Secret protection must scale with software",
-      "summary": "Developers aren’t becoming more careless; they’re being outpaced. The tools that let developers create more software should also take on more of the work of protecting it. The post Secret protection must scale with software appeared first on The GitHub Blog .",
-      "link": "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
-      "published_at": "2026-10-07T17:45:34+00:00",
-      "score": 25,
-      "evidence": "rss"
-    },
-    {
-      "id": "12abc4e68d67628b52b1",
-      "source": "OpenAI News",
-      "domain": "openai.com",
-      "category": "ai",
-      "title": "Advancing computer use with Ironclad",
-      "summary": "Learn how OpenAI and Ironclad are training and evaluating AI agents on complex contracting workflows to advance computer use for professional work.",
-      "link": "https://openai.com/index/advancing-computer-use-with-ironclad",
-      "published_at": "2026-10-06T10:00:00+00:00",
-      "score": 23,
-      "evidence": "rss"
-    },
-    {
-      "id": "3263012f4d06c382ed2d",
-      "source": "OpenAI News",
-      "domain": "openai.com",
-      "category": "ai",
-      "title": "How Jump Trading is scaling quant research with ChatGPT",
-      "summary": "Jump Trading uses OpenAI to expand quantitative research. See how longer-running AI workflows combine multiple data sources with human review.",
-      "link": "https://openai.com/index/jump-trading",
-      "published_at": "2026-10-06T12:00:00+00:00",
-      "score": 22,
-      "evidence": "rss"
-    },
-    {
-      "id": "fbe0eea7b43a19620fa0",
-      "source": "Stack Overflow Blog",
-      "domain": "stackoverflow.blog",
-      "category": "career",
-      "title": "The results of the 2026 Developer Survey are here!",
-      "summary": "Below, we’ll highlight some of the results we found interesting about what's going in the life of technologists, their technologies, AI usage, and more.",
-      "link": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/",
-      "published_at": "2026-10-06T14:00:00+00:00",
-      "score": 20,
+      "title": "A startup founder who served time in prison is looking to court an untapped market: ex-cons",
+      "summary": "Richard Bronson, a former Stratton Oakmont partner who served time in federal prison for securities violations, has launched Commissary Club, a startup that uses AI to help people leaving prison find jobs, housing, community, and even dates.",
+      "link": "https://techcrunch.com/2026/10/08/a-startup-founder-who-served-time-in-prison-is-looking-to-court-an-untapped-market-ex-cons/",
+      "published_at": "2026-10-08T16:45:00+00:00",
+      "score": 24,
       "evidence": "article"
     }
   ],
   "jobs": [],
-  "drafting_mode": "fallback"
+  "drafting_mode": "gemini"
 }
