@@ -11,7 +11,7 @@ on:
     branches: [main, feature/tech-career-editorial-v1]
     paths:
       - 'editorial/**'
-      - 'publishers/buffer_publisher.py'
+      - 'publishers/**'
       - '.github/workflows/editorial-engine.yml'
   schedule:
     - cron: "30 9 * * 1-5"
@@ -33,7 +33,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install editorial dependencies
-        run: pip install requests beautifulsoup4 feedparser
+        run: pip install requests beautifulsoup4 feedparser Pillow
       - name: Check quota fallback and promotion rules
         run: python -m unittest editorial.test_editorial
       - name: Generate editorial drafts
@@ -66,6 +66,8 @@ jobs:
           BUFFER_SAVE_AS_DRAFT: ${{ inputs.buffer_drafts == true || vars.BUFFER_AUTOPUBLISH != 'true' }}
           BUFFER_MAX_X_PER_RUN: "1"
           BUFFER_MAX_SUBSTACK_PER_RUN: "1"
+          # Manual draft runs exercise images without changing scheduled cadence.
+          EDITORIAL_IMAGE_PERCENT: ${{ inputs.buffer_drafts == true && '100' || vars.EDITORIAL_IMAGE_PERCENT || '50' }}
         run: python publishers/buffer_publisher.py
       - name: Save drafts and posting history
         if: ${{ always() && github.event_name != 'push' }}

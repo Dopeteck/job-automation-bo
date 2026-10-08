@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """Queue X posts and Substack Notes through Buffer GraphQL API."""
 
-import json, os, re
+import json, os, re, sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import requests
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from publishers import image_library
 DATA = ROOT / "data" / "editorial"
 STATE = DATA / "buffer_state.json"
 API = "https://api.buffer.com"
@@ -39,21 +42,30 @@ class PublishUncertain(RuntimeError):
 class ThreadQueueFull(PublishRejected):
     pass
 
-def create_post(channel_id, text, thread=None):
+class MediaRejected(PublishRejected):
+    """Explicit media rejection, with no post created: one text retry is safe."""
+
+def create_post(channel_id, text, thread=None, assets=None):
     query = """
     mutation CreatePost($input: CreatePostInput!) {
       createPost(input: $input) {
-        ... on PostActionSuccess { post { id text dueAt } }
+        ... on PostActionSuccess { post { id text dueAt assets { id mimeType } } }
         ... on MutationError { message }
       }
     }
     """
     variables = {"input":{"text":text,"channelId":channel_id,"schedulingType":"automatic","mode":"addToQueue","saveToDraft":SAVE_AS_DRAFT}}
+    if assets:
+        variables["input"]["assets"] = assets
     if thread:
         if not isinstance(thread, list) or len(thread) < 2 or any(not isinstance(part, dict) or not isinstance(part.get("text"), str) or not part["text"].strip() for part in thread):
             raise ValueError("Invalid X thread; leaving item unsent.")
         variables["input"]["text"] = thread[0]["text"]
         variables["input"]["metadata"] = {"twitter": {"thread": [{"text": part["text"]} for part in thread]}}
+        if assets:
+            # Thread entries are the source of truth, including the root image.
+            for index, part in enumerate(variables["input"]["metadata"]["twitter"]["thread"]):
+                part["assets"] = assets if index == 0 else []
     try:
         r = requests.post(API, headers={"Authorization":f"Bearer {KEY}","Content-Type":"application/json"}, json={"query":query,"variables":variables}, timeout=45)
     except requests.RequestException:
@@ -73,6 +85,8 @@ def create_post(channel_id, text, thread=None):
         message = result["message"]
         if thread and not SAVE_AS_DRAFT and re.search(r"thread", message, re.I) and re.search(r"limit|one .*at a time|only .*one|free plan|upgrade", message, re.I):
             raise ThreadQueueFull("An X thread is already queued; try again after it publishes.")
+        if assets and re.search(r"(?:image|media|asset).*(?:invalid|unsupported|failed|unavailable|unable|cannot|could not|too large)|(?:invalid|unsupported|failed|unable|cannot|could not).*(?:image|media|asset)", message, re.I):
+            raise MediaRejected("Buffer explicitly rejected the image; using text only.")
         raise PublishRejected("Buffer rejected this post; inspect the channel and its limits.")
     post = result.get("post",{})
     if not post.get("id"):
@@ -88,6 +102,8 @@ def publish_queue(path, key, channel_id, limit, state):
     # Revised thread drafts can be reviewed even if a legacy single post exists.
     has_threads = key == "x" and any(item.get("thread") for item in load(path, []))
     key = f"{key}_thread_draft" if SAVE_AS_DRAFT and has_threads else f"{key}_draft" if SAVE_AS_DRAFT else key
+    if SAVE_AS_DRAFT and os.getenv("EDITORIAL_IMAGE_PERCENT") == "100":
+        key += "_image_review_v1"
     sent = set(state.get(key, []))
     promo_key = f"{key}_promotion_weeks"
     promoted = set(state.get(promo_key, []))
@@ -98,7 +114,8 @@ def publish_queue(path, key, channel_id, limit, state):
     guide_key = key + "_guides"
     guides = set(state.get(guide_key, []))
     reports = state.setdefault("last_publish_report", {})
-    reports[key] = {"queued": 0, "skipped": 0, "draft": SAVE_AS_DRAFT}
+    reports[key] = {"queued": 0, "skipped": 0, "draft": SAVE_AS_DRAFT,
+                    "with_image": 0, "text_only": 0, "image_fallbacks": 0}
     latest = state.get("channel_latest_due", {}).get(channel_id)
     if not SAVE_AS_DRAFT and latest:
         try:
@@ -138,11 +155,28 @@ def publish_queue(path, key, channel_id, limit, state):
                     part["text"] = "\n".join(line for line in part["text"].splitlines() if not re.search(r"telegram|t\.me/|VettedWeb3jobs", line, re.I)).strip()
                 text = thread[0]["text"]
             promotion_week = None
+        photo, media_reason = image_library.choose_image(item, key, state)
+        if photo and not image_library.validate_image(photo):
+            photo, media_reason = None, "image_unavailable"
+            reports[key]["image_fallbacks"] += 1
+        assets = image_library.buffer_assets(photo) if photo else None
         pending[pending_id] = {"channel_id": channel_id, "text": text,
+                               "image_id": photo["id"] if photo else None,
                                "attempted_at": datetime.now(timezone.utc).isoformat()}
         save(STATE, state)
         try:
-            post = create_post(channel_id, text, thread) if thread else create_post(channel_id, text)
+            if assets:
+                try:
+                    post = create_post(channel_id, text, thread, assets=assets)
+                except MediaRejected:
+                    # Only a confirmed mutation rejection permits this retry.
+                    photo, assets, media_reason = None, None, "buffer_media_rejected"
+                    reports[key]["image_fallbacks"] += 1
+                    pending[pending_id]["image_id"] = None
+                    save(STATE, state)
+                    post = create_post(channel_id, text, thread) if thread else create_post(channel_id, text)
+            else:
+                post = create_post(channel_id, text, thread) if thread else create_post(channel_id, text)
         except PublishRejected as exc:
             pending.pop(pending_id, None)
             reports[key]["reason"] = type(exc).__name__
@@ -159,8 +193,18 @@ def publish_queue(path, key, channel_id, limit, state):
             state.setdefault("channel_latest_due", {})[channel_id] = post["dueAt"]
         state.setdefault("confirmed_uploads", {})[pending_id] = {
             "post_id": post["id"], "channel_id": channel_id, "due_at": post.get("dueAt"), "text": text,
-            "confirmed_at": datetime.now(timezone.utc).isoformat(), "draft": SAVE_AS_DRAFT}
+            "confirmed_at": datetime.now(timezone.utc).isoformat(), "draft": SAVE_AS_DRAFT,
+            "platform_key": key, "source_id": item.get("source_id"),
+            "media_variant": "image" if photo else "text", "media_reason": media_reason,
+            "image_id": photo["id"] if photo else None,
+            "image_topic": photo["topic"] if photo else None,
+            "image_source_page": photo["source_page"] if photo else None,
+            "image_creator": photo["creator"] if photo else None,
+            "image_license": photo["license"] if photo else None,
+            "buffer_asset_ids": [asset["id"] for asset in post.get("assets", []) if asset.get("id")],
+            "media_experiment": "stock-image-v1"}
         reports[key]["queued"] += 1
+        reports[key]["with_image" if photo else "text_only"] += 1
         sent.add(item_id); state[key] = sorted(sent)
         if promotion_week:
             promoted.add(promotion_week); state[promo_key] = sorted(promoted)

@@ -14,7 +14,7 @@ At most one X post/thread and one Substack Note are uploaded per run. `BUFFER_AU
 
 ## Configuration
 
-Repository secrets: `GEMINI_API_KEY`, `BUFFER_API_KEY`. Never put these values in code, URLs or logs.
+Repository secrets: `GEMINI_API_KEY`, `BUFFER_API_KEY`. Never put these values in code, URLs or logs. Images need no additional API key or paid image service.
 
 Optional variables: `PUBLICATION_NAME`, `GEMINI_MODEL`, `TELEGRAM_URL`, `TELEGRAM_PROMO_START`, `BUFFER_X_CHANNEL_ID`, `BUFFER_SUBSTACK_CHANNEL_ID`, `BUFFER_AUTOPUBLISH`.
 
@@ -46,3 +46,17 @@ The production path is GitHub Actions → source collector → Gemini or reviewe
 - Buffer sends **Substack Notes**. Full newsletter Markdown is a review artifact; it is not automatically emailed or published as a Substack article.
 
 Verification: `python -m unittest editorial.test_editorial` covers quota/service fallback, source deduplication, stale output, copied/thin output, standalone and thread limits, promotion, confirmed upload history and ambiguous publishing failures.
+
+## Reviewed images and reach experiment
+
+`publishers/image_library.json` contains 21 individually checked Pexels stock photos for coding, remote work, workflow planning, interviews, infrastructure and hardware. Each entry records the photographer, original photo page, license, review time, dimensions and a descriptive alt text. These are illustrative photos, not photographs of the reported event. The library was selected directly from public photo pages, not through the Pexels API. The ordinary Pexels License permits social use without attribution links; source/creator/license records remain in the repository. No generated images, random news-site image scraping, Unsplash API automation, additional credentials or changes to the existing website are involved.
+
+The publisher selects a topic from the actual post text. `EDITORIAL_IMAGE_PERCENT` defaults to 50, using a stable source-ID hash assignment shared by both channels. This approximates half of eligible posts over time, not exactly half of every small batch. Unmatched topics and exhausted pools remain text-only. An image won't be reused on the same platform within 14 days. Photos containing identifiable people are excluded from fraud/scam/negative-context posts. Alt text labels images as illustrative stock. X threads attach the photo to the first post only; Substack Notes attach it directly rather than adding a link preview.
+
+Before upload, the publisher downloads at most 4 MB from the allowlisted Pexels image host, disallows redirects, checks MIME type, dimensions and actual image decoding. Failures fall back to text. Only an explicit media-related Buffer mutation rejection allows one text-only retry; timeouts and ambiguous responses retain the existing duplicate-prevention hold. Public CDN URLs need to remain reachable until Buffer publishes; an image removed after the upload check is still an external failure risk.
+
+Manual `buffer_drafts=true` runs set image selection to 100% for unpublished media review and use a separate draft deduplication namespace. This does not alter the normal 50% assignment. Repository variable `EDITORIAL_IMAGE_PERCENT=0` disables future images; `100` enables all eligible posts.
+
+Every confirmed upload records `media_variant`, selection/fallback reason, image ID/topic, creator, source page, license and Buffer asset IDs. The run summary counts posts with images, text-only posts and media fallbacks. These records support comparing impressions, follows and subscriptions in Buffer/native analytics. They do not automatically fetch performance or claim that images caused an increase. For a first review, compare similar topics and time slots after two weeks and extend the sample if too few posts have been published. Replies and restacks must still be done on the platforms; Buffer cannot automate Substack replies.
+
+References: https://www.pexels.com/legal-pages/license/ ; https://developers.buffer.com/examples/create-image-post.html ; https://developers.buffer.com/guides/hosting-media.html ; https://support.buffer.com/articles/using-substack-with-buffer-lDbUYyIq4R

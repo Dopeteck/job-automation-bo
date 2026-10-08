@@ -5,12 +5,14 @@ import io
 import json
 import tempfile
 import unittest
+import os
 from datetime import date
 from pathlib import Path
-from unittest.mock import patch, Mock
+from unittest.mock import patch, Mock, MagicMock
 
 from editorial import editorial_pipeline as editor
 from publishers import buffer_publisher as buffer
+from publishers import image_library as images
 
 NEWS = [{"id": "source-1", "title": "AI workflow skills", "summary": "A practical workflow guide explains how to handle missing information, check a customer enquiry against a policy, and pass unresolved questions to a person. It distinguishes successful results from failure cases, describes verification before deployment, and recommends keeping a record of expected and actual behaviour while developing a portfolio sample.", "source": "Example", "link": "https://example.com/skills"}]
 
@@ -21,6 +23,9 @@ class IsolatedStateChecks(unittest.TestCase):
         override = patch.object(buffer, "STATE", Path(folder.name) / "buffer_state.json")
         override.start()
         self.addCleanup(override.stop)
+        media = patch.object(images, "choose_image", return_value=(None, "text_control"))
+        media.start()
+        self.addCleanup(media.stop)
 
 class EditorialChecks(IsolatedStateChecks):
     def test_quota_timeout_and_malformed_ai_use_source_fallback(self):
@@ -260,6 +265,84 @@ class ReliabilityChecks(IsolatedStateChecks):
             with self.assertRaises(buffer.PublishUncertain) as caught:
                 buffer.create_post("channel", "Advice")
             self.assertNotIn("secret", str(caught.exception))
+
+class ImageChecks(unittest.TestCase):
+    def test_library_has_reviewed_free_sources_and_no_arbitrary_urls(self):
+        photos = images.read_library()
+        self.assertGreaterEqual(len(photos), 20)
+        self.assertEqual(len({p['id'] for p in photos}), len(photos))
+        self.assertTrue(all(images.approved_photo(p) for p in photos))
+        for url in ('http://images.pexels.com/photos/1/x.jpg', 'https://images.pexels.com.evil.test/photos/1/x.jpg', 'https://user@images.pexels.com/photos/1/x.jpg', 'https://127.0.0.1/photos/1/x.jpg', 'https://images.pexels.com:8443/photos/1/x.jpg'):
+            self.assertFalse(images.approved_photo({**photos[0], 'url': url}))
+
+    def test_topic_cooldown_control_and_unsupported_content(self):
+        item = {'id': 'x-example', 'source_id': 'example', 'text': 'Test your code and explain the README.'}
+        with patch.dict(os.environ, {'EDITORIAL_IMAGE_PERCENT': '100'}):
+            photo, reason = images.choose_image(item, 'x', {})
+            self.assertEqual(photo['topic'], 'coding')
+            state = {'confirmed_uploads': {'x:one': {'platform_key': 'x', 'image_id': photo['id'], 'confirmed_at': images.datetime.now(images.timezone.utc).isoformat()}}}
+            next_photo, _ = images.choose_image(item, 'x', state)
+            self.assertNotEqual(next_photo['id'], photo['id'])
+            self.assertIsNone(images.choose_image({'id': 'unknown', 'text': 'A beautiful sunset.'}, 'x', {})[0])
+        with patch.dict(os.environ, {'EDITORIAL_IMAGE_PERCENT': '0'}):
+            self.assertEqual(images.choose_image(item, 'x', {}), (None, 'text_control'))
+
+    def test_image_validation_rejects_broken_redirected_and_oversize_files(self):
+        import io
+        photo = images.read_library()[0]
+        data = io.BytesIO()
+        images.Image.new('RGB', (1200, 800)).save(data, format='JPEG')
+        response = MagicMock(status_code=200, headers={'Content-Type': 'image/jpeg'})
+        response.__enter__.return_value = response
+        response.iter_content.return_value = [data.getvalue()]
+        with patch.object(images.requests, 'get', return_value=response) as get:
+            self.assertTrue(images.validate_image(photo))
+            self.assertFalse(get.call_args.kwargs['allow_redirects'])
+            response.status_code = 302
+            self.assertFalse(images.validate_image(photo))
+            response.status_code = 200
+            response.headers['Content-Length'] = '5000000'
+            self.assertFalse(images.validate_image(photo))
+            response.headers.pop('Content-Length')
+            response.iter_content.return_value = [b'not an image']
+            self.assertFalse(images.validate_image(photo))
+        with patch.object(images.requests, 'get', side_effect=images.requests.Timeout()):
+            self.assertFalse(images.validate_image(photo))
+
+    def test_thread_image_is_on_root_with_alt_text(self):
+        assets = images.buffer_assets(images.read_library()[0])
+        response = Mock(status_code=200)
+        response.json.return_value = {'data': {'createPost': {'post': {'id': 'image-post', 'assets': [{'id': 'image-asset'}]}}}}
+        thread = [{'text': 'Opening'}, {'text': 'Useful detail'}]
+        with patch.object(buffer.requests, 'post', return_value=response) as request:
+            buffer.create_post('channel', 'Opening', thread, assets=assets)
+        payload = request.call_args.kwargs['json']['variables']['input']
+        self.assertEqual(payload['assets'], assets)
+        self.assertEqual(payload['metadata']['twitter']['thread'][0]['assets'], assets)
+        self.assertEqual(payload['metadata']['twitter']['thread'][1]['assets'], [])
+        self.assertIn('Illustrative stock photo', assets[0]['image']['metadata']['altText'])
+
+    def test_image_failure_publishes_text_and_uncertain_media_is_never_retried(self):
+        photo = images.read_library()[0]
+        for failure in ('download', 'rejection', 'uncertain'):
+            with self.subTest(failure=failure), tempfile.TemporaryDirectory() as folder:
+                path = Path(folder)/'queue.json'
+                path.write_text(json.dumps([{'id': 'x-test', 'source_id': 'test', 'text': 'Test your code before publishing.'}]))
+                state = {}
+                outcome = [buffer.MediaRejected('Image invalid'), {'id': 'text-only'}] if failure == 'rejection' else buffer.PublishUncertain('timeout') if failure == 'uncertain' else [{'id': 'text-only'}]
+                with patch.object(buffer, 'STATE', Path(folder)/'state.json'), patch.object(buffer, 'SAVE_AS_DRAFT', False), patch.object(images, 'choose_image', return_value=(photo, 'image_candidate')), patch.object(images, 'validate_image', return_value=failure != 'download'), patch.object(buffer, 'create_post', side_effect=outcome) as create:
+                    if failure == 'uncertain':
+                        with self.assertRaises(buffer.PublishUncertain):
+                            buffer.publish_queue(path, 'x', 'channel', 1, state)
+                        self.assertEqual(create.call_count, 1)
+                        self.assertTrue(state['pending_uploads'])
+                    else:
+                        buffer.publish_queue(path, 'x', 'channel', 1, state)
+                        self.assertEqual(create.call_count, 2 if failure == 'rejection' else 1)
+                        self.assertFalse(state['pending_uploads'])
+                        record = state['confirmed_uploads']['x:x-test']
+                        self.assertEqual(record['media_variant'], 'text')
+                        self.assertIsNone(record['image_id'])
 
 if __name__ == "__main__":
     unittest.main()
