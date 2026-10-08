@@ -52,5 +52,24 @@
   "x_thread_draft": [
     "x-03fbdbc4bea8c465dd95",
     "x-7173f2ea8acf1821b7ad"
-  ]
+  ],
+  "channel_latest_due": {
+    "6abe6f09ea19ca0bde441138": "2026-10-12T08:35:00Z",
+    "6abe70bfea19ca0bde441f84": "2026-10-12T08:35:00Z"
+  },
+  "x_guides": [
+    "workflow-check-v1",
+    "code-check-v1"
+  ],
+  "substack_guides": [
+    "workflow-check-v1",
+    "code-check-v1"
+  ],
+  "manual_revision_20261008": {
+    "description": "Reviewed two X threads and replaced two Substack Notes with practical copy; equivalent FAQ and code-check fallback exercises marked covered.",
+    "scheduled_slots": [
+      "2026-10-09T09:52:00+01:00",
+      "2026-10-12T09:35:00+01:00"
+    ]
+  }
 }

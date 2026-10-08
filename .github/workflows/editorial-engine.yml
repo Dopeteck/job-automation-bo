@@ -8,7 +8,7 @@ on:
         type: boolean
         default: false
   push:
-    branches: [feature/tech-career-editorial-v1]
+    branches: [main, feature/tech-career-editorial-v1]
     paths:
       - 'editorial/**'
       - 'publishers/buffer_publisher.py'
@@ -25,6 +25,7 @@ concurrency:
 
 jobs:
   editorial:
+    timeout-minutes: 10
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,6 +37,7 @@ jobs:
       - name: Check quota fallback and promotion rules
         run: python -m unittest editorial.test_editorial
       - name: Generate editorial drafts
+        if: ${{ github.event_name != 'push' }}
         env:
           GEMINI_API_KEY: ${{ github.event_name != 'push' && secrets.GEMINI_API_KEY || '' }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
@@ -46,6 +48,7 @@ jobs:
           SUBSTACK_URL: ${{ vars.SUBSTACK_URL || 'https://substack.com/@web3jobtechalphavault' }}
         run: python editorial/editorial_pipeline.py
       - name: Upload draft review package
+        if: ${{ github.event_name != 'push' }}
         uses: actions/upload-artifact@v4
         with:
           name: editorial-drafts
@@ -65,7 +68,7 @@ jobs:
           BUFFER_MAX_SUBSTACK_PER_RUN: "1"
         run: python publishers/buffer_publisher.py
       - name: Save drafts and posting history
-        if: ${{ always() }}
+        if: ${{ always() && github.event_name != 'push' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -74,3 +77,4 @@ jobs:
             git commit -m "chore: refresh editorial drafts and posting history"
             git push
           fi
+

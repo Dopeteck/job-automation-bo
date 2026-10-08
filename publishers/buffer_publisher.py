@@ -2,6 +2,7 @@
 """Queue X posts and Substack Notes through Buffer GraphQL API."""
 
 import json, os, re
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import requests
 
@@ -22,9 +23,20 @@ def load(path, default):
 
 def save(path, value):
     Path(path).parent.mkdir(parents=True, exist_ok=True)
-    Path(path).write_text(json.dumps(value, indent=2), encoding="utf-8")
+    target = Path(path)
+    temporary = target.with_suffix(target.suffix + ".tmp")
+    temporary.write_text(json.dumps(value, indent=2), encoding="utf-8")
+    temporary.replace(target)
 
-class ThreadQueueFull(RuntimeError):
+class PublishRejected(RuntimeError):
+    """Confirmed API rejection: retry on a later run is safe."""
+
+
+class PublishUncertain(RuntimeError):
+    """An unconfirmed mutation must not be automatically repeated."""
+
+
+class ThreadQueueFull(PublishRejected):
     pass
 
 def create_post(channel_id, text, thread=None):
@@ -42,19 +54,29 @@ def create_post(channel_id, text, thread=None):
             raise ValueError("Invalid X thread; leaving item unsent.")
         variables["input"]["text"] = thread[0]["text"]
         variables["input"]["metadata"] = {"twitter": {"thread": [{"text": part["text"]} for part in thread]}}
-    r = requests.post(API, headers={"Authorization":f"Bearer {KEY}","Content-Type":"application/json"}, json={"query":query,"variables":variables}, timeout=45)
-    r.raise_for_status()
-    body = r.json()
-    if body.get("errors"): raise RuntimeError(body["errors"])
+    try:
+        r = requests.post(API, headers={"Authorization":f"Bearer {KEY}","Content-Type":"application/json"}, json={"query":query,"variables":variables}, timeout=45)
+    except requests.RequestException:
+        raise PublishUncertain("Buffer response not received; reconcile in Buffer before retrying.") from None
+    if r.status_code in (400, 401, 403, 429):
+        raise PublishRejected(f"Buffer rejected request (HTTP {r.status_code}).")
+    if r.status_code >= 500:
+        raise PublishUncertain(f"Buffer service error (HTTP {r.status_code}); do not blindly retry.")
+    try:
+        body = r.json()
+    except ValueError:
+        raise PublishUncertain("Buffer response was not valid JSON.") from None
+    if body.get("errors"):
+        raise PublishUncertain("Buffer returned GraphQL errors; check whether the post was created.")
     result = body.get("data",{}).get("createPost",{})
     if result.get("message"):
         message = result["message"]
         if thread and not SAVE_AS_DRAFT and re.search(r"thread", message, re.I) and re.search(r"limit|one .*at a time|only .*one|free plan|upgrade", message, re.I):
             raise ThreadQueueFull("An X thread is already queued; try again after it publishes.")
-        raise RuntimeError(message)
+        raise PublishRejected("Buffer rejected this post; inspect the channel and its limits.")
     post = result.get("post",{})
     if not post.get("id"):
-        raise RuntimeError("Buffer did not confirm a created post; leaving item unsent.")
+        raise PublishUncertain("Buffer did not confirm a created post; reconcile before retrying.")
     return post
 
 def publish_queue(path, key, channel_id, limit, state):
@@ -70,9 +92,43 @@ def publish_queue(path, key, channel_id, limit, state):
     promo_key = f"{key}_promotion_weeks"
     promoted = set(state.get(promo_key, []))
     count = 0
+    pending = state.setdefault("pending_uploads", {})
+    if any(record.get("channel_id") == channel_id for record in pending.values()):
+        raise PublishUncertain("An earlier unconfirmed upload for this channel needs reconciliation.")
+    guide_key = key + "_guides"
+    guides = set(state.get(guide_key, []))
+    reports = state.setdefault("last_publish_report", {})
+    reports[key] = {"queued": 0, "skipped": 0, "draft": SAVE_AS_DRAFT}
+    latest = state.get("channel_latest_due", {}).get(channel_id)
+    if not SAVE_AS_DRAFT and latest:
+        try:
+            if datetime.fromisoformat(latest.replace("Z", "+00:00")) > datetime.now(timezone.utc) + timedelta(hours=48):
+                print(f"Holding {key}: existing queue already extends beyond 48 hours.")
+                reports[key]["reason"] = "queue_horizon"
+                save(STATE, state)
+                return
+        except (ValueError, TypeError):
+            pass
     for item in load(path, []):
         item_id = item.get("id"); text = (item.get("text") or "").strip()
         if not item_id or not text or item_id in sent: continue
+        pending_id = key + ":" + item_id
+        if pending_id in pending:
+            raise PublishUncertain("Unconfirmed earlier upload needs reconciliation; automatic retry held.")
+        guide = item.get("guide_id")
+        if guide and guide in guides:
+            reports[key]["skipped"] += 1
+            continue
+        published = item.get("source_published_at")
+        if published:
+            try:
+                age = datetime.now(timezone.utc) - datetime.fromisoformat(published.replace("Z", "+00:00"))
+                if age > timedelta(hours=72) or age < -timedelta(hours=1):
+                    reports[key]["skipped"] += 1
+                    continue
+            except (ValueError, TypeError):
+                reports[key]["skipped"] += 1
+                continue
         thread = [{"text": part["text"]} for part in item.get("thread", [])] or None
         promotion_week = item.get("promotion_week")
         if promotion_week and promotion_week in promoted:
@@ -82,11 +138,29 @@ def publish_queue(path, key, channel_id, limit, state):
                     part["text"] = "\n".join(line for line in part["text"].splitlines() if not re.search(r"telegram|t\.me/|VettedWeb3jobs", line, re.I)).strip()
                 text = thread[0]["text"]
             promotion_week = None
+        pending[pending_id] = {"channel_id": channel_id, "text": text,
+                               "attempted_at": datetime.now(timezone.utc).isoformat()}
+        save(STATE, state)
         try:
             post = create_post(channel_id, text, thread) if thread else create_post(channel_id, text)
-        except ThreadQueueFull as exc:
-            print(str(exc))
-            return
+        except PublishRejected as exc:
+            pending.pop(pending_id, None)
+            reports[key]["reason"] = type(exc).__name__
+            save(STATE, state)
+            if isinstance(exc, ThreadQueueFull):
+                print(str(exc))
+                return
+            raise
+        pending.pop(pending_id, None)
+        if guide:
+            guides.add(guide)
+            state[guide_key] = sorted(guides)
+        if post.get("dueAt"):
+            state.setdefault("channel_latest_due", {})[channel_id] = post["dueAt"]
+        state.setdefault("confirmed_uploads", {})[pending_id] = {
+            "post_id": post["id"], "channel_id": channel_id, "due_at": post.get("dueAt"), "text": text,
+            "confirmed_at": datetime.now(timezone.utc).isoformat(), "draft": SAVE_AS_DRAFT}
+        reports[key]["queued"] += 1
         sent.add(item_id); state[key] = sorted(sent)
         if promotion_week:
             promoted.add(promotion_week); state[promo_key] = sorted(promoted)
@@ -99,7 +173,22 @@ def publish_queue(path, key, channel_id, limit, state):
 def main():
     if not KEY: raise SystemExit("BUFFER_API_KEY is not configured.")
     state = load(STATE, {"x":[],"substack":[]})
-    publish_queue(DATA/"x_queue.json", "x", X_CHANNEL, MAX_X, state)
-    publish_queue(DATA/"substack_notes_queue.json", "substack", SUBSTACK_CHANNEL, MAX_SUBSTACK, state)
+    failures = []
+    for filename, platform, channel, limit in (
+        ("x_queue.json", "x", X_CHANNEL, MAX_X),
+        ("substack_notes_queue.json", "substack", SUBSTACK_CHANNEL, MAX_SUBSTACK)):
+        try:
+            publish_queue(DATA / filename, platform, channel, limit, state)
+        except Exception as exc:
+            # Don't let one channel failure suppress the other, or expose raw HTTP errors.
+            failures.append(platform)
+            print(f"::error::{platform} publishing requires attention ({type(exc).__name__}).")
+    save(STATE, state)
+    if os.getenv("GITHUB_STEP_SUMMARY"):
+        with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as summary:
+            summary.write("\n### Buffer delivery\n" + json.dumps(state.get("last_publish_report", {})) + "\n")
+    if failures:
+        raise SystemExit("Publishing needs attention: " + ", ".join(failures))
 
 if __name__ == "__main__": main()
+

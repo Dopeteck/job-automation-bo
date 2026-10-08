@@ -14,7 +14,15 @@ from publishers import buffer_publisher as buffer
 
 NEWS = [{"id": "source-1", "title": "AI workflow skills", "summary": "A practical workflow guide.", "source": "Example", "link": "https://example.com/skills"}]
 
-class EditorialChecks(unittest.TestCase):
+class IsolatedStateChecks(unittest.TestCase):
+    def setUp(self):
+        folder = tempfile.TemporaryDirectory()
+        self.addCleanup(folder.cleanup)
+        override = patch.object(buffer, "STATE", Path(folder.name) / "buffer_state.json")
+        override.start()
+        self.addCleanup(override.stop)
+
+class EditorialChecks(IsolatedStateChecks):
     def test_quota_timeout_and_malformed_ai_use_source_fallback(self):
         responses = [Mock(status_code=429, ok=False), Mock(status_code=503, ok=False), Mock(ok=True, status_code=200)]
         responses[-1].json.return_value = {"candidates": [{"finishReason": "STOP", "content": {"parts": [{"text": "not-json"}]}}]}
@@ -27,7 +35,7 @@ class EditorialChecks(unittest.TestCase):
                     result, mode = editor.build_outputs(NEWS, [])
                 self.assertEqual(mode, "fallback")
                 self.assertIn("Source: Example", json.dumps(result["x_posts"][0]))
-                self.assertIn("test one task", json.dumps(result["x_posts"][0]))
+                self.assertIn("fictional shop FAQ", json.dumps(result["x_posts"][0]))
                 self.assertNotIn("https://", json.dumps(result))
                 self.assertNotIn("secret-should-not-appear", log.getvalue())
                 self.assertEqual(call.call_count, 1)
@@ -52,7 +60,7 @@ class EditorialChecks(unittest.TestCase):
         self.assertEqual(editor.strip_telegram("Advice\nhttps://t.me/other"), "Advice")
 
     def test_gemini_prose_receives_named_attribution_and_length_limit(self):
-        packet = {"newsletter_markdown": "Career advice", "x_posts": [{"source_id": "source-1", "text": "🧑" * 300}], "substack_notes": [{"source_id": "source-1", "text": "Test one workflow and check the result."}]}
+        packet = {"newsletter_markdown": "Career advice", "x_posts": [{"source_id": "source-1", "text": "An AI demo needs checks. Try a missing answer before trusting an AI workflow. Write the expected reply, record the actual result and show where a person takes over."}], "substack_notes": [{"source_id": "source-1", "text": "Start with a fictional customer enquiry. Write down the expected answer before building the automation. Test an answered question, a missing policy and conflicting details. Record what the system actually replies, when it asks for clarification and when it hands control to a person. Put those results beside the demo. Explain one mistake you caught and one limitation that remains. This gives a reviewer something concrete to assess beyond a screenshot of a successful run."}]}
         response = Mock(ok=True, status_code=200)
         response.json.return_value = {"candidates": [{"finishReason": "STOP", "content": {"parts": [{"text": json.dumps(packet)}]}}]}
         with patch.object(editor, "GEMINI_KEY", "test-secret"), patch.object(editor.requests, "post", return_value=response), patch.object(editor, "cta", return_value=""):
@@ -128,7 +136,7 @@ class EditorialChecks(unittest.TestCase):
 
     def test_thread_api_keeps_root_and_replies_and_handles_free_limit(self):
         thread = [{"text": "First fact"}, {"text": "Second fact"}, {"text": "Specific task and check. Source: Example"}]
-        response = Mock()
+        response = Mock(status_code=200)
         response.json.return_value = {"data": {"createPost": {"post": {"id": "confirmed"}}}}
         with patch.object(buffer.requests, "post", return_value=response) as post:
             buffer.create_post("channel", "stale root", thread)
@@ -145,7 +153,8 @@ class EditorialChecks(unittest.TestCase):
             state = {}
             with patch.object(buffer, "SAVE_AS_DRAFT", False), patch.object(buffer, "create_post", side_effect=buffer.ThreadQueueFull("Already queued")):
                 buffer.publish_queue(path, "x", "channel", 1, state)
-            self.assertEqual(state, {})
+            self.assertEqual(state["pending_uploads"], {})
+            self.assertNotIn("x", state)
 
     def test_thread_pause_removes_promotion_from_every_reply(self):
         result = editor.fallback(NEWS, [])
@@ -166,5 +175,82 @@ class EditorialChecks(unittest.TestCase):
         headline_only[0]["summary"] = ""
         self.assertEqual(editor.fallback(headline_only, [])["x_posts"], [])
 
+class ReliabilityChecks(IsolatedStateChecks):
+    def test_no_word_chunking_and_no_silent_truncation(self):
+        packet = {"newsletter_markdown": "Review", "x_posts": [{"source_id": "source-1", "segments": ["A standalone practical point. Try an absent answer before trusting an AI workflow."]}], "substack_notes": [{"source_id": "source-1", "text": "A practical guide."}]}
+        result = editor.normalize_outputs(packet, NEWS, [])
+        self.assertNotIn("thread", result["x_posts"][0])
+        packet["x_posts"][0]["segments"] = ["word " * 100]
+        with self.assertRaises(editor.EditorialOutputError):
+            editor.normalize_outputs(packet, NEWS, [])
+        packet["x_posts"][0] = {"source_id": "source-1", "text": "word " * 100}
+        with self.assertRaises(editor.EditorialOutputError):
+            editor.normalize_outputs(packet, NEWS, [])
+
+    def test_cross_feed_deduplication_and_sent_filter(self):
+        original = {**NEWS[0], "title": "New AI workflow guide released", "link": "https://example.com/skills?utm_source=a"}
+        duplicate = {**original, "id": "source-2", "source": "Another", "link": "https://example.com/skills?utm_source=b"}
+        self.assertEqual(len(editor.dedupe_news([original, duplicate])), 1)
+        state = {"x": ["x-source-1"], "substack": ["note-source-1"]}
+        self.assertEqual(editor.unsent_news(NEWS, state), [])
+        state["substack"] = []
+        self.assertEqual(editor.unsent_news(NEWS, state), NEWS)
+
+    def test_fallback_does_not_republish_source_prose_or_repeat_guide(self):
+        second = {**NEWS[0], "id": "source-2"}
+        result = editor.fallback(NEWS + [second], [])
+        self.assertEqual(len(result["x_posts"]), 1)
+        self.assertNotIn(NEWS[0]["summary"], result["substack_notes"][0]["text"])
+        for post in result["x_posts"]:
+            self.assertTrue(all(editor.x_weight(p["text"]) <= 280 for p in post["thread"]))
+        unsupported = [{**NEWS[0], "title": "New monitor", "summary": "A display was announced."}]
+        self.assertEqual(editor.fallback(unsupported, [])["x_posts"], [])
+
+    def test_uncertain_upload_is_held_and_other_channel_can_continue(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "queue.json"
+            path.write_text(json.dumps([{"id": "new", "text": "Checked advice"}]))
+            state = {}
+            with patch.object(buffer, "STATE", Path(folder) / "state.json"), patch.object(buffer, "SAVE_AS_DRAFT", False), patch.object(buffer, "create_post", side_effect=buffer.PublishUncertain("timeout")) as create:
+                with self.assertRaises(buffer.PublishUncertain):
+                    buffer.publish_queue(path, "x", "channel", 1, state)
+                with self.assertRaises(buffer.PublishUncertain):
+                    buffer.publish_queue(path, "x", "channel", 1, state)
+                self.assertEqual(create.call_count, 1)
+            with patch.object(buffer, "STATE", Path(folder) / "state.json"), patch.object(buffer, "SAVE_AS_DRAFT", False), patch.object(buffer, "create_post", return_value={"id": "note-confirmed"}):
+                buffer.publish_queue(path, "substack", "other-channel", 1, state)
+            self.assertEqual(state["substack"], ["new"])
+            self.assertNotIn("x", state)
+
+    def test_stale_posts_and_repeated_fallback_guides_are_skipped(self):
+        from datetime import datetime, timezone, timedelta
+        rows = [{"id": "old", "text": "Old", "source_published_at": (datetime.now(timezone.utc) - timedelta(days=5)).isoformat()}, {"id": "repeat", "text": "Repeated", "guide_id": "used"}]
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / "queue.json"
+            path.write_text(json.dumps(rows))
+            state = {"x_guides": ["used"]}
+            with patch.object(buffer, "STATE", Path(folder) / "state.json"), patch.object(buffer, "SAVE_AS_DRAFT", False), patch.object(buffer, "create_post") as create:
+                buffer.publish_queue(path, "x", "channel", 1, state)
+            create.assert_not_called()
+
+    def test_thin_and_copied_posts_are_held(self):
+        thin = {"x_posts": [], "substack_notes": [{"source_id": "source-1", "text": "Headline only"}]}
+        with self.assertRaises(editor.EditorialOutputError):
+            editor.check_quality(thin, NEWS, [])
+        source = {**NEWS[0], "summary": " ".join(f"term{i}" for i in range(80))}
+        copied = {"x_posts": [], "substack_notes": [{"source_id": "source-1", "text": source["summary"]}]}
+        with self.assertRaises(editor.EditorialOutputError):
+            editor.check_quality(copied, [source], [])
+
+    def test_http_service_error_does_not_leak_payload_or_key(self):
+        with patch.object(buffer.requests, "post", return_value=Mock(status_code=503)):
+            with self.assertRaises(buffer.PublishUncertain):
+                buffer.create_post("channel", "Advice")
+        with patch.object(buffer.requests, "post", side_effect=buffer.requests.Timeout("secret")):
+            with self.assertRaises(buffer.PublishUncertain) as caught:
+                buffer.create_post("channel", "Advice")
+            self.assertNotIn("secret", str(caught.exception))
+
 if __name__ == "__main__":
     unittest.main()
+
