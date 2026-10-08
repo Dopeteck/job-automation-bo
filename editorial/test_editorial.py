@@ -12,7 +12,7 @@ from unittest.mock import patch, Mock
 from editorial import editorial_pipeline as editor
 from publishers import buffer_publisher as buffer
 
-NEWS = [{"id": "source-1", "title": "AI workflow skills", "summary": "A practical workflow guide.", "source": "Example", "link": "https://example.com/skills"}]
+NEWS = [{"id": "source-1", "title": "AI workflow skills", "summary": "A practical workflow guide explains how to handle missing information, check a customer enquiry against a policy, and pass unresolved questions to a person. It distinguishes successful results from failure cases, describes verification before deployment, and recommends keeping a record of expected and actual behaviour while developing a portfolio sample.", "source": "Example", "link": "https://example.com/skills"}]
 
 class IsolatedStateChecks(unittest.TestCase):
     def setUp(self):
@@ -232,6 +232,16 @@ class ReliabilityChecks(IsolatedStateChecks):
             with patch.object(buffer, "STATE", Path(folder) / "state.json"), patch.object(buffer, "SAVE_AS_DRAFT", False), patch.object(buffer, "create_post") as create:
                 buffer.publish_queue(path, "x", "channel", 1, state)
             create.assert_not_called()
+
+    def test_concrete_hooks_matching_platforms_and_source_evidence(self):
+        outputs = {"x_posts": [{"source_id": "source-1", "text": "Building software for an underserved audience requires sustainable monetization. " * 3}], "substack_notes": []}
+        with self.assertRaises(editor.EditorialOutputError):
+            editor.check_quality(outputs, NEWS, [])
+        with patch.object(editor, "GEMINI_KEY", "test"), patch.object(editor.requests, "post") as request:
+            with self.assertRaises(editor.GeminiUnavailable):
+                editor.ai_outputs([{**NEWS[0], "summary": "One fact."}], [])
+            request.assert_not_called()
+        self.assertFalse(editor.career_relevant("Founder launches AI dating service after prison", "AI helps users find jobs."))
 
     def test_thin_and_copied_posts_are_held(self):
         thin = {"x_posts": [], "substack_notes": [{"source_id": "source-1", "text": "Headline only"}]}
