@@ -9,7 +9,19 @@
       "summary": "Ryan chats with Erin Yepis, Senior Analyst at Stack Overflow, about the results from this year’s Annual Developer Survey, including the overwhelming daily usage of AI coding assistants despite lingering developer trust issues, the critical role of well-organized documentation in providing verifiable context to mitigate AI hallucinations, and the evolving ways developers are shifting away from active community posting in favor of passive knowledge consumption.",
       "link": "https://stackoverflow.blog/2026/10/06/tales-from-the-2026-developer-survey-results/",
       "published_at": "2026-10-06T17:00:00+00:00",
-      "score": 29,
+      "score": 26,
+      "evidence": "rss"
+    },
+    {
+      "id": "aa4eeca0fa3edf4aa73d",
+      "source": "GitHub Blog",
+      "domain": "github.blog",
+      "category": "tech",
+      "title": "Secret protection must scale with software",
+      "summary": "Developers aren’t becoming more careless; they’re being outpaced. The tools that let developers create more software should also take on more of the work of protecting it. The post Secret protection must scale with software appeared first on The GitHub Blog .",
+      "link": "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
+      "published_at": "2026-10-07T17:45:34+00:00",
+      "score": 25,
       "evidence": "rss"
     },
     {
@@ -21,7 +33,7 @@
       "summary": "Learn how OpenAI and Ironclad are training and evaluating AI agents on complex contracting workflows to advance computer use for professional work.",
       "link": "https://openai.com/index/advancing-computer-use-with-ironclad",
       "published_at": "2026-10-06T10:00:00+00:00",
-      "score": 26,
+      "score": 23,
       "evidence": "rss"
     },
     {
@@ -33,7 +45,7 @@
       "summary": "Jump Trading uses OpenAI to expand quantitative research. See how longer-running AI workflows combine multiple data sources with human review.",
       "link": "https://openai.com/index/jump-trading",
       "published_at": "2026-10-06T12:00:00+00:00",
-      "score": 25,
+      "score": 22,
       "evidence": "rss"
     },
     {
@@ -45,10 +57,10 @@
       "summary": "Below, we’ll highlight some of the results we found interesting about what's going in the life of technologists, their technologies, AI usage, and more.",
       "link": "https://stackoverflow.blog/2026/10/06/the-results-of-the-2026-developer-survey-are-here/",
       "published_at": "2026-10-06T14:00:00+00:00",
-      "score": 23,
+      "score": 20,
       "evidence": "article"
     }
   ],
   "jobs": [],
-  "drafting_mode": "gemini"
+  "drafting_mode": "fallback"
 }

@@ -1,33 +1,72 @@
 [
   {
-    "id": "x-fbe0eea7b43a19620fa0",
-    "source_id": "fbe0eea7b43a19620fa0",
-    "text": "Stack Overflow released its 2026 Developer Survey covering over 30000 technologists, showing that 73percent of daily AI coding tool users spend significant time leveraging these utilities.",
+    "id": "x-165fad68da33d8994875",
+    "source_id": "165fad68da33d8994875",
+    "text": "Ryan chats with Erin Yepis, Senior Analyst at Stack Overflow, about the results from this year’s Annual Developer Survey, including the overwhelming daily usage of AI coding assistants despite lingering developer trust issues, the critical",
     "thread": [
       {
-        "text": "Stack Overflow released its 2026 Developer Survey covering over 30000 technologists, showing that 73percent of daily AI coding tool users spend significant time leveraging these utilities."
+        "text": "Ryan chats with Erin Yepis, Senior Analyst at Stack Overflow, about the results from this year’s Annual Developer Survey, including the overwhelming daily usage of AI coding assistants despite lingering developer trust issues, the critical"
       },
       {
-        "text": "Daily users primarily apply coding agents and chatbots for generating code in familiar areas and debugging tasks, while avoiding complex production deployments."
+        "text": "role of well-organized documentation in providing verifiable context to mitigate AI hallucinations, and the evolving ways developers are shifting away from active community posting in favor of passive knowledge consumption."
       },
       {
-        "text": "To improve your workflow, practice writing explicit project specifications and documentation first, then verify any AI code outputs directly against those written guidelines.\n\nSource: Stack Overflow Blog"
+        "text": "compare the skills discussed here with three vacancies for your target role. Check location eligibility before applying.\n\nSource: Stack Overflow Blog"
+      }
+    ]
+  },
+  {
+    "id": "x-aa4eeca0fa3edf4aa73d",
+    "source_id": "aa4eeca0fa3edf4aa73d",
+    "text": "Developers aren’t becoming more careless; they’re being outpaced. The tools that let developers create more software should also take on more of the work of protecting it. The post Secret protection must scale with software appeared first",
+    "thread": [
+      {
+        "text": "Developers aren’t becoming more careless; they’re being outpaced. The tools that let developers create more software should also take on more of the work of protecting it. The post Secret protection must scale with software appeared first"
+      },
+      {
+        "text": "on The GitHub Blog ."
+      },
+      {
+        "text": "build a small example, add a clear README, and explain one decision you made. A sample you can explain is more useful than copied code.\n\nSource: GitHub Blog"
       }
     ]
   },
   {
     "id": "x-12abc4e68d67628b52b1",
     "source_id": "12abc4e68d67628b52b1",
-    "text": "OpenAI and Ironclad report training AI agents on complex contracting workflows to advance practical computer use in professional environments.",
+    "text": "Learn how OpenAI and Ironclad are training and evaluating AI agents on complex contracting workflows to advance computer use for professional work.",
     "thread": [
       {
-        "text": "OpenAI and Ironclad report training AI agents on complex contracting workflows to advance practical computer use in professional environments."
+        "text": "Learn how OpenAI and Ironclad are training and evaluating AI agents on complex contracting workflows to advance computer use for professional work."
       },
       {
-        "text": "These automated workflows aim to handle professional legal and contracting tasks reliably through structured human review integration."
+        "text": "Try this: test one task from your own workflow, check the result manually, and record where the tool helps or fails. Never use private client data in a public demo.\n\nSource: OpenAI News"
+      }
+    ]
+  },
+  {
+    "id": "x-3263012f4d06c382ed2d",
+    "source_id": "3263012f4d06c382ed2d",
+    "text": "Jump Trading uses OpenAI to expand quantitative research. See how longer-running AI workflows combine multiple data sources with human review.",
+    "thread": [
+      {
+        "text": "Jump Trading uses OpenAI to expand quantitative research. See how longer-running AI workflows combine multiple data sources with human review."
       },
       {
-        "text": "Test your understanding by mapping out a multi-step contract review workflow on paper, identifying where human checkpoints are strictly necessary.\n\nSource: OpenAI News"
+        "text": "Try this: test one task from your own workflow, check the result manually, and record where the tool helps or fails. Never use private client data in a public demo.\n\nSource: OpenAI News"
+      }
+    ]
+  },
+  {
+    "id": "x-fbe0eea7b43a19620fa0",
+    "source_id": "fbe0eea7b43a19620fa0",
+    "text": "Below, we’ll highlight some of the results we found interesting about what's going in the life of technologists, their technologies, AI usage, and more.",
+    "thread": [
+      {
+        "text": "Below, we’ll highlight some of the results we found interesting about what's going in the life of technologists, their technologies, AI usage, and more."
+      },
+      {
+        "text": "compare the skills discussed here with three vacancies for your target role. Check location eligibility before applying.\n\nSource: Stack Overflow Blog"
       }
     ]
   }

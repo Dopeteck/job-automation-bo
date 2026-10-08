@@ -1,12 +1,27 @@
 [
   {
-    "id": "note-fbe0eea7b43a19620fa0",
-    "source_id": "fbe0eea7b43a19620fa0",
-    "text": "Stack Overflow published the results of its 2026 Developer Survey, detailing widespread daily AI assistant use, changing remote work habits, and the growing importance of trusted context.\n\n• Over 30000 developers participated in the 2026 survey covering work and technology trends.\n• 73percent of respondents using AI coding assistants report daily usage.\n• 93percent of developers state that source attribution is required to trust AI outputs.\n\nDevelopers must rely heavily on clean documentation and clear project requirements to verify AI suggestions and avoid hallucinations.\n\nWrite a one-page project specification for a mock application, feed it to an AI coding assistant, and manually check every generated function against your written requirements.\n\nSource: Stack Overflow Blog"
+    "id": "note-165fad68da33d8994875",
+    "source_id": "165fad68da33d8994875",
+    "text": "Ryan chats with Erin Yepis, Senior Analyst at Stack Overflow, about the results from this year’s Annual Developer Survey, including the overwhelming daily usage of AI coding assistants despite lingering developer trust issues, the critical role of well-organized documentation in providing verifiable context to mitigate AI hallucinations, and the evolving ways developers are shifting away from active community posting in favor of passive knowledge consumption.\n\ncompare the skills discussed here with three vacancies for your target role. Check location eligibility before applying.\n\nSource: Stack Overflow Blog"
+  },
+  {
+    "id": "note-aa4eeca0fa3edf4aa73d",
+    "source_id": "aa4eeca0fa3edf4aa73d",
+    "text": "Developers aren’t becoming more careless; they’re being outpaced. The tools that let developers create more software should also take on more of the work of protecting it. The post Secret protection must scale with software appeared first on The GitHub Blog .\n\nbuild a small example, add a clear README, and explain one decision you made. A sample you can explain is more useful than copied code.\n\nSource: GitHub Blog"
   },
   {
     "id": "note-12abc4e68d67628b52b1",
     "source_id": "12abc4e68d67628b52b1",
-    "text": "OpenAI and Ironclad announced a collaboration focused on training and evaluating AI agents for complex contracting workflows.\n\n• The project evaluates AI agents on professional contracting tasks.\n• The initiative aims to advance practical computer use in professional workspaces.\n\nDemonstrates how domain-specific professional workflows are becoming key testing grounds for advanced agentic AI capabilities.\n\nDraft a fictional standard operating procedure for reviewing a simple software license, list the approval steps, and check them against a structured checklist.\n\nSource: OpenAI News"
+    "text": "Learn how OpenAI and Ironclad are training and evaluating AI agents on complex contracting workflows to advance computer use for professional work.\n\nTry this: test one task from your own workflow, check the result manually, and record where the tool helps or fails. Never use private client data in a public demo.\n\nSource: OpenAI News"
+  },
+  {
+    "id": "note-3263012f4d06c382ed2d",
+    "source_id": "3263012f4d06c382ed2d",
+    "text": "Jump Trading uses OpenAI to expand quantitative research. See how longer-running AI workflows combine multiple data sources with human review.\n\nTry this: test one task from your own workflow, check the result manually, and record where the tool helps or fails. Never use private client data in a public demo.\n\nSource: OpenAI News"
+  },
+  {
+    "id": "note-fbe0eea7b43a19620fa0",
+    "source_id": "fbe0eea7b43a19620fa0",
+    "text": "Below, we’ll highlight some of the results we found interesting about what's going in the life of technologists, their technologies, AI usage, and more.\n\ncompare the skills discussed here with three vacancies for your target role. Check location eligibility before applying.\n\nSource: Stack Overflow Blog"
   }
 ]
