@@ -108,7 +108,7 @@
       "post_id": "6ac820dd04f06b2e8f6f243f",
       "channel_id": "6abe70bfea19ca0bde441f84",
       "due_at": null,
-      "text": "Turning complex engineering and operational tasks from days of work into minutes requires standardizing specialist knowledge into automated pipelines.\n\nOpenAI reports that Oracle uses ChatGPT Work and Codex to build fast, repeatable workflows spanning engineering, operations, and recruiting.\n\n\u2022 Oracle integrates ChatGPT Work and Codex across multiple departments.\n\u2022 The implementation targets recruiting, engineering, and operations.\n\u2022 The stated goal is to convert days of specialist work into minutes.\n\nDemonstrating how enterprise tools compress multi-day operational cycles into minutes provides a benchmark for evaluating internal team productivity tooling.\n\nDraft a one-page process map for a repetitive engineering task your team handles, then write out a prompt template designed to cut its duration by half. Record the estimated time saved in a spreadsheet log.\n\nSource: OpenAI News",
+      "text": "Turning complex engineering and operational tasks from days of work into minutes requires standardizing specialist knowledge into automated pipelines.\n\nOpenAI reports that Oracle uses ChatGPT Work and Codex to build fast, repeatable workflows spanning engineering, operations, and recruiting.\n\n• Oracle integrates ChatGPT Work and Codex across multiple departments.\n• The implementation targets recruiting, engineering, and operations.\n• The stated goal is to convert days of specialist work into minutes.\n\nDemonstrating how enterprise tools compress multi-day operational cycles into minutes provides a benchmark for evaluating internal team productivity tooling.\n\nDraft a one-page process map for a repetitive engineering task your team handles, then write out a prompt template designed to cut its duration by half. Record the estimated time saved in a spreadsheet log.\n\nSource: OpenAI News",
       "confirmed_at": "2026-10-08T23:01:49.803873+00:00",
       "draft": true
     },
@@ -124,7 +124,7 @@
       "post_id": "6ac821b67d9f9f33011a208b",
       "channel_id": "6abe70bfea19ca0bde441f84",
       "due_at": null,
-      "text": "A bot that answers every question can make a terrible demo.\n\nTry one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.\n\nThe current context: OpenAI News published \u201cHow Jump Trading is scaling quant research with ChatGPT\u201d. The following is our practice exercise, not a finding from that report.\n\nBuild a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies. This is a practice exercise, not a claim about a particular product.\n\nMy rule: show the awkward cases beside the successful ones. A small demo with visible limits is easier to assess than a big promise with no test results.\n\nWhich reply would make you stop trusting a bot?\n\nSource: OpenAI News",
+      "text": "A bot that answers every question can make a terrible demo.\n\nTry one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.\n\nThe current context: OpenAI News published “How Jump Trading is scaling quant research with ChatGPT”. The following is our practice exercise, not a finding from that report.\n\nBuild a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies. This is a practice exercise, not a claim about a particular product.\n\nMy rule: show the awkward cases beside the successful ones. A small demo with visible limits is easier to assess than a big promise with no test results.\n\nWhich reply would make you stop trusting a bot?\n\nSource: OpenAI News",
       "confirmed_at": "2026-10-08T23:05:26.737729+00:00",
       "draft": true
     },
@@ -151,7 +151,7 @@
       "post_id": "6ac826ed7d9f9f33011aed97",
       "channel_id": "6abe70bfea19ca0bde441f84",
       "due_at": null,
-      "text": "The first session with a coding agent is crisp, but by session thirty, it starts contradicting itself.\n\nStack Overflow explains that agent failures are usually configuration failures, solved by building a robust harness with tiered context, a short session constitution, and durable decision logs.\n\n\u2022 Model capability is only a fraction of what determines long-term agent success.\n\u2022 Tiered context files prevent agents from blowing token budgets and forgetting module structures.\n\u2022 Append-only decision logs stop agents and humans from silently reversing load-bearing architecture choices.\n\nWithout a disciplined harness, code quality decays rapidly over months of automated edits.\n\nCreate a root CONTEXT.md file for a personal project outlining your build command and invariants. Test an agent session and record whether it adheres to the instructions without re-prompting.\n\nSource: Stack Overflow Blog",
+      "text": "The first session with a coding agent is crisp, but by session thirty, it starts contradicting itself.\n\nStack Overflow explains that agent failures are usually configuration failures, solved by building a robust harness with tiered context, a short session constitution, and durable decision logs.\n\n• Model capability is only a fraction of what determines long-term agent success.\n• Tiered context files prevent agents from blowing token budgets and forgetting module structures.\n• Append-only decision logs stop agents and humans from silently reversing load-bearing architecture choices.\n\nWithout a disciplined harness, code quality decays rapidly over months of automated edits.\n\nCreate a root CONTEXT.md file for a personal project outlining your build command and invariants. Test an agent session and record whether it adheres to the instructions without re-prompting.\n\nSource: Stack Overflow Blog",
       "confirmed_at": "2026-10-08T23:27:41.114607+00:00",
       "draft": true,
       "platform_key": "substack_draft_image_review_v1",
@@ -178,5 +178,35 @@
   ],
   "substack_draft_image_review_v1": [
     "note-238e9451b5c554620320"
-  ]
+  ],
+  "manual_media_updates": {
+    "x:2026-10-09-0952": {
+      "platform_key": "x",
+      "channel_id": "6abe6f09ea19ca0bde441138",
+      "title": "An AI agent that completes a task is only half a demo.",
+      "due_at": "2026-10-09T08:52:00+00:00",
+      "confirmed_at": "2026-10-08T23:33:16.561Z",
+      "image_id": "pexels-7718675",
+      "media_variant": "image",
+      "image_creator": "MART PRODUCTION",
+      "image_source_page": "https://www.pexels.com/photo/a-person-writing-on-a-planner-7718675/",
+      "image_license": "Pexels License",
+      "verification": "Scheduled card visibly displays the image after saving in Buffer",
+      "media_experiment": "stock-image-v1"
+    },
+    "substack:2026-10-09-0952": {
+      "platform_key": "substack",
+      "channel_id": "6abe70bfea19ca0bde441f84",
+      "title": "Imagine this: a customer asks about a refund.",
+      "due_at": "2026-10-09T08:52:00+00:00",
+      "confirmed_at": "2026-10-08T23:33:16.562Z",
+      "image_id": "pexels-7718675",
+      "media_variant": "image",
+      "image_creator": "MART PRODUCTION",
+      "image_source_page": "https://www.pexels.com/photo/a-person-writing-on-a-planner-7718675/",
+      "image_license": "Pexels License",
+      "verification": "Scheduled card visibly displays the image after saving in Buffer",
+      "media_experiment": "stock-image-v1"
+    }
+  }
 }

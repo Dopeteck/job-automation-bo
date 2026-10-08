@@ -61,12 +61,16 @@ def choose_image(item, key, state):
         return None, "text_control"
     text = " ".join(part.get("text", "") for part in item.get("thread", [])) or item.get("text", "")
     scores = {topic: len(re.findall(pattern, text, re.I)) for topic, pattern in TOPICS.items()}
+    # A coding-agent story is better illustrated by code than a generic planner.
+    if re.search(r"\b(coding|programming|debug|readme)\b", text, re.I):
+        scores["coding"] += 3
     topics = sorted((t for t in TOPICS if scores[t]), key=lambda t: scores[t], reverse=True)
     if not topics:
         return None, "no_topic_match"
     recent = set()
     cutoff = datetime.now(timezone.utc) - timedelta(days=14)
-    for upload in state.get("confirmed_uploads", {}).values():
+    usage = list(state.get("confirmed_uploads", {}).values()) + list(state.get("manual_media_updates", {}).values())
+    for upload in usage:
         if upload.get("platform_key") != key or not upload.get("image_id"):
             continue
         try:
