@@ -2,7 +2,7 @@
 """Build tech/career newsletter, X, and Substack Note drafts from fresh RSS + jobs."""
 
 from __future__ import annotations
-import hashlib, json, os, re
+import hashlib, json, os, re, sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlparse, urlunparse
@@ -13,6 +13,9 @@ import requests
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+from editorial.public_copy import clean_public_copy
 OUT = ROOT / "data" / "editorial"
 OUT.mkdir(parents=True, exist_ok=True)
 SOURCES = Path(__file__).with_name("sources.json")
@@ -68,7 +71,7 @@ def current_topic(title, summary, year=None):
     return True
 
 def editorial_prose(text):
-    text = without_links(strip_telegram(text))
+    text = clean_public_copy(without_links(strip_telegram(text)))
     text = re.sub(r"(?:^|\n)\s*(?:application |portfolio |learning )?idea\s*:\s*", "", text, flags=re.I)
     return text.strip()
 
@@ -93,7 +96,6 @@ def news_thread(segments, item):
     clean_segments = [re.sub(r"(?:^|\s)(?:\*\*)?Sources?\s*:[^\n]*", "", text, flags=re.I).strip() for text in clean_segments]
     if not clean_segments or any(not text for text in clean_segments):
         raise EditorialOutputError("Empty thread segment.")
-    clean_segments[-1] += "\n\nSource: " + source_name(item)
     if any(x_weight(text) > 280 for text in clean_segments):
         raise EditorialOutputError("Thread segment exceeds X limit.")
     return [{"text": text} for text in clean_segments]
@@ -316,7 +318,7 @@ def brief_action(item):
     return "Try: build a small sample of one relevant skill."
 
 def fit_news_x(body, item, takeaway=""):
-    suffix = ("\n" + takeaway if takeaway else "") + "\nSource: " + source_name(item)
+    suffix = "\n" + takeaway if takeaway else ""
     return fit_x(body, "", suffix.strip())
 
 def practical_fallback(item):
@@ -333,7 +335,7 @@ def practical_fallback(item):
     if re.search(r"\b(ai|agents?|automation|workflows?|gemini|gpt|chatgpt|codex)\b", text):
         return "workflow-check-v1", [
             "A bot that answers every question can make a terrible demo.\n\nTry one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.",
-            "Build a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies. This is a practice exercise, not a claim about a particular product.",
+            "Build a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies.",
             "My rule: show the awkward cases beside the successful ones. A small demo with visible limits is easier to assess than a big promise with no test results.\n\nWhich reply would make you stop trusting a bot?"
         ]
     if re.search(r"\b(job|jobs|hiring|salary|remote|interview|resume)\b", text):
@@ -356,10 +358,8 @@ def fallback(news, jobs):
         if guide_id in used_guides:
             continue
         used_guides.add(guide_id)
-        # The fallback is explicitly an editorial exercise, not an invented news summary.
-        title = without_links(n["title"])
-        context = f"The current context: {source_name(n)} published “{title}”. The following is our practice exercise, not a finding from that report."
-        note = segments[0] + "\n\n" + context + "\n\n" + segments[1] + "\n\n" + segments[2] + "\n\nSource: " + source_name(n)
+        # The fallback gives standalone advice; source evidence stays internal.
+        note = "\n\n".join(segments)
         thread = news_thread(segments, n)
         common = {"source_id": n["id"], "source_published_at": n.get("published_at"), "guide_id": guide_id}
         xq.append({**common, "id": "x-" + n["id"], "text": thread[0]["text"], "thread": thread})
@@ -401,7 +401,7 @@ Return a JSON object with:
 newsletter_markdown: a string with an opening, sourced developments, practical career steps and jobs only if supplied;
 x_posts: up to 5 objects containing source_id and segments (1-3 complete posts; prefer one strong standalone post when the topic fits);
 substack_notes: up to 5 objects containing source_id, hook, summary, key_points (1-3 factual bullet points), why_it_matters, and practical_idea.
-All published text must stand alone: NO URLs, no 'read the article' or 'click for details'. Code appends the source NAME using source_id.
+All published text must stand alone: NO URLs, no 'read the article' or 'click for details'. Keep source IDs internal. Do not add Source/Sources footers, citations, image descriptions, photo credits or explanations that an example is illustrative. Introduce hypothetical advice naturally, such as 'Imagine' or 'Build a fictional shop FAQ', without a separate disclaimer.
 Use article_text when available; otherwise only use the supplied RSS summary. Never imply you read an unavailable full article.
 X: each segment at most 230 characters. Open with a specific reader problem, surprising verified fact, or defensible opinion. A little tension is welcome: a demo that breaks, an application wasted, or a difficult tradeoff. Ground it in the current development and end with a useful action. Use threads only when each reply earns its space; never slice an article into chunks. Each segment must add useful substance, not repeat a headline. Do not add attribution, hashtags, numbering or Markdown.
 Today's date is supplied in the packet. Lead with a recent development. Never frame 2024/2025 or any past year's findings as new. Older years may appear ONLY as background to an explicit source-backed current-year/future event; name that current event in the first segment and Note summary.
@@ -468,7 +468,6 @@ def normalize_outputs(outputs, news, jobs):
     newsletter = editorial_prose(outputs["newsletter_markdown"])
     if not newsletter:
         raise EditorialOutputError("Empty newsletter.")
-    newsletter += "\n\nSources: " + ", ".join(dict.fromkeys(source_name(item) for item in sources.values()))
     result = {"newsletter_markdown": newsletter}
     for key, prefix in (("x_posts", "x-"), ("substack_notes", "note-")):
         rows = outputs.get(key)
@@ -518,11 +517,9 @@ def normalize_outputs(outputs, news, jobs):
             if older_years and (not any(y >= local_today().year for y in lead_years) or not has_current_evidence):
                 raise EditorialOutputError("Historical findings lack an explicit current hook.")
             if key == "x_posts" and thread is None:
-                if x_weight(text + "\nSource: " + source_name(sources[source_id])) > 280:
+                if x_weight(text) > 280:
                     raise EditorialOutputError("Standalone post exceeds X limit; refusing truncation.")
                 text = fit_news_x(text, sources[source_id], idea)
-            elif key == "substack_notes":
-                text += "\n\nSource: " + source_name(sources[source_id])
             seen.add(source_id)
             saved = {"id": prefix + source_id, "source_id": source_id, "text": text, "source_published_at": source.get("published_at")}
             if thread:

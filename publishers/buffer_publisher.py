@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from publishers import image_library
+from editorial.public_copy import clean_public_copy
 DATA = ROOT / "data" / "editorial"
 STATE = DATA / "buffer_state.json"
 API = "https://api.buffer.com"
@@ -46,6 +47,7 @@ class MediaRejected(PublishRejected):
     """Explicit media rejection, with no post created: one text retry is safe."""
 
 def create_post(channel_id, text, thread=None, assets=None):
+    text = clean_public_copy(text)
     query = """
     mutation CreatePost($input: CreatePostInput!) {
       createPost(input: $input) {
@@ -60,6 +62,9 @@ def create_post(channel_id, text, thread=None, assets=None):
     if thread:
         if not isinstance(thread, list) or len(thread) < 2 or any(not isinstance(part, dict) or not isinstance(part.get("text"), str) or not part["text"].strip() for part in thread):
             raise ValueError("Invalid X thread; leaving item unsent.")
+        thread = [{**part, "text": clean_public_copy(part["text"])} for part in thread]
+        if any(not part["text"] for part in thread):
+            raise ValueError("Empty X thread after copy cleanup; leaving item unsent.")
         variables["input"]["text"] = thread[0]["text"]
         variables["input"]["metadata"] = {"twitter": {"thread": [{"text": part["text"]} for part in thread]}}
         if assets:
@@ -127,7 +132,7 @@ def publish_queue(path, key, channel_id, limit, state):
         except (ValueError, TypeError):
             pass
     for item in load(path, []):
-        item_id = item.get("id"); text = (item.get("text") or "").strip()
+        item_id = item.get("id"); text = clean_public_copy(item.get("text") or "")
         if not item_id or not text or item_id in sent: continue
         pending_id = key + ":" + item_id
         if pending_id in pending:
@@ -146,7 +151,7 @@ def publish_queue(path, key, channel_id, limit, state):
             except (ValueError, TypeError):
                 reports[key]["skipped"] += 1
                 continue
-        thread = [{"text": part["text"]} for part in item.get("thread", [])] or None
+        thread = [{"text": clean_public_copy(part["text"])} for part in item.get("thread", [])] or None
         promotion_week = item.get("promotion_week")
         if promotion_week and promotion_week in promoted:
             text = "\n".join(line for line in text.splitlines() if not re.search(r"telegram|t\.me/|VettedWeb3jobs", line, re.I)).strip()

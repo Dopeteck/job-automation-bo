@@ -122,7 +122,6 @@ def validate_image(photo):
 
 
 def buffer_assets(photo):
-    # Keep licensing evidence internally; these stock photos don't require links
-    # in the published text. Alt text identifies them as illustrative imagery.
+    # Keep licensing evidence internal; alt text describes only what is visible.
     return [{"image": {"url": photo["url"], "metadata": {
-        "altText": "Illustrative stock photo: " + photo["alt"]}}}]
+        "altText": photo["alt"]}}}]

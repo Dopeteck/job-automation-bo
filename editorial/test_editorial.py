@@ -39,7 +39,7 @@ class EditorialChecks(IsolatedStateChecks):
                 with contextlib.redirect_stdout(log):
                     result, mode = editor.build_outputs(NEWS, [])
                 self.assertEqual(mode, "fallback")
-                self.assertIn("Source: Example", json.dumps(result["x_posts"][0]))
+                self.assertNotIn("Source:", json.dumps(result["x_posts"][0]))
                 self.assertIn("fictional shop FAQ", json.dumps(result["x_posts"][0]))
                 self.assertNotIn("https://", json.dumps(result))
                 self.assertNotIn("secret-should-not-appear", log.getvalue())
@@ -73,7 +73,7 @@ class EditorialChecks(IsolatedStateChecks):
         self.assertEqual(mode, "gemini")
         self.assertLessEqual(editor.x_weight(result["x_posts"][0]["text"]), 280)
         for key in ("x_posts", "substack_notes"):
-            self.assertTrue(result[key][0]["text"].endswith("Source: Example"))
+            self.assertNotIn("Source:", result[key][0]["text"])
             self.assertNotIn("https://", result[key][0]["text"])
 
     def test_article_extraction_ignores_page_chrome_and_falls_back_on_failure(self):
@@ -94,14 +94,14 @@ class EditorialChecks(IsolatedStateChecks):
         result = editor.normalize_outputs(packet, NEWS, [])
         self.assertNotIn("https://", json.dumps(result))
         self.assertIn("Workflow advice", result["x_posts"][0]["text"])
-        self.assertIn("Sources: Example", result["newsletter_markdown"])
+        self.assertNotIn("Sources:", result["newsletter_markdown"])
 
     def test_structured_posts_keep_key_points_idea_and_single_attribution(self):
         packet = {"newsletter_markdown": "Career advice", "x_posts": [{"source_id": "source-1", "segments": ["Source-backed finding.", "A second verified detail with practical relevance.", "Idea: Test one real workflow and record one correction."]}], "substack_notes": [{"source_id": "source-1", "summary": "A workflow guide.", "key_points": ["First verified point.", "Second verified point."], "why_it_matters": "Useful for practice.", "practical_idea": "Try a small task and record one correction."}]}
         result = editor.normalize_outputs(packet, NEWS, [])
         self.assertNotIn("Idea:", json.dumps(result))
         self.assertIn("record one correction", result["x_posts"][0]["thread"][-1]["text"])
-        self.assertEqual(json.dumps(result["x_posts"][0]).count("Source: Example"), 1)
+        self.assertNotIn("Source:", json.dumps(result["x_posts"][0]))
         note = result["substack_notes"][0]["text"]
         self.assertIn("• First verified point.", note)
         self.assertIn("Useful for practice.", note)
@@ -147,7 +147,7 @@ class EditorialChecks(IsolatedStateChecks):
             buffer.create_post("channel", "stale root", thread)
         payload = post.call_args.kwargs["json"]["variables"]["input"]
         self.assertEqual(payload["text"], thread[0]["text"])
-        self.assertEqual(payload["metadata"]["twitter"]["thread"], thread)
+        self.assertEqual(payload["metadata"]["twitter"]["thread"], [{"text": editor.clean_public_copy(p["text"])} for p in thread])
         response.json.return_value = {"data": {"createPost": {"message": "Free plan allows only one scheduled thread at a time"}}}
         with patch.object(buffer.requests, "post", return_value=response), patch.object(buffer, "SAVE_AS_DRAFT", False):
             with self.assertRaises(buffer.ThreadQueueFull):
@@ -320,7 +320,7 @@ class ImageChecks(unittest.TestCase):
         self.assertEqual(payload['assets'], assets)
         self.assertEqual(payload['metadata']['twitter']['thread'][0]['assets'], assets)
         self.assertEqual(payload['metadata']['twitter']['thread'][1]['assets'], [])
-        self.assertIn('Illustrative stock photo', assets[0]['image']['metadata']['altText'])
+        self.assertEqual(assets[0]['image']['metadata']['altText'], images.read_library()[0]['alt'])
 
     def test_image_failure_publishes_text_and_uncertain_media_is_never_retried(self):
         photo = images.read_library()[0]
@@ -343,6 +343,12 @@ class ImageChecks(unittest.TestCase):
                         record = state['confirmed_uploads']['x:x-test']
                         self.assertEqual(record['media_variant'], 'text')
                         self.assertIsNone(record['image_id'])
+
+class PublicCopyTests(unittest.TestCase):
+    def test_removes_public_footers_without_erasing_body_context(self):
+        body = "OpenAI announced a collaboration. Imagine a fictional shop FAQ."
+        raw = body + "\n\nSource: OpenAI News. The shop scenario is an illustrative exercise.\nPhoto credit: Photographer\nThis image is an illustrative stock photo."
+        self.assertEqual(editor.clean_public_copy(raw), body)
 
 if __name__ == "__main__":
     unittest.main()

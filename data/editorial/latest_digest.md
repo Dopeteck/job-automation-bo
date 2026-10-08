@@ -27,5 +27,3 @@ Oracle describes using ChatGPT Work and Codex to transform specialist workflows 
 Key lessons from Oracle include providing prototypes instead of specifications, setting strict system design guardrails, and working alongside the code to maintain maintainability.
 
 Practice exercise: Pick a repetitive manual task you do during debugging, such as gathering logs or checking error states. Write a single prompt template that retrieves the same information. Test it against three past incidents and record any discrepancies between your manual notes and the tool output.
-
-Sources: OpenAI News, GitHub Blog, Stack Overflow Blog
