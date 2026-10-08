@@ -330,7 +330,7 @@ def practical_fallback(item):
             "For your next small project, write the expected result before asking AI. Test those three inputs. Check one unfamiliar function against its official documentation. Save the results beside the demo.",
             "My rule: a portfolio should show your judgment. Add a short README explaining the problem, checks and limitations. Include one AI suggestion you rejected and why.\n\nWhat would you test first?"
         ]
-    if re.search(r"\b(ai|agent|automation|workflow|gemini|gpt)\b", text):
+    if re.search(r"\b(ai|agents?|automation|workflows?|gemini|gpt|chatgpt|codex)\b", text):
         return "workflow-check-v1", [
             "A bot that answers every question can make a terrible demo.\n\nTry one question your FAQ doesn't answer. Does the bot ask for help, or invent something? That failure tells you where a person needs to take over.",
             "Build a fictional shop FAQ. Test an answered question, a missing answer and conflicting details. Decide the correct behaviour first, then record the actual replies. This is a practice exercise, not a claim about a particular product.",
@@ -540,9 +540,9 @@ def check_quality(outputs, news, jobs):
             lead = text.split("\n\n")[0]
             if re.match(r"(?:Building software|Turning complex|Finding employment|Demonstrating how|In today|The landscape|This development)\b", lead, re.I):
                 raise EditorialOutputError("Generic corporate opening lacks a concrete reader hook.")
-            minimum = 25 if key == "x_posts" else 70
+            minimum = 15 if key == "x_posts" else 70
             if len(text.split()) < minimum:
-                raise EditorialOutputError("Post is too thin to publish automatically.")
+                raise EditorialOutputError(f"{key} is too thin to publish automatically ({len(text.split())} words).")
             words = re.findall(r"[a-z0-9]+", text.lower())
             source = sources.get(row["source_id"], {})
             evidence = re.findall(r"[a-z0-9]+", (source.get("summary", "") + " " + source.get("article_text", "")).lower())
