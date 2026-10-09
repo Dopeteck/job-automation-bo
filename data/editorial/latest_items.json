@@ -1,6 +1,18 @@
 {
   "news": [
     {
+      "id": "0cc7e8319432b940c301",
+      "source": "GitHub Blog",
+      "domain": "github.blog",
+      "category": "tech",
+      "title": "Hack the World: Why hackathons are still the best place to learn to build",
+      "summary": "The barriers to building software have collapsed. Today, anyone can build. Hackathons are a great place to start learning. The post Hack the World: Why hackathons are still the best place to learn to build appeared first on The GitHub Blog .",
+      "link": "https://github.blog/developer-skills/career-growth/hack-the-world-why-hackathons-are-still-the-best-place-to-learn-to-build/",
+      "published_at": "2026-10-09T16:00:00+00:00",
+      "score": 28,
+      "evidence": "article"
+    },
+    {
       "id": "c767ce637ed01167226f",
       "source": "OpenAI News",
       "domain": "openai.com",
@@ -9,46 +21,34 @@
       "summary": "Across recruiting, engineering, and operations, Oracle turns specialist knowledge into fast, repeatable workflows with ChatGPT Work and Codex.",
       "link": "https://openai.com/index/oracle",
       "published_at": "2026-10-08T16:00:00+00:00",
-      "score": 26,
+      "score": 23,
       "evidence": "article"
     },
     {
-      "id": "aa4eeca0fa3edf4aa73d",
-      "source": "GitHub Blog",
-      "domain": "github.blog",
-      "category": "tech",
-      "title": "Secret protection must scale with software",
-      "summary": "Developers aren’t becoming more careless; they’re being outpaced. The tools that let developers create more software should also take on more of the work of protecting it. The post Secret protection must scale with software appeared first on The GitHub Blog .",
-      "link": "https://github.blog/ai-and-ml/github-copilot/secret-protection-must-scale-with-software/",
-      "published_at": "2026-10-07T17:45:34+00:00",
-      "score": 22,
-      "evidence": "article"
-    },
-    {
-      "id": "3263012f4d06c382ed2d",
-      "source": "OpenAI News",
-      "domain": "openai.com",
-      "category": "ai",
-      "title": "How Jump Trading is scaling quant research with ChatGPT",
-      "summary": "Jump Trading uses OpenAI to expand quantitative research. See how longer-running AI workflows combine multiple data sources with human review.",
-      "link": "https://openai.com/index/jump-trading",
-      "published_at": "2026-10-06T12:00:00+00:00",
-      "score": 22,
-      "evidence": "article"
-    },
-    {
-      "id": "238e9451b5c554620320",
+      "id": "318183f1d2d4c5087fe9",
       "source": "Stack Overflow Blog",
       "domain": "stackoverflow.blog",
       "category": "career",
-      "title": "Part 6: An operating system for coding agents: the disciplined build",
-      "summary": "Coding agents are great for an afternoon and mediocre for a quarter. Here’s the small set of files and rules — with the actual configs — that keeps quality from decaying across months and thousands of edits, whether you run one agent or a fleet of them on the same repo.",
-      "link": "https://stackoverflow.blog/2026/10/07/part-6-an-operating-system-for-coding-agents-the-disciplined-build/",
-      "published_at": "2026-10-07T20:09:22+00:00",
-      "score": 20,
+      "title": "A Treatise on Model Oriented Programming Languages",
+      "summary": "",
+      "link": "https://stackoverflow.blog/2026/10/09/a-treatise-on-model-oriented-programming-languages/",
+      "published_at": "2026-10-09T14:59:04+00:00",
+      "score": 23,
+      "evidence": "article"
+    },
+    {
+      "id": "c03de72ab9423b213e68",
+      "source": "Stack Overflow Blog",
+      "domain": "stackoverflow.blog",
+      "category": "career",
+      "title": "Taking a look under your agent’s hood",
+      "summary": "Ryan is joined by Yanbing Li, Chief Product Officer at Datadog, to talk about applying observability to non-deterministic AI agents, blurring the boundaries between software development and production workflows, and navigating emerging challenges in AI security and tokenomics.",
+      "link": "https://stackoverflow.blog/2026/10/09/taking-a-look-under-your-agent-s-hood/",
+      "published_at": "2026-10-09T07:40:00+00:00",
+      "score": 23,
       "evidence": "article"
     }
   ],
   "jobs": [],
-  "drafting_mode": "gemini"
+  "drafting_mode": "fallback"
 }
