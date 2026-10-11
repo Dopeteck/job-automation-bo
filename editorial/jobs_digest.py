@@ -43,6 +43,9 @@ def audience_eligible(job):
     if job.remote_scope not in {'worldwide', 'africa'} or not job.africa_eligible:
         return False
     if job.remote_scope == 'worldwide':
+        country = r'(?:united states|u\.?s\.?|u\.?k\.?|canada|colombia|brazil|india|philippines|germany|austria|argentina|mexico|poland|australia|europe|united kingdom)'
+        conflict = re.search(r'\bremote\b[^.!?]{0,28}\b'+country+r'\b|\b'+country+r'\b[^.!?]{0,12}\(?remote\b|within the country of employment', job.description, re.I)
+        if conflict: return False
         conflict = re.search(r'\b(?:remote\s*[-,:]\s*|remote,\s*|must (?:reside|be based) in\s+|based in\s+|eligible to work in\s+)(?:the\s+)?(?:united states|u\.?s\.?|canada|colombia|brazil|india|philippines|europe|united kingdom)\b', job.description, re.I)
         if conflict: return False
         location = re.search(r'\b(worldwide|anywhere|global|all countries)\b', job.location, re.I)
@@ -71,8 +74,8 @@ def role_evidence(job):
     pieces = re.split(r'(?<=[.!?;])\s+|[•\n]', text)
     relevant = [piece.strip() for piece in pieces if 35 <= len(piece.strip()) <= 600
                 and re.search(r"\b(you will|you'll|responsibilities|requirements|experience with|proficiency|must have|your role|your work|you bring|you have)\b", piece, re.I)
-                and not re.search(r'headquarters|about us|about the company|quiet place|home office', piece, re.I)]
-    return shorten(' '.join(relevant[0].split()[:22]), 200) if relevant else ''
+                and not re.search(r'headquarters|about us|about the company|quiet place|home office|our culture|recognized for your growth|opportunity to learn|share your preferences', piece, re.I)]
+    return shorten(' '.join(relevant[0].split()[:22]) + ('…' if len(relevant[0].split()) > 22 else ''), 200) if relevant else ''
 
 
 def detail(job):

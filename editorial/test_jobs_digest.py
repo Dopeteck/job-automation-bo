@@ -49,3 +49,11 @@ class JobsDigestTests(unittest.TestCase):
         opening=editorial_opening(self.pool(),datetime(2026,10,11,tzinfo=timezone.utc))
         self.assertIn('Imagine',opening)
         self.assertNotIn('I applied',opening)
+
+    def test_feed_worldwide_tag_cannot_override_job_country(self):
+        for text in ['Fully remote in the UK.', 'This is a remote role in the US.', 'Headquarters: India (remote).', 'Headquarters: Argentina, Remote.', 'Headquarters: Berlin, Germany; Remote, Germany.', 'Most roles are done from anywhere within the country of employment.']:
+            with self.subTest(text=text):
+                self.assertFalse(eligible_for_digest(self.job(location='Anywhere in the World',description=text),datetime.now(timezone.utc)))
+    def test_culture_copy_cannot_fill_job_reason(self):
+        job=self.job(description='Our culture of flexibility means you will be recognized for your growth and impact.')
+        self.assertFalse(select_digest_jobs([job],datetime.now(timezone.utc)))
