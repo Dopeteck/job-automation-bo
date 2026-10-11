@@ -13,6 +13,7 @@ from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
+from editorial.quality_jobs.classify import classify
 from editorial.quality_jobs.config import Settings
 from editorial.quality_jobs.sources import collect
 from editorial.quality_jobs.pipeline import process
@@ -25,76 +26,120 @@ TELEGRAM = 'https://t.me/RemoteJobsTechHub'
 TAGLINE = 'Curated remote AI, tech & Web3 jobs. Location restrictions clear; Africa-eligible roles flagged.'
 
 
+MIN_ROLES = 8
+MAX_ROLES = 10
+SPECIALIST = re.compile(r'\b(physician|medical doctor|surgeon|clinical|atomistic|molecular dynamics|density functional|DFT|postdoctoral|ph\.?d|principal scientist)\b', re.I)
+COMMISSION = re.compile(r'\b(commission|OTE|on.target earnings)\b', re.I)
+
+
+def audience_eligible(job):
+    if SPECIALIST.search(job.title + ' ' + job.description):
+        return False
+    # High-risk pay arrangements require a separate employer review; hold them.
+    if COMMISSION.search(job.salary + ' ' + job.description):
+        return False
+    if job.company.lower() == 'credit wellness, llc':
+        return False
+    if job.remote_scope not in {'worldwide', 'africa'} or not job.africa_eligible:
+        return False
+    if job.remote_scope == 'worldwide':
+        conflict = re.search(r'\b(?:remote\s*[-,:]\s*|remote,\s*|must (?:reside|be based) in\s+|based in\s+|eligible to work in\s+)(?:the\s+)?(?:united states|u\.?s\.?|canada|colombia|brazil|india|philippines|europe|united kingdom)\b', job.description, re.I)
+        if conflict: return False
+        location = re.search(r'\b(worldwide|anywhere|global|all countries)\b', job.location, re.I)
+        hiring = re.search(r'\b(?:work|hire|hiring|apply|applicants|candidates)\b[^.!?]{0,45}\b(?:anywhere in the world|worldwide|all countries)\b', job.description, re.I)
+        if not location and not hiring:
+            return False
+    return True
+
+
 def eligible_for_digest(job, now):
     published = job.published_at
     if published and published.tzinfo is None:
         published = published.replace(tzinfo=timezone.utc)
-    # Company claims such as "customers worldwide" are not hiring eligibility.
-    if job.remote_scope == 'worldwide':
-        explicit_location = re.search(r'\b(worldwide|anywhere|global|all countries)\b', job.location, re.I)
-        explicit_hiring = re.search(r'\b(?:work|hire|hiring|apply|applicants|candidates)\b[^.!?]{0,45}\b(?:anywhere in the world|worldwide|all countries)\b', job.description, re.I)
-        if not explicit_location and not explicit_hiring:
-            return False
-    return bool(published and now - timedelta(days=7) <= published <= now
-                and job.link_status in {'200', 'redirect'}
-                and job.remote_scope != 'unknown')
+    return bool(audience_eligible(job) and published and now - timedelta(days=7) <= published <= now
+                and job.link_status in {'200', 'redirect'})
+
+
+def salary_text(value):
+    value = clean_text(value)
+    value = re.sub(r'(\$[\d,.]+)\s*[–—-]\s*\1(?=\D|$)', r'\1', value)
+    return value.replace('/hourly', '/hour')
+
+
+def role_evidence(job):
+    text = clean_text(job.description, 12000)
+    pieces = re.split(r'(?<=[.!?;])\s+|[•\n]', text)
+    relevant = [piece.strip() for piece in pieces if 35 <= len(piece.strip()) <= 600
+                and re.search(r"\b(you will|you'll|responsibilities|requirements|experience with|proficiency|must have|your role|your work|you bring|you have)\b", piece, re.I)
+                and not re.search(r'headquarters|about us|about the company|quiet place|home office', piece, re.I)]
+    return shorten(' '.join(relevant[0].split()[:22]), 200) if relevant else ''
 
 
 def detail(job):
-    location = shorten(job.location, 110) or job.remote_scope
-    level = {'entry': 'Entry level', 'senior': 'Senior'}.get(job.experience_level, 'Check experience requirements')
-    flag = ' | Africa eligible' if job.africa_eligible else ''
-    return f'{location}{flag}\n{level} | {shorten(job.salary, 90) if job.salary else "Pay not disclosed"}'
+    location = shorten(job.location, 100)
+    if location.lower() in {'', 'remote'}:
+        location = 'Worldwide' if job.remote_scope == 'worldwide' else 'Africa — check listed countries'
+    fields = [location + ' | Africa eligible']
+    level = {'entry': 'Entry level', 'senior': 'Senior'}.get(job.experience_level)
+    experience = re.search(r'\b\d+(?:\s*[-–]\s*\d+)?\+?\s+years?(?:\s+of)?\s+(?:relevant\s+|professional\s+)?experience\b', job.description, re.I)
+    if experience: fields.append(experience.group(0))
+    elif level: fields.append(level)
+    if job.salary: fields.append(salary_text(job.salary))
+    return '\n'.join(fields)
 
+
+def category(job):
+    title = job.title.lower()
+    for name, terms in [('Support', ('support','customer success')), ('Design', ('design','ux','ui')), ('Marketing', ('marketing','content','seo','growth')), ('Data', ('data','analyst','annotation','transcription')), ('Tech', ('developer','engineer','automation','qa','software'))]:
+        if any(term in title for term in terms): return name
+    return 'Other'
+
+
+def select_digest_jobs(jobs, now):
+    pool = [job for job in jobs if eligible_for_digest(job, now) and role_evidence(job)]
+    pool.sort(key=lambda job: (category(job) != 'Other', job.experience_level == 'entry', job.quality_score), reverse=True)
+    selected, companies, keys, reasons, counts = [], {}, set(), set(), {}
+    # First pass provides role variety; second fills up to ten without inventing it.
+    for cap in (2, 4):
+        for job in pool:
+            key = job.fingerprint or job.direct_url
+            group = category(job)
+            reason = role_evidence(job).lower()
+            if key in keys or reason in reasons or companies.get(job.company,0) >= 2 or counts.get(group,0) >= cap:
+                continue
+            selected.append(job); keys.add(key); reasons.add(reason)
+            companies[job.company] = companies.get(job.company,0)+1
+            counts[group] = counts.get(group,0)+1
+            if len(selected) == MAX_ROLES: return selected
+    return selected
 
 
 def editorial_opening(jobs, now):
-    missing_pay = sum(not job.salary for job in jobs)
-    restricted = sum(job.remote_scope != 'worldwide' for job in jobs)
-    angles = [
-        '“Remote” is a working arrangement, not a passport. Before you spend an evening rewriting your CV, check whether the employer can hire in your country. The location details below are the first filter.',
-        'A generic CV is quick to send. It also leaves the employer to guess why you fit. Pick one role below, find its most important requirement and put evidence of that skill near the top of your application.',
+    stories = [
+        'Imagine this: it is 10 p.m. You finally find a role that sounds right. You rewrite the first paragraph of your CV, open the application, then see the line you missed: US residents only. You close the tab. The time is gone, and the job was never yours to apply for.\n\nThat is why this shortlist starts with eligibility. Every role below has evidence of worldwide or Africa hiring. Country-specific Africa roles still need a country check before you apply.',
+        'Picture an evening with twelve job tabs open. One is an old advert. One needs a medical licence. Another promises a big number that turns out to be commission. After an hour, you have not sent a single useful application.\n\nA longer list would not have helped. A better filter would. This week we have removed those detours and kept roles with evidence that applicants in Africa can apply.',
+        'Imagine finding two jobs before bed. The first has a glamorous title but tells you almost nothing about the work. The second names the task you would do and a skill you can prove. You spend twenty minutes preparing one relevant example for the second.\n\nThat is the point of the “why this one” lines below: a detail from the actual work, so you can decide where your effort belongs.',
     ]
-    if missing_pay:
-        angles.append(f'{missing_pay} of the {len(jobs)} listings below do not disclose pay. Would you spend an hour on an application without knowing the rate? Ask for the range early, especially before a substantial unpaid task.')
-    if restricted:
-        angles.append(f'{restricted} of these {len(jobs)} remote listings are not classified as worldwide. The catch is eligibility, not your CV. Check the exact countries before you apply; a remote label does not remove a hiring restriction.')
-    if any(job.experience_level == 'senior' for job in jobs):
-        angles.append('An AI role is not automatically a beginner opportunity. This shortlist includes senior work. Read the experience label before applying, and focus your effort on roles where you can show the required skills.')
-    return angles[int(now.astimezone(ZoneInfo('Africa/Lagos')).strftime('%V')) % len(angles)]
+    return stories[int(now.astimezone(ZoneInfo('Africa/Lagos')).strftime('%V')) % len(stories)]
 
 
 def build_digest(jobs, now=None):
     now = now or datetime.now(timezone.utc)
-    jobs = [job for job in jobs if eligible_for_digest(job, now)][:5]
+    jobs = select_digest_jobs(jobs, now)
     week = now.astimezone(ZoneInfo('Africa/Lagos')).strftime('%G-W%V')
-    packet = {'newsletter_markdown': f'# {BRAND} — {week}\n\n', 'x_posts': [], 'substack_notes': []}
-    if not jobs:
-        packet['newsletter_markdown'] += 'No dated, accessible vacancy passed the job checks. Nothing queued.\n'
+    title = f'Remote jobs this week: {len(jobs)} roles open worldwide or in Africa'
+    packet = {'newsletter_markdown': f'# {title}\n\n', 'x_posts': [], 'substack_notes': []}
+    if len(jobs) < MIN_ROLES:
+        packet['newsletter_markdown'] = f'# Digest held for review\n\nOnly {len(jobs)} suitable verified roles passed; minimum is {MIN_ROLES}. Nothing queued.\n'
+        packet['held'] = True
+        packet['qualifying_roles'] = len(jobs)
         return packet
     promo = now.astimezone(ZoneInfo('Africa/Lagos')).date().isoformat() >= '2026-10-15'
     intro = f'{len(jobs)} remote roles worth checking this week.\n\n' + editorial_opening(jobs, now)
     sections = []
     for job in jobs:
-        title = job.title.lower()
-        if any(word in title for word in ('support', 'customer')):
-            tip = 'Application angle: prepare one example of how you diagnosed a problem and explained the solution clearly.'
-        elif any(word in title for word in ('automation', 'developer', 'engineer')):
-            tip = 'Application angle: link one relevant project and explain what you built, what broke and how you fixed it.'
-        elif any(word in title for word in ('ai', 'research', 'data', 'analyst')):
-            tip = 'Application angle: show a relevant analysis or work sample, including how you checked its accuracy.'
-        elif any(word in title for word in ('sales', 'marketing')):
-            tip = 'Application angle: use one concrete example with a measurable result. Explain your contribution.'
-        else:
-            tip = 'Application angle: choose one requirement from the listing and show evidence that you have done it before.'
         section = f'{shorten(job.title, 110)} — {shorten(job.company, 60)}\n{detail(job)}'
-        description = clean_text(job.description, 12000)
-        sentences = re.split(r'(?<=[.!?])\s+', description)
-        useful = [sentence for sentence in sentences if 35 <= len(sentence) <= 600
-                  and re.search(r"\b(you will|you'll|responsibilities|requirements|experience with|proficiency|must have|your role|your work)\b", sentence, re.I)]
-        if useful:
-            section += '\nFrom the listing: ' + shorten(useful[0], 260)
-        section += f'\n{tip}\nApply: {job.effective_url}'
+        section += f'\nWhy this one — the actual work: “{role_evidence(job)}”\nApply: {job.effective_url}'
         if job.is_referral:
             section += '\nReferral link: we may earn if you are accepted and start paid work.'
         sections.append(section)
@@ -110,13 +155,13 @@ def build_digest(jobs, now=None):
     job = jobs[0]
     fields = [shorten(job.title, 70), shorten(job.company, 40), shorten(job.location, 60),
               'Africa eligible' if job.africa_eligible else 'Check country eligibility',
-              shorten(job.salary, 55) if job.salary else 'Pay not disclosed', job.effective_url]
-    x = '\n'.join(fields)
+              shorten(salary_text(job.salary), 55) if job.salary else '', job.effective_url]
+    x = '\n'.join(field for field in fields if field)
     if job.is_referral: x += '\nReferral link'
     while x_weight(x) > 280:
         fields[0] = shorten(fields[0], max(15, len(fields[0])-10))
         fields[2] = shorten(fields[2], max(15, len(fields[2])-10))
-        x = '\n'.join(fields) + ('\nReferral link' if job.is_referral else '')
+        x = '\n'.join(field for field in fields if field) + ('\nReferral link' if job.is_referral else '')
         if len(fields[0]) <= 15 and len(fields[2]) <= 15: raise ValueError('Job cannot fit X safely')
     packet['x_posts'] = [dict(common, id='x-jobs-'+week+'-'+source_id, text=x, job_fingerprints=[job.fingerprint])]
     return packet
@@ -127,9 +172,13 @@ def main():
     state = json.loads((OUT/'buffer_state.json').read_text()) if (OUT/'buffer_state.json').exists() else {}
     seen = {fingerprint for row in state.get('confirmed_uploads', {}).values()
             if not row.get('draft') for fingerprint in row.get('job_fingerprints', [])}
-    settings = replace(Settings.from_env(), max_per_run=12, max_per_source=3,
+    settings = replace(Settings.from_env(), max_per_run=60, max_per_source=15,
+                       allowed_remote_scopes=frozenset({'worldwide', 'africa'}),
                        mercor_referral_url='https://t.mercor.com/H06sH', link_check_enabled=True)
-    selected, rejected = process(collect(settings), settings, existing_fingerprints=seen)
+    candidates = collect(settings)
+    # Gate the audience before the expensive checking/ranking stage.
+    candidates = [job for job in candidates if audience_eligible(classify(job))]
+    selected, rejected = process(candidates, settings, existing_fingerprints=seen)
     outputs = build_digest(selected)
     (OUT/'latest_digest.md').write_text(outputs['newsletter_markdown'])
     for file, key in [('x_queue.json','x_posts'), ('substack_notes_queue.json','substack_notes')]:

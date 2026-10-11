@@ -1,3 +1,9 @@
+## Weekly digest selection contract
+
+The newsletter needs 8–10 dated, reachable roles with explicit worldwide or Africa hiring evidence. Regional restrictions outside Africa, generic remote labels, narrow clinical/scientific roles, and commission/OTE listings are excluded before ranking. Conflicting country restrictions override worldwide feed tags. Role responsibilities/requirements must support a distinct short quoted reason; vague descriptions cannot fill the quota. Prefer support, tech, data, design and marketing; select across categories and cap any employer at two roles. Equal salary bounds collapse; unknown pay/experience placeholders are omitted. Short imagined scenes provide context without false personal testimonials. Referral disclosures and the reader-reply prompt remain.
+
+A shortlist below eight queues nothing on X or Substack and sends a private hold-status file instead of a publishable newsletter. No quota padding. Candidate checking now covers a larger eligible pool and the Remotive feed requests 1,000 items; We Work Remotely RSS region metadata is parsed. Publication URLs and Telegram job-channel automation are unchanged.
+
 ## Private newsletter delivery
 
 Each scheduled or manual generation sends `latest_digest.md` as a plain-text file to the configured personal Telegram bot chat. Delivery never uses the public channel destination. Add repository secrets `TELEGRAM_DRAFT_BOT_TOKEN` (BotFather token) and `TELEGRAM_DRAFT_CHAT_ID` (your positive numeric personal chat ID); start that bot privately first. Missing configuration is reported explicitly. Telegram getChat must confirm a private chat and matching ID before sending; successful identical files are deduplicated. An empty job shortlist is held. API errors fail the delivery step visibly, while draft artifacts and history are still saved. Never commit the token.

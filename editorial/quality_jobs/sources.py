@@ -44,7 +44,7 @@ def _date(value: object) -> datetime | None:
 
 def fetch_remotive(settings: Settings) -> list[Job]:
     response = requests.get(
-        "https://remotive.com/api/remote-jobs?limit=100",
+        "https://remotive.com/api/remote-jobs?limit=1000",
         timeout=settings.request_timeout_seconds,
         headers={"User-Agent": settings.user_agent},
     )
@@ -123,7 +123,7 @@ def _rss(settings: Settings, source: str, url: str) -> list[Job]:
                 source_job_id=str(item.get("id") or item.get("guid") or ""),
                 title=title,
                 company=company or source,
-                location=clean_text(item.get("location"), 160) or "Remote",
+                location=clean_text(item.get("location") or item.get("region"), 160) or "Remote",
                 direct_url=str(item.get("link", "")),
                 published_at=_date(item.get("published") or item.get("updated")),
                 description=clean_text(
