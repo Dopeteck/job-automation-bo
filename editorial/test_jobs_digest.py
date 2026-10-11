@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime, timezone, timedelta
-from editorial.jobs_digest import build_digest, eligible_for_digest
+from editorial.jobs_digest import build_digest, eligible_for_digest, editorial_opening
 from editorial.quality_jobs.models import Job
 from editorial.editorial_pipeline import x_weight
 
@@ -24,3 +24,9 @@ class JobsDigestTests(unittest.TestCase):
         self.assertNotIn('Africa eligible',packet['substack_notes'][0]['text'])
         self.assertIn('US only',packet['substack_notes'][0]['text'])
         self.assertIn('Pay not disclosed',packet['substack_notes'][0]['text'])
+
+    def test_editorial_pay_angle_uses_actual_shortlist(self):
+        jobs=[self.job(salary=''),self.job(salary='$20/hour')]
+        openings={editorial_opening(jobs,datetime(2026,1,day,tzinfo=timezone.utc)) for day in range(1,29)}
+        self.assertTrue(any('1 of the 2 listings' in value for value in openings))
+        self.assertFalse(any('not classified as worldwide' in value for value in openings))

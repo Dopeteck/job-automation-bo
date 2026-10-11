@@ -40,6 +40,23 @@ def detail(job):
     return f'{location}{flag}\n{level} | {shorten(job.salary, 90) if job.salary else "Pay not disclosed"}'
 
 
+
+def editorial_opening(jobs, now):
+    missing_pay = sum(not job.salary for job in jobs)
+    restricted = sum(job.remote_scope != 'worldwide' for job in jobs)
+    angles = [
+        '“Remote” is a working arrangement, not a passport. Before you spend an evening rewriting your CV, check whether the employer can hire in your country. The location details below are the first filter.',
+        'A generic CV is quick to send. It also leaves the employer to guess why you fit. Pick one role below, find its most important requirement and put evidence of that skill near the top of your application.',
+    ]
+    if missing_pay:
+        angles.append(f'{missing_pay} of the {len(jobs)} listings below do not disclose pay. Would you spend an hour on an application without knowing the rate? Ask for the range early, especially before a substantial unpaid task.')
+    if restricted:
+        angles.append(f'{restricted} of these {len(jobs)} remote listings are not classified as worldwide. The catch is eligibility, not your CV. Check the exact countries before you apply; a remote label does not remove a hiring restriction.')
+    if any(job.experience_level == 'senior' for job in jobs):
+        angles.append('An AI role is not automatically a beginner opportunity. This shortlist includes senior work. Read the experience label before applying, and focus your effort on roles where you can show the required skills.')
+    return angles[int(now.astimezone(ZoneInfo('Africa/Lagos')).strftime('%V')) % len(angles)]
+
+
 def build_digest(jobs, now=None):
     now = now or datetime.now(timezone.utc)
     jobs = [job for job in jobs if eligible_for_digest(job, now)][:5]
@@ -49,7 +66,7 @@ def build_digest(jobs, now=None):
         packet['newsletter_markdown'] += 'No dated, accessible vacancy passed the job checks. Nothing queued.\n'
         return packet
     promo = now.astimezone(ZoneInfo('Africa/Lagos')).date().isoformat() >= '2026-10-15'
-    intro = f'{len(jobs)} remote roles worth checking this week.\n\nPicture this: you find a remote role, polish your CV, then spot the country restriction at the bottom. That is an application you could have skipped. Start with eligibility, then experience, then pay.'
+    intro = f'{len(jobs)} remote roles worth checking this week.\n\n' + editorial_opening(jobs, now)
     sections = []
     for job in jobs:
         title = job.title.lower()
