@@ -260,6 +260,59 @@
       "image_license": "Pexels License",
       "buffer_asset_ids": [],
       "media_experiment": "stock-image-v1"
+    },
+    "x_draft_image_review_v1:x-jobs-2026-W41-f582eae7f27190f7c751": {
+      "post_id": "6acbff9cfa026cfb8116ed4a",
+      "channel_id": "6abe6f09ea19ca0bde441138",
+      "due_at": null,
+      "text": "Technical Customer Support\nQuickMail\nAnywhere in the World\nAfrica eligible\nhttps://weworkremotely.com/remote-jobs/quickmail-technical-customer-support",
+      "confirmed_at": "2026-10-11T21:29:00.536710+00:00",
+      "draft": true,
+      "platform_key": "x_draft_image_review_v1",
+      "source_id": "f582eae7f27190f7c751",
+      "job_fingerprints": [
+        "9639038e0e3063873c43"
+      ],
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-10321966",
+      "image_topic": "remote",
+      "image_source_page": "https://www.pexels.com/photo/laptop-on-a-standsome-10321966/",
+      "image_creator": "Standsome Worklifestyle",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
+    },
+    "substack_draft_image_review_v1:note-jobs-2026-W41-f582eae7f27190f7c751": {
+      "post_id": "6acbff9c8e8dd50ffc57f782",
+      "channel_id": "6abe70bfea19ca0bde441f84",
+      "due_at": null,
+      "text": "10 remote roles worth checking this week.\n\nImagine finding two jobs before bed. The first has a glamorous title but tells you almost nothing about the work. The second names the task you would do and a skill you can prove. You spend twenty minutes preparing one relevant example for the second.\n\nThat is the point of the \u201cwhy this one\u201d lines below: a detail from the actual work, so you can decide where your effort belongs.\n\nTechnical Customer Support \u2014 QuickMail\nAnywhere in the World | Africa eligible\nEntry level\nWhy this one \u2014 the actual work: \u201cYou will own support for QuickMail and Mailflow, our deliverability add-on.\u201d\nApply: https://weworkremotely.com/remote-jobs/quickmail-technical-customer-support\n\nBilling Operations Analyst 1 \u2014 Twilio\nAnywhere in the World | Africa eligible\n1-3 years experience\nWhy this one \u2014 the actual work: \u201cResponsibilities In this role you\u2019ll: Maintain Revenue Team external customer email, responding to customer and other external queries in a timely manner\u201d\nApply: https://weworkremotely.com/remote-jobs/twilio-billing-operations-analyst-1\n\nCyber Defense Engineer \u2014 BeyondTrust\nAnywhere in the World | Africa eligible\n4+ years of experience\nWhy this one \u2014 the actual work: \u201cOur culture of flexibility, trust, and continual learning means you will be recognized for your growth, and for the impact you make\u201d\nApply: https://weworkremotely.com/remote-jobs/beyondtrust-cyber-defense-engineer\n\nMachine Learning Engineer - IV (Fraud) \u2014 Jumio\nAnywhere in the World | Africa eligible\nWhy this one \u2014 the actual work: \u201cThis role is essential for ensuring the highest standards of security and user verification through the application of advanced machine learning and\u201d\nApply: https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-fraud\n\nCustomer Success Engineer EMEA - w/m/d \u2014 JetBrains\nAnywhere in the World | Africa eligible\nWhy this one \u2014 the actual work: \u201cIn this role, you will: Work closely with JetBrains Account Executives.\u201d\nApply: https://weworkremotely.com/remote-jobs/jetbrains-customer-success-engineer-emea-w-m-d\n\nAnalyst \u2014 Affirm\nAnywhere in the World | Africa eligible\n1\u20133 years of experience\nWhy this one \u2014 the actual work: \u201cYou will have the opportunity to learn more about our teams and share your preferences as you move through the process.\u201d\nApply: https://weworkremotely.com/remote-jobs/affirm-analyst\n\nChargeback Operations Intern \u2014 Sezzle\nAnywhere in the World | Africa eligible\nEntry level\nWhy this one \u2014 the actual work: \u201cAs a Chargeback Operations Intern , you will be responsible for analyzing and responding to card and ACH disputes filed against Sezzle.\u201d\nApply: https://weworkremotely.com/remote-jobs/sezzle-chargeback-operations-intern\n\nCustomer Retention Executive \u2014 BeyondTrust\nAnywhere in the World | Africa eligible\nWhy this one \u2014 the actual work: \u201cOur culture of flexibility, trust, and continual learning means you will be recognized for your growth and for the impact you make\u201d\nApply: https://weworkremotely.com/remote-jobs/beyondtrust-customer-retention-executive\n\nMachine Learning Engineer - IV (Computer Vision) \u2014 Jumio\nAnywhere in the World | Africa eligible\nWhy this one \u2014 the actual work: \u201cYou will be responsible for curating balanced training sets and generating synthetic data to address both quality and diversity gaps.\u201d\nApply: https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-computer-vision\n\nSenior React Full-stack Developer \u2014 Lemon.io\nAnywhere in the World | Africa eligible\n2+ years Experience\nWhy this one \u2014 the actual work: \u201cRequirements for the Senior React & Python Position: 4+ years of software development experience.\u201d\nApply: https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-7\n\nBefore you apply: check eligible countries, working hours and whether the pay is a salary, contractor rate or commission. \u201cRemote\u201d alone answers none of those questions.\n\nWhich role fits your experience? Reply with the role and the requirement you are unsure about.",
+      "confirmed_at": "2026-10-11T21:29:00.917902+00:00",
+      "draft": true,
+      "platform_key": "substack_draft_image_review_v1",
+      "source_id": "f582eae7f27190f7c751",
+      "job_fingerprints": [
+        "9639038e0e3063873c43",
+        "0ecd4f993a1060413680",
+        "dd0daa138bddb989c151",
+        "d422b0d53397d06f5ff8",
+        "ce7dc27b50e0e7547a13",
+        "2689d4461988e174e67a",
+        "e23b26c6a60daac28333",
+        "29596d78b94b79ff967f",
+        "bcc5e7aa9c22f41569b0",
+        "8442eb87f9c70ddb115d"
+      ],
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-10321966",
+      "image_topic": "remote",
+      "image_source_page": "https://www.pexels.com/photo/laptop-on-a-standsome-10321966/",
+      "image_creator": "Standsome Worklifestyle",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
     }
   },
   "x_thread_draft_guides": [
@@ -271,12 +324,14 @@
   "x_draft_image_review_v1": [
     "x-238e9451b5c554620320",
     "x-jobs-2026-W41-1178abe82e5341d9fd71",
-    "x-jobs-2026-W41-a1271d76f220daefc51e"
+    "x-jobs-2026-W41-a1271d76f220daefc51e",
+    "x-jobs-2026-W41-f582eae7f27190f7c751"
   ],
   "substack_draft_image_review_v1": [
     "note-238e9451b5c554620320",
     "note-jobs-2026-W41-1178abe82e5341d9fd71",
-    "note-jobs-2026-W41-a1271d76f220daefc51e"
+    "note-jobs-2026-W41-a1271d76f220daefc51e",
+    "note-jobs-2026-W41-f582eae7f27190f7c751"
   ],
   "manual_media_updates": {
     "x:2026-10-09-0952": {

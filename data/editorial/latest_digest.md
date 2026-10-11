@@ -1,37 +1,66 @@
-# Remote Jobs Worldwide — 2026-W41
+# Remote jobs this week: 10 roles open worldwide or in Africa
 
-4 remote roles worth checking this week.
+10 remote roles worth checking this week.
 
-A generic CV is quick to send. It also leaves the employer to guess why you fit. Pick one role below, find its most important requirement and put evidence of that skill near the top of your application.
+Imagine finding two jobs before bed. The first has a glamorous title but tells you almost nothing about the work. The second names the task you would do and a skill you can prove. You spend twenty minutes preparing one relevant example for the second.
 
-Inside Sales Contractor — Credit Wellness, LLC
-Worldwide | Africa eligible
-Check experience requirements | OTE $25k - $35k
-From the listing: You will need: Home office or a quiet place to work.
-Application angle: use one concrete example with a measurable result. Explain your contribution.
-Apply: https://remotive.com/remote-jobs/sales/inside-sales-contractor-2086540
+That is the point of the “why this one” lines below: a detail from the actual work, so you can decide where your effort belongs.
 
-Primary Care Physician (MD) - Clinical Documentation & AI Evaluation — Boron
-United States
-Check experience requirements | $170–$170/hourly
-From the listing: In this role you will apply your day-to-day primary care expertise to **review, annotate, and evaluate clinical documentation**, directly shaping the accuracy, safety, and clinical usefulness of medical AI systems.
-Application angle: show a relevant analysis or work sample, including how you checked its accuracy.
-Apply: https://t.mercor.com/H06sH
-Referral link: we may earn if you are accepted and start paid work.
+Technical Customer Support — QuickMail
+Anywhere in the World | Africa eligible
+Entry level
+Why this one — the actual work: “You will own support for QuickMail and Mailflow, our deliverability add-on.”
+Apply: https://weworkremotely.com/remote-jobs/quickmail-technical-customer-support
 
-Andromeda Delta - Audio Transcription Reviewer (India/Philippines) — Welo Data / Welo Global
-Philippines, India
-Entry level | Pay not disclosed
-Application angle: choose one requirement from the listing and show evidence that you have done it before.
-Apply: https://jobs.lever.co/weloglobal/efcc8784-2d7a-4ad7-bc54-1d728c53be9f
+Billing Operations Analyst 1 — Twilio
+Anywhere in the World | Africa eligible
+1-3 years experience
+Why this one — the actual work: “Responsibilities In this role you’ll: Maintain Revenue Team external customer email, responding to customer and other external queries in a timely manner”
+Apply: https://weworkremotely.com/remote-jobs/twilio-billing-operations-analyst-1
 
-Atomistic Materials Modeling Expert — Mercor
-Remote
-Check experience requirements | $84–$84/hourly
-From the listing: The ideal candidate has extensive hands-on experience with density functional theory (DFT), molecular dynamics (MD), and other atomistic modelling techniques, alongside a strong understanding of the underlying physical principles.
-Application angle: choose one requirement from the listing and show evidence that you have done it before.
-Apply: https://t.mercor.com/H06sH
-Referral link: we may earn if you are accepted and start paid work.
+Cyber Defense Engineer — BeyondTrust
+Anywhere in the World | Africa eligible
+4+ years of experience
+Why this one — the actual work: “Our culture of flexibility, trust, and continual learning means you will be recognized for your growth, and for the impact you make”
+Apply: https://weworkremotely.com/remote-jobs/beyondtrust-cyber-defense-engineer
+
+Machine Learning Engineer - IV (Fraud) — Jumio
+Anywhere in the World | Africa eligible
+Why this one — the actual work: “This role is essential for ensuring the highest standards of security and user verification through the application of advanced machine learning and”
+Apply: https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-fraud
+
+Customer Success Engineer EMEA - w/m/d — JetBrains
+Anywhere in the World | Africa eligible
+Why this one — the actual work: “In this role, you will: Work closely with JetBrains Account Executives.”
+Apply: https://weworkremotely.com/remote-jobs/jetbrains-customer-success-engineer-emea-w-m-d
+
+Analyst — Affirm
+Anywhere in the World | Africa eligible
+1–3 years of experience
+Why this one — the actual work: “You will have the opportunity to learn more about our teams and share your preferences as you move through the process.”
+Apply: https://weworkremotely.com/remote-jobs/affirm-analyst
+
+Chargeback Operations Intern — Sezzle
+Anywhere in the World | Africa eligible
+Entry level
+Why this one — the actual work: “As a Chargeback Operations Intern , you will be responsible for analyzing and responding to card and ACH disputes filed against Sezzle.”
+Apply: https://weworkremotely.com/remote-jobs/sezzle-chargeback-operations-intern
+
+Customer Retention Executive — BeyondTrust
+Anywhere in the World | Africa eligible
+Why this one — the actual work: “Our culture of flexibility, trust, and continual learning means you will be recognized for your growth and for the impact you make”
+Apply: https://weworkremotely.com/remote-jobs/beyondtrust-customer-retention-executive
+
+Machine Learning Engineer - IV (Computer Vision) — Jumio
+Anywhere in the World | Africa eligible
+Why this one — the actual work: “You will be responsible for curating balanced training sets and generating synthetic data to address both quality and diversity gaps.”
+Apply: https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-computer-vision
+
+Senior React Full-stack Developer — Lemon.io
+Anywhere in the World | Africa eligible
+2+ years Experience
+Why this one — the actual work: “Requirements for the Senior React & Python Position: 4+ years of software development experience.”
+Apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-7
 
 Before you apply: check eligible countries, working hours and whether the pay is a salary, contractor rate or commission. “Remote” alone answers none of those questions.
 

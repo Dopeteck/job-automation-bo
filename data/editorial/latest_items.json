@@ -1,103 +1,148 @@
 {
   "jobs": [
     {
-      "title": "Technical Customer Support Specialist",
-      "company": "Happyrobot.ai",
-      "link": "https://www.arbeitnow.ch/jobs/companies/happyrobotai/remote-technical-customer-support-specialist-54073",
-      "location": "Remote",
+      "title": "Chargeback Operations Intern",
+      "company": "Sezzle",
+      "link": "https://weworkremotely.com/remote-jobs/sezzle-chargeback-operations-intern",
+      "location": "Anywhere in the World",
       "africa_eligible": true,
-      "published_at": "2026-10-09T05:40:03+00:00",
-      "link_status": "protected"
-    },
-    {
-      "title": "Software Engineer - Data Platform",
-      "company": "Vercel",
-      "link": "https://weworkremotely.com/remote-jobs/vercel-software-engineer-data-platform",
-      "location": "Remote",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T07:31:07+00:00",
+      "published_at": "2026-10-11T07:30:57+00:00",
       "link_status": "200"
     },
     {
-      "title": "Applied Research Scientist, AI Research",
-      "company": "Descript",
-      "link": "https://weworkremotely.com/remote-jobs/descript-applied-research-scientist-ai-research",
-      "location": "Remote",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T07:31:07+00:00",
-      "link_status": "200"
-    },
-    {
-      "title": "Business Intelligence Analyst 2",
+      "title": "Billing Operations Analyst 1",
       "company": "Twilio",
-      "link": "https://weworkremotely.com/remote-jobs/twilio-business-intelligence-analyst-2",
-      "location": "Remote",
+      "link": "https://weworkremotely.com/remote-jobs/twilio-billing-operations-analyst-1",
+      "location": "Anywhere in the World",
       "africa_eligible": true,
       "published_at": "2026-10-11T07:30:56+00:00",
       "link_status": "200"
     },
     {
-      "title": "Inside Sales Contractor",
-      "company": "Credit Wellness, LLC",
-      "link": "https://remotive.com/remote-jobs/sales/inside-sales-contractor-2086540",
+      "title": "Technical Customer Support",
+      "company": "QuickMail",
+      "link": "https://weworkremotely.com/remote-jobs/quickmail-technical-customer-support",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-10T21:21:48+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Cyber Defense Engineer",
+      "company": "BeyondTrust",
+      "link": "https://weworkremotely.com/remote-jobs/beyondtrust-cyber-defense-engineer",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-10T07:30:48+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Customer Retention Executive",
+      "company": "BeyondTrust",
+      "link": "https://weworkremotely.com/remote-jobs/beyondtrust-customer-retention-executive",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-10T07:30:42+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Machine Learning Engineer - IV (Fraud)",
+      "company": "Jumio",
+      "link": "https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-fraud",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-10T07:30:40+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Machine Learning Engineer - IV (Computer Vision)",
+      "company": "Jumio",
+      "link": "https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-computer-vision",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-10T07:30:40+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Customer Success Engineer EMEA - w/m/d",
+      "company": "JetBrains",
+      "link": "https://weworkremotely.com/remote-jobs/jetbrains-customer-success-engineer-emea-w-m-d",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-09T07:31:02+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Analyst",
+      "company": "Affirm",
+      "link": "https://weworkremotely.com/remote-jobs/affirm-analyst",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-09T07:30:56+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Senior React Full-stack Developer",
+      "company": "Lemon.io",
+      "link": "https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-7",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-09T13:49:21+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Enterprise Account Executive (Kazakhstan)",
+      "company": "Creatio",
+      "link": "https://weworkremotely.com/remote-jobs/creatio-enterprise-account-executive-kazakhstan",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-08T18:37:31+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Machine Learning Engineer - IV (Biometrics)",
+      "company": "Jumio",
+      "link": "https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-biometrics",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-08T07:31:21+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Machine Learning Engineer",
+      "company": "Jumio",
+      "link": "https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-08T07:31:21+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Senior .NET Full-stack Developer",
+      "company": "Lemon.io",
+      "link": "https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-2",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-08T11:41:36+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Senior Data Scientist",
+      "company": "Wrike",
+      "link": "https://weworkremotely.com/remote-jobs/wrike-senior-data-scientist",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-06T07:31:05+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Tier III Service Desk Engineer",
+      "company": "Unio Digital",
+      "link": "https://remotive.com/remote-jobs/information-technology/tier-iii-service-desk-engineer-2091045",
       "location": "Worldwide",
       "africa_eligible": true,
-      "published_at": "2026-10-08T21:47:32+00:00",
+      "published_at": "2026-10-07T01:11:09+00:00",
       "link_status": "200"
-    },
-    {
-      "title": "Product Engineering Lead",
-      "company": "Tether Operations Limited",
-      "link": "https://remoteOK.com/remote-jobs/remote-product-engineering-lead-tether-operations-limited-1137478",
-      "location": "Remote",
-      "africa_eligible": true,
-      "published_at": "2026-10-10T00:00:05+00:00",
-      "link_status": "200"
-    },
-    {
-      "title": "Primary Care Physician (MD) - Clinical Documentation & AI Evaluation",
-      "company": "Boron",
-      "link": "https://work.mercor.com/jobs/list_AAABoSaogGy2NBr71LpJgrqO",
-      "location": "United States",
-      "africa_eligible": false,
-      "published_at": "2026-10-10T16:32:20+00:00",
-      "link_status": "redirect"
-    },
-    {
-      "title": "Andromeda Delta - Audio Transcription Reviewer (India/Philippines)",
-      "company": "Welo Data / Welo Global",
-      "link": "https://jobs.lever.co/weloglobal/efcc8784-2d7a-4ad7-bc54-1d728c53be9f",
-      "location": "Philippines, India",
-      "africa_eligible": false,
-      "published_at": "2026-10-07T11:44:56.466000+00:00",
-      "link_status": "200"
-    },
-    {
-      "title": "Enterprise Account Executive II - DACH",
-      "company": "Camunda",
-      "link": "https://www.arbeitnow.ch/jobs/companies/camunda/remote-enterprise-account-executive-ii-dach-180240",
-      "location": "Remote",
-      "africa_eligible": true,
-      "published_at": "2026-10-10T20:40:07+00:00",
-      "link_status": "protected"
-    },
-    {
-      "title": "Enterprise Account Executive UKI",
-      "company": "Camunda",
-      "link": "https://www.arbeitnow.ch/jobs/companies/camunda/remote-enterprise-account-executive-uki-426314",
-      "location": "Remote",
-      "africa_eligible": true,
-      "published_at": "2026-10-10T20:40:07+00:00",
-      "link_status": "protected"
-    },
-    {
-      "title": "Atomistic Materials Modeling Expert",
-      "company": "Mercor",
-      "link": "https://work.mercor.com/jobs/list_AAABoSrPUxxXD7fJaeFCSrmf",
-      "location": "Remote",
-      "africa_eligible": false,
-      "published_at": "2026-10-11T11:53:13+00:00",
-      "link_status": "redirect"
     }
   ],
   "news": [],
