@@ -33,6 +33,11 @@ COMMISSION = re.compile(r'\b(commission|OTE|on.target earnings)\b', re.I)
 
 
 def audience_eligible(job):
+    parenthetical = re.findall(r'\(([^)]+)\)', job.title)
+    if any(part.lower().strip() not in {'remote','worldwide','anywhere','ai','ml','full-time','part-time'} for part in parenthetical):
+        return False
+    if re.search(r'multiple requests|multiple positions|various roles', job.description, re.I):
+        return False
     if SPECIALIST.search(job.title + ' ' + job.description):
         return False
     # High-risk pay arrangements require a separate employer review; hold them.
@@ -74,7 +79,7 @@ def role_evidence(job):
     pieces = re.split(r'(?<=[.!?;])\s+|[•\n]', text)
     relevant = [piece.strip() for piece in pieces if 35 <= len(piece.strip()) <= 600
                 and re.search(r"\b(you will|you'll|responsibilities|requirements|experience with|proficiency|must have|your role|your work|you bring|you have)\b", piece, re.I)
-                and not re.search(r'headquarters|about us|about the company|quiet place|home office|our culture|recognized for your growth|opportunity to learn|share your preferences', piece, re.I)]
+                and not re.search(r'headquarters|about us|about the company|quiet place|home office|our culture|recognized for your growth|opportunity to learn|share your preferences|meaningful work|global team that|please check the requirements|flexibility to do your best work', piece, re.I)]
     return shorten(' '.join(relevant[0].split()[:22]) + ('…' if len(relevant[0].split()) > 22 else ''), 200) if relevant else ''
 
 
@@ -83,9 +88,11 @@ def detail(job):
     if location.lower() in {'', 'remote'}:
         location = 'Worldwide' if job.remote_scope == 'worldwide' else 'Africa — check listed countries'
     fields = [location + ' | Africa eligible']
-    level = {'entry': 'Entry level', 'senior': 'Senior'}.get(job.experience_level)
+    senior = bool(re.search(r'\b(?:senior|sr\.?|lead|principal|head|director)\b', job.title, re.I))
+    level = 'Senior' if senior else {'entry': 'Entry level', 'senior': 'Senior'}.get(job.experience_level)
+    experience_matches = re.findall(r'\b\d+(?:\s*[-–]\s*\d+)?\+?\s+years?(?:\s+of)?\s+(?:relevant\s+|professional\s+)?experience\b', job.description, re.I)
     experience = re.search(r'\b\d+(?:\s*[-–]\s*\d+)?\+?\s+years?(?:\s+of)?\s+(?:relevant\s+|professional\s+)?experience\b', job.description, re.I)
-    if experience: fields.append(experience.group(0))
+    if experience and len(set(value.lower() for value in experience_matches)) == 1 and not senior: fields.append(experience.group(0))
     elif level: fields.append(level)
     if job.salary: fields.append(salary_text(job.salary))
     return '\n'.join(fields)
@@ -102,15 +109,19 @@ def select_digest_jobs(jobs, now):
     pool = [job for job in jobs if eligible_for_digest(job, now) and role_evidence(job)]
     pool.sort(key=lambda job: (category(job) != 'Other', job.experience_level == 'entry', job.quality_score), reverse=True)
     selected, companies, keys, reasons, counts = [], {}, set(), set(), {}
+    senior_count = 0
     # First pass provides role variety; second fills up to ten without inventing it.
     for cap in (2, 4):
         for job in pool:
             key = job.fingerprint or job.direct_url
             group = category(job)
             reason = role_evidence(job).lower()
+            senior = bool(re.search(r'\b(?:senior|sr\.?|lead|principal|head|director)\b', job.title, re.I))
+            if senior and senior_count >= 3: continue
             if key in keys or reason in reasons or companies.get(job.company,0) >= 2 or counts.get(group,0) >= cap:
                 continue
             selected.append(job); keys.add(key); reasons.add(reason)
+            senior_count += int(senior)
             companies[job.company] = companies.get(job.company,0)+1
             counts[group] = counts.get(group,0)+1
             if len(selected) == MAX_ROLES: return selected

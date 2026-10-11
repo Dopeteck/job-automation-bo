@@ -57,3 +57,10 @@ class JobsDigestTests(unittest.TestCase):
     def test_culture_copy_cannot_fill_job_reason(self):
         job=self.job(description='Our culture of flexibility means you will be recognized for your growth and impact.')
         self.assertFalse(select_digest_jobs([job],datetime.now(timezone.utc)))
+
+    def test_named_country_and_multi_role_ads_are_not_fillers(self):
+        self.assertFalse(eligible_for_digest(self.job(title='Account Executive (Kazakhstan)'),datetime.now(timezone.utc)))
+        self.assertFalse(eligible_for_digest(self.job(description='Currently we have multiple requests. You will build software.'),datetime.now(timezone.utc)))
+    def test_senior_roles_cannot_dominate_digest(self):
+        jobs=[self.job(i,title='Senior Software Engineer') for i in range(15)]
+        self.assertLessEqual(len(select_digest_jobs(jobs,datetime.now(timezone.utc))),3)
