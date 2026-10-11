@@ -232,7 +232,7 @@ def build_digest(jobs, now=None):
     note += '\n\nDaily roles in the channel: ' + TELEGRAM
     packet['newsletter_markdown'] += note + '\n'
     job_keys = [job.fingerprint for job in jobs]
-    source_id = hashlib.sha256('|'.join(job_keys).encode()).hexdigest()[:20]
+    source_id = hashlib.sha256(('|'.join(job_keys)+'\n'+note).encode()).hexdigest()[:20]
     common = {'source_id': source_id, 'content_kind': 'jobs_digest', 'job_fingerprints': job_keys,
               'source_published_at': now.isoformat(), 'promotion_week': week if promo else None}
     packet['substack_notes'] = [dict(common, id='note-jobs-'+week+'-'+source_id, text=note)]

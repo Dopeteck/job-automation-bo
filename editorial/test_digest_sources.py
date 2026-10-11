@@ -74,3 +74,10 @@ class SupplyTests(unittest.TestCase):
             out=Path(d)
             record_featured(out,{'substack_notes':[{'job_fingerprints':['review-only']}]},review=True)
             self.assertFalse(featured_keys(out))
+
+    def test_corrected_quote_has_new_review_id(self):
+        jobs=[self.job(i) for i in range(6)]
+        first=build_digest(jobs)
+        jobs[0].description='You will analyze customer ticket data and design clearer support instructions.'
+        second=build_digest(jobs)
+        self.assertNotEqual(first['substack_notes'][0]['id'],second['substack_notes'][0]['id'])
