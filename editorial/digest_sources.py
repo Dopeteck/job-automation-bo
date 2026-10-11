@@ -217,15 +217,15 @@ def telegram_urls(settings,now):
 
 def featured_keys(out):
     state=json.loads((out/'buffer_state.json').read_text()) if (out/'buffer_state.json').exists() else {}
-    keys={k for row in state.get('confirmed_uploads',{}).values() for k in row.get('job_fingerprints',[])}
+    keys={k for row in state.get('confirmed_uploads',{}).values() if not row.get('draft') for k in row.get('job_fingerprints',[])}
     ledger=json.loads((out/'featured_jobs.json').read_text()) if (out/'featured_jobs.json').exists() else {}
     keys.update(ledger.get('fingerprints',[]))
     return keys
 
 
-def record_featured(out,packet):
+def record_featured(out,packet,review=False):
     """Reserve a privately delivered newsletter issue too; hold notices reserve nothing."""
-    if packet.get('held'):return
+    if review or packet.get('held'):return
     keys=featured_keys(out)
     keys.update(k for row in packet.get('substack_notes',[]) for k in row.get('job_fingerprints',[]))
     (out/'featured_jobs.json').write_text(json.dumps({'fingerprints':sorted(keys)},indent=2)+'\n')

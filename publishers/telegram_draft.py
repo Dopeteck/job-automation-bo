@@ -49,7 +49,7 @@ def main():
         sys.path.insert(0,str(ROOT.parents[1]))
         from editorial.digest_sources import record_featured
         notes=json.loads((ROOT/'substack_notes_queue.json').read_text())
-        record_featured(ROOT, {'substack_notes':notes})
+        record_featured(ROOT, {'substack_notes':notes}, review=os.getenv('DIGEST_REVIEW_MODE')=='true')
     print('Newsletter draft delivered privately.' if updated != state else 'Identical draft already delivered.')
 
 if __name__ == '__main__':

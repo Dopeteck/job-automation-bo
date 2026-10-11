@@ -59,6 +59,7 @@ jobs:
       - name: Deliver newsletter draft to personal Telegram
         if: ${{ github.event_name != 'push' }}
         env:
+          DIGEST_REVIEW_MODE: ${{ inputs.buffer_drafts == true }}
           TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
           TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
         run: python publishers/telegram_draft.py

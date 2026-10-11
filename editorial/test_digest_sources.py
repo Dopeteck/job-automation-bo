@@ -57,7 +57,7 @@ class SupplyTests(unittest.TestCase):
 
     def test_quote_rejects_company_blurbs_application_prompts_and_vague_work(self):
         from editorial.jobs_digest import role_evidence
-        for text in ['About our company. We deliver innovative services.', 'You will work directly with the founders.', 'Complete AI Interview (approx. 15/20 minutes).', 'Lead with what matters, then give more details if I ask.']:
+        for text in ['About our company. We deliver innovative services.', 'You will work directly with the founders.', 'Complete AI Interview (approx. 15/20 minutes).', 'Complete profile - Set up your wallet once you have applied.', 'Lead with what matters, then give more details if I ask.']:
             self.assertFalse(role_evidence(self.job(description=text)))
         j=self.job(description='About our company.',evidence_lines=['Review customer reports and flag content that breaks moderation guidelines.'])
         self.assertIn('flag content',role_evidence(j))
@@ -68,3 +68,9 @@ class SupplyTests(unittest.TestCase):
     def test_longer_experience_requirement_overrides_structured_entry_label(self):
         j=self.job(description='You will build software. Requires 4+ years of software development experience. Employer seniority: Entry-level role.')
         self.assertNotEqual(experience_info(j)[0],0);self.assertFalse(build_digest([j]*5).get('substack_notes'))
+
+    def test_manual_review_does_not_consume_weekly_supply(self):
+        with tempfile.TemporaryDirectory() as d:
+            out=Path(d)
+            record_featured(out,{'substack_notes':[{'job_fingerprints':['review-only']}]},review=True)
+            self.assertFalse(featured_keys(out))
