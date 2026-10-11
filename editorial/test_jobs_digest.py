@@ -23,8 +23,8 @@ class JobsDigestTests(unittest.TestCase):
         self.assertLessEqual(x_weight(packet['x_posts'][0]['text']),280)
         reasons=[line for line in note.splitlines() if line.startswith('Why this one')]
         self.assertEqual(len(reasons),len(set(reasons)))
-    def test_below_eight_is_held_not_padded(self):
-        packet=build_digest(self.pool()[:7]);self.assertFalse(packet['x_posts']);self.assertFalse(packet['substack_notes']);self.assertTrue(packet['held'])
+    def test_below_six_is_held_not_padded(self):
+        packet=build_digest(self.pool()[:5]);self.assertFalse(packet['x_posts']);self.assertFalse(packet['substack_notes']);self.assertTrue(packet['held'])
     def test_holds_undated_stale_protected_unknown_and_wrong_regions(self):
         for job in [self.job(published_at=None),self.job(published_at=datetime.now(timezone.utc)-timedelta(days=8)),self.job(link_status='protected'),self.job(remote_scope='unknown'),self.job(location='US only',remote_scope='us'),self.job(location='India, Philippines',remote_scope='asia')]:
             self.assertFalse(eligible_for_digest(job,datetime.now(timezone.utc)))
@@ -59,8 +59,37 @@ class JobsDigestTests(unittest.TestCase):
         self.assertFalse(select_digest_jobs([job],datetime.now(timezone.utc)))
 
     def test_named_country_and_multi_role_ads_are_not_fillers(self):
-        self.assertFalse(eligible_for_digest(self.job(title='Account Executive (Kazakhstan)'),datetime.now(timezone.utc)))
+        self.assertFalse(eligible_for_digest(self.job(title='Account Executive (Kazakhstan)',location='Remote'),datetime.now(timezone.utc)))
+        self.assertTrue(eligible_for_digest(self.job(title='Account Executive (Kazakhstan)'),datetime.now(timezone.utc)))
         self.assertFalse(eligible_for_digest(self.job(description='Currently we have multiple requests. You will build software.'),datetime.now(timezone.utc)))
     def test_senior_roles_cannot_dominate_digest(self):
         jobs=[self.job(i,title='Senior Software Engineer') for i in range(15)]
         self.assertLessEqual(len(select_digest_jobs(jobs,datetime.now(timezone.utc))),3)
+
+    def test_three_juniors_are_required_and_sorted_first(self):
+        jobs=self.pool()[:6]
+        for job in jobs: job.experience_level='not_specified'
+        self.assertTrue(build_digest(jobs)['held'])
+        for job in jobs[:3]: job.title='Junior '+job.title;job.experience_level='entry'
+        packet=build_digest(list(reversed(jobs)))
+        self.assertTrue(packet['substack_notes'])
+        selected=select_digest_jobs(jobs,datetime.now(timezone.utc))
+        self.assertTrue(all(job.title.startswith('Junior') for job in selected[:3]))
+        self.assertIn('Daily roles in the channel: https://t.me/RemoteJobsTechHub',packet['newsletter_markdown'])
+        self.assertIn('6 roles open worldwide or in Africa',packet['newsletter_markdown'])
+    def test_task_evidence_is_not_requirement_or_location_copy(self):
+        from editorial.jobs_digest import role_evidence
+        for description in ['Requirements: 4+ years of software development experience.', 'You will enjoy culture and flexibility while building software.']:
+            self.assertFalse(role_evidence(self.job(description=description)))
+        evidence=role_evidence(self.job(description='Responsibilities: You will manage support tickets and respond to customer questions.'))
+        self.assertIn('manage support tickets',evidence)
+        self.assertEqual(role_evidence(self.job(description='Virginia, USA, Remote You will build software for customers.')), 'You will build software for customers.')
+        self.assertTrue(evidence.endswith('.'));self.assertNotIn('…',evidence)
+    def test_stricter_experience_overrides_entry_tag(self):
+        from editorial.jobs_digest import experience_info
+        job=self.job(description='You will build workflow integrations. Requirements: 2 years experience and 5+ years of experience.')
+        self.assertEqual(experience_info(job)[0],2)
+        self.assertIn('5+ years',experience_info(job)[1])
+    def test_state_security_and_work_authorization_restrictions(self):
+        for text in ['Remote in Texas. You will build applications.', 'You must be located in Singapore.', 'US citizen required.', 'Security clearance required.', 'Authorized to work in Germany.', 'Federal government sales.']:
+            self.assertFalse(eligible_for_digest(self.job(description=text),datetime.now(timezone.utc)))

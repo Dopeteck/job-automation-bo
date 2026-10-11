@@ -1,3 +1,9 @@
+## Early-career issue gate (current)
+
+An issue may contain 6–10 qualifying roles but must include at least three evidence-supported entry/junior roles, sorted before other roles. Unknown experience is labelled “Experience not stated”. Conflicting experience statements use the stricter number; an entry tag never overrides a senior title or five-year requirement. Titles/counts are generated from the final shortlist.
+
+Country/region names use ISO country data plus aliases and all US state names. Work-location context, citizenship, clearance, federal/FED and work-authorisation restrictions override worldwide tags. A country in a title needs explicit worldwide eligibility and still cannot override a body restriction. Task excerpts require an action verb, omit headers, requirements and culture/flexibility/ownership/recognized/currently/please-check boilerplate, and prefer complete sentences or task clauses. If there is no usable responsibility, hold the role. The channel CTA now appears on every newsletter/Note by explicit user request, overriding the earlier link pause for that content.
+
 ## Weekly digest selection contract
 
 The newsletter needs 8–10 dated, reachable roles with explicit worldwide or Africa hiring evidence. Regional restrictions outside Africa, generic remote labels, narrow clinical/scientific roles, and commission/OTE listings are excluded before ranking. Conflicting country restrictions override worldwide feed tags. Role responsibilities/requirements must support a distinct short quoted reason; vague descriptions cannot fill the quota. Prefer support, tech, data, design and marketing; select across categories and cap any employer at two roles. Equal salary bounds collapse; unknown pay/experience placeholders are omitted. Short imagined scenes provide context without false personal testimonials. Referral disclosures and the reader-reply prompt remain.

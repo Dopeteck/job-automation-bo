@@ -33,7 +33,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install editorial dependencies
-        run: pip install requests beautifulsoup4 feedparser Pillow python-dateutil
+        run: pip install requests beautifulsoup4 feedparser Pillow python-dateutil pycountry==24.6.1
       - name: Check quota fallback and promotion rules
         run: python -m unittest editorial.test_editorial editorial.test_jobs_digest publishers.test_telegram_draft
       - name: Generate editorial drafts

@@ -28,7 +28,7 @@ def deliver(token, chat_id, text, state):
         return state
     result = call(token, 'sendDocument', data={
         'chat_id': chat_id,
-        'caption': ('Digest held: fewer than eight suitable roles passed. This is a status report, not a newsletter to publish.' if 'Nothing queued.' in text else 'Your newsletter draft is ready. Open the text file, review the roles and paste into Substack → New post. This delivery does not publish the newsletter.'),
+        'caption': ('Digest held: the role count or minimum three junior roles was not met. This is a status report, not a newsletter to publish.' if 'Nothing queued.' in text else 'Your newsletter draft is ready. Open the text file, review the roles and paste into Substack → New post. This delivery does not publish the newsletter.'),
     }, files={'document': ('remote-jobs-newsletter.txt', text.encode(), 'text/plain; charset=utf-8')})
     return {'digest': digest, 'message_id': result['message_id']}
 
