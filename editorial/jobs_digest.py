@@ -135,7 +135,7 @@ def role_evidence(job):
         piece=re.sub(r'^(?:In this role[, ]*)?(?:Responsibilities|Key Responsibilities)\s*[:,-]?\s*','',piece,flags=re.I)
         if not 25 <= len(piece) <= 650 or FLUFF.search(piece) or not anchor.search(piece):continue
         if not TASK.search(piece) and not re.search(r'\b(?:assist|provide|coordinate|answer|track|complete|edit|communicate)\b',piece,re.I):continue
-        if re.search(r'with the founders|help train next.generation|then give more details|if I ask|introduce yourself|cover letter|application',piece,re.I):continue
+        if re.search(r'with the founders|help train next.generation|then give more details|if I ask|introduce yourself|cover letter|application|interview|assessment|screening call',piece,re.I):continue
         if re.search(r'\b(?:requirements|years? experience|years? of experience|proficiency|must have|skills|ability|requires|looking to|looking for|training from)\b',piece,re.I):continue
         if GEO.search(piece) or re.search(r'headquarters|location:|application URL',piece,re.I):continue
         if len(piece.split())<=30:return piece.rstrip('.')+'.'

@@ -156,7 +156,7 @@ def publish_queue(path, key, channel_id, limit, state):
                 continue
         thread = [{"text": clean_public_copy(part["text"])} for part in item.get("thread", [])] or None
         promotion_week = item.get("promotion_week")
-        if promotion_week and promotion_week in promoted:
+        if promotion_week and promotion_week in promoted and item.get('content_kind') != 'jobs_digest':
             text = "\n".join(line for line in text.splitlines() if not re.search(r"telegram|t\.me/|VettedWeb3jobs", line, re.I)).strip()
             if thread:
                 for part in thread:
