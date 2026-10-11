@@ -313,6 +313,59 @@
       "image_license": "Pexels License",
       "buffer_asset_ids": [],
       "media_experiment": "stock-image-v1"
+    },
+    "x_draft_image_review_v1:x-jobs-2026-W41-a462624292b058a8fa98": {
+      "post_id": "6acc003b7db619a2914ad68e",
+      "channel_id": "6abe6f09ea19ca0bde441138",
+      "due_at": null,
+      "text": "Technical Customer Support\nQuickMail\nAnywhere in the World\nAfrica eligible\nhttps://weworkremotely.com/remote-jobs/quickmail-technical-customer-support",
+      "confirmed_at": "2026-10-11T21:31:39.501713+00:00",
+      "draft": true,
+      "platform_key": "x_draft_image_review_v1",
+      "source_id": "a462624292b058a8fa98",
+      "job_fingerprints": [
+        "9639038e0e3063873c43"
+      ],
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-31770702",
+      "image_topic": "remote",
+      "image_source_page": "https://www.pexels.com/photo/remote-work-setup-with-smartphone-and-laptop-31770702/",
+      "image_creator": "Jakub Zerdzicki",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
+    },
+    "substack_draft_image_review_v1:note-jobs-2026-W41-a462624292b058a8fa98": {
+      "post_id": "6acc003b7db619a2914ad6ab",
+      "channel_id": "6abe70bfea19ca0bde441f84",
+      "due_at": null,
+      "text": "10 remote roles worth checking this week.\n\nImagine finding two jobs before bed. The first has a glamorous title but tells you almost nothing about the work. The second names the task you would do and a skill you can prove. You spend twenty minutes preparing one relevant example for the second.\n\nThat is the point of the \u201cwhy this one\u201d lines below: a detail from the actual work, so you can decide where your effort belongs.\n\nTechnical Customer Support \u2014 QuickMail\nAnywhere in the World | Africa eligible\nEntry level\nWhy this one \u2014 the actual work: \u201cYou will own support for QuickMail and Mailflow, our deliverability add-on.\u201d\nApply: https://weworkremotely.com/remote-jobs/quickmail-technical-customer-support\n\nSenior React Full-stack Developer \u2014 Lemon.io\nAnywhere in the World | Africa eligible\n2+ years Experience\nWhy this one \u2014 the actual work: \u201cRequirements for the Senior React & Python Position: 4+ years of software development experience.\u201d\nApply: https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-7\n\nSenior .NET Full-stack Developer \u2014 Lemon.io\nAnywhere in the World | Africa eligible\nSenior\nWhy this one \u2014 the actual work: \u201cCurrently, we have multiple requests, so please check the requirements.\u201d\nApply: https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-2\n\nSenior Data Scientist \u2014 Wrike\nAnywhere in the World | Africa eligible\n4+ years of experience\nWhy this one \u2014 the actual work: \u201cYou'll have real ownership over meaningful work, a global team that has your back, and the flexibility to do your best work\u2026\u201d\nApply: https://weworkremotely.com/remote-jobs/wrike-senior-data-scientist\n\nSenior Demand Generation Marketing Manager \u2014 Netlify\nAnywhere in the World | Africa eligible\nSenior\nWhy this one \u2014 the actual work: \u201cAs Senior Manager, Demand Generation & Performance Marketing, you'll own paid acquisition end to end - strategy, channel selection, budget, and the\u2026\u201d\nApply: https://weworkremotely.com/remote-jobs/netlify-senior-demand-generation-marketing-manager\n\nDesigner, Creative Services \u2014 Abnormal\nAnywhere in the World | Africa eligible\nWhy this one \u2014 the actual work: \u201cAs a member of the in-house studio, you'll play a key role in bringing our visual identity to life across a wide\u2026\u201d\nApply: https://weworkremotely.com/remote-jobs/abnormal-designer-creative-services\n\nSr. Instructional Designer, Learning Operations \u2014 Chime Financial, Inc\nAnywhere in the World | Africa eligible\n7+ years of experience\nWhy this one \u2014 the actual work: \u201cYou will apply your knowledge of adult learning methodologies to drive business outcomes through the development of a broad range of innovative\u2026\u201d\nApply: https://weworkremotely.com/remote-jobs/chime-financial-inc-sr-instructional-designer-learning-operations\n\nEnterprise Account Executive (Kazakhstan) \u2014 Creatio\nAnywhere in the World | Africa eligible\n3 years of experience\nWhy this one \u2014 the actual work: \u201cCandidates must have experience building and developing a territory to high performance within an innovative SaaS technology provider.\u201d\nApply: https://weworkremotely.com/remote-jobs/creatio-enterprise-account-executive-kazakhstan\n\nTier III Service Desk Engineer \u2014 Unio Digital\nWorldwide | Africa eligible\n6+ years of experience\nWhy this one \u2014 the actual work: \u201cYou will serve as the escalation point within the team, resolving complex technical issues while also leading client onboarding and project initiatives.\u201d\nApply: https://remotive.com/remote-jobs/information-technology/tier-iii-service-desk-engineer-2091045\n\nIT Infrastructure Engineer \u2014 BlueGeko\nAnywhere in the World | Africa eligible\nWhy this one \u2014 the actual work: \u201cWhat You'll Do Manage and maintain IT infrastructure, servers, and networks.\u201d\nApply: https://weworkremotely.com/remote-jobs/bluegeko-it-infrastructure-engineer\n\nBefore you apply: check eligible countries, working hours and whether the pay is a salary, contractor rate or commission. \u201cRemote\u201d alone answers none of those questions.\n\nWhich role fits your experience? Reply with the role and the requirement you are unsure about.",
+      "confirmed_at": "2026-10-11T21:31:39.829499+00:00",
+      "draft": true,
+      "platform_key": "substack_draft_image_review_v1",
+      "source_id": "a462624292b058a8fa98",
+      "job_fingerprints": [
+        "9639038e0e3063873c43",
+        "8442eb87f9c70ddb115d",
+        "f0907f339ec7e5d5362a",
+        "8a2ace258d4fd91c6cb3",
+        "e75be6f28fc14b9b13b4",
+        "f6875cefbaaf7ca3d575",
+        "a29861299e96f2b3f67a",
+        "f19d72a8c92e5d2f1521",
+        "badd507664f00f4a3a10",
+        "64c9436bffd4b82d5ce3"
+      ],
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-31770702",
+      "image_topic": "remote",
+      "image_source_page": "https://www.pexels.com/photo/remote-work-setup-with-smartphone-and-laptop-31770702/",
+      "image_creator": "Jakub Zerdzicki",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
     }
   },
   "x_thread_draft_guides": [
@@ -325,12 +378,14 @@
     "x-238e9451b5c554620320",
     "x-jobs-2026-W41-1178abe82e5341d9fd71",
     "x-jobs-2026-W41-a1271d76f220daefc51e",
+    "x-jobs-2026-W41-a462624292b058a8fa98",
     "x-jobs-2026-W41-f582eae7f27190f7c751"
   ],
   "substack_draft_image_review_v1": [
     "note-238e9451b5c554620320",
     "note-jobs-2026-W41-1178abe82e5341d9fd71",
     "note-jobs-2026-W41-a1271d76f220daefc51e",
+    "note-jobs-2026-W41-a462624292b058a8fa98",
     "note-jobs-2026-W41-f582eae7f27190f7c751"
   ],
   "manual_media_updates": {

@@ -12,55 +12,57 @@ Entry level
 Why this one — the actual work: “You will own support for QuickMail and Mailflow, our deliverability add-on.”
 Apply: https://weworkremotely.com/remote-jobs/quickmail-technical-customer-support
 
-Billing Operations Analyst 1 — Twilio
-Anywhere in the World | Africa eligible
-1-3 years experience
-Why this one — the actual work: “Responsibilities In this role you’ll: Maintain Revenue Team external customer email, responding to customer and other external queries in a timely manner”
-Apply: https://weworkremotely.com/remote-jobs/twilio-billing-operations-analyst-1
-
-Cyber Defense Engineer — BeyondTrust
-Anywhere in the World | Africa eligible
-4+ years of experience
-Why this one — the actual work: “Our culture of flexibility, trust, and continual learning means you will be recognized for your growth, and for the impact you make”
-Apply: https://weworkremotely.com/remote-jobs/beyondtrust-cyber-defense-engineer
-
-Machine Learning Engineer - IV (Fraud) — Jumio
-Anywhere in the World | Africa eligible
-Why this one — the actual work: “This role is essential for ensuring the highest standards of security and user verification through the application of advanced machine learning and”
-Apply: https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-fraud
-
-Customer Success Engineer EMEA - w/m/d — JetBrains
-Anywhere in the World | Africa eligible
-Why this one — the actual work: “In this role, you will: Work closely with JetBrains Account Executives.”
-Apply: https://weworkremotely.com/remote-jobs/jetbrains-customer-success-engineer-emea-w-m-d
-
-Analyst — Affirm
-Anywhere in the World | Africa eligible
-1–3 years of experience
-Why this one — the actual work: “You will have the opportunity to learn more about our teams and share your preferences as you move through the process.”
-Apply: https://weworkremotely.com/remote-jobs/affirm-analyst
-
-Chargeback Operations Intern — Sezzle
-Anywhere in the World | Africa eligible
-Entry level
-Why this one — the actual work: “As a Chargeback Operations Intern , you will be responsible for analyzing and responding to card and ACH disputes filed against Sezzle.”
-Apply: https://weworkremotely.com/remote-jobs/sezzle-chargeback-operations-intern
-
-Customer Retention Executive — BeyondTrust
-Anywhere in the World | Africa eligible
-Why this one — the actual work: “Our culture of flexibility, trust, and continual learning means you will be recognized for your growth and for the impact you make”
-Apply: https://weworkremotely.com/remote-jobs/beyondtrust-customer-retention-executive
-
-Machine Learning Engineer - IV (Computer Vision) — Jumio
-Anywhere in the World | Africa eligible
-Why this one — the actual work: “You will be responsible for curating balanced training sets and generating synthetic data to address both quality and diversity gaps.”
-Apply: https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-computer-vision
-
 Senior React Full-stack Developer — Lemon.io
 Anywhere in the World | Africa eligible
 2+ years Experience
 Why this one — the actual work: “Requirements for the Senior React & Python Position: 4+ years of software development experience.”
 Apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-7
+
+Senior .NET Full-stack Developer — Lemon.io
+Anywhere in the World | Africa eligible
+Senior
+Why this one — the actual work: “Currently, we have multiple requests, so please check the requirements.”
+Apply: https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-2
+
+Senior Data Scientist — Wrike
+Anywhere in the World | Africa eligible
+4+ years of experience
+Why this one — the actual work: “You'll have real ownership over meaningful work, a global team that has your back, and the flexibility to do your best work…”
+Apply: https://weworkremotely.com/remote-jobs/wrike-senior-data-scientist
+
+Senior Demand Generation Marketing Manager — Netlify
+Anywhere in the World | Africa eligible
+Senior
+Why this one — the actual work: “As Senior Manager, Demand Generation & Performance Marketing, you'll own paid acquisition end to end - strategy, channel selection, budget, and the…”
+Apply: https://weworkremotely.com/remote-jobs/netlify-senior-demand-generation-marketing-manager
+
+Designer, Creative Services — Abnormal
+Anywhere in the World | Africa eligible
+Why this one — the actual work: “As a member of the in-house studio, you'll play a key role in bringing our visual identity to life across a wide…”
+Apply: https://weworkremotely.com/remote-jobs/abnormal-designer-creative-services
+
+Sr. Instructional Designer, Learning Operations — Chime Financial, Inc
+Anywhere in the World | Africa eligible
+7+ years of experience
+Why this one — the actual work: “You will apply your knowledge of adult learning methodologies to drive business outcomes through the development of a broad range of innovative…”
+Apply: https://weworkremotely.com/remote-jobs/chime-financial-inc-sr-instructional-designer-learning-operations
+
+Enterprise Account Executive (Kazakhstan) — Creatio
+Anywhere in the World | Africa eligible
+3 years of experience
+Why this one — the actual work: “Candidates must have experience building and developing a territory to high performance within an innovative SaaS technology provider.”
+Apply: https://weworkremotely.com/remote-jobs/creatio-enterprise-account-executive-kazakhstan
+
+Tier III Service Desk Engineer — Unio Digital
+Worldwide | Africa eligible
+6+ years of experience
+Why this one — the actual work: “You will serve as the escalation point within the team, resolving complex technical issues while also leading client onboarding and project initiatives.”
+Apply: https://remotive.com/remote-jobs/information-technology/tier-iii-service-desk-engineer-2091045
+
+IT Infrastructure Engineer — BlueGeko
+Anywhere in the World | Africa eligible
+Why this one — the actual work: “What You'll Do Manage and maintain IT infrastructure, servers, and networks.”
+Apply: https://weworkremotely.com/remote-jobs/bluegeko-it-infrastructure-engineer
 
 Before you apply: check eligible countries, working hours and whether the pay is a salary, contractor rate or commission. “Remote” alone answers none of those questions.
 

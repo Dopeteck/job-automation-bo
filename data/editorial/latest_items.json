@@ -1,84 +1,12 @@
 {
   "jobs": [
     {
-      "title": "Chargeback Operations Intern",
-      "company": "Sezzle",
-      "link": "https://weworkremotely.com/remote-jobs/sezzle-chargeback-operations-intern",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T07:30:57+00:00",
-      "link_status": "200"
-    },
-    {
-      "title": "Billing Operations Analyst 1",
-      "company": "Twilio",
-      "link": "https://weworkremotely.com/remote-jobs/twilio-billing-operations-analyst-1",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T07:30:56+00:00",
-      "link_status": "200"
-    },
-    {
       "title": "Technical Customer Support",
       "company": "QuickMail",
       "link": "https://weworkremotely.com/remote-jobs/quickmail-technical-customer-support",
       "location": "Anywhere in the World",
       "africa_eligible": true,
       "published_at": "2026-10-10T21:21:48+00:00",
-      "link_status": "200"
-    },
-    {
-      "title": "Cyber Defense Engineer",
-      "company": "BeyondTrust",
-      "link": "https://weworkremotely.com/remote-jobs/beyondtrust-cyber-defense-engineer",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-10T07:30:48+00:00",
-      "link_status": "200"
-    },
-    {
-      "title": "Customer Retention Executive",
-      "company": "BeyondTrust",
-      "link": "https://weworkremotely.com/remote-jobs/beyondtrust-customer-retention-executive",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-10T07:30:42+00:00",
-      "link_status": "200"
-    },
-    {
-      "title": "Machine Learning Engineer - IV (Fraud)",
-      "company": "Jumio",
-      "link": "https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-fraud",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-10T07:30:40+00:00",
-      "link_status": "200"
-    },
-    {
-      "title": "Machine Learning Engineer - IV (Computer Vision)",
-      "company": "Jumio",
-      "link": "https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-computer-vision",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-10T07:30:40+00:00",
-      "link_status": "200"
-    },
-    {
-      "title": "Customer Success Engineer EMEA - w/m/d",
-      "company": "JetBrains",
-      "link": "https://weworkremotely.com/remote-jobs/jetbrains-customer-success-engineer-emea-w-m-d",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-09T07:31:02+00:00",
-      "link_status": "200"
-    },
-    {
-      "title": "Analyst",
-      "company": "Affirm",
-      "link": "https://weworkremotely.com/remote-jobs/affirm-analyst",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-09T07:30:56+00:00",
       "link_status": "200"
     },
     {
@@ -100,24 +28,6 @@
       "link_status": "200"
     },
     {
-      "title": "Machine Learning Engineer - IV (Biometrics)",
-      "company": "Jumio",
-      "link": "https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer-iv-biometrics",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-08T07:31:21+00:00",
-      "link_status": "200"
-    },
-    {
-      "title": "Machine Learning Engineer",
-      "company": "Jumio",
-      "link": "https://weworkremotely.com/remote-jobs/jumio-machine-learning-engineer",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-08T07:31:21+00:00",
-      "link_status": "200"
-    },
-    {
       "title": "Senior .NET Full-stack Developer",
       "company": "Lemon.io",
       "link": "https://weworkremotely.com/remote-jobs/lemon-io-senior-net-full-stack-developer-2",
@@ -136,12 +46,57 @@
       "link_status": "200"
     },
     {
+      "title": "Senior Demand Generation Marketing Manager",
+      "company": "Netlify",
+      "link": "https://weworkremotely.com/remote-jobs/netlify-senior-demand-generation-marketing-manager",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-10T07:31:08+00:00",
+      "link_status": "200"
+    },
+    {
       "title": "Tier III Service Desk Engineer",
       "company": "Unio Digital",
       "link": "https://remotive.com/remote-jobs/information-technology/tier-iii-service-desk-engineer-2091045",
       "location": "Worldwide",
       "africa_eligible": true,
       "published_at": "2026-10-07T01:11:09+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "IT Infrastructure Engineer",
+      "company": "BlueGeko",
+      "link": "https://weworkremotely.com/remote-jobs/bluegeko-it-infrastructure-engineer",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-08T07:54:30+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Designer, Creative Services",
+      "company": "Abnormal",
+      "link": "https://weworkremotely.com/remote-jobs/abnormal-designer-creative-services",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-07T07:30:42+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Enterprise Sales Engineer - FED",
+      "company": "Datadog",
+      "link": "https://weworkremotely.com/remote-jobs/datadog-enterprise-sales-engineer-fed",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-05T07:31:16+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Sr. Instructional Designer, Learning Operations",
+      "company": "Chime Financial, Inc",
+      "link": "https://weworkremotely.com/remote-jobs/chime-financial-inc-sr-instructional-designer-learning-operations",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-05T07:31:07+00:00",
       "link_status": "200"
     }
   ],
