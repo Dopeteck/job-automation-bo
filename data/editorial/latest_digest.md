@@ -1,3 +1,3 @@
 # Digest held for review
 
-Only 6 suitable verified roles passed; minimum is 8. Nothing queued.
+4 suitable roles passed, including 1 entry/junior roles. Required: at least 6 roles and 3 entry/junior roles. Nothing queued.
