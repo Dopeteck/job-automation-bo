@@ -93,3 +93,6 @@ class JobsDigestTests(unittest.TestCase):
     def test_state_security_and_work_authorization_restrictions(self):
         for text in ['Remote in Texas. You will build applications.', 'You must be located in Singapore.', 'US citizen required.', 'Security clearance required.', 'Authorized to work in Germany.', 'Federal government sales.']:
             self.assertFalse(eligible_for_digest(self.job(description=text),datetime.now(timezone.utc)))
+
+    def test_lowercase_us_is_not_a_location(self):
+        self.assertTrue(eligible_for_digest(self.job(description='Join our remote team. Help us build integrations for billing.'),datetime.now(timezone.utc)))
