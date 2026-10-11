@@ -4,6 +4,7 @@ No news summaries, generated vacancies, extra credentials or paid AI calls.
 import hashlib
 import json
 import os
+import re
 import sys
 from dataclasses import replace
 from datetime import datetime, timezone, timedelta
@@ -28,6 +29,12 @@ def eligible_for_digest(job, now):
     published = job.published_at
     if published and published.tzinfo is None:
         published = published.replace(tzinfo=timezone.utc)
+    # Company claims such as "customers worldwide" are not hiring eligibility.
+    if job.remote_scope == 'worldwide':
+        explicit_location = re.search(r'\b(worldwide|anywhere|global|all countries)\b', job.location, re.I)
+        explicit_hiring = re.search(r'\b(?:work|hire|hiring|apply|applicants|candidates)\b[^.!?]{0,45}\b(?:anywhere in the world|worldwide|all countries)\b', job.description, re.I)
+        if not explicit_location and not explicit_hiring:
+            return False
     return bool(published and now - timedelta(days=7) <= published <= now
                 and job.link_status in {'200', 'redirect'}
                 and job.remote_scope != 'unknown')
@@ -82,8 +89,11 @@ def build_digest(jobs, now=None):
             tip = 'Application angle: choose one requirement from the listing and show evidence that you have done it before.'
         section = f'{shorten(job.title, 110)} — {shorten(job.company, 60)}\n{detail(job)}'
         description = clean_text(job.description, 12000)
-        if description:
-            section += '\nListing excerpt: ' + shorten(description, 260)
+        sentences = re.split(r'(?<=[.!?])\s+', description)
+        useful = [sentence for sentence in sentences if 35 <= len(sentence) <= 600
+                  and re.search(r"\b(you will|you'll|responsibilities|requirements|experience with|proficiency|must have|your role|your work)\b", sentence, re.I)]
+        if useful:
+            section += '\nFrom the listing: ' + shorten(useful[0], 260)
         section += f'\n{tip}\nApply: {job.effective_url}'
         if job.is_referral:
             section += '\nReferral link: we may earn if you are accepted and start paid work.'

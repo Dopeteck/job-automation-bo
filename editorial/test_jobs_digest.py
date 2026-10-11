@@ -30,3 +30,9 @@ class JobsDigestTests(unittest.TestCase):
         openings={editorial_opening(jobs,datetime(2026,1,day,tzinfo=timezone.utc)) for day in range(1,29)}
         self.assertTrue(any('1 of the 2 listings' in value for value in openings))
         self.assertFalse(any('not classified as worldwide' in value for value in openings))
+
+    def test_company_worldwide_claim_is_not_hiring_eligibility(self):
+        job=self.job(location='Remote',description='We serve customers worldwide. Headquarters: United States.')
+        self.assertFalse(build_digest([job])['substack_notes'])
+        job.description='Candidates can apply from anywhere in the world.'
+        self.assertTrue(build_digest([job])['substack_notes'])
