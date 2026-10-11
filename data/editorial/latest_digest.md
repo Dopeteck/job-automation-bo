@@ -1,78 +1,84 @@
 # Remote jobs this week: 10 roles open worldwide or in Africa
 
-10 remote roles worth checking this week, including 7 entry/junior roles.
+10 remote roles worth checking this week, including 8 entry/junior roles.
 
 Imagine finding two jobs before bed. The first has a glamorous title but tells you almost nothing about the work. The second names the task you would do and a skill you can prove. You spend twenty minutes preparing one relevant example for the second.
 
 That is the point of the “why this one” lines below: a detail from the actual work, so you can decide where your effort belongs.
 
-🌏 Gameplay Data Capture Specialist | Remote - Contract — Xperteez Technology
+🌎 Data Analyst - Remote, Contact — Xperteez Technology
 Worldwide | Africa eligible
 Entry level
-Why this one — the actual work: “Maintain regular, timely communication in both written and verbal formats with the customer's remote team.”
-Apply: https://himalayas.app/companies/xperteez-technology/jobs/gameplay-data-capture-specialist-remote-contract
+Why this one — the actual work: “Review and analyze extensive business data sets for accuracy, completeness, and relevance.”
+Apply: https://himalayas.app/companies/xperteez-technology/jobs/data-analyst-remote-contact
 Listing credit: Himalayas: https://himalayas.app
 
-Video Annotation Specialist | Remote - Contract — Xperteez Technology
+Software Engineer – Backend | Remote - Contract — Xperteez Technology
 Worldwide | Africa eligible
 Entry level
-Why this one — the actual work: “Evaluate the accuracy of AI-generated descriptions, verifying alignment with provided guidelines and identifying inconsistencies or errors.”
-Apply: https://himalayas.app/companies/xperteez-technology/jobs/video-annotation-specialist-remote-contract
+USD 30–100/hour
+Why this one — the actual work: “You'll create realistic, interesting and challenging coding tasks for AI to solve involving feature implementation and bug fixes.”
+Apply: https://himalayas.app/companies/xperteez-technology/jobs/software-engineer-backend-remote-contract
 Listing credit: Himalayas: https://himalayas.app
 
-Video Content Moderator — Infomediji
+Video Data Annotator — micro1
 Worldwide | Africa eligible
 Entry level
-Why this one — the actual work: “Create trailers and additional images when necessary.”
-Apply: https://himalayas.app/companies/infomediji/jobs/video-content-moderator
+Why this one — the actual work: “Review and annotate short video and audio clips, labeling content accurately based on project-specific guidelines.”
+Apply: https://himalayas.app/companies/micro1/jobs/video-data-annotator-966806508
 Listing credit: Himalayas: https://himalayas.app
 
-Intern - MERN stack — Sarvify
+QA Tester — Vantum
 Worldwide | Africa eligible
 Entry level
-Why this one — the actual work: “Create responsive user interfaces using React.js and modern UI libraries.”
-Apply: https://himalayas.app/companies/sarvify/jobs/intern-mern-stack
+USD 500–1000/monthly
+Why this one — the actual work: “Write each bug so it can be reproduced. Steps, what you expected, and what actually happened. Include the page, the account state, and a screenshot when it helps.”
+Apply: https://himalayas.app/companies/vantum/jobs/qa-tester
 Listing credit: Himalayas: https://himalayas.app
 
-Surplus Lines Coordinator (Temporary) — Hylant
+Social Media Marketing Intern — Pathways
 Worldwide | Africa eligible
 Entry level
-Why this one — the actual work: “Complete moving Surplus Lines processes from paper driven to Epic (agency management system) – electronic based for record retention.”
-Apply: https://himalayas.app/companies/hylant/jobs/surplus-lines-coordinator-temporary
+Why this one — the actual work: “In this role, you will assist in creating and curating engaging content for our social media platforms, with a focus on Instagram and YouTube.”
+Apply: https://himalayas.app/companies/pathways/jobs/social-media-marketing-intern
 Listing credit: Himalayas: https://himalayas.app
 
-Founders Associate — Clera
-Worldwide | Africa eligible
-2 years of experience
-USD 60000–90000/annual
-Why this one — the actual work: “Build outreach sequences, qualify leads, and maintain CRM records and pipeline tracking.”
-Apply: https://himalayas.app/companies/clera/jobs/founders-associate
-Listing credit: Himalayas: https://himalayas.app
-
-Paid Media & Tracking Assistant — Spotter Labs
+Part-Time E-commerce Operator / Marketing Intern — Palette Studios
 Worldwide | Africa eligible
 Entry level
-Why this one — the actual work: “Support paid advertising campaigns across platforms such as Meta Ads, TikTok Ads, Reddit Ads, and LinkedIn Ads .”
-Apply: https://himalayas.app/companies/spotter-labs/jobs/paid-media-tracking-assistant-1771714803
+USD 20000–50000/annual
+Why this one — the actual work: “Optimize product listings, pricing, and promotions for maximum conversion.”
+Apply: https://himalayas.app/companies/palette-studios/jobs/part-time-e-commerce-operator-marketing-intern
 Listing credit: Himalayas: https://himalayas.app
 
-Senior Research Engineer — AssemblyAI
-Anywhere in the World | Africa eligible
-Senior
-Why this one — the actual work: “Maintain and evolve our JAX training framework, keeping it scalable and efficient for large-scale distributed training runs on TPU.”
-Apply: https://weworkremotely.com/remote-jobs/assemblyai-senior-research-engineer
+Vendor & Compliance Assistant — NightOwl Consulting
+Worldwide | Africa eligible
+Entry level
+PHP 40000–50000/monthly
+Why this one — the actual work: “Assist with vendor due diligence processes within Ncontracts.”
+Apply: https://himalayas.app/companies/nightowl-consulting/jobs/vendor-compliance-assistant
+Listing credit: Himalayas: https://himalayas.app
 
-Senior 3D Designer — Contra
-Anywhere in the World | Africa eligible
-Senior
-Why this one — the actual work: “Complete profile - Once you’ve applied, we recommend completing your profile for better job matches and setting up your wallet so you can get paid when a job comes through.”
-Apply: https://weworkremotely.com/remote-jobs/contra-senior-3d-designer
+TheTravel | Junior Editor — Valnet Tech Sites
+Worldwide | Africa eligible
+Entry level
+Why this one — the actual work: “Assist in editing articles to ensure they meet the brand's editorial standards for grammar, accuracy, and style.”
+Apply: https://himalayas.app/companies/valnet-tech-sites/jobs/thetravel-junior-editor
+Listing credit: Himalayas: https://himalayas.app
 
-Senior Product Engineer — Semaphore
-Anywhere in the World | Africa eligible
-Senior
-Why this one — the actual work: “You will work across product and engineering boundaries: understanding the user, shaping the solution, making technical decisions, building the system, and improving it based on real use.”
-Apply: https://weworkremotely.com/remote-jobs/semaphore-senior-product-engineer
+Freelancer Support Specialist — Your Personal AI
+Worldwide | Africa eligible
+1-3 years of administrative or customer service experience
+Why this one — the actual work: “Answer support emails from freelance data collectors regarding task questions, technical issues, and guidelines.”
+Apply: https://himalayas.app/companies/your-personal-ai/jobs/freelancer-support-specialist
+Listing credit: Himalayas: https://himalayas.app
+
+Join Our Team as a Freelance Recruiter for AI Annotation and Data Collection Pro — Your Personal AI
+Worldwide | Africa eligible
+Experience not stated
+Why this one — the actual work: “Manage candidate pipelines and provide regular updates to stakeholders.”
+Apply: https://himalayas.app/companies/your-personal-ai/jobs/join-our-team-as-a-freelance-recruiter-for-ai-annotation-and-data-collection-pro
+Listing credit: Himalayas: https://himalayas.app
 
 Before you apply: check eligible countries, working hours and whether the pay is a salary, contractor rate or commission. “Remote” alone answers none of those questions.
 

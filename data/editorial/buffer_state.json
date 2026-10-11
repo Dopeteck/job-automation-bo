@@ -79,18 +79,18 @@
   "pending_uploads": {},
   "last_publish_report": {
     "x_draft_image_review_v1": {
-      "queued": 1,
+      "queued": 0,
       "skipped": 0,
       "draft": true,
       "with_image": 0,
-      "text_only": 1,
+      "text_only": 0,
       "image_fallbacks": 0
     },
     "substack_draft_image_review_v1": {
-      "queued": 1,
+      "queued": 0,
       "skipped": 0,
       "draft": true,
-      "with_image": 1,
+      "with_image": 0,
       "text_only": 0,
       "image_fallbacks": 0
     }
