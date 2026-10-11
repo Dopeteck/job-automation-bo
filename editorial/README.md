@@ -1,3 +1,9 @@
+## Private newsletter delivery
+
+Each scheduled or manual generation sends `latest_digest.md` as a plain-text file to the configured personal Telegram bot chat. Delivery never uses the public channel destination. Add repository secrets `TELEGRAM_DRAFT_BOT_TOKEN` (BotFather token) and `TELEGRAM_DRAFT_CHAT_ID` (your positive numeric personal chat ID); start that bot privately first. Missing configuration is reported explicitly. Telegram getChat must confirm a private chat and matching ID before sending; successful identical files are deduplicated. An empty job shortlist is held. API errors fail the delivery step visibly, while draft artifacts and history are still saved. Never commit the token.
+
+Newsletter style: a hypothetical scenario, actual listing excerpts, job-specific application advice, and a practical closing question. No invented personal success stories, salaries, employer requirements or reader testimonials. Application links remain necessary for a jobs digest.
+
 # Remote Jobs Worldwide
 
 Production now runs `jobs_digest.py` every Monday at 09:30 UTC. It uses a copy of the Telegram scraper curation modules from Dopeteck/quality-job-scraper (reviewed October 11, 2026). The two collectors independently fetch current vacancies; this is not a digest of confirmed Telegram messages. It keeps region and experience restrictions visible, prioritizes AI and entry roles, includes disclosed pay, and permits AfricaEligible only when supported. Undated vacancies and protected/unavailable application pages are excluded from social digests. Confirmed job fingerprints prevent repeat social digests. No Gemini call is needed.

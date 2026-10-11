@@ -15,7 +15,7 @@ sys.path.insert(0, str(ROOT))
 from editorial.quality_jobs.config import Settings
 from editorial.quality_jobs.sources import collect
 from editorial.quality_jobs.pipeline import process
-from editorial.quality_jobs.text import shorten
+from editorial.quality_jobs.text import shorten, clean_text
 from editorial.editorial_pipeline import x_weight
 
 OUT = ROOT / 'data/editorial'
@@ -49,19 +49,29 @@ def build_digest(jobs, now=None):
         packet['newsletter_markdown'] += 'No dated, accessible vacancy passed the job checks. Nothing queued.\n'
         return packet
     promo = now.astimezone(ZoneInfo('Africa/Lagos')).date().isoformat() >= '2026-10-15'
-    intro = f'{len(jobs)} remote roles worth checking this week.\n\nRemote does not always mean worldwide. Read the location and experience requirements before applying.'
+    intro = f'{len(jobs)} remote roles worth checking this week.\n\nPicture this: you find a remote role, polish your CV, then spot the country restriction at the bottom. That is an application you could have skipped. Start with eligibility, then experience, then pay.'
     sections = []
     for job in jobs:
-        strengths = []
-        if job.africa_eligible: strengths.append('Africa eligibility supported by the listing')
-        if job.experience_level == 'entry': strengths.append('lower stated experience requirements')
-        if job.salary: strengths.append('pay disclosed')
-        if not strengths: strengths.append('location requirements listed')
-        section = f'{shorten(job.title, 110)} — {shorten(job.company, 60)}\n{detail(job)}\nWhy consider it: {"; ".join(strengths[:2])}.\nApply: {job.effective_url}'
+        title = job.title.lower()
+        if any(word in title for word in ('support', 'customer')):
+            tip = 'Application angle: prepare one example of how you diagnosed a problem and explained the solution clearly.'
+        elif any(word in title for word in ('automation', 'developer', 'engineer')):
+            tip = 'Application angle: link one relevant project and explain what you built, what broke and how you fixed it.'
+        elif any(word in title for word in ('ai', 'research', 'data', 'analyst')):
+            tip = 'Application angle: show a relevant analysis or work sample, including how you checked its accuracy.'
+        elif any(word in title for word in ('sales', 'marketing')):
+            tip = 'Application angle: use one concrete example with a measurable result. Explain your contribution.'
+        else:
+            tip = 'Application angle: choose one requirement from the listing and show evidence that you have done it before.'
+        section = f'{shorten(job.title, 110)} — {shorten(job.company, 60)}\n{detail(job)}'
+        description = clean_text(job.description, 12000)
+        if description:
+            section += '\nListing excerpt: ' + shorten(description, 260)
+        section += f'\n{tip}\nApply: {job.effective_url}'
         if job.is_referral:
             section += '\nReferral link: we may earn if you are accepted and start paid work.'
         sections.append(section)
-    note = intro + '\n\n' + '\n\n'.join(sections) + '\n\nSave the roles that fit you. Tailor one application to the requirements rather than sending the same CV everywhere.'
+    note = intro + '\n\n' + '\n\n'.join(sections) + '\n\nBefore you apply: check eligible countries, working hours and whether the pay is a salary, contractor rate or commission. “Remote” alone answers none of those questions.\n\nWhich role fits your experience? Reply with the role and the requirement you are unsure about.'
     if promo: note += '\n\nDaily job listings: ' + TELEGRAM
     packet['newsletter_markdown'] += note + '\n'
     job_keys = [job.fingerprint for job in jobs]

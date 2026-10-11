@@ -35,7 +35,7 @@ jobs:
       - name: Install editorial dependencies
         run: pip install requests beautifulsoup4 feedparser Pillow python-dateutil
       - name: Check quota fallback and promotion rules
-        run: python -m unittest editorial.test_editorial editorial.test_jobs_digest
+        run: python -m unittest editorial.test_editorial editorial.test_jobs_digest publishers.test_telegram_draft
       - name: Generate editorial drafts
         if: ${{ github.event_name != 'push' }}
         env:
@@ -47,6 +47,12 @@ jobs:
           X_HANDLE: ${{ vars.X_HANDLE || '@HenryMortu' }}
           SUBSTACK_URL: ${{ vars.SUBSTACK_URL || 'https://substack.com/@web3jobtechalphavault' }}
         run: python editorial/jobs_digest.py
+      - name: Deliver newsletter draft to personal Telegram
+        if: ${{ github.event_name != 'push' }}
+        env:
+          TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
+          TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
+        run: python publishers/telegram_draft.py
       - name: Upload draft review package
         if: ${{ github.event_name != 'push' }}
         uses: actions/upload-artifact@v4
