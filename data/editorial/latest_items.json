@@ -1,54 +1,105 @@
 {
-  "news": [
+  "jobs": [
     {
-      "id": "0cc7e8319432b940c301",
-      "source": "GitHub Blog",
-      "domain": "github.blog",
-      "category": "tech",
-      "title": "Hack the World: Why hackathons are still the best place to learn to build",
-      "summary": "The barriers to building software have collapsed. Today, anyone can build. Hackathons are a great place to start learning. The post Hack the World: Why hackathons are still the best place to learn to build appeared first on The GitHub Blog .",
-      "link": "https://github.blog/developer-skills/career-growth/hack-the-world-why-hackathons-are-still-the-best-place-to-learn-to-build/",
-      "published_at": "2026-10-09T16:00:00+00:00",
-      "score": 28,
-      "evidence": "article"
+      "title": "Technical Customer Support Specialist",
+      "company": "Happyrobot.ai",
+      "link": "https://www.arbeitnow.ch/jobs/companies/happyrobotai/remote-technical-customer-support-specialist-54073",
+      "location": "Remote",
+      "africa_eligible": true,
+      "published_at": "2026-10-09T05:40:03+00:00",
+      "link_status": "protected"
     },
     {
-      "id": "c767ce637ed01167226f",
-      "source": "OpenAI News",
-      "domain": "openai.com",
-      "category": "ai",
-      "title": "How Oracle turns days of work into minutes with ChatGPT and Codex",
-      "summary": "Across recruiting, engineering, and operations, Oracle turns specialist knowledge into fast, repeatable workflows with ChatGPT Work and Codex.",
-      "link": "https://openai.com/index/oracle",
-      "published_at": "2026-10-08T16:00:00+00:00",
-      "score": 23,
-      "evidence": "article"
+      "title": "Software Engineer - Data Platform",
+      "company": "Vercel",
+      "link": "https://weworkremotely.com/remote-jobs/vercel-software-engineer-data-platform",
+      "location": "Remote",
+      "africa_eligible": true,
+      "published_at": "2026-10-11T07:31:07+00:00",
+      "link_status": "200"
     },
     {
-      "id": "318183f1d2d4c5087fe9",
-      "source": "Stack Overflow Blog",
-      "domain": "stackoverflow.blog",
-      "category": "career",
-      "title": "A Treatise on Model Oriented Programming Languages",
-      "summary": "",
-      "link": "https://stackoverflow.blog/2026/10/09/a-treatise-on-model-oriented-programming-languages/",
-      "published_at": "2026-10-09T14:59:04+00:00",
-      "score": 23,
-      "evidence": "article"
+      "title": "Applied Research Scientist, AI Research",
+      "company": "Descript",
+      "link": "https://weworkremotely.com/remote-jobs/descript-applied-research-scientist-ai-research",
+      "location": "Remote",
+      "africa_eligible": true,
+      "published_at": "2026-10-11T07:31:07+00:00",
+      "link_status": "200"
     },
     {
-      "id": "c03de72ab9423b213e68",
-      "source": "Stack Overflow Blog",
-      "domain": "stackoverflow.blog",
-      "category": "career",
-      "title": "Taking a look under your agent’s hood",
-      "summary": "Ryan is joined by Yanbing Li, Chief Product Officer at Datadog, to talk about applying observability to non-deterministic AI agents, blurring the boundaries between software development and production workflows, and navigating emerging challenges in AI security and tokenomics.",
-      "link": "https://stackoverflow.blog/2026/10/09/taking-a-look-under-your-agent-s-hood/",
-      "published_at": "2026-10-09T07:40:00+00:00",
-      "score": 23,
-      "evidence": "article"
+      "title": "Business Intelligence Analyst 2",
+      "company": "Twilio",
+      "link": "https://weworkremotely.com/remote-jobs/twilio-business-intelligence-analyst-2",
+      "location": "Remote",
+      "africa_eligible": true,
+      "published_at": "2026-10-11T07:30:56+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Inside Sales Contractor",
+      "company": "Credit Wellness, LLC",
+      "link": "https://remotive.com/remote-jobs/sales/inside-sales-contractor-2086540",
+      "location": "Worldwide",
+      "africa_eligible": true,
+      "published_at": "2026-10-08T21:47:32+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Product Engineering Lead",
+      "company": "Tether Operations Limited",
+      "link": "https://remoteOK.com/remote-jobs/remote-product-engineering-lead-tether-operations-limited-1137478",
+      "location": "Remote",
+      "africa_eligible": true,
+      "published_at": "2026-10-10T00:00:05+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Primary Care Physician (MD) - Clinical Documentation & AI Evaluation",
+      "company": "Boron",
+      "link": "https://work.mercor.com/jobs/list_AAABoSaogGy2NBr71LpJgrqO",
+      "location": "United States",
+      "africa_eligible": false,
+      "published_at": "2026-10-10T16:32:20+00:00",
+      "link_status": "redirect"
+    },
+    {
+      "title": "Andromeda Delta - Audio Transcription Reviewer (India/Philippines)",
+      "company": "Welo Data / Welo Global",
+      "link": "https://jobs.lever.co/weloglobal/efcc8784-2d7a-4ad7-bc54-1d728c53be9f",
+      "location": "Philippines, India",
+      "africa_eligible": false,
+      "published_at": "2026-10-07T11:44:56.466000+00:00",
+      "link_status": "200"
+    },
+    {
+      "title": "Enterprise Account Executive II - DACH",
+      "company": "Camunda",
+      "link": "https://www.arbeitnow.ch/jobs/companies/camunda/remote-enterprise-account-executive-ii-dach-180240",
+      "location": "Remote",
+      "africa_eligible": true,
+      "published_at": "2026-10-10T20:40:07+00:00",
+      "link_status": "protected"
+    },
+    {
+      "title": "Enterprise Account Executive UKI",
+      "company": "Camunda",
+      "link": "https://www.arbeitnow.ch/jobs/companies/camunda/remote-enterprise-account-executive-uki-426314",
+      "location": "Remote",
+      "africa_eligible": true,
+      "published_at": "2026-10-10T20:40:07+00:00",
+      "link_status": "protected"
+    },
+    {
+      "title": "Atomistic Materials Modeling Expert",
+      "company": "Mercor",
+      "link": "https://work.mercor.com/jobs/list_AAABoSrPUxxXD7fJaeFCSrmf",
+      "location": "Remote",
+      "africa_eligible": false,
+      "published_at": "2026-10-11T11:53:13+00:00",
+      "link_status": "redirect"
     }
   ],
-  "jobs": [],
-  "drafting_mode": "fallback"
+  "news": [],
+  "drafting_mode": "curated_jobs"
 }

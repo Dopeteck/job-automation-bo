@@ -78,23 +78,21 @@
   },
   "pending_uploads": {},
   "last_publish_report": {
-    "x": {
-      "queued": 0,
+    "x_draft_image_review_v1": {
+      "queued": 1,
       "skipped": 0,
-      "draft": false,
-      "with_image": 0,
+      "draft": true,
+      "with_image": 1,
       "text_only": 0,
-      "image_fallbacks": 0,
-      "reason": "queue_horizon"
+      "image_fallbacks": 0
     },
-    "substack": {
-      "queued": 0,
+    "substack_draft_image_review_v1": {
+      "queued": 1,
       "skipped": 0,
-      "draft": false,
-      "with_image": 0,
+      "draft": true,
+      "with_image": 1,
       "text_only": 0,
-      "image_fallbacks": 0,
-      "reason": "queue_horizon"
+      "image_fallbacks": 0
     }
   },
   "confirmed_uploads": {
@@ -167,6 +165,54 @@
       "image_license": "Pexels License",
       "buffer_asset_ids": [],
       "media_experiment": "stock-image-v1"
+    },
+    "x_draft_image_review_v1:x-jobs-2026-W41-1178abe82e5341d9fd71": {
+      "post_id": "6acbfbd0fa026cfb81164d9e",
+      "channel_id": "6abe6f09ea19ca0bde441138",
+      "due_at": null,
+      "text": "Software Engineer - Data Platform\nVercel\nRemote\nAfrica eligible\nPay not disclosed\nhttps://weworkremotely.com/remote-jobs/vercel-software-engineer-data-platform",
+      "confirmed_at": "2026-10-11T21:12:48.386598+00:00",
+      "draft": true,
+      "platform_key": "x_draft_image_review_v1",
+      "source_id": "1178abe82e5341d9fd71",
+      "job_fingerprints": [
+        "b0732c0fa6bc51ac5c83"
+      ],
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-37085304",
+      "image_topic": "coding",
+      "image_source_page": "https://www.pexels.com/photo/remote-work-setup-with-coding-on-laptop-37085304/",
+      "image_creator": "Meet Patel",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
+    },
+    "substack_draft_image_review_v1:note-jobs-2026-W41-1178abe82e5341d9fd71": {
+      "post_id": "6acbfbd1a9411fbcc55c6397",
+      "channel_id": "6abe70bfea19ca0bde441f84",
+      "due_at": null,
+      "text": "5 remote roles worth checking this week.\n\nA generic CV is quick to send. It also leaves the employer to guess why you fit. Pick one role below, find its most important requirement and put evidence of that skill near the top of your application.\n\nSoftware Engineer - Data Platform \u2014 Vercel\nRemote | Africa eligible\nCheck experience requirements | Pay not disclosed\nListing excerpt: Headquarters: Remote - United States About Vercel: Vercel is the agentic infrastructure company, freeing people and agents to ship what's next. For more than a decade we've helped builders move from idea to production with speed, security, and exceptional dev\u2026\nApplication angle: link one relevant project and explain what you built, what broke and how you fixed it.\nApply: https://weworkremotely.com/remote-jobs/vercel-software-engineer-data-platform\n\nApplied Research Scientist, AI Research \u2014 Descript\nRemote | Africa eligible\nCheck experience requirements | Pay not disclosed\nListing excerpt: Headquarters: San Francisco, CA or Remote, US Descript's Research team builds the models behind the product's most distinctive features: Video Regenerate and lipsync, video translation, zero-shot voice and roomtone cloning, and Studio Sound. We don't build ge\u2026\nApplication angle: show a relevant analysis or work sample, including how you checked its accuracy.\nApply: https://weworkremotely.com/remote-jobs/descript-applied-research-scientist-ai-research\n\nBusiness Intelligence Analyst 2 \u2014 Twilio\nRemote | Africa eligible\nCheck experience requirements | Pay not disclosed\nListing excerpt: Headquarters: Remote - Colombia Who we are At Twilio, we\u2019re shaping the future of communications, all from the comfort of our homes. We deliver innovative solutions to hundreds of thousands of businesses and empower millions of developers worldwide to craft p\u2026\nApplication angle: show a relevant analysis or work sample, including how you checked its accuracy.\nApply: https://weworkremotely.com/remote-jobs/twilio-business-intelligence-analyst-2\n\nInside Sales Contractor \u2014 Credit Wellness, LLC\nWorldwide | Africa eligible\nCheck experience requirements | OTE $25k - $35k\nListing excerpt: About Us We are a financial services start up focusing on helping to improve consumer credit profiles. We are currently seeking KPI driven sales representatives looking to earn up to 45K in their first year while working remotely. We offer comprehensive train\u2026\nApplication angle: use one concrete example with a measurable result. Explain your contribution.\nApply: https://remotive.com/remote-jobs/sales/inside-sales-contractor-2086540\n\nProduct Engineering Lead \u2014 Tether Operations Limited\nRemote | Africa eligible\nSenior | Pay not disclosed\nListing excerpt: Join Tether and Shape the Future of Digital Finance At Tether, we\u00e2\u0080\u0099re not just building products, we\u00e2\u0080\u0099re pioneering a global financial revolution. Our cutting-edge solutions empower businesses\u00e2\u0080\u0094from exchanges and wallets to payment processors and ATMs\u00e2\u0080\u0094to\u2026\nApplication angle: link one relevant project and explain what you built, what broke and how you fixed it.\nApply: https://remoteOK.com/remote-jobs/remote-product-engineering-lead-tether-operations-limited-1137478\n\nBefore you apply: check eligible countries, working hours and whether the pay is a salary, contractor rate or commission. \u201cRemote\u201d alone answers none of those questions.\n\nWhich role fits your experience? Reply with the role and the requirement you are unsure about.",
+      "confirmed_at": "2026-10-11T21:12:49.182015+00:00",
+      "draft": true,
+      "platform_key": "substack_draft_image_review_v1",
+      "source_id": "1178abe82e5341d9fd71",
+      "job_fingerprints": [
+        "b0732c0fa6bc51ac5c83",
+        "f3c8fa8b6227cb3fd3fd",
+        "3d453c51f19ab35f5523",
+        "c448992e4e653be766e5",
+        "6992c82542a4ed8c9c91"
+      ],
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-5710667",
+      "image_topic": "remote",
+      "image_source_page": "https://www.pexels.com/photo/close-up-of-a-work-setup-on-a-glass-table-5710667/",
+      "image_creator": "Arina Krasnikova",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
     }
   },
   "x_thread_draft_guides": [
@@ -176,10 +222,12 @@
     "workflow-check-v1"
   ],
   "x_draft_image_review_v1": [
-    "x-238e9451b5c554620320"
+    "x-238e9451b5c554620320",
+    "x-jobs-2026-W41-1178abe82e5341d9fd71"
   ],
   "substack_draft_image_review_v1": [
-    "note-238e9451b5c554620320"
+    "note-238e9451b5c554620320",
+    "note-jobs-2026-W41-1178abe82e5341d9fd71"
   ],
   "manual_media_updates": {
     "x:2026-10-09-0952": {

@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "source_id": "1178abe82e5341d9fd71",
+    "content_kind": "jobs_digest",
+    "job_fingerprints": [
+      "b0732c0fa6bc51ac5c83"
+    ],
+    "source_published_at": "2026-10-11T21:12:41.108634+00:00",
+    "promotion_week": null,
+    "id": "x-jobs-2026-W41-1178abe82e5341d9fd71",
+    "text": "Software Engineer - Data Platform\nVercel\nRemote\nAfrica eligible\nPay not disclosed\nhttps://weworkremotely.com/remote-jobs/vercel-software-engineer-data-platform"
+  }
+]
