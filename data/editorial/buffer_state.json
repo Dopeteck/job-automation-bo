@@ -213,6 +213,53 @@
       "image_license": "Pexels License",
       "buffer_asset_ids": [],
       "media_experiment": "stock-image-v1"
+    },
+    "x_draft_image_review_v1:x-jobs-2026-W41-a1271d76f220daefc51e": {
+      "post_id": "6acbfc77a9411fbcc55c7c0d",
+      "channel_id": "6abe6f09ea19ca0bde441138",
+      "due_at": null,
+      "text": "Inside Sales Contractor\nCredit Wellness, LLC\nWorldwide\nAfrica eligible\nOTE $25k - $35k\nhttps://remotive.com/remote-jobs/sales/inside-sales-contractor-2086540",
+      "confirmed_at": "2026-10-11T21:15:35.926421+00:00",
+      "draft": true,
+      "platform_key": "x_draft_image_review_v1",
+      "source_id": "a1271d76f220daefc51e",
+      "job_fingerprints": [
+        "c448992e4e653be766e5"
+      ],
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-33072751",
+      "image_topic": "remote",
+      "image_source_page": "https://www.pexels.com/photo/modern-workspace-with-smartphone-and-laptop-33072751/",
+      "image_creator": "I'm Zion",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
+    },
+    "substack_draft_image_review_v1:note-jobs-2026-W41-a1271d76f220daefc51e": {
+      "post_id": "6acbfc788e8dd50ffc577618",
+      "channel_id": "6abe70bfea19ca0bde441f84",
+      "due_at": null,
+      "text": "4 remote roles worth checking this week.\n\nA generic CV is quick to send. It also leaves the employer to guess why you fit. Pick one role below, find its most important requirement and put evidence of that skill near the top of your application.\n\nInside Sales Contractor \u2014 Credit Wellness, LLC\nWorldwide | Africa eligible\nCheck experience requirements | OTE $25k - $35k\nFrom the listing: You will need: Home office or a quiet place to work.\nApplication angle: use one concrete example with a measurable result. Explain your contribution.\nApply: https://remotive.com/remote-jobs/sales/inside-sales-contractor-2086540\n\nPrimary Care Physician (MD) - Clinical Documentation & AI Evaluation \u2014 Boron\nUnited States\nCheck experience requirements | $170\u2013$170/hourly\nFrom the listing: In this role you will apply your day-to-day primary care expertise to **review, annotate, and evaluate clinical documentation**, directly shaping the accuracy, safety, and clinical usefulness of medical AI systems.\nApplication angle: show a relevant analysis or work sample, including how you checked its accuracy.\nApply: https://t.mercor.com/H06sH\nReferral link: we may earn if you are accepted and start paid work.\n\nAndromeda Delta - Audio Transcription Reviewer (India/Philippines) \u2014 Welo Data / Welo Global\nPhilippines, India\nEntry level | Pay not disclosed\nApplication angle: choose one requirement from the listing and show evidence that you have done it before.\nApply: https://jobs.lever.co/weloglobal/efcc8784-2d7a-4ad7-bc54-1d728c53be9f\n\nAtomistic Materials Modeling Expert \u2014 Mercor\nRemote\nCheck experience requirements | $84\u2013$84/hourly\nFrom the listing: The ideal candidate has extensive hands-on experience with density functional theory (DFT), molecular dynamics (MD), and other atomistic modelling techniques, alongside a strong understanding of the underlying physical principles.\nApplication angle: choose one requirement from the listing and show evidence that you have done it before.\nApply: https://t.mercor.com/H06sH\nReferral link: we may earn if you are accepted and start paid work.\n\nBefore you apply: check eligible countries, working hours and whether the pay is a salary, contractor rate or commission. \u201cRemote\u201d alone answers none of those questions.\n\nWhich role fits your experience? Reply with the role and the requirement you are unsure about.",
+      "confirmed_at": "2026-10-11T21:15:36.281292+00:00",
+      "draft": true,
+      "platform_key": "substack_draft_image_review_v1",
+      "source_id": "a1271d76f220daefc51e",
+      "job_fingerprints": [
+        "c448992e4e653be766e5",
+        "457ab02c278f4bfb5791",
+        "a28cebc0dd41ea69a108",
+        "db4c6c441ba3deda8ce0"
+      ],
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-33072751",
+      "image_topic": "remote",
+      "image_source_page": "https://www.pexels.com/photo/modern-workspace-with-smartphone-and-laptop-33072751/",
+      "image_creator": "I'm Zion",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
     }
   },
   "x_thread_draft_guides": [
@@ -223,11 +270,13 @@
   ],
   "x_draft_image_review_v1": [
     "x-238e9451b5c554620320",
-    "x-jobs-2026-W41-1178abe82e5341d9fd71"
+    "x-jobs-2026-W41-1178abe82e5341d9fd71",
+    "x-jobs-2026-W41-a1271d76f220daefc51e"
   ],
   "substack_draft_image_review_v1": [
     "note-238e9451b5c554620320",
-    "note-jobs-2026-W41-1178abe82e5341d9fd71"
+    "note-jobs-2026-W41-1178abe82e5341d9fd71",
+    "note-jobs-2026-W41-a1271d76f220daefc51e"
   ],
   "manual_media_updates": {
     "x:2026-10-09-0952": {
