@@ -1,3 +1,11 @@
+# Remote Jobs Worldwide
+
+Production now runs `jobs_digest.py` every Monday at 09:30 UTC. It uses a copy of the Telegram scraper curation modules from Dopeteck/quality-job-scraper (reviewed October 11, 2026). The two collectors independently fetch current vacancies; this is not a digest of confirmed Telegram messages. It keeps region and experience restrictions visible, prioritizes AI and entry roles, includes disclosed pay, and permits AfricaEligible only when supported. Undated vacancies and protected/unavailable application pages are excluded from social digests. Confirmed job fingerprints prevent repeat social digests. No Gemini call is needed.
+
+Buffer publishes one standalone X listing and one Substack Note with up to five roles. `latest_digest.md` is an email-ready draft, not an automatically emailed Substack newsletter. `JOBS_ONLY=true` prevents old tech-news queues from entering the production publisher. A shortage produces no post rather than invented vacancies. The original tech-news generator remains for reference and unit coverage but is no longer the workflow entry point. Telegram promotion remains paused until October 15.
+
+Brand tagline: Curated remote AI, tech & Web3 jobs. Location restrictions clear; Africa-eligible roles flagged. Keep existing addresses and handles until separately changed.
+
 # Tech Career Editorial Engine
 
 The X/Substack editorial workflow is independent of the Telegram jobs scraper and Make scenarios.

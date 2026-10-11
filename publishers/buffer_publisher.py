@@ -132,6 +132,9 @@ def publish_queue(path, key, channel_id, limit, state):
         except (ValueError, TypeError):
             pass
     for item in load(path, []):
+        if os.getenv("JOBS_ONLY") == "true" and item.get("content_kind") != "jobs_digest":
+            reports[key]["skipped"] += 1
+            continue
         item_id = item.get("id"); text = clean_public_copy(item.get("text") or "")
         if not item_id or not text or item_id in sent: continue
         pending_id = key + ":" + item_id
@@ -200,6 +203,7 @@ def publish_queue(path, key, channel_id, limit, state):
             "post_id": post["id"], "channel_id": channel_id, "due_at": post.get("dueAt"), "text": text,
             "confirmed_at": datetime.now(timezone.utc).isoformat(), "draft": SAVE_AS_DRAFT,
             "platform_key": key, "source_id": item.get("source_id"),
+            "job_fingerprints": item.get("job_fingerprints", []),
             "media_variant": "image" if photo else "text", "media_reason": media_reason,
             "image_id": photo["id"] if photo else None,
             "image_topic": photo["topic"] if photo else None,
