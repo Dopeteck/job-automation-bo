@@ -1,3 +1,19 @@
+## Current weekly supply rules (2026-10-11)
+
+The digest keeps the Remote Jobs Worldwide brand and leads with early-career work open worldwide or across Africa.
+- Retain candidates for 21 days; exclude expired vacancies. A current vacancy feed or a checked application action is required; a page returning HTTP 200 alone is insufficient.
+- Prefer 6–10 roles with at least three explicit entry/junior roles. If unavailable, allow 5–10 roles with at least one explicit junior and only stated requirements of up to three years for every other role. Unknown experience and senior roles cannot fill the smaller issue.
+- Himalayas runs fourteen role-type searches. Jobicy supplies its worldwide feed. Remote OK and WWR remain inputs; 41 verified Greenhouse, Lever and Ashby boards supply employer vacancies. Company inclusion never implies that every role is Africa eligible.
+- Preserve restrictive country/state, citizenship, clearance, hybrid/on-site and unpaid checks. Empty or missing geography metadata is never assumed worldwide; Himalayas' documented empty restriction array is accepted, but contradictory listing text overrides it. Reject timezones with no African offset overlap; show narrower offset requirements.
+- Public Telegram previews are optional input. Match posted application URLs against full source listings and prioritize matches after experience checks. In this environment t.me previews return a Site Unavailable page, so reuse is not currently confirmed. No private Telegram messages are read.
+- Persist the source snapshot and rolling pool in GitHub Actions cache. Cache public feeds for 24 hours. Persist featured fingerprints in data/editorial/featured_jobs.json after successful private newsletter delivery, and merge Buffer upload history; hold notices reserve nothing.
+- Source credits and canonical application URLs are required for Himalayas, Jobicy and Remote OK. No image explanation or AI-news source footer is restored. Working Nomads is disabled because its terms prohibit competitive service use; Remotive is disabled for newsletter redistribution pending explicit permission.
+- Unknown employer publication dates stay unknown; the 21-day retention period uses first observation on a current employer feed. Greenhouse updated_at is not treated as a publication date.
+- Responsibility evidence prioritizes actual listing bullets, excludes company biography and application instructions, and uses complete sentences/clauses. Prefer the stricter stated experience requirement over a feed seniority label.
+- GitHub push events run tests only. Manual runs and Mondays at 09:30 UTC generate a private Telegram review draft and optional Buffer drafts. The newsletter email itself is not automatically sent.
+
+Earlier notes below are historical and superseded wherever they conflict.
+
 ## Early-career issue gate (current)
 
 An issue may contain 6–10 qualifying roles but must include at least three evidence-supported entry/junior roles, sorted before other roles. Unknown experience is labelled “Experience not stated”. Conflicting experience statements use the stricter number; an entry tag never overrides a senior title or five-year requirement. Titles/counts are generated from the final shortlist.

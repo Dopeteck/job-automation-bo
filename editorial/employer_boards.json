@@ -1,0 +1,207 @@
+[
+  {
+    "provider": "greenhouse",
+    "slug": "gitlab",
+    "company": "GitLab"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "canonical",
+    "company": "Canonical"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "elastic",
+    "company": "Elastic"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "grafanalabs",
+    "company": "Grafana Labs"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "wikimedia",
+    "company": "Wikimedia Foundation"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "remote",
+    "company": "Remote"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "customerio",
+    "company": "Customer.io"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "coinbase",
+    "company": "Coinbase"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "netlify",
+    "company": "Netlify"
+  },
+  {
+    "provider": "lever",
+    "slug": "weloglobal",
+    "company": "Welo Global"
+  },
+  {
+    "provider": "lever",
+    "slug": "rws",
+    "company": "RWS"
+  },
+  {
+    "provider": "lever",
+    "slug": "minted",
+    "company": "Minted"
+  },
+  {
+    "provider": "lever",
+    "slug": "binance",
+    "company": "Binance"
+  },
+  {
+    "provider": "lever",
+    "slug": "appen",
+    "company": "Appen"
+  },
+  {
+    "provider": "ashby",
+    "slug": "linear",
+    "company": "Linear"
+  },
+  {
+    "provider": "ashby",
+    "slug": "notion",
+    "company": "Notion"
+  },
+  {
+    "provider": "ashby",
+    "slug": "zapier",
+    "company": "Zapier"
+  },
+  {
+    "provider": "ashby",
+    "slug": "elevenlabs",
+    "company": "Elevenlabs"
+  },
+  {
+    "provider": "ashby",
+    "slug": "openai",
+    "company": "Openai"
+  },
+  {
+    "provider": "ashby",
+    "slug": "replit",
+    "company": "Replit"
+  },
+  {
+    "provider": "ashby",
+    "slug": "clerk",
+    "company": "Clerk"
+  },
+  {
+    "provider": "ashby",
+    "slug": "railway",
+    "company": "Railway"
+  },
+  {
+    "provider": "ashby",
+    "slug": "ramp",
+    "company": "Ramp"
+  },
+  {
+    "provider": "ashby",
+    "slug": "n8n",
+    "company": "n8n"
+  },
+  {
+    "provider": "ashby",
+    "slug": "sentry",
+    "company": "Sentry"
+  },
+  {
+    "provider": "ashby",
+    "slug": "livekit",
+    "company": "Livekit"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "mattermost",
+    "company": "Mattermost"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "cloudflare",
+    "company": "Cloudflare"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "fastly",
+    "company": "Fastly"
+  },
+  {
+    "provider": "greenhouse",
+    "slug": "platformsh",
+    "company": "Platform.sh"
+  },
+  {
+    "provider": "ashby",
+    "slug": "Supabase",
+    "company": "Supabase"
+  },
+  {
+    "provider": "ashby",
+    "slug": "Docker",
+    "company": "Docker"
+  },
+  {
+    "provider": "ashby",
+    "slug": "PostHog",
+    "company": "Posthog"
+  },
+  {
+    "provider": "ashby",
+    "slug": "Buffer",
+    "company": "Buffer"
+  },
+  {
+    "provider": "ashby",
+    "slug": "Oyster",
+    "company": "Oyster"
+  },
+  {
+    "provider": "ashby",
+    "slug": "TestGorilla",
+    "company": "Testgorilla"
+  },
+  {
+    "provider": "ashby",
+    "slug": "ClickHouse",
+    "company": "Clickhouse"
+  },
+  {
+    "provider": "ashby",
+    "slug": "Ashby",
+    "company": "Ashby"
+  },
+  {
+    "provider": "ashby",
+    "slug": "GitBook",
+    "company": "Gitbook"
+  },
+  {
+    "provider": "ashby",
+    "slug": "Lago",
+    "company": "Lago"
+  },
+  {
+    "provider": "ashby",
+    "slug": "Attio",
+    "company": "Attio"
+  }
+]

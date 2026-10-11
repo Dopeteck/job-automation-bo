@@ -11,7 +11,7 @@ class JobsDigestTests(unittest.TestCase):
         return job
     def pool(self):
         titles=['Support Agent','UX Designer','Marketing Assistant','Data Analyst','Automation Developer','QA Engineer','Content Writer','Customer Success Associate','Junior Developer','Data Reviewer']
-        return [self.job(i,title=title) for i,title in enumerate(titles)]
+        return [self.job(i,title='Junior '+title) for i,title in enumerate(titles)]
     def test_digest_has_real_details_and_human_title(self):
         packet=build_digest(self.pool())
         note=packet['substack_notes'][0]['text']
@@ -23,10 +23,10 @@ class JobsDigestTests(unittest.TestCase):
         self.assertLessEqual(x_weight(packet['x_posts'][0]['text']),280)
         reasons=[line for line in note.splitlines() if line.startswith('Why this one')]
         self.assertEqual(len(reasons),len(set(reasons)))
-    def test_below_six_is_held_not_padded(self):
-        packet=build_digest(self.pool()[:5]);self.assertFalse(packet['x_posts']);self.assertFalse(packet['substack_notes']);self.assertTrue(packet['held'])
+    def test_below_five_is_held_not_padded(self):
+        packet=build_digest(self.pool()[:4]);self.assertFalse(packet['x_posts']);self.assertFalse(packet['substack_notes']);self.assertTrue(packet['held'])
     def test_holds_undated_stale_protected_unknown_and_wrong_regions(self):
-        for job in [self.job(published_at=None),self.job(published_at=datetime.now(timezone.utc)-timedelta(days=8)),self.job(link_status='protected'),self.job(remote_scope='unknown'),self.job(location='US only',remote_scope='us'),self.job(location='India, Philippines',remote_scope='asia')]:
+        for job in [self.job(published_at=None),self.job(published_at=datetime.now(timezone.utc)-timedelta(days=22)),self.job(link_status='protected'),self.job(remote_scope='unknown'),self.job(location='US only',remote_scope='us'),self.job(location='India, Philippines',remote_scope='asia')]:
             self.assertFalse(eligible_for_digest(job,datetime.now(timezone.utc)))
     def test_specialists_commission_and_vague_descriptions_excluded(self):
         for job in [self.job(title='Primary Care Physician'),self.job(description='Requires experience with DFT and molecular dynamics.'),self.job(salary='OTE $25k - $35k'),self.job(description='About us. We are a great company.')]:
@@ -68,7 +68,7 @@ class JobsDigestTests(unittest.TestCase):
 
     def test_three_juniors_are_required_and_sorted_first(self):
         jobs=self.pool()[:6]
-        for job in jobs: job.experience_level='not_specified'
+        for job in jobs: job.experience_level='not_specified';job.title=job.title.removeprefix('Junior ')
         self.assertTrue(build_digest(jobs)['held'])
         for job in jobs[:3]: job.title='Junior '+job.title;job.experience_level='entry'
         packet=build_digest(list(reversed(jobs)))

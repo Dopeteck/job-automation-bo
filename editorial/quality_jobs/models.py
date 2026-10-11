@@ -30,6 +30,11 @@ class Job:
     quality_reasons: list[str] = field(default_factory=list)
     link_status: str = "unchecked"
     telegram_post: str = ""
+    evidence_lines: list[str] = field(default_factory=list)
+    work_hours: str = ""
+    telegram_featured: bool = False
+    active_status: str = ""
+    expires_at: datetime | None = None
     scraped_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
     @property

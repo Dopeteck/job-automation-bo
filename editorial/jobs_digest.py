@@ -16,7 +16,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from editorial.quality_jobs.classify import classify
 from editorial.quality_jobs.config import Settings
-from editorial.quality_jobs.sources import collect
+from editorial.digest_sources import collect_expanded, cached_pool, still_open, telegram_urls, featured_keys, CREDITS
+from concurrent.futures import ThreadPoolExecutor
+import logging
 from editorial.quality_jobs.pipeline import process
 from editorial.quality_jobs.text import shorten, clean_text
 from editorial.editorial_pipeline import x_weight
@@ -24,10 +26,10 @@ from editorial.editorial_pipeline import x_weight
 OUT = ROOT / 'data/editorial'
 BRAND = 'Remote Jobs Worldwide'
 TELEGRAM = 'https://t.me/RemoteJobsTechHub'
-TAGLINE = 'Curated remote AI, tech & Web3 jobs. Location restrictions clear; Africa-eligible roles flagged.'
+TAGLINE = 'Early-career remote work open worldwide or across Africa. Junior roles first; experience and location limits clear.'
 
 
-MIN_ROLES = 6
+MIN_ROLES = 5
 MIN_JUNIOR_ROLES = 3
 MAX_ROLES = 10
 SPECIALIST = re.compile(r'\b(physician|medical doctor|surgeon|clinical|atomistic|molecular dynamics|density functional|DFT|postdoctoral|ph\.?d|principal scientist)\b', re.I)
@@ -49,6 +51,7 @@ def explicit_worldwide(job):
 
 def location_conflict(job):
     text = clean_text(job.description,12000)
+    if re.search(r'hybrid|on.site|work from (?:home|office).{0,45}one day|WFH.{0,35}one day|on-site events',text,re.I): return True
     if re.search(r'\b(?:citizens?(?:hip)?|clearance|federal|must be located in|authorized to work in)\b',text,re.I) or re.search(r'\bFED\b',job.title,re.I):
         return True
     if GEO.search(job.location): return True
@@ -60,11 +63,12 @@ def location_conflict(job):
 
 
 def experience_info(job):
-    matches = list(re.finditer(r'\b(\d+)(?:\s*[-–]\s*(\d+))?\+?\s+years?(?:\s+of)?\s+(?:relevant\s+|professional\s+)?experience\b',job.description,re.I))
+    matches = list(re.finditer(r'\b(\d+)(?:\s*[-–]\s*(\d+))?\+?\s+years?(?:\s+of)?\s+(?:[a-z-]+\s+){0,6}experience\b',job.description,re.I))
     strict = max(matches,key=lambda m:int(m.group(2) or m.group(1))) if matches else None
     years = int(strict.group(2) or strict.group(1)) if strict else None
     senior = bool(re.search(r'\b(?:senior|sr\.?|lead|principal|head|director)\b',job.title,re.I)) or (years is not None and years >= 5)
-    junior = not senior and (years is None or years <= 2) and (job.experience_level == 'entry' or bool(re.search(r'\b(?:junior|entry.level|intern|trainee|graduate)\b',job.title,re.I)))
+    explicit_entry = bool(re.search(r'\b(?:junior|entry.level|intern(?:ship)?|trainee|graduate|apprentice)\b',job.title,re.I) or re.search(r'no (?:prior |professional )?experience|required experience: none|entry.level role|no specialized technical experience',job.description,re.I))
+    junior = not senior and (years is None or years <= 2) and explicit_entry
     label = strict.group(0) if strict else ('Senior' if senior else 'Entry level' if junior else 'Experience not stated')
     if senior and strict: label = 'Senior | '+label
     return (0 if junior else 2 if senior else 1), label
@@ -75,6 +79,8 @@ def audience_eligible(job):
     if GEO.search(job.title) and not explicit_worldwide(job): return False
     if re.search(r'multiple requests|multiple positions|various roles', job.description, re.I):
         return False
+    if re.search(r'\bunpaid\b',job.description,re.I):return False
+    if re.search(r'crypto.*trader|rates trader|financial expert|security onion|CBRN|equity research analyst|civil / structural engineer',job.title,re.I): return False
     if SPECIALIST.search(job.title + ' ' + job.description):
         return False
     # High-risk pay arrangements require a separate employer review; hold them.
@@ -98,10 +104,11 @@ def audience_eligible(job):
 
 
 def eligible_for_digest(job, now):
-    published = job.published_at
+    published = job.published_at or (job.scraped_at if job.active_status == 'active' else None)
+    if job.active_status == 'closed' or (job.expires_at and job.expires_at <= now): return False
     if published and published.tzinfo is None:
         published = published.replace(tzinfo=timezone.utc)
-    return bool(audience_eligible(job) and published and now - timedelta(days=7) <= published <= now
+    return bool(audience_eligible(job) and published and now - timedelta(days=21) <= published <= now
                 and job.link_status in {'200', 'redirect'})
 
 
@@ -112,23 +119,29 @@ def salary_text(value):
 
 
 def role_evidence(job):
-    text = clean_text(job.description, 12000)
-    text = re.sub(r'Headquarters:.*?(?=\b(?:About|Responsibilities|What|In this|You will|You’ll|You\'ll)\b)', '', text, flags=re.I)
-    pieces = re.split(r'(?<=[.!?;])\s+|[•\n]', text)
+    text = clean_text(job.description,12000)
+    # Start with duties when a heading exists. Company biographies cannot supply evidence.
+    heading=re.search(r"(?:Key |Your |Main )?Responsibilities(?:\s*:)?|What you(?:'ll|’ll) (?:do|own)",text,re.I)
+    if heading:
+        text=text[heading.end():]
+        text=re.split(r'\b(?:Requirements|Qualifications|What We Offer|Required Skills|Experience and Skills|Benefits)\b',text,flags=re.I)[0]
+    verbs=r'(?:own|manage|respond|analy[sz]e|design|build|develop|maintain|resolve|support|implement|create|test|debug|curate|review|evaluate|train|write|monitor|deliver|process|optimi[sz]e|configure|integrate|deploy|triage|investigate|automate|lead|assist|provide|coordinate|answer|track|complete|edit|communicate|fact.check)'
+    anchor=re.compile(r"^(?:(?:In this role[, ]*)?(?:You will|You’ll|You'll|You would|Your job is)|As .{1,90}?you will|The .{1,80}?will (?:be responsible|involve)|"+verbs+r")\b",re.I)
+    pieces=job.evidence_lines + re.split(r'(?<=[.!?;])\s+|[•\n]',text)
     for piece in pieces:
-        piece = piece.strip()
-        # Trim heading fragments before the task; do not quote location metadata.
-        start = re.search(r"\b(?:You will|You'll|You’ll|In this role|As (?:a|an)|What you(?:'ll|’ll) do|Responsibilities)\b",piece,re.I)
-        if start: piece = piece[start.start():]
-        if not 25 <= len(piece) <= 650 or FLUFF.search(piece) or not TASK.search(piece): continue
-        if re.search(r'\b(?:requirements|years? experience|years? of experience|proficiency|must have)\b',piece,re.I): continue
-        if GEO.search(piece) or re.search(r'headquarters|location:',piece,re.I): continue
-        if len(piece.split()) <= 22:
-            return piece if piece.endswith(('.', '!', '?')) else piece + '.'
-        # Prefer a complete task clause to a chopped quotation.
+        piece=piece.strip(' -:;')
+        start=re.search(r"\b(?:You will|You’ll|You'll|In this role)\b",piece,re.I)
+        if start and GEO.search(piece[:start.start()]):piece=piece[start.start():]
+        piece=re.sub(r'^(?:In this role[, ]*)?(?:Responsibilities|Key Responsibilities)\s*[:,-]?\s*','',piece,flags=re.I)
+        if not 25 <= len(piece) <= 650 or FLUFF.search(piece) or not anchor.search(piece):continue
+        if not TASK.search(piece) and not re.search(r'\b(?:assist|provide|coordinate|answer|track|complete|edit|communicate)\b',piece,re.I):continue
+        if re.search(r'with the founders|help train next.generation|then give more details|if I ask|introduce yourself|cover letter|application',piece,re.I):continue
+        if re.search(r'\b(?:requirements|years? experience|years? of experience|proficiency|must have|skills|ability|requires|looking to|looking for|training from)\b',piece,re.I):continue
+        if GEO.search(piece) or re.search(r'headquarters|location:|application URL',piece,re.I):continue
+        if len(piece.split())<=30:return piece.rstrip('.')+'.'
         for clause in re.split(r'[;:]|, (?=and |including |with )',piece):
-            if 5 <= len(clause.split()) <= 22 and TASK.search(clause) and not FLUFF.search(clause):
-                return clause.strip(' ,;:') + '.'
+            if 5<=len(clause.split())<=30 and anchor.search(clause.strip()) and not FLUFF.search(clause):
+                return clause.strip(' ,;:.')+'.'
     return ''
 
 
@@ -138,6 +151,7 @@ def detail(job):
         location = 'Worldwide' if job.remote_scope == 'worldwide' else 'Africa — check listed countries'
     fields = [location + ' | Africa eligible', experience_info(job)[1]]
     if job.salary: fields.append(salary_text(job.salary))
+    if job.work_hours: fields.append(job.work_hours)
     return '\n'.join(fields)
 
 
@@ -148,13 +162,20 @@ def category(job):
     return 'Other'
 
 
+def early_career(job):
+    priority, label = experience_info(job)
+    if priority == 0: return True
+    years = re.findall(r'\b(\d+)(?:\s*[-–]\s*(\d+))?\+?\s+years?(?:\s+of)?\s+(?:[a-z-]+\s+){0,6}experience\b',job.description,re.I)
+    return priority != 2 and bool(years) and max(int(b or a) for a,b in years) <= 3
+
+
 def select_digest_jobs(jobs, now):
     pool = [job for job in jobs if eligible_for_digest(job, now) and role_evidence(job)]
-    pool.sort(key=lambda job: (experience_info(job)[0], category(job) == 'Other', -job.quality_score))
+    pool.sort(key=lambda job: (experience_info(job)[0], not early_career(job), not job.telegram_featured, category(job) == 'Other', -job.quality_score))
     selected, companies, keys, reasons, counts = [], {}, set(), set(), {}
     senior_count = 0
     # First pass provides role variety; second fills up to ten without inventing it.
-    for cap in (2, 4):
+    for cap in (2, MAX_ROLES):
         for job in pool:
             key = job.fingerprint or job.direct_url
             group = category(job)
@@ -183,21 +204,27 @@ def editorial_opening(jobs, now):
 def build_digest(jobs, now=None):
     now = now or datetime.now(timezone.utc)
     jobs = select_digest_jobs(jobs, now)
+    # The smaller issue contains only verified junior or explicitly 1–3-year roles.
+    ideal = len(jobs) >= 6 and sum(experience_info(j)[0] == 0 for j in jobs) >= 3
+    if not ideal: jobs = [j for j in jobs if early_career(j)]
     week = now.astimezone(ZoneInfo('Africa/Lagos')).strftime('%G-W%V')
     title = f'Remote jobs this week: {len(jobs)} roles open worldwide or in Africa'
     packet = {'newsletter_markdown': f'# {title}\n\n', 'x_posts': [], 'substack_notes': []}
     juniors = sum(experience_info(job)[0] == 0 for job in jobs)
-    if len(jobs) < MIN_ROLES or juniors < MIN_JUNIOR_ROLES:
-        packet['newsletter_markdown'] = f'# Digest held for review\n\n{len(jobs)} suitable roles passed, including {juniors} entry/junior roles. Required: at least {MIN_ROLES} roles and {MIN_JUNIOR_ROLES} entry/junior roles. Nothing queued.\n'
+    if len(jobs) < MIN_ROLES or (not ideal and juniors < 1):
+        packet['newsletter_markdown'] = f'# Digest held for review\n\n{len(jobs)} suitable roles passed, including {juniors} entry/junior roles. Required: at least {MIN_ROLES} roles, at least 1 verified entry/junior role, and only stated 1–3-year requirements in the smaller issue. Nothing queued.\n'
         packet['held'] = True
         packet['qualifying_roles'] = len(jobs)
         return packet
     promo = True  # User explicitly requested the newsletter funnel now.
-    intro = f'{len(jobs)} remote roles worth checking this week.\n\n' + editorial_opening(jobs, now)
+    intro = f'{len(jobs)} remote roles worth checking this week, including {juniors} entry/junior roles.\n\n'
+    if not ideal: intro += 'A smaller early-career issue: the other roles ask for up to three years of experience.\n\n'
+    intro += editorial_opening(jobs, now)
     sections = []
     for job in jobs:
         section = f'{shorten(job.title, 110)} — {shorten(job.company, 60)}\n{detail(job)}'
         section += f'\nWhy this one — the actual work: “{role_evidence(job)}”\nApply: {job.effective_url}'
+        if job.source in CREDITS: section += '\nListing credit: '+CREDITS[job.source]
         if job.is_referral:
             section += '\nReferral link: we may earn if you are accepted and start paid work.'
         sections.append(section)
@@ -215,6 +242,8 @@ def build_digest(jobs, now=None):
               'Africa eligible' if job.africa_eligible else 'Check country eligibility',
               shorten(salary_text(job.salary), 55) if job.salary else '', job.effective_url]
     x = '\n'.join(field for field in fields if field)
+    if job.source in CREDITS:
+        fields.insert(-1,CREDITS[job.source]); x = '\n'.join(field for field in fields if field)
     if job.is_referral: x += '\nReferral link'
     while x_weight(x) > 280:
         fields[0] = shorten(fields[0], max(15, len(fields[0])-10))
@@ -227,25 +256,37 @@ def build_digest(jobs, now=None):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
-    state = json.loads((OUT/'buffer_state.json').read_text()) if (OUT/'buffer_state.json').exists() else {}
-    seen = {fingerprint for row in state.get('confirmed_uploads', {}).values()
-            if not row.get('draft') for fingerprint in row.get('job_fingerprints', [])}
-    settings = replace(Settings.from_env(), max_per_run=60, max_per_source=15,
+    logging.basicConfig(level=logging.INFO,format='%(levelname)s %(message)s')
+    seen = featured_keys(OUT)
+    settings = replace(Settings.from_env(), max_per_run=100, max_per_source=40, max_job_age_days=21, min_quality_score=6,
                        allowed_remote_scopes=frozenset({'worldwide', 'africa'}),
                        mercor_referral_url='https://t.mercor.com/H06sH', link_check_enabled=True)
-    candidates = collect(settings)
-    # Gate the audience before the expensive checking/ranking stage.
-    candidates = [job for job in candidates if audience_eligible(classify(job))]
+    now = datetime.now(timezone.utc)
+    fresh = collect_expanded(settings)
+    candidates = cached_pool(fresh,OUT/'candidate_pool.json',now)
+    channel_links=telegram_urls(settings,now)
+    # Previously posted Telegram jobs are input, but must pass the new checks.
+    reused=sum(j.direct_url.rstrip('/') in channel_links for j in candidates)
+    print(f'Telegram preview: {len(channel_links)} links; {reused} full listings matched.')
+    from editorial.quality_jobs.text import canonicalize_url
+    for job in candidates: job.telegram_featured=canonicalize_url(job.effective_url) in channel_links or canonicalize_url(job.direct_url) in channel_links
+    candidates = [job for job in candidates if job.source != 'Remotive' and audience_eligible(classify(job))]
     selected, rejected = process(candidates, settings, existing_fingerprints=seen)
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        active=list(executor.map(lambda j:still_open(j,settings,now),selected))
+    selected=[job for job,open_now in zip(selected,active) if open_now]
+    for job in selected:job.active_status='active'
     outputs = build_digest(selected)
+    outputs['tagline']=TAGLINE
     (OUT/'latest_digest.md').write_text(outputs['newsletter_markdown'])
     for file, key in [('x_queue.json','x_posts'), ('substack_notes_queue.json','substack_notes')]:
         (OUT/file).write_text(json.dumps(outputs[key], ensure_ascii=False, indent=2)+'\n')
     evidence = [{'title': j.title, 'company': j.company, 'link': j.direct_url,
                  'location': j.location, 'africa_eligible': j.africa_eligible,
                  'published_at': j.published_at.isoformat() if j.published_at else None,
-                 'link_status': j.link_status} for j in selected]
-    (OUT/'latest_items.json').write_text(json.dumps({'jobs': evidence, 'news': [], 'drafting_mode':'curated_jobs'}, indent=2))
+                 'link_status': j.link_status, 'active_status':j.active_status, 'experience':experience_info(j)[1],
+                 'telegram_input':j.direct_url.rstrip('/') in channel_links} for j in selected]
+    (OUT/'latest_items.json').write_text(json.dumps({'jobs': evidence, 'news': [], 'drafting_mode':'curated_jobs', 'held':outputs.get('held',False), 'featured_count':len(outputs['substack_notes'][0]['job_fingerprints']) if outputs['substack_notes'] else 0}, indent=2))
     print(f'Job digest: {len(outputs["substack_notes"])} Notes; {len(outputs["x_posts"])} X posts. No tech-news copy generated.')
 
 if __name__ == '__main__': main()
