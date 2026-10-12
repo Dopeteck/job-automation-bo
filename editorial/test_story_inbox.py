@@ -5,7 +5,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from editorial.story_inbox import (WorkshopError, read_state, save_state, seed_history,
-    validate_draft, sentences, handle, poll, selected_notes, next_history, seal_review, restore_review)
+    validate_draft, sentences, handle, poll, selected_notes, next_history, seal_review, restore_review, inventory)
 
 class StoryInboxTests(unittest.TestCase):
     def state(self):
@@ -27,6 +27,15 @@ class StoryInboxTests(unittest.TestCase):
     def test_seed_only_once(self):
         s=self.state();seed=json.dumps({'history':[{'id':'h1','notes':'A supplied past event.'}]})
         seed_history(s,seed);seed_history(s,seed);self.assertEqual(len(s['history']),1)
+    def test_approved_seed_replaces_unreviewed_history_version(self):
+        from editorial.test_strict_newsletter import StrictTests
+        n=StrictTests().notes();n['history_id']='h1';s=self.state()
+        s['drafts']['old']={'id':'old','approved':False,'history_id':'h1','packet':{},'errors':[]}
+        seed_history(s,json.dumps({'history':[{'id':'h1','notes':'True historical notes.'}],'approved_drafts':[n]}))
+        self.assertTrue(s['drafts']['old']['archived'])
+        self.assertEqual(inventory(s)['approved_ready_drafts'],1)
+        seed_history(s,json.dumps({'history':[{'id':'h1','notes':'True historical notes.'}],'approved_drafts':[n]}))
+        self.assertEqual(inventory(s)['approved_ready_drafts'],1)
     def test_unsupported_number_quote_and_missing_provenance(self):
         p=self.packet();notes=p['draft'];self.assertEqual(validate_draft(p,notes),[])
         p['draft']+='\n\nI earned 9999 dollars.'

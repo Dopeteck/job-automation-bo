@@ -132,7 +132,8 @@ def publish_queue(path, key, channel_id, limit, state):
         except (ValueError, TypeError):
             pass
     for item in load(path, []):
-        if os.getenv("JOBS_ONLY") == "true" and item.get("content_kind") != "jobs_digest":
+        allowed_kind=item.get('content_kind')=='jobs_digest' or (os.getenv('ALLOW_STORY_EDITION')=='true' and item.get('content_kind')=='story_edition')
+        if os.getenv("JOBS_ONLY") == "true" and not allowed_kind:
             reports[key]["skipped"] += 1
             continue
         item_id = item.get("id"); text = clean_public_copy(item.get("text") or "")

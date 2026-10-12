@@ -324,6 +324,7 @@ def build_issue(jobs,now=None,story_notes=None,previous_issues=None,story_histor
 
 def record_issue(out,notes,review=False):
     if review or not notes:return
+    if notes[0].get('content_kind')=='story_edition':return
     path=out/'issue_history.json';history=load_json(path,[])
     issue=notes[0]
     if not any(row['id']==issue['id'] for row in history):history.append({'id':issue['id'],'fingerprints':issue.get('job_fingerprints',[]),'urls':issue.get('job_urls',[]),'created_at':issue.get('source_published_at')})
@@ -359,16 +360,21 @@ def main():
     history=load_json(OUT/'issue_history.json',None)
     history_policy=load_json(ROOT/'editorial/history_policy.json',{})
     packet=build_issue(active,now,notes,history,load_json(OUT/'story_history.json',{}),history_complete=history_policy.get('confirmed_complete') is True)
+    if packet['held'] and notes:
+        story,story_confirms=story_from_notes(notes,load_json(OUT/'story_history.json',{}).get('used_ids',[]))
+        if story and not story_confirms:
+            from editorial.story_edition import build_story_edition
+            packet=build_story_edition(story,notes,packet,now,TELEGRAM)
     if preheld:
         lines='\n'.join('- '+cleaned_title(h['title'])+' - '+h['company']+': '+'; '.join(h['reasons']) for h in preheld)
         packet['review_notes']+='\n\nHELD DURING SOURCE CHECKS\n'+lines
         if packet['held']:packet['newsletter_markdown']+='\n\nHELD DURING SOURCE CHECKS\n'+lines
-    (OUT/'latest_digest.md').write_text(packet['newsletter_markdown']+('' if packet['held'] else '\n\n'+packet['review_notes'])+'\n')
+    (OUT/'latest_digest.md').write_text(packet['newsletter_markdown']+'\n')
     (OUT/'review_notes.md').write_text(packet['review_notes']+'\n')
     (OUT/'story_context.json').write_text(json.dumps(packet['story_context'],indent=2)+'\n')
     for filename,key in [('x_queue.json','x_posts'),('substack_notes_queue.json','substack_notes')]:
         (OUT/filename).write_text(json.dumps(packet[key],ensure_ascii=False,indent=2)+'\n')
-    evidence={'held':packet['held'],'checks':packet['checks'],'jobs':[{'title':j.title,'company':j.company,'url':j.direct_url,'eligibility_basis':eligibility_basis(j),'experience':experience(j)[1],'why':why_line(j)} for j in packet['selected']],
+    evidence={'held':packet['held'],'edition_type':packet.get('edition_type','jobs'),'jobs_held':packet.get('jobs_held',packet['held']),'checks':packet['checks'],'jobs':[{'title':j.title,'company':j.company,'url':j.direct_url,'eligibility_basis':eligibility_basis(j),'experience':experience(j)[1],'why':why_line(j)} for j in packet['selected']],
               'held_roles':packet['held_roles']+preheld,'story':packet['story_context']}
     (OUT/'latest_items.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n')
     print(f'Strict newsletter: held={packet["held"]}; roles={len(packet["selected"])}; Notes={len(packet["substack_notes"])}; X={len(packet["x_posts"])}.')

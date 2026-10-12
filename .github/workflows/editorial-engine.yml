@@ -35,7 +35,7 @@ jobs:
       - name: Install editorial dependencies
         run: pip install requests cryptography beautifulsoup4 feedparser Pillow python-dateutil pycountry==24.6.1 geonamescache==3.0.2
       - name: Check quota fallback and promotion rules
-        run: python -m unittest editorial.test_editorial editorial.test_jobs_digest editorial.test_digest_sources editorial.test_newsletter_story editorial.test_strict_newsletter publishers.test_telegram_draft editorial.test_story_inbox
+        run: python -m unittest editorial.test_editorial editorial.test_jobs_digest editorial.test_digest_sources editorial.test_newsletter_story editorial.test_strict_newsletter publishers.test_telegram_draft editorial.test_story_inbox editorial.test_story_edition
       - name: Restore rolling vacancy pool
         if: ${{ github.event_name != 'push' }}
         uses: actions/cache/restore@v4
@@ -83,6 +83,7 @@ jobs:
         if: ${{ github.event_name != 'push' }}
         env:
           JOBS_ONLY: "true"
+          ALLOW_STORY_EDITION: "true"
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_X_CHANNEL_ID: ${{ vars.BUFFER_X_CHANNEL_ID || '6abe6f09ea19ca0bde441138' }}
           BUFFER_SUBSTACK_CHANNEL_ID: ${{ vars.BUFFER_SUBSTACK_CHANNEL_ID || '6abe70bfea19ca0bde441f84' }}
@@ -117,7 +118,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          for file in data/private_story_state.enc data/private_editorial_review.enc; do
+          for file in data/private_story_state.enc data/private_editorial_review.enc data/story_inventory.json; do
             if [ -f "$file" ]; then git add "$file"; fi
           done
           if ! git diff --cached --quiet; then

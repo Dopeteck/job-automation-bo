@@ -52,7 +52,7 @@ def save_state(path, token, state):
     temporary.replace(path)
 
 def seed_history(state, raw):
-    if not raw or state.get('seeded'):
+    if not raw:
         return
     try:
         entries = json.loads(raw)['history']
@@ -61,10 +61,42 @@ def seed_history(state, raw):
         for entry in entries:
             if not isinstance(entry.get('notes'), str) or not entry['notes'].strip():
                 raise ValueError
-        state['history'].extend(entries)
+        known={e.get('id') for e in state['history']}
+        state['history'].extend(e for e in entries if e.get('id') not in known)
+        for approved in json.loads(raw).get('approved_drafts',[]):
+            # This private seed is editable only by the repository owner/editor.
+            # It imports a story explicitly approved by the author, not model output.
+            from editorial.strict_newsletter import story_from_notes
+            story,errors=story_from_notes(approved,[])
+            if not story or errors:raise ValueError
+            identifier=hashlib.sha256(story['body'].encode()).hexdigest()[:10]
+            if identifier in state['drafts']:continue
+            history_id=approved.get('history_id')
+            for item in state['drafts'].values():
+                if history_id and item.get('history_id')==history_id and item['id']!=identifier:
+                    item['archived']=True;item['approved']=False
+            source_notes=approved['notes'] if isinstance(approved['notes'],str) else '\n'.join(approved['notes'])
+            state['drafts'][identifier]={'id':identifier,'notes':source_notes,'historical':True,
+                'history_id':history_id,'approved':True,'errors':[],
+                'created_at':datetime.now(timezone.utc).isoformat(),
+                'packet':{'title':approved.get('title','A note from my search for paid work'),
+                          'draft':story['body'],'lesson':story['lesson'],'reply_prompt':story['question'],
+                          'suggestions':[],'opinions':[],'confirmations':[]}}
+            state['selected']=identifier
+            if history_id and history_id not in state['used_history']:state['used_history'].append(history_id)
         state['seeded'] = True
     except (ValueError, KeyError, TypeError):
         raise WorkshopError('Private history seed is invalid; expected JSON history entries with true notes.') from None
+
+def inventory(state,used_ids=None):
+    used_ids=used_ids if used_ids is not None else state.get('consumed_ids',[])
+    active=[d for d in state['drafts'].values() if not d.get('archived') and 'inbox-'+d['id'] not in used_ids]
+    return {'historical_experiences':len(state['history']),
+        'unused_experiences':sum((h.get('id') or hashlib.sha256(h['notes'].encode()).hexdigest()[:10]) not in state['used_history'] for h in state['history']),
+        'expanded_drafts':sum(bool(d.get('packet')) for d in active),
+        'approved_ready_drafts':sum(bool(d.get('approved')) and not d.get('errors') for d in active),
+        'awaiting_fact_check':sum(bool(d.get('packet')) and not d.get('approved') and not d.get('errors') for d in active),
+        'needs_context_or_retry':sum(bool(d.get('errors')) for d in active)}
 
 def restore_review(token):
     if not REVIEW_PATH.exists():return
@@ -210,7 +242,8 @@ def handle(state, text, generator=generate):
     if command in ('/start','/help'):
         return HELP
     if command == '/status':
-        return '\n'.join(i['id'] + ': ' + ('approved' if i['approved'] else 'needs context' if i.get('errors') else 'ready for fact check') for i in state['drafts'].values()) or 'No drafts yet. Send /story followed by your notes.'
+        summary=inventory(state)
+        return json.dumps(summary,indent=2)+'\n\n'+'\n'.join(i['id'] + ': ' + ('shelved' if i.get('archived') else 'approved' if i['approved'] else 'needs context' if i.get('errors') else 'ready for fact check') for i in state['drafts'].values())
     if command == '/export':return 'PRIVATE STORY BACKUP\n\n'+json.dumps(state,ensure_ascii=False,indent=2)
     if command == '/history':
         if not argument.strip():return 'Send /history followed by a true past experience.'
@@ -253,7 +286,7 @@ def selected_notes(token, used_ids):
         if item.get('approved') and not item.get('errors') and identifier not in used_ids:
             p=item['packet'];first=sentences(p['draft'])[0]
             return {'id':identifier,'notes':item['notes'],'approved':True,'kind':'author','draft':p['draft'],
-                    'finder':first,'how_found':first,'lesson':p['lesson'],'reply_prompt':p['reply_prompt']}
+                    'title':p['title'],'finder':first,'how_found':first,'lesson':p['lesson'],'reply_prompt':p['reply_prompt']}
     return None
 
 def message_text(token, message):
@@ -298,15 +331,22 @@ def main():
     def sender(text):
         call(token,'sendDocument',data={'chat_id':chat_id,'caption':'Your private story workshop reply. Approval prepares a newsletter draft; it does not publish.'},
              files={'document':('story-workshop.txt',text.encode(),'text/plain; charset=utf-8')})
-    processed=poll(token,chat_id,state,sender)
     used_path=ROOT/'data/editorial/story_history.json'
     used=json.loads(used_path.read_text()).get('used_ids',[]) if used_path.exists() else []
+    if REVIEW_PATH.exists():
+        history=read_state(REVIEW_PATH,token).get('files',{}).get('story_history.json')
+        if history:used=json.loads(history).get('used_ids',[])
+    state['consumed_ids']=used
+    processed=poll(token,chat_id,state,sender)
     approved=any(i.get('approved') and 'inbox-'+i['id'] not in used for i in state['drafts'].values())
     pending=any(not i.get('approved') and not i.get('archived') and i.get('packet') for i in state['drafts'].values())
     if '--weekly' in sys.argv and not approved and not pending:
         # Draft a historical entry once. It still requires the author's fact check.
         if state['history']:sender(next_history(state))
     if state != prior_state:save_state(STATE_PATH,token,state)
+    counts=inventory(state,used)
+    (ROOT/'data/story_inventory.json').write_text(json.dumps(counts,indent=2)+'\n')
+    print('Private story inventory counts: '+json.dumps(counts))
     print(f'Private story workshop checked: {processed} authorized messages processed. No story content logged.')
 
 if __name__=='__main__':

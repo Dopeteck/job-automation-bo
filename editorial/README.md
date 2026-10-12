@@ -1,3 +1,11 @@
+## Monday story editions while jobs are held (2026-10-12)
+
+An unused author-approved story can form a standalone story edition when the job digest fails its supply or history checks. Held jobs are excluded; job checks remain strict. The Monday workflow delivers the full edition privately for Substack New post, and can upload the text as an unpublished Buffer Substack Note during a manual review. Buffer Notes are not Substack email newsletters. Existing Buffer publication preferences still apply.
+
+Story editions have a title, opening, lesson, reply question and Telegram footer. They do not print job counts or source credits for nonexistent roles. They consume story history after scheduled private delivery but never consume job issue history. Manual previews remain unconsumed. A private owner seed may import a specifically author-approved story; unapproved model output cannot pass this route.
+
+`data/story_inventory.json` contains counts only: approved unused drafts, expanded drafts awaiting fact check/context, and unused historical notes. Six historical experiences do not mean six publishable drafts. `/status` shows the inventory privately.
+
 ## Private Telegram story workshop (2026-10-12)
 
 The author can send rough notes, a draft, or a UTF-8 text file to the configured personal bot chat. Ordinary text and `/story` start drafting. `/revise ID corrections` adds true context; `/approve ID` confirms facts and makes an unused story available to the weekly newsletter draft. `/history` saves past material; `/fromhistory` drafts the next unused experience; `/skip ID` shelves it; `/export` returns a private backup.

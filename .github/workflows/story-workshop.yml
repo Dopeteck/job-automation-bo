@@ -47,6 +47,7 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if [ -f data/private_story_state.enc ]; then
             git add data/private_story_state.enc
+            if [ -f data/story_inventory.json ]; then git add data/story_inventory.json; fi
             if ! git diff --cached --quiet; then
               git commit -m 'chore: save encrypted private story state'
               git push
