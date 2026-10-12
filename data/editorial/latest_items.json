@@ -331,7 +331,7 @@
       "location": "Anywhere",
       "africa_eligible": true,
       "published_at": "2026-10-11T03:50:30+00:00",
-      "link_status": "200",
+      "link_status": "protected",
       "active_status": "active",
       "experience": "Experience not stated",
       "telegram_input": false

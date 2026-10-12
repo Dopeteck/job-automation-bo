@@ -1,12 +1,12 @@
 # Remote jobs this week: 10 roles open worldwide or in Africa
 
-On 11 October 2026, a newsletter draft included a Datadog role called “Enterprise Sales Engineer - FED”. It had been tagged “Africa eligible”. But the listing text began “Virginia, USA, Remote”. The word that made the opportunity look accessible was sitting beside the words that restricted it.
+“Virginia, USA, Remote.” That was the location line beneath a Datadog role our newsletter had tagged “Africa eligible”. On 11 October 2026, the draft included “Enterprise Sales Engineer - FED”. The contradiction was already there in the listing: the word that made the opportunity look accessible sat beside the words that restricted it.
 
 That contradiction was caught during review. The role came out of the digest, and the correction went into the pipeline: a worldwide feed tag can no longer override a country or state restriction in the listing. Citizenship, clearance and federal requirements also became reasons to hold a role rather than recommend it to this audience.
 
 The correction mattered beyond that one vacancy. A jobs list asks readers to spend time on someone else’s judgement. If the location check is wrong, a reader can do everything else carefully—read the duties, prepare a CV and write a useful opening—and still reach an application they were never eligible to make.
 
-There is no reader success story to attach to this incident. It is a mistake in our draft and a check we changed after finding it. That is useful enough to share: the quality of this newsletter depends on what it removes as much as what it includes.
+The rule changed after a mistake in our own draft. That is part of building this channel: the checks improve when someone looks closely enough to challenge them. A useful correction should change the next issue, rather than disappear into the replies.
 
 Before choosing a role below, read its country and experience lines first. Then read the actual duty. If those details conflict with the employer’s application page, trust the restriction on the page and tell us what you found. A shorter shortlist is worth more than an attractive label that cannot survive a careful read.
 
