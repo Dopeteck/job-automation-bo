@@ -1,630 +1,4403 @@
 {
+  "held": true,
+  "checks": {
+    "Counts match subtitle": true,
+    "At least three entry/junior": false,
+    "Six to ten roles": false,
+    "Sorted by required experience": true,
+    "No emojis": true,
+    "No duplicates": true,
+    "Credits appear once": true,
+    "Every why-line is a complete task sentence": true,
+    "Every eligibility claim has listing evidence": true,
+    "Nothing from HOLD rules appears in roles": true,
+    "Story and previous-issue inputs complete": false,
+    "Title under 70 characters": true,
+    "Average sentence under 25 words": true
+  },
   "jobs": [
     {
-      "title": "\ud83c\udf0f Gameplay Data Capture Specialist | Remote - Contract",
-      "company": "Xperteez Technology",
-      "link": "https://himalayas.app/companies/xperteez-technology/jobs/gameplay-data-capture-specialist-remote-contract",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-06T20:19:44+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
+      "title": "Sales Development Representative",
+      "company": "Interdependence Public Relations",
+      "url": "https://himalayas.app/companies/interdependence-public-relations/jobs/sales-development-representative",
+      "eligibility_basis": "anywhere in the world",
+      "experience": "3+ years of experience",
+      "why": "You reply promptly and thoughtfully to every inbound lead generated through marketing campaigns, referrals, website inquiries, and events."
+    }
+  ],
+  "held_roles": [
+    {
+      "title": "Manager Clinical Data Management",
+      "company": "EDETEK",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
     },
     {
-      "title": "Technical Customer Support",
-      "company": "QuickMail",
-      "link": "https://weworkremotely.com/remote-jobs/quickmail-technical-customer-support",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-10T21:21:48+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Experience not stated",
-      "telegram_input": false
+      "title": "Junior Sales Development Representative IT Industry",
+      "company": "Huzzle",
+      "reasons": [
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
     },
     {
-      "title": "Call Agent B2C",
-      "company": "BucherInvest GmbH",
-      "link": "https://himalayas.app/companies/bucherinvest-gmbh/jobs/call-agent-b2c-1763007200",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-09T22:22:07+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
+      "title": "Academic Dean for MiaPrep Online Academy of Ohio",
+      "company": "Miaplaza",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
     },
     {
-      "title": "Prospective Next Gen Intern",
-      "company": "Landor",
-      "link": "https://himalayas.app/companies/landor/jobs/prospective-next-gen-intern",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T08:44:49+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
+      "title": "Product Engineering Lead",
+      "company": "Tether Operations Limited",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
     },
     {
-      "title": "Intern - MERN stack",
-      "company": "Sarvify",
-      "link": "https://himalayas.app/companies/sarvify/jobs/intern-mern-stack",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T16:41:22+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Junior DevOps / Cloud Engineer",
-      "company": "CloudCops GmbH",
-      "link": "https://himalayas.app/companies/cloudcops-gmbh/jobs/junior-devops-cloud-engineer",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-08T06:30:54+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Surplus Lines Coordinator (Temporary)",
-      "company": "Hylant",
-      "link": "https://himalayas.app/companies/hylant/jobs/surplus-lines-coordinator-temporary",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T04:22:18+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Google Analytics Specialist, Remote - Contract",
-      "company": "Xperteez Technology",
-      "link": "https://himalayas.app/companies/xperteez-technology/jobs/google-analytics-specialist-remote-contract",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T11:35:34+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Experience not stated",
-      "telegram_input": false
-    },
-    {
-      "title": "Implementation Coordinator",
-      "company": "MoneyGram",
-      "link": "https://himalayas.app/companies/moneygram/jobs/implementation-coordinator",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T16:38:39+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior | 80+ years of experience",
-      "telegram_input": false
-    },
-    {
-      "title": "QA Automation Engineer",
-      "company": "TransPerfect",
-      "link": "https://himalayas.app/companies/transperfect/jobs/qa-automation-engineer",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-10T16:43:02+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Experience not stated",
-      "telegram_input": false
-    },
-    {
-      "title": "Founders Associate",
-      "company": "Clera",
-      "link": "https://himalayas.app/companies/clera/jobs/founders-associate",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T02:45:02+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "2 years of experience",
-      "telegram_input": false
-    },
-    {
-      "title": "Video Annotation Specialist | Remote - Contract",
-      "company": "Xperteez Technology",
-      "link": "https://himalayas.app/companies/xperteez-technology/jobs/video-annotation-specialist-remote-contract",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-03T00:49:16+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Stripe Specialist | Remote - Contract",
-      "company": "Xperteez Technology",
-      "link": "https://himalayas.app/companies/xperteez-technology/jobs/stripe-specialist-remote-contract",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-03T11:59:33+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Google Classroom Specialist | Remote - Contract",
-      "company": "Xperteez Technology",
-      "link": "https://himalayas.app/companies/xperteez-technology/jobs/google-classroom-specialist-remote-contract",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-03T08:19:45+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Strategic Project Lead, Finance Expertise",
-      "company": "micro1",
-      "link": "https://himalayas.app/companies/micro1/jobs/strategic-project-lead-finance-expertise-2636555906",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-06T23:25:47+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior | 2+ years of experience",
-      "telegram_input": false
-    },
-    {
-      "title": "Strategic Project Lead, J.D./Legal Expertise",
-      "company": "micro1",
-      "link": "https://himalayas.app/companies/micro1/jobs/strategic-project-lead-j-d-legal-expertise-2049565682",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-06T22:26:09+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior | 2+ years of professional experience",
-      "telegram_input": false
-    },
-    {
-      "title": "Track & Trace Representative (#2)",
-      "company": "Zelh",
-      "link": "https://himalayas.app/companies/zelh/jobs/track-trace-representative-2",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-08T12:48:10+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Paid Media & Tracking Assistant",
-      "company": "Spotter Labs",
-      "link": "https://himalayas.app/companies/spotter-labs/jobs/paid-media-tracking-assistant-1771714803",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-08T19:30:36+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Digital Competition - SPARK 2026",
-      "company": "GSA Capital",
-      "link": "https://himalayas.app/companies/gsa-capital/jobs/digital-competition-spark-2026",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-09T14:39:34+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Social Media Content Creator & Video Editing Intern",
-      "company": "University of Wisconsin-Madison",
-      "link": "https://himalayas.app/companies/university-of-wisconsin-madison/jobs/social-media-content-creator-video-editing-intern",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-08T20:34:15+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Intern - HTML/CSS JS Python",
-      "company": "Sarvify",
-      "link": "https://himalayas.app/companies/sarvify/jobs/intern-html-css-js-python",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-06T23:07:28+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Junior DevOps / Cloud Engineer",
-      "company": "CloudCops",
-      "link": "https://himalayas.app/companies/cloudcops/jobs/junior-devops-cloud-engineer",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-08T14:55:39+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Slots Game Mathematician (Junior-to-Middle)",
-      "company": "Enjoy Gaming LLC",
-      "link": "https://himalayas.app/companies/enjoy-gaming-llc/jobs/slots-game-mathematician-junior-to-middle",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-06T08:49:04+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Mechanical Engineer | Remote - Contract",
-      "company": "Xperteez Technology",
-      "link": "https://himalayas.app/companies/xperteez-technology/jobs/mechanical-engineer-remote-contract",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-07T06:54:05+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "2+ years of experience",
-      "telegram_input": false
-    },
-    {
-      "title": "GitHub Specialist | Remote - Contract",
-      "company": "Xperteez Technology",
-      "link": "https://himalayas.app/companies/xperteez-technology/jobs/github-specialist-remote-contract",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-06T23:04:19+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Experience not stated",
-      "telegram_input": false
-    },
-    {
-      "title": "Join Translated's Global Freelance Community: Multiple Roles Open",
-      "company": "Translated Srl",
-      "link": "https://himalayas.app/companies/translated-srl/jobs/join-translated-s-global-freelance-community-multiple-roles-open",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-05T21:19:39+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Experience not stated",
-      "telegram_input": false
-    },
-    {
-      "title": "AI Security Research Participant: Stop Deepfakes",
-      "company": "Your Personal AI",
-      "link": "https://himalayas.app/companies/your-personal-ai/jobs/ai-security-research-participant-stop-deepfakes",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-06T16:49:49+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Experience not stated",
-      "telegram_input": false
-    },
-    {
-      "title": "IT Associate",
-      "company": "Softgic",
-      "link": "https://jobicy.com/jobs/145745-it-associate",
-      "location": "Anywhere",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T03:50:30+00:00",
-      "link_status": "protected",
-      "active_status": "active",
-      "experience": "Experience not stated",
-      "telegram_input": false
-    },
-    {
-      "title": "Senior React Full-stack Developer",
+      "title": "Senior React Full stack Developer",
       "company": "Lemon.io",
-      "link": "https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-7",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-09T13:49:21+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior | 5+ years of software development experience Commercial experience",
-      "telegram_input": false
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
     },
     {
-      "title": "Senior AI Trainer, Remote - Contract",
-      "company": "Xperteez Technology",
-      "link": "https://himalayas.app/companies/xperteez-technology/jobs/senior-ai-trainer-remote-contract",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-06T23:17:49+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior",
-      "telegram_input": false
+      "title": "Product Design Lead",
+      "company": "Fuel50",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
     },
     {
-      "title": "Video Content Moderator",
-      "company": "Infomediji",
-      "link": "https://himalayas.app/companies/infomediji/jobs/video-content-moderator",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-02T04:36:09+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "CRM Assistant (with Insellerate Experience)",
-      "company": "NightOwl Consulting",
-      "link": "https://himalayas.app/companies/nightowl-consulting/jobs/crm-assistant-with-insellerate-experience",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-03T06:58:29+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Part-Time Intern (Operations & Task Management)",
-      "company": "Akeshya Private Limited",
-      "link": "https://himalayas.app/companies/akeshya-private-limited/jobs/part-time-intern-operations-task-management",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-02T03:13:48+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Production Assistant",
-      "company": "NightOwl Consulting",
-      "link": "https://himalayas.app/companies/nightowl-consulting/jobs/production-assistant",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-03T15:51:32+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Appraisal Assistant",
-      "company": "NightOwl Consulting",
-      "link": "https://himalayas.app/companies/nightowl-consulting/jobs/appraisal-assistant",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-03T11:22:53+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "1\u20132 years of administrative or mortgage operations experience",
-      "telegram_input": false
-    },
-    {
-      "title": "Short Term Intern",
-      "company": "Power to Change",
-      "link": "https://himalayas.app/companies/p2c/jobs/short-term-intern",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-05T12:04:32+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Mac Users Needed for AI Security Research | $25 USD | Work From Home",
-      "company": "Your Personal AI",
-      "link": "https://himalayas.app/companies/your-personal-ai/jobs/mac-users-needed-for-ai-security-research-25-usd-work-from-home",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-03T18:54:13+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Video Study Participant \u2013 Support Advanced AI Security Research",
-      "company": "Your Personal AI",
-      "link": "https://himalayas.app/companies/your-personal-ai/jobs/video-study-participant-support-advanced-ai-security-research",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-03T04:42:38+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "WCN-ALU Curriculum Development Intern",
-      "company": "ALU",
-      "link": "https://himalayas.app/companies/alu/jobs/wcn-alu-curriculum-development-intern",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-02T23:55:14+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Junior Mortgage Processor",
-      "company": "NightOwl Consulting",
-      "link": "https://himalayas.app/companies/nightowl-consulting/jobs/junior-mortgage-processor",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-03T15:25:43+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Ground Up Associate (Fresh Graduates Encouraged to Apply)",
-      "company": "NightOwl Consulting",
-      "link": "https://himalayas.app/companies/nightowl-consulting/jobs/ground-up-associate-fresh-graduates-encouraged-to-apply",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-02T09:23:01+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "1\u20132 years of audit experience",
-      "telegram_input": false
-    },
-    {
-      "title": "Slot Mathematician (Junior-to-Middle)",
-      "company": "Enjoy Gaming LLC",
-      "link": "https://himalayas.app/companies/enjoy-gaming-llc/jobs/slot-mathematician-junior-to-middle",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-09-30T23:28:24+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Data Collection Operations Specialist \u2013 AI Training Data (Contract)",
-      "company": "Your Personal AI",
-      "link": "https://himalayas.app/companies/your-personal-ai/jobs/data-collection-operations-specialist-ai-training-data-contract",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-03T10:55:04+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Experience not stated",
-      "telegram_input": false
-    },
-    {
-      "title": "IT Infrastructure Engineer",
-      "company": "BlueGeko",
-      "link": "https://weworkremotely.com/remote-jobs/bluegeko-it-infrastructure-engineer",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-08T07:54:30+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "4+ years of IT infrastructure or systems administration experience",
-      "telegram_input": false
-    },
-    {
-      "title": "Senior Research Engineer",
-      "company": "AssemblyAI",
-      "link": "https://weworkremotely.com/remote-jobs/assemblyai-senior-research-engineer",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-04T07:31:28+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior",
-      "telegram_input": false
+      "title": "Telefondienst fÃ¼r Tierarztpraxis Neuruppin o",
+      "company": "Tierarzt Plus Partner",
+      "reasons": [
+        "City in the work location",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
     },
     {
       "title": "Project Manager",
       "company": "Spiralyze",
-      "link": "https://remoteOK.com/remote-jobs/remote-project-manager-spiralyze-1137466",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-06T19:35:42+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Platform and Integration Engineer Security Telemetry",
+      "company": "RedMimicry",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Federal Business Development Director",
+      "company": "Fortanix",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Head of Operations",
+      "company": "Leverage Live Local",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Junior Crypto Analyst & Trader",
+      "company": "Empire Assets",
+      "reasons": [
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": false
+    },
+    {
+      "title": "Enterprise Sales Development Representative",
+      "company": "Toptal",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "[CONFIRM: pay currency and period]",
+        "Maximum pay exceeds three times the minimum"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Client Advisor",
+      "company": "Toptal",
+      "reasons": [
+        "[CONFIRM: pay currency and period]",
+        "Maximum pay exceeds three times the minimum",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": false
+    },
+    {
+      "title": "Director Payment Integrity",
+      "company": "SIHO Insurance Services",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Danish Speaking Solutions Consultant Work Sofia Bulgaria",
+      "company": "Mercier Consultancy Group",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "MecÃ¡nico Automotriz DiagnÃ³stico y Presupuestos",
+      "company": "Workana",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Video Data Annotator",
+      "company": "iMerit Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Prenosis",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Technical Product Manager AI Stockbroking App",
+      "company": "Bjak",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Junior Digital Assets Operations Analyst",
+      "company": "Omega Enterprises",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Developer Security Analytics",
+      "company": "RedMimicry",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Freelance grabaciÃ³n de tareas cotidianas para proyecto de IA",
+      "company": "Mindrift - Data annotation",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Growth Product Manager AI Native",
+      "company": "Magic Eden",
+      "reasons": [
+        "City in the work location",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Brand Design Lead",
+      "company": "Descript",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Account Executive, Product Sales - Tax",
+      "company": "Stripe",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Engineer - Data Platform",
+      "company": "Vercel",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Applied Research Scientist, AI Research",
+      "company": "Descript",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Success Director",
+      "company": "Maven Clinic",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Art Director, Performance",
+      "company": "Upstart",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Engineer, Backend",
+      "company": "Vercel",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Account Executive, Enterprise - NY/NJ",
+      "company": "Zscaler",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Chargeback Operations Intern",
+      "company": "Sezzle",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Art Director, Brand Social",
+      "company": "Upstart",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Client Success Manager",
+      "company": "Maven Clinic",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Business Intelligence Analyst 2",
+      "company": "Twilio",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Account Executive, Enterprise - Expansion",
+      "company": "Zscaler",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Billing Operations Analyst 1",
+      "company": "Twilio",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Technical Customer Support",
+      "company": "QuickMail",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Full Stack Developer",
+      "company": "Typeform",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Demand Generation Marketing Manager",
+      "company": "Netlify",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Freelance Principal Recruiter",
+      "company": "Typeform",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Manager, Renewals",
+      "company": "Tines",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Success Associate (Denver, CO)",
+      "company": "Netlify",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "GTM Systems Specialist",
+      "company": "Tines",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Sales Operations Business Partner",
+      "company": "Huntress",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AI Solutions Lead, Marketing",
+      "company": "Instacart",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Cyber Defense Engineer",
+      "company": "BeyondTrust",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Account Manager",
+      "company": "Instacart",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Pre- & Post-Sales Customer Engineer, Enterprise",
+      "company": "Pendo",
+      "reasons": [
+        "US state abbreviation in the work restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Retention Executive",
+      "company": "BeyondTrust",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Lead Product Marketing Manager - Novus",
+      "company": "Pendo",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Machine Learning Engineer - IV (Fraud)",
+      "company": "Jumio",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Machine Learning Engineer - IV (Computer Vision)",
+      "company": "Jumio",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Success Manager",
+      "company": "RETR",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior React Full-stack Developer",
+      "company": "Lemon.io",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Applied Scientist Intern",
+      "company": "Upstart",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "ALM Manager",
+      "company": "Upstart",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Success Engineer EMEA - w/m/d",
+      "company": "JetBrains",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Analyst",
+      "company": "Affirm",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
     },
     {
       "title": "Tech Lead",
       "company": "Prospex CRM",
-      "link": "https://weworkremotely.com/remote-jobs/prospex-crm-tech-lead",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-08T18:37:31+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior",
-      "telegram_input": false
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
     },
     {
       "title": "Business Development Manager",
       "company": "sa.global",
-      "link": "https://weworkremotely.com/remote-jobs/sa-global-business-development-manager",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-08T18:37:31+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior | 30+ years of real-world experience",
-      "telegram_input": false
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Enterprise Account Executive (Kazakhstan)",
+      "company": "Creatio",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Head of CRM & Lifecycle Marketing",
+      "company": "Bondora",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior .NET Full-stack Developer",
+      "company": "Lemon.io",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "IT Infrastructure Engineer",
+      "company": "BlueGeko",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Site Engineer",
+      "company": "Vercel",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Security Software Engineer, IAM",
+      "company": "Vercel",
+      "reasons": [
+        "US state abbreviation in the work restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Machine Learning Engineer - IV (Biometrics)",
+      "company": "Jumio",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Business Recruiter",
+      "company": "Faire",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Machine Learning Engineer",
+      "company": "Jumio",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Director, Renewals",
+      "company": "Abnormal",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Producer, Client Experience & Growth (Contract)",
+      "company": "Current",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Product Manager, Detection Pipeline",
+      "company": "Expel",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Cloud Engineer",
+      "company": "BeyondTrust",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Designer, Creative Services",
+      "company": "Abnormal",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
     },
     {
       "title": "Senior 3D Designer",
       "company": "Contra",
-      "link": "https://weworkremotely.com/remote-jobs/contra-senior-3d-designer",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-07T00:11:33+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior",
-      "telegram_input": false
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
     },
     {
       "title": "Senior Game Designer",
       "company": "Contra",
-      "link": "https://weworkremotely.com/remote-jobs/contra-senior-game-designer",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-07T00:08:54+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior",
-      "telegram_input": false
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
     },
     {
       "title": "Senior Product Engineer",
       "company": "Semaphore",
-      "link": "https://weworkremotely.com/remote-jobs/semaphore-senior-product-engineer",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-06T08:44:40+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior",
-      "telegram_input": false
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Principal Solutions Consultant",
+      "company": "PagerDuty",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Engineering Manager, Cloud Engineering",
+      "company": "LaunchDarkly",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Data Scientist",
+      "company": "Wrike",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Group Product Manager [Klaxoon]",
+      "company": "Wrike",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Developer Educator",
+      "company": "Webflow",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Document Processor Manager",
+      "company": "NetVendor",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Enterprise Sales Engineer - FED",
+      "company": "Datadog",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Sr. Instructional Designer, Learning Operations",
+      "company": "Chime Financial, Inc",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Research Engineer",
+      "company": "AssemblyAI",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior GTM AI Engineer",
+      "company": "AssemblyAI",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Group Product Manager – Corporate Systems",
+      "company": "Smartsheet",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Director, Finance Systems & ERP",
+      "company": "Smartsheet",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Manager, Solutions Architect",
+      "company": "Vercel",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Join our Internship Community",
+      "company": "Feedzai",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Fees, equipment purchase or unpaid work",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Product Lead, Predictive Platform",
+      "company": "6sense",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Chairman Programs Lead",
+      "company": "Clover Health",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Web Designer, eCRM",
+      "company": "Humane World for Animals",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Chief Actuary",
+      "company": "Clover Health",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Product Manager, Dashboard",
+      "company": "Vercel",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Design Engineer",
+      "company": "Vercel",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Product Designer",
+      "company": "Calm.com",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Web Developer (Fresh graduate welcome, WFH policy, on-job-training)",
+      "company": "HR Plus",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Fullstack Web3 Engineer (Solidity / Rust / Typescript)",
+      "company": "bondex",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Framer Website Designer",
+      "company": "Air Apps",
+      "reasons": [
+        "City in the work location",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Atomistic Materials Modeling Expert",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Inorganic Chemistry & Synthesis Expert",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Primary Care Physician (MD) - Clinical Documentation & AI Evaluation",
+      "company": "Boron",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Cardiologist – Clinical Consultant (ATTR Cardiac Amyloidosis)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Entry/junior pay exceeds USD 40/hour and needs verification",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Cardiology NP / PA / RN – ATTR Clinical Consultant",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Vague or overlong title needs confirmation",
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Video Editing Professional",
+      "company": "Neon",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Oncologist",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "General Physician",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Builders & Developers: Share Your AI Coding Sessions",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Knowledge Management Expert",
+      "company": "Mercor Enterprise",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Infrastructure / Site Reliability Engineer (SRE)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Property, Real Estate, and Community Association Managers",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Administrative Services Managers",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Private Detectives and Investigators",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Database Systems Evaluation Expert",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Behavioral Health Expert, AI Safety and Model Evaluation",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Vague or overlong title needs confirmation",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Lean Engineer, Formal Mathematics (Lean 4, Mathlib, Theorem Proving)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Clinical Mental Health Expert — AI Conversation Evaluation",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Pharmacist / Pharmacy Technician — Medication Pronunciation Reviewer",
+      "company": "Peak",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Urologists & Medical Oncologists (Prostate Cancer) – Paid Research Study",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Vague or overlong title needs confirmation",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Economics Research Expert",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Systems & Integration Engineering Experts",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software & Firmware Engineering Experts",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Mechanical Engineering Experts",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Electrical & Hardware Engineering Experts",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Product Designer, UI/UX",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Stochastic Biophysics Physicist (PhD)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Fluid Dynamics and Convection Stability Physicist (PhD)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Mathematical Physicist (PhD)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Statistical Physics and Thermodynamics Physicist (PhD)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Gravitation, Cosmology and Astrophysics Physicist (PhD)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Atomic, Molecular and Optical Physicist (PhD)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "High Energy Physicist (PhD)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Quantum Information Science Physicist (PhD)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Condensed Matter Physicist (PhD)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Voice Actor: CX Agent Voice Cloning (South African English)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Vague or overlong title needs confirmation",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Securities, Commodities, and Financial Services Sales Agents",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Cybersecurity Practitioner: Paid Expert Interviews (SOC, Incident Response, Detection, AppSec)",
+      "company": "mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Vague or overlong title needs confirmation",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Staff Software Engineer, Mobile (Android, Kotlin, Full Stack)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Vague or overlong title needs confirmation",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Software Engineer, Backend (Node.js, TypeScript, Rust)",
+      "company": "Mercor",
+      "reasons": [
+        "Company cannot be identified from the listing",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Local Political Expert — Elections Forecasting & Political Risk",
+      "company": "Jade",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Data Science Expert",
+      "company": "Dorado",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Client Support Specialist",
+      "company": "eMoney Advisor",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Operations Assistant",
+      "company": "The A Career",
+      "reasons": [
+        "Traditional employer names US systems or jurisdictions despite a worldwide tag",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Support Specialist - inbound calls",
+      "company": "MoneyGram",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Partner Service Manager",
+      "company": "Peak Technologies, Inc.",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Partner Account Specialist",
+      "company": "MoneyGram",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Call Agent B2C",
+      "company": "BucherInvest GmbH",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Implementation Coordinator",
+      "company": "MoneyGram",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Account Manager",
+      "company": "TechBiz Global",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Track & Trace Representative (#2)",
+      "company": "Zelh",
+      "reasons": [
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "General Application",
+      "company": "Vapaus",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Call Line Specialist | Customer Support | Remote – English Speaking",
+      "company": "Ricaris",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Hospitality Support Specialist",
+      "company": "Foodliteracyproject",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "🌍 Community Manager, Remote- Full Time",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Test job - This is for testing purposes only",
+      "company": "Go2",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "🥥Onboarding Engineer - Job Code: 1790976935573",
+      "company": "Coconut",
+      "reasons": [
+        "Traditional employer names US systems or jurisdictions despite a worldwide tag",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "V104- Client Intake and Engagement Assistant",
+      "company": "Job Duck",
+      "reasons": [
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Technical Support Specialist (L2/L3)",
+      "company": "Auditdata",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Team Lead, Customer Support",
+      "company": "RouteOne",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Technical Business Analyst – Microsoft Dynamics 365 CRM",
+      "company": "Abstra",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "CX Operations Manager",
+      "company": "Grüns",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Video Annotation Specialist | Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Video Content Moderator",
+      "company": "Infomediji",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Test Automation Engineer",
+      "company": "Sand Technologies",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior QA Engineer",
+      "company": "Prism Studio",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior QA Automation",
+      "company": "intive",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "QA Engineer [Remote]",
+      "company": "CyberArrow",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Fees, equipment purchase or unpaid work",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Tester",
+      "company": "Pontoonglobal",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Non-USD pay - independent location review required"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Quality Manager & Automation Tester",
+      "company": "Pontoonglobal",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Non-USD pay - independent location review required"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "QA MANUAL SENIOR",
+      "company": "XKTalent Inc. - Rimutee",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "🌏 Gameplay Data Capture Specialist | Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Automation QA Lead ( Betting )",
+      "company": "Opinov8",
+      "reasons": [
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": false
+    },
+    {
+      "title": "Full Stack QA Developer",
+      "company": "CXM",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "QA Tester",
+      "company": "Vantum",
+      "reasons": [
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "QA Automation Engineer",
+      "company": "TransPerfect",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "QA Automation Lead",
+      "company": "Aubrant Digital",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AI QA Trainer – LLM Evaluation",
+      "company": "Invisible Technologies",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Quality Assurance Engineer",
+      "company": "DualEntry",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Engineer - Automation QA",
+      "company": "Hard Rock Digital",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior QA Automation Engineer",
+      "company": "Codest Ltd. Company No. 12590542, VAT number: GB363431020",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "[CONFIRM: pay currency and period]"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "ServiceNow QA Consultant (CSM/ITSM)",
+      "company": "Joyful Craftsmen AG",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Founders Associate",
+      "company": "Clera",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Client Relationship Executive",
+      "company": "Groove Global LLC",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Account Manager",
+      "company": "Eleken",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "SaaS Co-Founder / Head of Product (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AI Research Lab Co-Founder / CTO (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AI Research Lab Co-Founder / CCO (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Sales and Account Manager",
+      "company": "Cabot Corporation",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Space Tech Co-Founder / COO (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Non-USD pay - independent location review required",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Semiconductor Co-Founder / Head of Product (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "MedTech Co-Founder / CPTO (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "SaaS Co-Founder / CPTO (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "DeepTech Co-Founder / CPTO (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Industrial Tech Co-Founder / Head of Sales (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "B2B Co-Founder / CMO (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Industrial Tech Co-Founder / CMO (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AI Research Lab Co-Founder / CMO (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AI Co-Founder / COO (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Clean Energy Co-Founder / Head of Engineering (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Mobility Co-Founder / CCO (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Quantum Computing Co-Founder / Head of Product (100 % remote) (m/f/d)",
+      "company": "EWOR GmbH",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Faith Based Executive Assistant",
+      "company": "Sisters In Christ: Women of Purpose, Daughters of Promise",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Remote Early Childhood Teacher (PT)",
+      "company": "Think Academy US",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "V105 - Legal Assistant | Legal Assistant and Client Intake Specialist",
+      "company": "Job Duck",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "🏖️Executive Assistant - Job Code: 1790882488656",
+      "company": "Coconut",
+      "reasons": [
+        "Traditional employer names US systems or jurisdictions despite a worldwide tag",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "✨ Coconut VA Philippine Talent Pool ✨",
+      "company": "Coconut",
+      "reasons": [
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "V101- Virtual Executive Administrative Coordinator I",
+      "company": "Job Duck",
+      "reasons": [
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Administrative Coordinator",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "🌍 Virtual Assistant, Remote- Full Time",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Administrative Assistant",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "CRM Assistant (with Insellerate Experience)",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Freelancer Support Specialist",
+      "company": "Your Personal AI",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Part-Time Intern (Operations & Task Management)",
+      "company": "Akeshya Private Limited",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "GHL Support Virtual Assistant",
+      "company": "Level 9 Virtual",
+      "reasons": [
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Amazon E-commerce Assistant",
+      "company": "Catch Creation",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Executive Assistant to CEO",
+      "company": "Jouster",
+      "reasons": [
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Paid Media & Tracking Assistant",
+      "company": "Spotter Labs",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Vendor & Compliance Assistant",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Non-USD pay - independent location review required"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Legal Operations Assistant",
+      "company": "Tether Operations Limited",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Legal Assistant",
+      "company": "Ancient Gaming",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Operations Analyst I",
+      "company": "Emptor",
+      "reasons": [
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Quality Assurance Analyst",
+      "company": "The A Career",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Executive Assistant / Corporate Administrator",
+      "company": "Canonical",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "V105C - Legal Assistant - Client Case Coordinator",
+      "company": "Job Duck",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Executive Assistant with Marketing Experience",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Production Assistant",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Appraisal Assistant",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Executive Assistant",
+      "company": "International Youth Federation",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Google Analytics Specialist, Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "CBRN Specialist",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Security Onion Specialist | Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Entry/junior pay exceeds USD 40/hour and needs verification",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Video Data Annotator",
+      "company": "micro1",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Human Data Manager",
+      "company": "micro1",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Human Data Manager, New Grad",
+      "company": "micro1",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Financial Expert",
+      "company": "micro1",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Mechanical Engineer | Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Strategic Project Lead, Finance Expertise",
+      "company": "micro1",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior AI Trainer, Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "GitHub Specialist | Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Strategic Project Lead, J.D./Legal Expertise",
+      "company": "micro1",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AI Software Engineering Domain Expert | Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Join Translated's Global Freelance Community: Multiple Roles Open",
+      "company": "Translated Srl",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Join Our Team as a Freelance Recruiter for AI Annotation and Data Collection Pro",
+      "company": "Your Personal AI",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Stripe Specialist | Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Annotation Training Efficiency Expert – Audio Transcription (Remote Contract)",
+      "company": "Your Personal AI",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Administrative Coordinator – Annotation & Data Collection Projects",
+      "company": "Your Personal AI",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Google Classroom Specialist | Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "🌎 Data Analyst - Remote, Contact",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Engineer – Backend | Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Maximum pay exceeds three times the minimum",
+        "Entry/junior pay exceeds USD 40/hour and needs verification"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Trainer (m/w/d) für KI-Fachseminare",
+      "company": "XDi - Experience Design Institut",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Internal Medicine Hospitalist",
+      "company": "micro1",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Bilingual Mental Health Expert - Remote, Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Rates trader",
+      "company": "micro1",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "🏖️Systems Optimization & Automation Lead - Job Code: 1782142842931",
+      "company": "Coconut",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Traditional employer names US systems or jurisdictions despite a worldwide tag",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Developmental Psychology (PhD), Remote",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "In-House Counsel, Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Documentation Specialist",
+      "company": "Bromcom Computers Plc",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Applied AI Enablement Lead",
+      "company": "Liminal",
+      "reasons": [
+        "Traditional employer names US systems or jurisdictions despite a worldwide tag",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Hospitalist Physician",
+      "company": "micro1",
+      "reasons": [
+        "US state abbreviation in the work restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "SaaS Contracts Counsel",
+      "company": "micro1",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AI Security Research Participant: Stop Deepfakes",
+      "company": "Your Personal AI",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Data Collection Operations Specialist – AI Training Data (Contract)",
+      "company": "Your Personal AI",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Operations & Service Delivery Expert | Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Prospective Next Gen Intern",
+      "company": "Landor",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Digital Competition - SPARK 2026",
+      "company": "GSA Capital",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Social Media Content Creator & Video Editing Intern",
+      "company": "University of Wisconsin-Madison",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Defending Defenders Law Intern",
+      "company": "Environmental Law Alliance Worldwide",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Fees, equipment purchase or unpaid work",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Reddit Marketing Intern",
+      "company": "Think Academy US",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Intern - HTML/CSS JS Python",
+      "company": "Sarvify",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Intern - MERN stack",
+      "company": "Sarvify",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Social Media Marketing Intern",
+      "company": "Pathways",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Application: Commissioned or Associate Staff, National Intern",
+      "company": "Power to Change",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Spring 2027 - Communications Internship - 6 Months - Remote | Primavera 2027 - P",
+      "company": "Cultural Survival, Inc.",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing",
+        "Fees, equipment purchase or unpaid work",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "First Year Interns Applying for Second Year Intern or Staff ( Commissioned / Ass",
+      "company": "Power to Change",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Short Term Intern",
+      "company": "Power to Change",
+      "reasons": [
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Backend, Frontend, and Fullstack Engineering Expression of Interest Form",
+      "company": "GitLab",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Mac Users Needed for AI Security Research | $25 USD | Work From Home",
+      "company": "Your Personal AI",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Video Study Participant – Support Advanced AI Security Research",
+      "company": "Your Personal AI",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "WCN-ALU Curriculum Development Intern",
+      "company": "ALU",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "LM's Step4Life program - TRACK 1 Academia",
+      "company": "LM International",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Fees, equipment purchase or unpaid work",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Part-Time E-commerce Operator / Marketing Intern",
+      "company": "Palette Studios",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Annual intern/part-time pay requires workload and pay verification"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "TheTravel | Junior Editor",
+      "company": "Valnet Tech Sites",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Junior DevOps / Cloud Engineer",
+      "company": "CloudCops",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "IT - Analyst, Network Engineer (Jr. Network Engineer)",
+      "company": "ArchWell Health",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Junior Frontend Developer - Future Position",
+      "company": "Talent Journey",
+      "reasons": [
+        "Country/state restriction in the listing text"
+      ],
+      "source_tag_only": false
+    },
+    {
+      "title": "Junior Backend Developer - Future Position",
+      "company": "Talent Journey",
+      "reasons": [
+        "Country/state restriction in the listing text"
+      ],
+      "source_tag_only": false
+    },
+    {
+      "title": "Slots Game Mathematician (Junior-to-Middle)",
+      "company": "Enjoy Gaming LLC",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AutoCAD Drafter (Jr. Estimator)",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Junior Mortgage Processor",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Junior Commissions Specialist",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Junior Closer - Mortgage Department",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Junior DevOps / Cloud Engineer",
+      "company": "CloudCops GmbH",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Non-USD pay - independent location review required"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "3D Motion Graphics Artist - Junior",
+      "company": "Negativ Design",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Ground Up Associate (Fresh Graduates Encouraged to Apply)",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Graduate Partner Marketing Manager",
+      "company": "Canonical",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Assistant Video Editor",
+      "company": "Kodify Media Group",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Slot Mathematician (Junior-to-Middle)",
+      "company": "Enjoy Gaming LLC",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "People Manager (Volunteer, Unpaid)",
+      "company": "Solution Community",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Volunteer Retention Manager (Volunteer, Unpaid)",
+      "company": "Solution Community",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "LMS Administrator",
+      "company": "NightOwl Consulting",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Non-USD pay - independent location review required"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Operations & Administrative Manager",
+      "company": "Mission Edge",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Surplus Lines Coordinator (Temporary)",
+      "company": "Hylant",
+      "reasons": [
+        "Traditional employer names US systems or jurisdictions despite a worldwide tag",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Healthcare Compliance Clerk",
+      "company": "The A Career",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Promo Artist",
+      "company": "Vira Games",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Underwriter Operations Specialist",
+      "company": "Amynta Group",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Trainer, Transfer Agency Training",
+      "company": "Ultimus Fund Solutions",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Regulatory Affairs Specialist",
+      "company": "KMR Search Group",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Plumbing & HVAC Office Manager (Customer Service & Dispatch)",
+      "company": "Offshore Launch",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Traditional employer names US systems or jurisdictions despite a worldwide tag",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Registered Nurse - Care Navigation",
+      "company": "Milu Health",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "🌍 Civil / Structural Engineer, Remote- Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Portfolio Associate, PFP",
+      "company": "USA The Nature Conservancy",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Tax Preparer",
+      "company": "JSI",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "🌍 Equity Research Analyst / Associate, Remote - Contract",
+      "company": "Xperteez Technology",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Entry/junior pay exceeds USD 40/hour and needs verification",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Risk Analyst (Forex / CFD Brokerage)",
+      "company": "DB Financial",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Strategic Initiatives Support Officer",
+      "company": "CIVICUS",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "SVP, Associate General Counsel",
+      "company": "Ultimus Fund Solutions",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Sales Development Representative",
+      "company": "S-PRO",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior communications specialist - social media",
+      "company": "Canonical",
+      "reasons": [
+        "Country/state restriction in the listing text",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Equity Research Analyst / Associate",
+      "company": "micro1",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "IT Associate",
+      "company": "Softgic",
+      "reasons": [
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Software Development Engineer in Test (SDET)",
+      "company": "Flex",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Associate Renewals Manager",
+      "company": "GitLab",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Associate Renewals Manager, India",
+      "company": "GitLab",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Associate Revenue Operations Manager, India",
+      "company": "GitLab",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Manager, Assigned Support Engineering (EMEA)",
+      "company": "GitLab",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Manager, Support Engineering (AMER)",
+      "company": "GitLab",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Support Engineer, U.S. Government Support",
+      "company": "GitLab",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Quality Assurance Engineer - Linux, PC, IoT",
+      "company": "Canonical",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Demand Generation Coordinator, Customer Marketing",
+      "company": "Elastic",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Manager, Sales Development",
+      "company": "Elastic",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Sales Development Representative - Austin, TX",
+      "company": "Elastic",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Support Manager - 3rd Shift",
+      "company": "Elastic",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Sales Development Representative | Austin, TX | Remote",
+      "company": "Grafana Labs",
+      "reasons": [
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Sales Development Representative | PST | Remote",
+      "company": "Grafana Labs",
+      "reasons": [
+        "Time-zone-only or hybrid hours requirement needs review",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Sales Development Representative | Switzerland | Remote",
+      "company": "Grafana Labs",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Success Manager",
+      "company": "Customer.io",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Technical Support Engineer, Canada",
+      "company": "Customer.io",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Associate General Counsel, Privacy",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Associate General Counsel, Privacy",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Broker Dealer Operations, Associate",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Broker Dealer Operations, Senior Associate",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Compliance, International Investigations Associate",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Compliance, Senior Associate",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Experiential Marketing Associate",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Forward Deployed Engineer Intern (HR Technology)",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Internal Audit Analytics Intern",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "IT Support Engineer",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Prime Operations Assistant",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Software Engineer, Mobile QA",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Staff Software Engineer, Mobile QA",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Tax Information Reporting Intern",
+      "company": "Coinbase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Success Associate (Denver, CO)",
+      "company": "Netlify",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Arabic Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Associate Manager, Robotics Lab",
+      "company": "Welo Global",
+      "reasons": [
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Bengali Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Dutch Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Finnish Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "French (France) Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "German Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Hebrew Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Hindi (Romanized) Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Hindi Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Indonesian Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Italian Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Japanese Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Kannada Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Korean Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Malay Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Mandarin Chinese Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Marathi Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Persian Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Polish Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Portuguese Brazilian Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Project Perseus | Data Labeling Associate - Marathi Speakers (Human-in-the-Loop AI)",
+      "company": "Welo Global",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Project Perseus | Data Labeling Associate - Tamil Speakers (Human-in-the-Loop AI)",
+      "company": "Welo Global",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Romanian Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Russian Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Spanish (LATAM) Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Spanish (Spain) Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Swahili Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Swedish Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Tagalog Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Tamil Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Telugu Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Thai Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Traditional Chinese Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Turkish Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Urdu (Romanized) Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Urdu Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Vietnamese Linguistic Evaluator & Functional Tester",
+      "company": "Welo Global",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Seasonal Personalization & Order Support Representative - 2026",
+      "company": "Minted",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Engineer Intern, Mobile (Winter 2027)",
+      "company": "Notion",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Outcomes Architect (Customer Success)",
+      "company": "Notion",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Recruiting Coordinator - AMER",
+      "company": "Notion",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Automation Strategist, Customer Success",
+      "company": "Zapier",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Success - Strategic - EMEA",
+      "company": "Elevenlabs",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Technical Customer Support Specialist",
+      "company": "Elevenlabs",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Success Lead - UK/I",
+      "company": "Elevenlabs",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Success - DACH",
+      "company": "Elevenlabs",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Strategy & Operations Programs, Support",
+      "company": "Openai",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Account Associate - EMEA",
+      "company": "Openai",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Account Associate - SF",
+      "company": "Openai",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Support Program Manager, Partnerships",
+      "company": "Openai",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Support Delivery Lead",
+      "company": "Openai",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Success Manager - Ads Solutions (Spanish speaking)",
+      "company": "Openai",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Dedicated Support Engineer - San Francisco",
+      "company": "Openai",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Dedicated Support Engineer - Dublin",
+      "company": "Openai",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Dedicated Support Engineer - Tokyo",
+      "company": "Openai",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Dedicated Support Engineer - Singapore",
+      "company": "Openai",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Dedicated Support Engineer - Toronto",
+      "company": "Openai",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AI Support Engineer - Toronto (Weekend Shift)",
+      "company": "Openai",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AI Support Engineer - Tokyo (Weekend Shift)",
+      "company": "Openai",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "AI Support Engineer - Singapore (Weekend Shift)",
+      "company": "Openai",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Dedicated Support Engineer - London",
+      "company": "Openai",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Support Engineer I (FC, Weekend Shift)",
+      "company": "Replit",
+      "reasons": [
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Support Engineer I (NYC, Weekend Shift)",
+      "company": "Replit",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Engineering Intern – Winter 2027",
+      "company": "Replit",
+      "reasons": [
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Experience Associate - London",
+      "company": "Ramp",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Enterprise Manager, Sales Development",
+      "company": "Ramp",
+      "reasons": [
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Sales Development Representative, Strategic Accounts",
+      "company": "Ramp",
+      "reasons": [
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Engineer Internship, Frontend",
+      "company": "Ramp",
+      "reasons": [
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Engineering Intern, Android",
+      "company": "Ramp",
+      "reasons": [
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Engineering Intern, iOS",
+      "company": "Ramp",
+      "reasons": [
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Manager, Sales Development, Public Sector",
+      "company": "Ramp",
+      "reasons": [
+        "US state abbreviation in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Enterprise Sales Development Representative US (Hybrid)",
+      "company": "n8n",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Sales Development Representative - DACH (Berlin Hybrid)",
+      "company": "n8n",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Success Manager - Guided - West Coast",
+      "company": "n8n",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Customer Success Manager - German Speaking (Remote)",
+      "company": "n8n",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Manager, Customer Success | Remote on West Coast",
+      "company": "n8n",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Technical Support Engineer",
+      "company": "Sentry",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Engineer Intern (2027)",
+      "company": "Cloudflare",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Software Engineer Intern (2027)",
+      "company": "Cloudflare",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Technical Support Engineer - Developer Platform",
+      "company": "Cloudflare",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Technical Support Engineer, Zero Trust",
+      "company": "Cloudflare",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Workplace Coordinator",
+      "company": "Cloudflare",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Customer Support Engineer",
+      "company": "Fastly",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Inbound Sales Development Representative",
+      "company": "Fastly",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing",
+        "Recruiter, referral or commission role"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Executive Assistant to the CEO",
+      "company": "Supabase",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Title and described duties do not match"
+      ],
+      "source_tag_only": false
+    },
+    {
+      "title": "Database Support Engineer (Japanese Speaking)",
+      "company": "Supabase",
+      "reasons": [
+        "Country, state or region in the work location/title"
+      ],
+      "source_tag_only": false
+    },
+    {
+      "title": "Langfuse - DevRel Engineer, Events & Community (AMER)",
+      "company": "Clickhouse",
+      "reasons": [
+        "Vague or overlong title needs confirmation",
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Technical Customer Support Engineer - Singapore",
+      "company": "Clickhouse",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Senior Technical Customer Support Engineer - Japan",
+      "company": "Clickhouse",
+      "reasons": [
+        "Location, citizenship, government, on-site or work-authorization restriction",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Product Support Engineer - EMEA",
+      "company": "Ashby",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Product Support Engineer - NAMER",
+      "company": "Ashby",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Sr. Support Operations Manager",
+      "company": "Ashby",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Technical Support Specialist",
+      "company": "Gitbook",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
+    },
+    {
+      "title": "Technical Support Specialist",
+      "company": "Attio",
+      "reasons": [
+        "Country, state or region in the work location/title",
+        "Source tag only - verify eligibility in the employer listing"
+      ],
+      "source_tag_only": true
     }
   ],
-  "news": [],
-  "drafting_mode": "curated_jobs",
-  "held": false,
-  "story": {
-    "id": "builder-datadog-2026-10-11",
-    "kind": "builder",
-    "question": "Have you found a location restriction late in an application? Reply with the exact line and what happened. May we contact you about featuring your experience?"
-  },
-  "run_audit": {
-    "pool_unique": 452,
-    "geography_pass_unique": 125,
-    "verified_shortlist": 51
-  },
-  "featured_count": 10
+  "story": null
 }

@@ -1,0 +1,478 @@
+REVIEW NOTES
+
+[CONFIRM: supply true STORY NOTES: the moment, who found or tried what, how, and what you did next]
+[CONFIRM: confirm previous-issue history is complete, or provide missing manually published issues]
+Assumptions: none; source tags do not establish Africa eligibility.
+
+HELD FOR REVIEW
+None.
+
+Source-tag-only eligibility: 0 listings held for employer-text verification.
+
+PASS/FAIL
+PASS - Counts match subtitle
+FAIL - At least three entry/junior
+FAIL - Six to ten roles
+PASS - Sorted by required experience
+PASS - No emojis
+PASS - No duplicates
+PASS - Credits appear once
+PASS - Every why-line is a complete task sentence
+PASS - Every eligibility claim has listing evidence
+PASS - Nothing from HOLD rules appears in roles
+FAIL - Story and previous-issue inputs complete
+PASS - Title under 70 characters
+PASS - Average sentence under 25 words
+
+HELD DURING SOURCE CHECKS
+- Manager Clinical Data Management - EDETEK: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Junior Sales Development Representative IT Industry - Huzzle: Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing
+- Academic Dean for MiaPrep Online Academy of Ohio - Miaplaza: Vague or overlong title needs confirmation; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Product Engineering Lead - Tether Operations Limited: Source tag only - verify eligibility in the employer listing
+- Senior React Full stack Developer - Lemon.io: Source tag only - verify eligibility in the employer listing; [CONFIRM: pay currency and period]
+- Product Design Lead - Fuel50: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Telefondienst fÃ¼r Tierarztpraxis Neuruppin o - Tierarzt Plus Partner: City in the work location; Source tag only - verify eligibility in the employer listing
+- Project Manager - Spiralyze: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Platform and Integration Engineer Security Telemetry - RedMimicry: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Federal Business Development Director - Fortanix: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Head of Operations - Leverage Live Local: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; [CONFIRM: pay currency and period]
+- Junior Crypto Analyst & Trader - Empire Assets: [CONFIRM: pay currency and period]
+- Enterprise Sales Development Representative - Toptal: Source tag only - verify eligibility in the employer listing; [CONFIRM: pay currency and period]; Maximum pay exceeds three times the minimum
+- Client Advisor - Toptal: [CONFIRM: pay currency and period]; Maximum pay exceeds three times the minimum; Title and described duties do not match
+- Director Payment Integrity - SIHO Insurance Services: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Danish Speaking Solutions Consultant Work Sofia Bulgaria - Mercier Consultancy Group: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- MecÃ¡nico Automotriz DiagnÃ³stico y Presupuestos - Workana: Source tag only - verify eligibility in the employer listing
+- Video Data Annotator - iMerit Technology: Source tag only - verify eligibility in the employer listing; [CONFIRM: pay currency and period]
+- Software Engineer - Prenosis: Source tag only - verify eligibility in the employer listing
+- Technical Product Manager AI Stockbroking App - Bjak: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Junior Digital Assets Operations Analyst - Omega Enterprises: Source tag only - verify eligibility in the employer listing; [CONFIRM: pay currency and period]
+- Software Developer Security Analytics - RedMimicry: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Freelance grabaciÃ³n de tareas cotidianas para proyecto de IA - Mindrift - Data annotation: Vague or overlong title needs confirmation; US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing
+- Senior Growth Product Manager AI Native - Magic Eden: City in the work location; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Brand Design Lead - Descript: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Account Executive, Product Sales - Tax - Stripe: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Software Engineer - Data Platform - Vercel: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Applied Research Scientist, AI Research - Descript: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Customer Success Director - Maven Clinic: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Art Director, Performance - Upstart: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Software Engineer, Backend - Vercel: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Account Executive, Enterprise - NY/NJ - Zscaler: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Chargeback Operations Intern - Sezzle: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Art Director, Brand Social - Upstart: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Client Success Manager - Maven Clinic: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Business Intelligence Analyst 2 - Twilio: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Account Executive, Enterprise - Expansion - Zscaler: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Billing Operations Analyst 1 - Twilio: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Technical Customer Support - QuickMail: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Full Stack Developer - Typeform: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Senior Demand Generation Marketing Manager - Netlify: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Freelance Principal Recruiter - Typeform: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Manager, Renewals - Tines: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Customer Success Associate (Denver, CO) - Netlify: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- GTM Systems Specialist - Tines: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Senior Sales Operations Business Partner - Huntress: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- AI Solutions Lead, Marketing - Instacart: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Cyber Defense Engineer - BeyondTrust: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Account Manager - Instacart: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Senior Pre- & Post-Sales Customer Engineer, Enterprise - Pendo: US state abbreviation in the work restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Customer Retention Executive - BeyondTrust: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Lead Product Marketing Manager - Novus - Pendo: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Machine Learning Engineer - IV (Fraud) - Jumio: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Machine Learning Engineer - IV (Computer Vision) - Jumio: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Customer Success Manager - RETR: Source tag only - verify eligibility in the employer listing
+- Senior React Full-stack Developer - Lemon.io: Source tag only - verify eligibility in the employer listing
+- Applied Scientist Intern - Upstart: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- ALM Manager - Upstart: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Customer Success Engineer EMEA - w/m/d - JetBrains: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Analyst - Affirm: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Tech Lead - Prospex CRM: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Business Development Manager - sa.global: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Enterprise Account Executive (Kazakhstan) - Creatio: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Head of CRM & Lifecycle Marketing - Bondora: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Senior .NET Full-stack Developer - Lemon.io: Source tag only - verify eligibility in the employer listing
+- IT Infrastructure Engineer - BlueGeko: Source tag only - verify eligibility in the employer listing
+- Site Engineer - Vercel: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Security Software Engineer, IAM - Vercel: US state abbreviation in the work restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Machine Learning Engineer - IV (Biometrics) - Jumio: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Senior Business Recruiter - Faire: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Machine Learning Engineer - Jumio: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Director, Renewals - Abnormal: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Producer, Client Experience & Growth (Contract) - Current: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Product Manager, Detection Pipeline - Expel: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Cloud Engineer - BeyondTrust: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Designer, Creative Services - Abnormal: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Senior 3D Designer - Contra: Source tag only - verify eligibility in the employer listing
+- Senior Game Designer - Contra: Source tag only - verify eligibility in the employer listing
+- Senior Product Engineer - Semaphore: Source tag only - verify eligibility in the employer listing
+- Principal Solutions Consultant - PagerDuty: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Engineering Manager, Cloud Engineering - LaunchDarkly: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Senior Data Scientist - Wrike: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Group Product Manager [Klaxoon] - Wrike: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Senior Developer Educator - Webflow: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Document Processor Manager - NetVendor: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Enterprise Sales Engineer - FED - Datadog: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Sr. Instructional Designer, Learning Operations - Chime Financial, Inc: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Senior Research Engineer - AssemblyAI: Source tag only - verify eligibility in the employer listing
+- Senior GTM AI Engineer - AssemblyAI: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Group Product Manager – Corporate Systems - Smartsheet: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Director, Finance Systems & ERP - Smartsheet: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Senior Manager, Solutions Architect - Vercel: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Join our Internship Community - Feedzai: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Fees, equipment purchase or unpaid work; Title and described duties do not match
+- Product Lead, Predictive Platform - 6sense: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Chairman Programs Lead - Clover Health: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Web Designer, eCRM - Humane World for Animals: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Chief Actuary - Clover Health: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Product Manager, Dashboard - Vercel: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Design Engineer - Vercel: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Senior Product Designer - Calm.com: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Web Developer (Fresh graduate welcome, WFH policy, on-job-training) - HR Plus: Vague or overlong title needs confirmation; Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing
+- Fullstack Web3 Engineer (Solidity / Rust / Typescript) - bondex: Vague or overlong title needs confirmation; Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Framer Website Designer - Air Apps: City in the work location; Source tag only - verify eligibility in the employer listing
+- Atomistic Materials Modeling Expert - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Inorganic Chemistry & Synthesis Expert - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Primary Care Physician (MD) - Clinical Documentation & AI Evaluation - Boron: Vague or overlong title needs confirmation; US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Cardiologist – Clinical Consultant (ATTR Cardiac Amyloidosis) - Mercor: Company cannot be identified from the listing; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Entry/junior pay exceeds USD 40/hour and needs verification; Title and described duties do not match
+- Cardiology NP / PA / RN – ATTR Clinical Consultant - Mercor: Company cannot be identified from the listing; Vague or overlong title needs confirmation; US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Video Editing Professional - Neon: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Oncologist - Mercor: Company cannot be identified from the listing; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- General Physician - Mercor: Company cannot be identified from the listing; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Builders & Developers: Share Your AI Coding Sessions - Mercor: Company cannot be identified from the listing; Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Knowledge Management Expert - Mercor Enterprise: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Infrastructure / Site Reliability Engineer (SRE) - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Property, Real Estate, and Community Association Managers - Mercor: Company cannot be identified from the listing; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Administrative Services Managers - Mercor: Company cannot be identified from the listing; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Private Detectives and Investigators - Mercor: Company cannot be identified from the listing; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Database Systems Evaluation Expert - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Behavioral Health Expert, AI Safety and Model Evaluation - Mercor: Company cannot be identified from the listing; Vague or overlong title needs confirmation; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Lean Engineer, Formal Mathematics (Lean 4, Mathlib, Theorem Proving) - Mercor: Company cannot be identified from the listing; Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Clinical Mental Health Expert — AI Conversation Evaluation - Mercor: Company cannot be identified from the listing; Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Pharmacist / Pharmacy Technician — Medication Pronunciation Reviewer - Peak: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Urologists & Medical Oncologists (Prostate Cancer) – Paid Research Study - Mercor: Company cannot be identified from the listing; Vague or overlong title needs confirmation; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Senior Economics Research Expert - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Systems & Integration Engineering Experts - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Software & Firmware Engineering Experts - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Mechanical Engineering Experts - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Electrical & Hardware Engineering Experts - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Senior Product Designer, UI/UX - Mercor: Company cannot be identified from the listing; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Stochastic Biophysics Physicist (PhD) - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Fluid Dynamics and Convection Stability Physicist (PhD) - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Mathematical Physicist (PhD) - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Statistical Physics and Thermodynamics Physicist (PhD) - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Gravitation, Cosmology and Astrophysics Physicist (PhD) - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Atomic, Molecular and Optical Physicist (PhD) - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- High Energy Physicist (PhD) - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Quantum Information Science Physicist (PhD) - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Condensed Matter Physicist (PhD) - Mercor: Company cannot be identified from the listing; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Voice Actor: CX Agent Voice Cloning (South African English) - Mercor: Company cannot be identified from the listing; Vague or overlong title needs confirmation; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Securities, Commodities, and Financial Services Sales Agents - Mercor: Company cannot be identified from the listing; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Cybersecurity Practitioner: Paid Expert Interviews (SOC, Incident Response, Detection, AppSec) - mercor: Company cannot be identified from the listing; Vague or overlong title needs confirmation; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Staff Software Engineer, Mobile (Android, Kotlin, Full Stack) - Mercor: Company cannot be identified from the listing; Vague or overlong title needs confirmation; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Senior Software Engineer, Backend (Node.js, TypeScript, Rust) - Mercor: Company cannot be identified from the listing; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Local Political Expert — Elections Forecasting & Political Risk - Jade: Vague or overlong title needs confirmation; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]; Title and described duties do not match
+- Data Science Expert - Dorado: Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; [CONFIRM: pay currency and period]
+- Client Support Specialist - eMoney Advisor: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Operations Assistant - The A Career: Traditional employer names US systems or jurisdictions despite a worldwide tag; Source tag only - verify eligibility in the employer listing
+- Customer Support Specialist - inbound calls - MoneyGram: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Partner Service Manager - Peak Technologies, Inc.: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Partner Account Specialist - MoneyGram: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Call Agent B2C - BucherInvest GmbH: Source tag only - verify eligibility in the employer listing
+- Implementation Coordinator - MoneyGram: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Account Manager - TechBiz Global: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Track & Trace Representative (#2) - Zelh: Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- General Application - Vapaus: Source tag only - verify eligibility in the employer listing
+- Call Line Specialist - Customer Support - Remote – English Speaking - Ricaris: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing
+- Hospitality Support Specialist - Foodliteracyproject: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Community Manager, Remote- Full Time - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Test job - This is for testing purposes only - Go2: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Onboarding Engineer - Job Code: 1790976935573 - Coconut: Traditional employer names US systems or jurisdictions despite a worldwide tag; Source tag only - verify eligibility in the employer listing
+- V104- Client Intake and Engagement Assistant - Job Duck: Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Technical Support Specialist (L2/L3) - Auditdata: Source tag only - verify eligibility in the employer listing
+- Team Lead, Customer Support - RouteOne: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Technical Business Analyst – Microsoft Dynamics 365 CRM - Abstra: Vague or overlong title needs confirmation; Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- CX Operations Manager - Grüns: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Video Annotation Specialist - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Video Content Moderator - Infomediji: Source tag only - verify eligibility in the employer listing
+- Senior Test Automation Engineer - Sand Technologies: Source tag only - verify eligibility in the employer listing
+- Senior QA Engineer - Prism Studio: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Senior QA Automation - intive: Source tag only - verify eligibility in the employer listing
+- QA Engineer [Remote] - CyberArrow: Source tag only - verify eligibility in the employer listing; Fees, equipment purchase or unpaid work; Title and described duties do not match
+- Tester - Pontoonglobal: Source tag only - verify eligibility in the employer listing; Non-USD pay - independent location review required
+- Quality Manager & Automation Tester - Pontoonglobal: Source tag only - verify eligibility in the employer listing; Non-USD pay - independent location review required
+- Qa Manual Senior - XKTalent Inc. - Rimutee: Source tag only - verify eligibility in the employer listing
+- Gameplay Data Capture Specialist - Xperteez Technology: Source tag only - verify eligibility in the employer listing
+- Automation QA Lead ( Betting ) - Opinov8: Title and described duties do not match
+- Full Stack QA Developer - CXM: Source tag only - verify eligibility in the employer listing
+- QA Tester - Vantum: Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing
+- QA Automation Engineer - TransPerfect: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- QA Automation Lead - Aubrant Digital: Source tag only - verify eligibility in the employer listing
+- AI QA Trainer – LLM Evaluation - Invisible Technologies: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Senior Quality Assurance Engineer - DualEntry: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Senior Engineer - Automation QA - Hard Rock Digital: Source tag only - verify eligibility in the employer listing
+- Senior QA Automation Engineer - Codest Ltd. Company No. 12590542, VAT number: GB363431020: Source tag only - verify eligibility in the employer listing; [CONFIRM: pay currency and period]
+- ServiceNow QA Consultant (CSM/ITSM) - Joyful Craftsmen AG: Source tag only - verify eligibility in the employer listing
+- Founders Associate - Clera: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Client Relationship Executive - Groove Global LLC: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Account Manager - Eleken: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- SaaS Co-Founder / Head of Product (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- AI Research Lab Co-Founder / CTO (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- AI Research Lab Co-Founder / CCO (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Sales and Account Manager - Cabot Corporation: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Space Tech Co-Founder / COO (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Non-USD pay - independent location review required; Title and described duties do not match
+- Semiconductor Co-Founder / Head of Product (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- MedTech Co-Founder / CPTO (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- SaaS Co-Founder / CPTO (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- DeepTech Co-Founder / CPTO (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Industrial Tech Co-Founder / Head of Sales (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- B2B Co-Founder / CMO (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Industrial Tech Co-Founder / CMO (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- AI Research Lab Co-Founder / CMO (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- AI Co-Founder / COO (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Clean Energy Co-Founder / Head of Engineering (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Mobility Co-Founder / CCO (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Quantum Computing Co-Founder / Head of Product (100 % remote) (m/f/d) - EWOR GmbH: Vague or overlong title needs confirmation; Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Faith Based Executive Assistant - Sisters In Christ: Women of Purpose, Daughters of Promise: Source tag only - verify eligibility in the employer listing
+- Remote Early Childhood Teacher (PT) - Think Academy US: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- V105 - Legal Assistant - Legal Assistant and Client Intake Specialist - Job Duck: Vague or overlong title needs confirmation; Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- ️Executive Assistant - Job Code: 1790882488656 - Coconut: Traditional employer names US systems or jurisdictions despite a worldwide tag; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Coconut VA Philippine Talent Pool - Coconut: US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- V101- Virtual Executive Administrative Coordinator I - Job Duck: Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Administrative Coordinator - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Virtual Assistant, Remote- Full Time - Xperteez Technology: Source tag only - verify eligibility in the employer listing
+- Administrative Assistant - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- CRM Assistant (with Insellerate Experience) - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Freelancer Support Specialist - Your Personal AI: Source tag only - verify eligibility in the employer listing
+- Part-Time Intern (Operations & Task Management) - Akeshya Private Limited: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- GHL Support Virtual Assistant - Level 9 Virtual: Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing
+- Amazon E-commerce Assistant - Catch Creation: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Executive Assistant to CEO - Jouster: Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing
+- Paid Media & Tracking Assistant - Spotter Labs: Source tag only - verify eligibility in the employer listing
+- Vendor & Compliance Assistant - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Non-USD pay - independent location review required
+- Legal Operations Assistant - Tether Operations Limited: Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Legal Assistant - Ancient Gaming: Source tag only - verify eligibility in the employer listing
+- Operations Analyst I - Emptor: Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing
+- Quality Assurance Analyst - The A Career: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Executive Assistant / Corporate Administrator - Canonical: Source tag only - verify eligibility in the employer listing
+- V105C - Legal Assistant - Client Case Coordinator - Job Duck: Vague or overlong title needs confirmation; Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Executive Assistant with Marketing Experience - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Production Assistant - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Appraisal Assistant - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Senior Executive Assistant - International Youth Federation: Source tag only - verify eligibility in the employer listing
+- Google Analytics Specialist - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- CBRN Specialist - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Security Onion Specialist - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Entry/junior pay exceeds USD 40/hour and needs verification; Title and described duties do not match
+- Video Data Annotator - micro1: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Human Data Manager - micro1: Source tag only - verify eligibility in the employer listing
+- Human Data Manager, New Grad - micro1: Source tag only - verify eligibility in the employer listing
+- Financial Expert - micro1: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Mechanical Engineer - Xperteez Technology: Source tag only - verify eligibility in the employer listing
+- Strategic Project Lead, Finance Expertise - micro1: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Senior AI Trainer - Xperteez Technology: Source tag only - verify eligibility in the employer listing
+- GitHub Specialist - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Strategic Project Lead, J.D./Legal Expertise - micro1: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- AI Software Engineering Domain Expert - Xperteez Technology: Source tag only - verify eligibility in the employer listing
+- Join Translated's Global Freelance Community: Multiple Roles Open - Translated Srl: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Join Our Team as a Freelance Recruiter for AI Annotation and Data Collection Pro - Your Personal AI: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Stripe Specialist - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Annotation Training Efficiency Expert – Audio Transcription (Remote Contract) - Your Personal AI: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing
+- Administrative Coordinator – Annotation & Data Collection Projects - Your Personal AI: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing
+- Google Classroom Specialist - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Data Analyst - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Software Engineer – Backend - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Maximum pay exceeds three times the minimum; Entry/junior pay exceeds USD 40/hour and needs verification
+- Trainer (m/w/d) für KI-Fachseminare - XDi - Experience Design Institut: Source tag only - verify eligibility in the employer listing
+- Internal Medicine Hospitalist - micro1: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Bilingual Mental Health Expert - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Rates trader - micro1: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- ️Systems Optimization & Automation Lead - Job Code: 1782142842931 - Coconut: Vague or overlong title needs confirmation; Traditional employer names US systems or jurisdictions despite a worldwide tag; Source tag only - verify eligibility in the employer listing
+- Developmental Psychology (PhD) - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- In-House Counsel - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Documentation Specialist - Bromcom Computers Plc: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Applied AI Enablement Lead - Liminal: Traditional employer names US systems or jurisdictions despite a worldwide tag; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Hospitalist Physician - micro1: US state abbreviation in the work restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- SaaS Contracts Counsel - micro1: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- AI Security Research Participant: Stop Deepfakes - Your Personal AI: Source tag only - verify eligibility in the employer listing
+- Data Collection Operations Specialist – AI Training Data (Contract) - Your Personal AI: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing
+- Operations & Service Delivery Expert - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Prospective Next Gen Intern - Landor: Source tag only - verify eligibility in the employer listing
+- Digital Competition - SPARK 2026 - GSA Capital: Source tag only - verify eligibility in the employer listing
+- Social Media Content Creator & Video Editing Intern - University of Wisconsin-Madison: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing
+- Defending Defenders Law Intern - Environmental Law Alliance Worldwide: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Fees, equipment purchase or unpaid work; Title and described duties do not match
+- Reddit Marketing Intern - Think Academy US: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing
+- Intern - HTML/CSS JS Python - Sarvify: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Intern - MERN stack - Sarvify: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Social Media Marketing Intern - Pathways: Source tag only - verify eligibility in the employer listing
+- Application: Commissioned or Associate Staff, National Intern - Power to Change: Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Spring 2027 - Communications Internship - 6 Months - Remote - Primavera 2027 - P - Cultural Survival, Inc.: Vague or overlong title needs confirmation; Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing; Fees, equipment purchase or unpaid work; Title and described duties do not match
+- First Year Interns Applying for Second Year Intern or Staff ( Commissioned / Ass - Power to Change: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Short Term Intern - Power to Change: Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Backend, Frontend, and Fullstack Engineering Expression of Interest Form - GitLab: Vague or overlong title needs confirmation; Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Mac Users Needed for AI Security Research - 25 USD - Work From Home - Your Personal AI: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing
+- Video Study Participant – Support Advanced AI Security Research - Your Personal AI: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing
+- WCN-ALU Curriculum Development Intern - ALU: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- LM's Step4Life program - TRACK 1 Academia - LM International: Source tag only - verify eligibility in the employer listing; Fees, equipment purchase or unpaid work; Title and described duties do not match
+- Part-Time E-commerce Operator / Marketing Intern - Palette Studios: Source tag only - verify eligibility in the employer listing; Annual intern/part-time pay requires workload and pay verification
+- TheTravel - Junior Editor - Valnet Tech Sites: Source tag only - verify eligibility in the employer listing
+- Junior DevOps / Cloud Engineer - CloudCops: Source tag only - verify eligibility in the employer listing
+- IT - Analyst, Network Engineer (Jr. Network Engineer) - ArchWell Health: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Junior Frontend Developer - Future Position - Talent Journey: Country/state restriction in the listing text
+- Junior Backend Developer - Future Position - Talent Journey: Country/state restriction in the listing text
+- Slots Game Mathematician (Junior-to-Middle) - Enjoy Gaming LLC: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- AutoCAD Drafter (Jr. Estimator) - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Junior Mortgage Processor - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Junior Commissions Specialist - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Junior Closer - Mortgage Department - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Junior DevOps / Cloud Engineer - CloudCops GmbH: Source tag only - verify eligibility in the employer listing; Non-USD pay - independent location review required
+- 3D Motion Graphics Artist - Junior - Negativ Design: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Ground Up Associate (Fresh Graduates Encouraged to Apply) - NightOwl Consulting: Vague or overlong title needs confirmation; Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Graduate Partner Marketing Manager - Canonical: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Assistant Video Editor - Kodify Media Group: Source tag only - verify eligibility in the employer listing
+- Slot Mathematician (Junior-to-Middle) - Enjoy Gaming LLC: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- People Manager (Volunteer, Unpaid) - Solution Community: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Volunteer Retention Manager (Volunteer, Unpaid) - Solution Community: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- LMS Administrator - NightOwl Consulting: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Non-USD pay - independent location review required
+- Operations & Administrative Manager - Mission Edge: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Surplus Lines Coordinator (Temporary) - Hylant: Traditional employer names US systems or jurisdictions despite a worldwide tag; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Healthcare Compliance Clerk - The A Career: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Promo Artist - Vira Games: Source tag only - verify eligibility in the employer listing
+- Underwriter Operations Specialist - Amynta Group: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Trainer, Transfer Agency Training - Ultimus Fund Solutions: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Regulatory Affairs Specialist - KMR Search Group: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Plumbing & HVAC Office Manager (Customer Service & Dispatch) - Offshore Launch: Vague or overlong title needs confirmation; Traditional employer names US systems or jurisdictions despite a worldwide tag; Source tag only - verify eligibility in the employer listing
+- Registered Nurse - Care Navigation - Milu Health: Source tag only - verify eligibility in the employer listing
+- Civil / Structural Engineer - Xperteez Technology: Source tag only - verify eligibility in the employer listing
+- Portfolio Associate, PFP - USA The Nature Conservancy: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Tax Preparer - JSI: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Equity Research Analyst / Associate - Xperteez Technology: Source tag only - verify eligibility in the employer listing; Entry/junior pay exceeds USD 40/hour and needs verification; Title and described duties do not match
+- Risk Analyst (Forex / CFD Brokerage) - DB Financial: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Strategic Initiatives Support Officer - CIVICUS: Source tag only - verify eligibility in the employer listing
+- SVP, Associate General Counsel - Ultimus Fund Solutions: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Sales Development Representative - S-PRO: Source tag only - verify eligibility in the employer listing
+- Senior communications specialist - social media - Canonical: Country/state restriction in the listing text; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Equity Research Analyst / Associate - micro1: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- IT Associate - Softgic: Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Senior Software Development Engineer in Test (SDET) - Flex: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Associate Renewals Manager - GitLab: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Associate Renewals Manager, India - GitLab: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Associate Revenue Operations Manager, India - GitLab: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Manager, Assigned Support Engineering (EMEA) - GitLab: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Manager, Support Engineering (AMER) - GitLab: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Support Engineer, U.S. Government Support - GitLab: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Software Quality Assurance Engineer - Linux, PC, IoT - Canonical: Vague or overlong title needs confirmation; Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Demand Generation Coordinator, Customer Marketing - Elastic: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Manager, Sales Development - Elastic: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Sales Development Representative - Austin, TX - Elastic: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Support Manager - 3rd Shift - Elastic: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Sales Development Representative - Austin, TX - Grafana Labs: US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Sales Development Representative - PST - Grafana Labs: Time-zone-only or hybrid hours requirement needs review; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Sales Development Representative - Switzerland - Grafana Labs: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Customer Success Manager - Customer.io: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Technical Support Engineer, Canada - Customer.io: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Associate General Counsel, Privacy - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Associate General Counsel, Privacy - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Broker Dealer Operations, Associate - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Broker Dealer Operations, Senior Associate - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Compliance, International Investigations Associate - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Compliance, Senior Associate - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Experiential Marketing Associate - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Forward Deployed Engineer Intern (HR Technology) - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Internal Audit Analytics Intern - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- IT Support Engineer - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Prime Operations Assistant - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Senior Software Engineer, Mobile QA - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Staff Software Engineer, Mobile QA - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Tax Information Reporting Intern - Coinbase: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Customer Success Associate (Denver, CO) - Netlify: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Arabic Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Associate Manager, Robotics Lab - Welo Global: US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing
+- Bengali Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Dutch Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Finnish Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- French (France) Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- German Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Hebrew Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Hindi (Romanized) Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Hindi Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Indonesian Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Italian Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Japanese Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Kannada Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Korean Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Malay Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Mandarin Chinese Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Marathi Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Persian Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Polish Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Portuguese Brazilian Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Project Perseus - Data Labeling Associate - Marathi Speakers (Human-in-the-Loop AI) - Welo Global: Vague or overlong title needs confirmation; Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Project Perseus - Data Labeling Associate - Tamil Speakers (Human-in-the-Loop AI) - Welo Global: Vague or overlong title needs confirmation; Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Romanian Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Russian Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Spanish (LATAM) Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Spanish (Spain) Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Swahili Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Swedish Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Tagalog Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Tamil Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Telugu Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Thai Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Traditional Chinese Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Turkish Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Urdu (Romanized) Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Urdu Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Vietnamese Linguistic Evaluator & Functional Tester - Welo Global: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Seasonal Personalization & Order Support Representative - 2026 - Minted: Vague or overlong title needs confirmation; Source tag only - verify eligibility in the employer listing
+- Software Engineer Intern, Mobile (Winter 2027) - Notion: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Outcomes Architect (Customer Success) - Notion: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Recruiting Coordinator - AMER - Notion: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role; Title and described duties do not match
+- Automation Strategist, Customer Success - Zapier: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Customer Success - Strategic - EMEA - Elevenlabs: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Technical Customer Support Specialist - Elevenlabs: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Customer Success Lead - UK/I - Elevenlabs: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Customer Success - DACH - Elevenlabs: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Strategy & Operations Programs, Support - Openai: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Account Associate - EMEA - Openai: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Account Associate - SF - Openai: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Support Program Manager, Partnerships - Openai: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Support Delivery Lead - Openai: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Customer Success Manager - Ads Solutions (Spanish speaking) - Openai: Vague or overlong title needs confirmation; Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Dedicated Support Engineer - San Francisco - Openai: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Dedicated Support Engineer - Dublin - Openai: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Dedicated Support Engineer - Tokyo - Openai: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Dedicated Support Engineer - Singapore - Openai: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Dedicated Support Engineer - Toronto - Openai: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- AI Support Engineer - Toronto (Weekend Shift) - Openai: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- AI Support Engineer - Tokyo (Weekend Shift) - Openai: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- AI Support Engineer - Singapore (Weekend Shift) - Openai: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Dedicated Support Engineer - London - Openai: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Support Engineer I (FC, Weekend Shift) - Replit: US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing
+- Support Engineer I (NYC, Weekend Shift) - Replit: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Software Engineering Intern – Winter 2027 - Replit: US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing
+- Customer Experience Associate - London - Ramp: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing; Title and described duties do not match
+- Enterprise Manager, Sales Development - Ramp: US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing
+- Sales Development Representative, Strategic Accounts - Ramp: US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing
+- Software Engineer Internship, Frontend - Ramp: US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing
+- Software Engineering Intern, Android - Ramp: US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing
+- Software Engineering Intern, iOS - Ramp: US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing
+- Manager, Sales Development, Public Sector - Ramp: US state abbreviation in the work location/title; Source tag only - verify eligibility in the employer listing
+- Enterprise Sales Development Representative US (Hybrid) - n8n: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Sales Development Representative - DACH (Berlin Hybrid) - n8n: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Customer Success Manager - Guided - West Coast - n8n: Vague or overlong title needs confirmation; Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Senior Customer Success Manager - German Speaking (Remote) - n8n: Vague or overlong title needs confirmation; Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Manager, Customer Success - Remote on West Coast - n8n: Vague or overlong title needs confirmation; Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Senior Technical Support Engineer - Sentry: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Software Engineer Intern (2027) - Cloudflare: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Software Engineer Intern (2027) - Cloudflare: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Technical Support Engineer - Developer Platform - Cloudflare: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Technical Support Engineer, Zero Trust - Cloudflare: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Workplace Coordinator - Cloudflare: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Customer Support Engineer - Fastly: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Inbound Sales Development Representative - Fastly: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing; Recruiter, referral or commission role
+- Executive Assistant to the CEO - Supabase: Location, citizenship, government, on-site or work-authorization restriction; Title and described duties do not match
+- Database Support Engineer (Japanese Speaking) - Supabase: Country, state or region in the work location/title
+- Langfuse - DevRel Engineer, Events & Community (AMER) - Clickhouse: Vague or overlong title needs confirmation; Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Senior Technical Customer Support Engineer - Singapore - Clickhouse: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Senior Technical Customer Support Engineer - Japan - Clickhouse: Location, citizenship, government, on-site or work-authorization restriction; Source tag only - verify eligibility in the employer listing
+- Product Support Engineer - EMEA - Ashby: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Product Support Engineer - NAMER - Ashby: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Sr. Support Operations Manager - Ashby: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Technical Support Specialist - Gitbook: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
+- Technical Support Specialist - Attio: Country, state or region in the work location/title; Source tag only - verify eligibility in the employer listing
