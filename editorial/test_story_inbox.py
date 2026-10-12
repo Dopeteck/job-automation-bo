@@ -5,7 +5,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from editorial.story_inbox import (WorkshopError, read_state, save_state, seed_history,
-    validate_draft, sentences, handle, poll, selected_notes, next_history, seal_review, restore_review, inventory)
+    validate_draft, sentences, handle, poll, selected_notes, next_history, seal_review, restore_review, inventory, send_reply)
 
 class StoryInboxTests(unittest.TestCase):
     def state(self):
@@ -104,5 +104,15 @@ class StoryInboxTests(unittest.TestCase):
                 seal_review('test-token');self.assertNotIn(b'PRIVATE AUTHOR STORY',review.read_bytes())
                 (data/'latest_digest.md').write_text('old')
                 restore_review('test-token');self.assertEqual((data/'latest_digest.md').read_text(),'PRIVATE AUTHOR STORY')
+    def test_status_is_a_chat_message_but_story_is_a_document(self):
+        s=self.state();reply=handle(s,'/status')
+        self.assertIn('Approved stories ready: 0',reply)
+        self.assertIn('Unused experiences to turn into stories: 0',reply)
+        with patch('editorial.story_inbox.call',return_value={'message_id':1}) as api:
+            send_reply('test-token','123',reply)
+            self.assertEqual(api.call_args.args[1],'sendMessage')
+            self.assertEqual(api.call_args.kwargs['json']['text'],reply)
+            send_reply('test-token','123','Story text\nEDITORIAL REVIEW\nID: test')
+            self.assertEqual(api.call_args.args[1],'sendDocument')
 
 if __name__=='__main__':unittest.main()

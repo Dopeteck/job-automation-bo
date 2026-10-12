@@ -29,7 +29,7 @@ HELP = '''Send /story followed by your rough notes or draft. You can also send a
 /skip <id> shelves a draft so a different historical story can be prepared.
 /status lists your drafts. /help shows this guide.
 /export returns a private backup of your notes and drafts.
-Approval does not publish anything. If facts are missing, I will ask rather than invent. Replies are checked every 30 minutes; GitHub can delay runs.'''
+Approval does not publish anything. If facts are missing, I will ask rather than invent. Replies are checked every five minutes; GitHub can delay runs.'''
 
 class WorkshopError(RuntimeError):
     pass
@@ -243,7 +243,15 @@ def handle(state, text, generator=generate):
         return HELP
     if command == '/status':
         summary=inventory(state)
-        return json.dumps(summary,indent=2)+'\n\n'+'\n'.join(i['id'] + ': ' + ('shelved' if i.get('archived') else 'approved' if i['approved'] else 'needs context' if i.get('errors') else 'ready for fact check') for i in state['drafts'].values())
+        lines=['Your story bank',
+            f"Approved stories ready: {summary['approved_ready_drafts']}",
+            f"Drafts awaiting your fact check: {summary['awaiting_fact_check']}",
+            f"Drafts needing context or retry: {summary['needs_context_or_retry']}",
+            f"Unused experiences to turn into stories: {summary['unused_experiences']}",
+            'Unused experiences are material, not finished newsletters.']
+        drafts=[i for i in state['drafts'].values() if not i.get('archived') and 'inbox-'+i['id'] not in state.get('consumed_ids',[])]
+        if drafts:lines+=['','Draft IDs:']+[i['id']+': '+('approved' if i['approved'] else 'needs context' if i.get('errors') else 'ready for fact check') for i in drafts]
+        return '\n'.join(lines)
     if command == '/export':return 'PRIVATE STORY BACKUP\n\n'+json.dumps(state,ensure_ascii=False,indent=2)
     if command == '/history':
         if not argument.strip():return 'Send /history followed by a true past experience.'
@@ -320,6 +328,12 @@ def poll(token, chat_id, state, sender, generator=generate):
         state['offset']=max(state['offset'],update['update_id']+1)
     return processed
 
+def send_reply(token,chat_id,text):
+    if len(text)<=3500 and 'EDITORIAL REVIEW' not in text and not text.startswith('PRIVATE STORY BACKUP'):
+        return call(token,'sendMessage',json={'chat_id':chat_id,'text':text,'link_preview_options':{'is_disabled':True}})
+    return call(token,'sendDocument',data={'chat_id':chat_id,'caption':'Your private story workshop reply. Approval prepares a newsletter draft; it does not publish.'},
+         files={'document':('story-workshop.txt',text.encode(),'text/plain; charset=utf-8')})
+
 def main():
     token=os.getenv('TELEGRAM_DRAFT_BOT_TOKEN','').strip();chat_id=os.getenv('TELEGRAM_DRAFT_CHAT_ID','').strip()
     if not token or not chat_id:raise WorkshopError('Private bot configuration is missing.')
@@ -329,8 +343,7 @@ def main():
     previous=STATE_PATH.read_bytes() if STATE_PATH.exists() else None
     prior_state=read_state(STATE_PATH,token) if previous else None
     def sender(text):
-        call(token,'sendDocument',data={'chat_id':chat_id,'caption':'Your private story workshop reply. Approval prepares a newsletter draft; it does not publish.'},
-             files={'document':('story-workshop.txt',text.encode(),'text/plain; charset=utf-8')})
+        send_reply(token,chat_id,text)
     used_path=ROOT/'data/editorial/story_history.json'
     used=json.loads(used_path.read_text()).get('used_ids',[]) if used_path.exists() else []
     if REVIEW_PATH.exists():

@@ -3,7 +3,7 @@ name: Private Newsletter Story Workshop
 on:
   workflow_dispatch:
   schedule:
-    - cron: '7,37 * * * *'
+    - cron: '*/5 * * * *'
   push:
     branches: [main]
     paths:
@@ -30,6 +30,7 @@ jobs:
       - name: Install workshop dependencies
         run: pip install requests cryptography beautifulsoup4 feedparser Pillow python-dateutil pycountry==24.6.1 geonamescache==3.0.2
       - name: Test private workshop
+        if: ${{ github.event_name == 'push' }}
         run: python -m unittest editorial.test_story_inbox
       - name: Receive notes and return private stories
         if: ${{ github.event_name != 'push' }}
