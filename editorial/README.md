@@ -1,3 +1,19 @@
+## Active strict editorial contract (2026-10-12)
+
+`editorial/strict_newsletter.py` is the weekly workflow entrypoint. This section supersedes every historical format and fallback below.
+
+- Publishable issues require 6–10 eligible roles, including at least three evidence-supported entry/junior roles. There is no smaller-issue fallback.
+- Employer listing text must establish worldwide or Africa hiring eligibility. Source tags alone are held. Restrictive geography, work authorization, timezone requirements, questionable pay, recruiter/referral/commission work and missing employer identity are held for review.
+- Sort by stated required experience, enforce two roles per company and three per category, and exclude roles from the last four recorded issues. `editorial/history_policy.json` must confirm that manually published issue history is included.
+- Follow the author-supplied title/subtitle, 250–350-word story, lesson, exact role fields and footer contract. Source credits appear once. Why-lines must describe actual duties; missing or invalid tasks cannot silently fill the list.
+- `editorial/story_notes.json` starts null. Missing notes produce STORY NEEDED and ISSUE HELD, with empty publishing queues. Historical builder templates, measurements and worked examples cannot substitute for author-supplied story notes.
+- Story input fields: id, notes (true rough notes), finder, how_found, draft, lesson, reply_prompt and approved. Reader stories also need publish_consent. The author can supply rough notes in ordinary language; the editor shapes and verifies the first-person draft against them before saving it.
+- Each run prints PASS/FAIL checks and writes a private review report with confirmations and held-role reasons. Ready newsletter text excludes internal review notes. Scheduled private delivery records the issue; manual reviews and held issues consume no history.
+
+## Historical implementation notes
+
+The following sections describe earlier behavior and are not the active editorial contract.
+
 ## Story-led newsletter format (2026-10-12)
 
 The email-ready newsletter starts with a 200–300-word grounded opening, then one practical lesson, the curated jobs, one reply question and the Telegram CTA. Substack Notes gets the short opening hook; X keeps its existing compact vacancy format.

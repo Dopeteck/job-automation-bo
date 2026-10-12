@@ -1,0 +1,31 @@
+[
+  {
+    "id": "note-jobs-2026-W42-76418def2744350cbae4",
+    "created_at": "2026-10-12T19:11:34.403582+00:00",
+    "fingerprints": [
+      "c656beacb58e376baffa",
+      "762a75b8ed9721f07897",
+      "8680f0ecdeae6449a524",
+      "3483bc318ad2c2e65f4c",
+      "44ffb5d1478210c59d44",
+      "f28bb5d8fe194ea9b77c",
+      "4f36e24238583d482d94",
+      "b8db42bc3e421ef205d7",
+      "9b83b6918cc054fcfa5c",
+      "0c6683c74ed538dc4a1f"
+    ],
+    "urls": [
+      "https://himalayas.app/companies/micro1/jobs/video-data-annotator-966806508",
+      "https://himalayas.app/companies/xperteez-technology/jobs/data-analyst-remote-contact",
+      "https://himalayas.app/companies/xperteez-technology/jobs/software-engineer-backend-remote-contract",
+      "https://himalayas.app/companies/vantum/jobs/qa-tester",
+      "https://himalayas.app/companies/pathways/jobs/social-media-marketing-intern",
+      "https://himalayas.app/companies/palette-studios/jobs/part-time-e-commerce-operator-marketing-intern",
+      "https://himalayas.app/companies/nightowl-consulting/jobs/vendor-compliance-assistant",
+      "https://himalayas.app/companies/valnet-tech-sites/jobs/thetravel-junior-editor",
+      "https://himalayas.app/companies/your-personal-ai/jobs/freelancer-support-specialist",
+      "https://himalayas.app/companies/your-personal-ai/jobs/join-our-team-as-a-freelance-recruiter-for-ai-annotation-and-data-collection-pro"
+    ],
+    "history_source": "scheduled GitHub run 38295957482"
+  }
+]

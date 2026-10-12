@@ -54,7 +54,9 @@ def himalayas(settings):
             if zones and len(zones)<20: job.work_hours='Accepted timezone offsets (UTC): '+', '.join(map(str,zones))
             # Structured seniority is evidence, but years/title checks still take precedence.
             seniority=row.get('seniority',[])
-            if 'Entry-level' in seniority: job.experience_level='entry';job.description+=' Employer seniority: Entry-level role.'
+            if 'Entry-level' in seniority: job.experience_level='entry'
+            job.pay_currency=row.get('currency') or '';job.pay_period=row.get('salaryPeriod') or ''
+            job.pay_min=row.get('minSalary');job.pay_max=row.get('maxSalary')
             if row.get('minSalary') is not None:
                 job.salary=f"{row.get('currency') or ''} {row['minSalary']}–{row.get('maxSalary') or row['minSalary']}/{row.get('salaryPeriod') or 'annual'}"
             jobs.append(job)
@@ -70,7 +72,10 @@ def jobicy(settings):
                 company=clean_text(row.get('companyName'),120),location=clean_text(row.get('jobGeo'),160),
                 direct_url=row.get('url',''),published_at=_date(row.get('pubDate')),
                 description=clean_text(row.get('jobDescription'),12000))
-        if row.get('jobLevel') in {'Junior','Entry-Level','Entry-level'}:job.description+=' Employer seniority: Entry-level role.'
+        if row.get('jobLevel') in {'Junior','Entry-Level','Entry-level'}:job.experience_level='entry'
+        job.pay_currency=row.get('salaryCurrency') or '';job.pay_period=row.get('salaryPeriod') or ''
+        job.pay_min=row.get('salaryMin');job.pay_max=row.get('salaryMax')
+        if job.pay_min is not None:job.salary=f'{job.pay_currency} {job.pay_min}–{job.pay_max if job.pay_max is not None else job.pay_min}/{job.pay_period}'
         job.evidence_lines=[clean_text(str(li),800) for li in BeautifulSoup(row.get('jobDescription',''),'html.parser').select('li')]
         job.active_status='active';jobs.append(job)
     return jobs

@@ -14,6 +14,12 @@ class Job:
     published_at: datetime | None = None
     description: str = ""
     salary: str = ""
+    pay_currency: str = ""
+    pay_period: str = ""
+    pay_min: float | None = None
+    pay_max: float | None = None
+    location_reviewed: bool = False
+    pay_reviewed: bool = False
     employment_type: str = ""
     source_job_id: str = ""
     category: str = "tech"

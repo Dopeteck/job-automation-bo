@@ -33,9 +33,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install editorial dependencies
-        run: pip install requests beautifulsoup4 feedparser Pillow python-dateutil pycountry==24.6.1
+        run: pip install requests beautifulsoup4 feedparser Pillow python-dateutil pycountry==24.6.1 geonamescache==3.0.2
       - name: Check quota fallback and promotion rules
-        run: python -m unittest editorial.test_editorial editorial.test_jobs_digest editorial.test_digest_sources editorial.test_newsletter_story publishers.test_telegram_draft
+        run: python -m unittest editorial.test_editorial editorial.test_jobs_digest editorial.test_digest_sources editorial.test_newsletter_story editorial.test_strict_newsletter publishers.test_telegram_draft
       - name: Restore rolling vacancy pool
         if: ${{ github.event_name != 'push' }}
         uses: actions/cache/restore@v4
@@ -55,7 +55,7 @@ jobs:
           TELEGRAM_URL: ${{ vars.TELEGRAM_URL || 'https://t.me/RemoteJobsTechHub' }}
           X_HANDLE: ${{ vars.X_HANDLE || '@HenryMortu' }}
           SUBSTACK_URL: ${{ vars.SUBSTACK_URL || 'https://substack.com/@web3jobtechalphavault' }}
-        run: python editorial/jobs_digest.py
+        run: python editorial/strict_newsletter.py
       - name: Deliver newsletter draft to personal Telegram
         if: ${{ github.event_name != 'push' }}
         env:
@@ -72,6 +72,7 @@ jobs:
             data/editorial/latest_digest.md
             data/editorial/latest_items.json
             data/editorial/story_context.json
+            data/editorial/review_notes.md
             data/editorial/x_queue.json
             data/editorial/substack_notes_queue.json
       - name: Send X and Substack Notes to Buffer

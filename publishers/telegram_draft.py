@@ -28,8 +28,8 @@ def deliver(token, chat_id, text, state):
         return state
     result = call(token, 'sendDocument', data={
         'chat_id': chat_id,
-        'caption': ('Digest held: the role count or early-career requirements were not met. This is a status report, not a newsletter to publish.' if 'Nothing queued.' in text else 'Your newsletter draft is ready. Open the text file, review the roles and paste into Substack → New post. This delivery does not publish the newsletter.'),
-    }, files={'document': ('remote-jobs-newsletter.txt', text.encode(), 'text/plain; charset=utf-8')})
+        'caption': (('Newsletter held: true STORY NOTES are missing or incomplete. The review file includes all holds and PASS/FAIL checks.' if 'STORY NEEDED' in text else 'Newsletter held by the editorial checks. Open the review file for missing inputs, held roles and PASS/FAIL results.') if 'Nothing queued.' in text else 'Your newsletter draft is ready. Open the text file, review the roles and paste into Substack → New post. This delivery does not publish the newsletter.'),
+    }, files={'document': ('remote-jobs-editorial-review.txt' if 'Nothing queued.' in text else 'remote-jobs-newsletter.txt', text.encode(), 'text/plain; charset=utf-8')})
     return {'digest': digest, 'message_id': result['message_id']}
 
 def main():
@@ -51,7 +51,8 @@ def main():
         notes=json.loads((ROOT/'substack_notes_queue.json').read_text())
         from editorial.newsletter_story import record_story,load_json
         record_story(ROOT,load_json(ROOT/'story_context.json',None),review=os.getenv('DIGEST_REVIEW_MODE')=='true')
-        record_featured(ROOT, {'substack_notes':notes}, review=os.getenv('DIGEST_REVIEW_MODE')=='true')
+        from editorial.strict_newsletter import record_issue
+        record_issue(ROOT,notes,review=os.getenv('DIGEST_REVIEW_MODE')=='true')
     print('Newsletter draft delivered privately.' if updated != state else 'Identical draft already delivered.')
 
 if __name__ == '__main__':
