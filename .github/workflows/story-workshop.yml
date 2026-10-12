@@ -1,0 +1,54 @@
+name: Private Newsletter Story Workshop
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7,37 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'editorial/story_inbox.py'
+      - 'editorial/test_story_inbox.py'
+      - '.github/workflows/story-workshop.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: editorial-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  workshop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install workshop dependencies
+        run: pip install requests cryptography beautifulsoup4 feedparser Pillow python-dateutil pycountry==24.6.1 geonamescache==3.0.2
+      - name: Test private workshop
+        run: python -m unittest editorial.test_story_inbox
+      - name: Receive notes and return private stories
+        if: ${{ github.event_name != 'push' }}
+        env:
+          TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
+          TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
+          STORY_HISTORY_SEED: ${{ secrets.STORY_HISTORY_SEED }}
+        run: python editorial/story_inbox.py
+      - name: Persist encrypted private workshop state
+        if: ${{ always() && github.event_name != 'push' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if [ -f data/private_story_state.enc ]; then
+            git add data/private_story_state.enc
+            if ! git diff --cached --quiet; then
+              git commit -m 'chore: save encrypted private story state'
+              git push
+            fi
+          fi

@@ -1,3 +1,15 @@
+## Private Telegram story workshop (2026-10-12)
+
+The author can send rough notes, a draft, or a UTF-8 text file to the configured personal bot chat. Ordinary text and `/story` start drafting. `/revise ID corrections` adds true context; `/approve ID` confirms facts and makes an unused story available to the weekly newsletter draft. `/history` saves past material; `/fromhistory` drafts the next unused experience; `/skip ID` shelves it; `/export` returns a private backup.
+
+The workshop checks for new messages at minutes 7 and 37 each hour. GitHub schedules may be delayed. Only the configured positive personal chat ID and matching sender are accepted. Group messages and other senders are ignored. An existing webhook is left untouched and blocks polling.
+
+Gemini uses the existing key and model. Stories include title, 250–350-word first-person opening, one lesson and one reply question. Suggestions/opinions are separate. Factual sentences require exact source excerpts; unsupported numbers and quotes are held. These are automated checks, not proof that a paraphrase is accurate: the author must fact-check and approve. Missing outcomes cause questions. Quota failures preserve notes and support retry without a paid fallback.
+
+`STORY_HISTORY_SEED` optionally supplies a private JSON object containing history entries with `id` and true `notes`. Never commit that seed, personal notes, model prompts or draft text. Story notes and drafts persist only as Fernet ciphertext in `data/private_story_state.enc`; the key derives from the existing bot token. Weekly draft files and posting history are restored/sealed in `data/private_editorial_review.enc`. No plaintext story artifacts are uploaded or committed. The bot token must be retained for decryption; `/export` provides a personal recovery copy. Shared concurrency serializes workshop and weekly writers.
+
+Historical entries are explicitly past experiences. An approval never publishes by itself, never overrides job eligibility or issue-size checks, and used story IDs cannot be selected again. The history bank is finite; the bot accepts fresh notes whenever the author has time.
+
 ## Active strict editorial contract (2026-10-12)
 
 `editorial/strict_newsletter.py` is the weekly workflow entrypoint. This section supersedes every historical format and fallback below.

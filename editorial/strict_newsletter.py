@@ -2,6 +2,7 @@
 import hashlib
 import json
 import logging
+import os
 import re
 import sys
 import unicodedata
@@ -349,7 +350,12 @@ def main():
         if still_open(job,settings,now):active.append(job)
         else:preheld.append({'title':job.title,'company':job.company,'reasons':['Current application availability could not be verified'],'source_tag_only':False})
     for job in rejected:preheld.append({'title':job.title,'company':job.company,'reasons':job.quality_reasons or ['Failed scoring or live link checks'],'source_tag_only':False})
-    notes=load_json(ROOT/'editorial/story_notes.json',None)
+    notes=None
+    if os.getenv('TELEGRAM_DRAFT_BOT_TOKEN'):
+        from editorial.story_inbox import selected_notes
+        notes=selected_notes(os.environ['TELEGRAM_DRAFT_BOT_TOKEN'],load_json(OUT/'story_history.json',{}).get('used_ids',[]))
+    # Legacy public story input remains a fallback only. Personal notes belong in the encrypted inbox.
+    if notes is None:notes=load_json(ROOT/'editorial/story_notes.json',None)
     history=load_json(OUT/'issue_history.json',None)
     history_policy=load_json(ROOT/'editorial/history_policy.json',{})
     packet=build_issue(active,now,notes,history,load_json(OUT/'story_history.json',{}),history_complete=history_policy.get('confirmed_complete') is True)

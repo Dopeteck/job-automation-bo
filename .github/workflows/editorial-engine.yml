@@ -33,9 +33,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install editorial dependencies
-        run: pip install requests beautifulsoup4 feedparser Pillow python-dateutil pycountry==24.6.1 geonamescache==3.0.2
+        run: pip install requests cryptography beautifulsoup4 feedparser Pillow python-dateutil pycountry==24.6.1 geonamescache==3.0.2
       - name: Check quota fallback and promotion rules
-        run: python -m unittest editorial.test_editorial editorial.test_jobs_digest editorial.test_digest_sources editorial.test_newsletter_story editorial.test_strict_newsletter publishers.test_telegram_draft
+        run: python -m unittest editorial.test_editorial editorial.test_jobs_digest editorial.test_digest_sources editorial.test_newsletter_story editorial.test_strict_newsletter publishers.test_telegram_draft editorial.test_story_inbox
       - name: Restore rolling vacancy pool
         if: ${{ github.event_name != 'push' }}
         uses: actions/cache/restore@v4
@@ -45,12 +45,28 @@ jobs:
             data/editorial/source_snapshot.json
           key: digest-pool-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: digest-pool-
+      - name: Restore private editorial state
+        if: ${{ github.event_name != 'push' }}
+        env:
+          TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
+          TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
+        run: python editorial/story_inbox.py --restore-review
+      - name: Prepare weekly story draft and receive author updates
+        if: ${{ github.event_name != 'push' }}
+        env:
+          TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
+          TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
+          STORY_HISTORY_SEED: ${{ secrets.STORY_HISTORY_SEED }}
+        run: python editorial/story_inbox.py --weekly
       - name: Generate editorial drafts
         if: ${{ github.event_name != 'push' }}
         env:
           GEMINI_API_KEY: ${{ github.event_name != 'push' && secrets.GEMINI_API_KEY || '' }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
           TELEGRAM_PROMO_START: ${{ vars.TELEGRAM_PROMO_START || '2026-10-15' }}
+          TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
           PUBLICATION_NAME: 'Remote Jobs Worldwide'
           TELEGRAM_URL: ${{ vars.TELEGRAM_URL || 'https://t.me/RemoteJobsTechHub' }}
           X_HANDLE: ${{ vars.X_HANDLE || '@HenryMortu' }}
@@ -63,18 +79,6 @@ jobs:
           TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
           TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
         run: python publishers/telegram_draft.py
-      - name: Upload draft review package
-        if: ${{ github.event_name != 'push' }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: editorial-drafts
-          path: |
-            data/editorial/latest_digest.md
-            data/editorial/latest_items.json
-            data/editorial/story_context.json
-            data/editorial/review_notes.md
-            data/editorial/x_queue.json
-            data/editorial/substack_notes_queue.json
       - name: Send X and Substack Notes to Buffer
         if: ${{ github.event_name != 'push' }}
         env:
@@ -96,14 +100,27 @@ jobs:
             data/editorial/candidate_pool.json
             data/editorial/source_snapshot.json
           key: digest-pool-${{ github.run_id }}-${{ github.run_attempt }}
-      - name: Save drafts and posting history
+      - name: Encrypt private editorial review and posting history
+        if: ${{ always() && github.event_name != 'push' }}
+        env:
+          TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
+          TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
+        run: python editorial/story_inbox.py --seal-review
+      - name: Upload encrypted review package
+        if: ${{ always() && github.event_name != 'push' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: editorial-drafts-encrypted
+          path: data/private_editorial_review.enc
+      - name: Save encrypted drafts and posting history
         if: ${{ always() && github.event_name != 'push' }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/editorial
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for file in data/private_story_state.enc data/private_editorial_review.enc; do
+            if [ -f "$file" ]; then git add "$file"; fi
+          done
           if ! git diff --cached --quiet; then
-            git commit -m "chore: refresh editorial drafts and posting history"
+            git commit -m 'chore: refresh encrypted editorial drafts and posting history'
             git push
           fi
-
