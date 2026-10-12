@@ -1,6 +1,18 @@
 {
   "jobs": [
     {
+      "title": "Video Data Annotator",
+      "company": "micro1",
+      "link": "https://himalayas.app/companies/micro1/jobs/video-data-annotator-966806508",
+      "location": "Worldwide",
+      "africa_eligible": true,
+      "published_at": "2026-10-10T15:46:04+00:00",
+      "link_status": "200",
+      "active_status": "active",
+      "experience": "Entry level",
+      "telegram_input": false
+    },
+    {
       "title": "\ud83c\udf0e Data Analyst - Remote, Contact",
       "company": "Xperteez Technology",
       "link": "https://himalayas.app/companies/xperteez-technology/jobs/data-analyst-remote-contact",
@@ -37,12 +49,12 @@
       "telegram_input": false
     },
     {
-      "title": "Video Data Annotator",
-      "company": "micro1",
-      "link": "https://himalayas.app/companies/micro1/jobs/video-data-annotator-966806508",
+      "title": "\ud83c\udf0f Gameplay Data Capture Specialist | Remote - Contract",
+      "company": "Xperteez Technology",
+      "link": "https://himalayas.app/companies/xperteez-technology/jobs/gameplay-data-capture-specialist-remote-contract",
       "location": "Worldwide",
       "africa_eligible": true,
-      "published_at": "2026-10-10T15:46:04+00:00",
+      "published_at": "2026-10-06T20:19:44+00:00",
       "link_status": "200",
       "active_status": "active",
       "experience": "Entry level",
@@ -58,66 +70,6 @@
       "link_status": "200",
       "active_status": "active",
       "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Prospective Next Gen Intern",
-      "company": "Landor",
-      "link": "https://himalayas.app/companies/landor/jobs/prospective-next-gen-intern",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T08:44:49+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Intern - MERN stack",
-      "company": "Sarvify",
-      "link": "https://himalayas.app/companies/sarvify/jobs/intern-mern-stack",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T16:41:22+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Surplus Lines Coordinator (Temporary)",
-      "company": "Hylant",
-      "link": "https://himalayas.app/companies/hylant/jobs/surplus-lines-coordinator-temporary",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T04:22:18+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "\ud83c\udf0f Gameplay Data Capture Specialist | Remote - Contract",
-      "company": "Xperteez Technology",
-      "link": "https://himalayas.app/companies/xperteez-technology/jobs/gameplay-data-capture-specialist-remote-contract",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-06T20:19:44+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Google Analytics Specialist, Remote - Contract",
-      "company": "Xperteez Technology",
-      "link": "https://himalayas.app/companies/xperteez-technology/jobs/google-analytics-specialist-remote-contract",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T11:35:34+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Experience not stated",
       "telegram_input": false
     },
     {
@@ -157,12 +109,24 @@
       "telegram_input": false
     },
     {
-      "title": "Digital Competition - SPARK 2026",
-      "company": "GSA Capital",
-      "link": "https://himalayas.app/companies/gsa-capital/jobs/digital-competition-spark-2026",
+      "title": "Prospective Next Gen Intern",
+      "company": "Landor",
+      "link": "https://himalayas.app/companies/landor/jobs/prospective-next-gen-intern",
       "location": "Worldwide",
       "africa_eligible": true,
-      "published_at": "2026-10-09T14:39:34+00:00",
+      "published_at": "2026-10-11T08:44:49+00:00",
+      "link_status": "200",
+      "active_status": "active",
+      "experience": "Entry level",
+      "telegram_input": false
+    },
+    {
+      "title": "Intern - MERN stack",
+      "company": "Sarvify",
+      "link": "https://himalayas.app/companies/sarvify/jobs/intern-mern-stack",
+      "location": "Worldwide",
+      "africa_eligible": true,
+      "published_at": "2026-10-11T16:41:22+00:00",
       "link_status": "200",
       "active_status": "active",
       "experience": "Entry level",
@@ -178,6 +142,30 @@
       "link_status": "200",
       "active_status": "active",
       "experience": "Entry level",
+      "telegram_input": false
+    },
+    {
+      "title": "Surplus Lines Coordinator (Temporary)",
+      "company": "Hylant",
+      "link": "https://himalayas.app/companies/hylant/jobs/surplus-lines-coordinator-temporary",
+      "location": "Worldwide",
+      "africa_eligible": true,
+      "published_at": "2026-10-11T04:22:18+00:00",
+      "link_status": "200",
+      "active_status": "active",
+      "experience": "Entry level",
+      "telegram_input": false
+    },
+    {
+      "title": "Google Analytics Specialist, Remote - Contract",
+      "company": "Xperteez Technology",
+      "link": "https://himalayas.app/companies/xperteez-technology/jobs/google-analytics-specialist-remote-contract",
+      "location": "Worldwide",
+      "africa_eligible": true,
+      "published_at": "2026-10-11T11:35:34+00:00",
+      "link_status": "200",
+      "active_status": "active",
+      "experience": "Experience not stated",
       "telegram_input": false
     },
     {
@@ -214,18 +202,6 @@
       "link_status": "200",
       "active_status": "active",
       "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "Senior React Full-stack Developer",
-      "company": "Lemon.io",
-      "link": "https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-7",
-      "location": "Anywhere in the World",
-      "africa_eligible": true,
-      "published_at": "2026-10-09T13:49:21+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Senior | 5+ years of software development experience Commercial experience",
       "telegram_input": false
     },
     {
@@ -283,6 +259,18 @@
       "location": "Worldwide",
       "africa_eligible": true,
       "published_at": "2026-10-08T19:30:36+00:00",
+      "link_status": "redirect",
+      "active_status": "active",
+      "experience": "Entry level",
+      "telegram_input": false
+    },
+    {
+      "title": "Digital Competition - SPARK 2026",
+      "company": "GSA Capital",
+      "link": "https://himalayas.app/companies/gsa-capital/jobs/digital-competition-spark-2026",
+      "location": "Worldwide",
+      "africa_eligible": true,
+      "published_at": "2026-10-09T14:39:34+00:00",
       "link_status": "200",
       "active_status": "active",
       "experience": "Entry level",
@@ -325,18 +313,6 @@
       "telegram_input": false
     },
     {
-      "title": "Short Term Intern",
-      "company": "Power to Change",
-      "link": "https://himalayas.app/companies/p2c/jobs/short-term-intern",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-10-05T12:04:32+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
       "title": "Part-Time E-commerce Operator / Marketing Intern",
       "company": "Palette Studios",
       "link": "https://himalayas.app/companies/palette-studios/jobs/part-time-e-commerce-operator-marketing-intern",
@@ -370,30 +346,6 @@
       "link_status": "200",
       "active_status": "active",
       "experience": "Entry level",
-      "telegram_input": false
-    },
-    {
-      "title": "IT Associate",
-      "company": "Softgic",
-      "link": "https://jobicy.com/jobs/145745-it-associate",
-      "location": "Anywhere",
-      "africa_eligible": true,
-      "published_at": "2026-10-11T03:50:30+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "Experience not stated",
-      "telegram_input": false
-    },
-    {
-      "title": "QA Automation",
-      "company": "Ben Fatto",
-      "link": "https://himalayas.app/companies/ben-fatto/jobs/qa-automation-2410678248",
-      "location": "Worldwide",
-      "africa_eligible": true,
-      "published_at": "2026-09-21T10:48:53+00:00",
-      "link_status": "200",
-      "active_status": "active",
-      "experience": "3 years of experience",
       "telegram_input": false
     },
     {
@@ -445,6 +397,30 @@
       "telegram_input": false
     },
     {
+      "title": "IT Associate",
+      "company": "Softgic",
+      "link": "https://jobicy.com/jobs/145745-it-associate",
+      "location": "Anywhere",
+      "africa_eligible": true,
+      "published_at": "2026-10-11T03:50:30+00:00",
+      "link_status": "200",
+      "active_status": "active",
+      "experience": "Experience not stated",
+      "telegram_input": false
+    },
+    {
+      "title": "Senior React Full-stack Developer",
+      "company": "Lemon.io",
+      "link": "https://weworkremotely.com/remote-jobs/lemon-io-senior-react-full-stack-developer-7",
+      "location": "Anywhere in the World",
+      "africa_eligible": true,
+      "published_at": "2026-10-09T13:49:21+00:00",
+      "link_status": "200",
+      "active_status": "active",
+      "experience": "Senior | 5+ years of software development experience Commercial experience",
+      "telegram_input": false
+    },
+    {
       "title": "Senior AI Trainer, Remote - Contract",
       "company": "Xperteez Technology",
       "link": "https://himalayas.app/companies/xperteez-technology/jobs/senior-ai-trainer-remote-contract",
@@ -490,6 +466,30 @@
       "link_status": "200",
       "active_status": "active",
       "experience": "Entry level",
+      "telegram_input": false
+    },
+    {
+      "title": "Production Assistant",
+      "company": "NightOwl Consulting",
+      "link": "https://himalayas.app/companies/nightowl-consulting/jobs/production-assistant",
+      "location": "Worldwide",
+      "africa_eligible": true,
+      "published_at": "2026-10-03T15:51:32+00:00",
+      "link_status": "200",
+      "active_status": "active",
+      "experience": "Entry level",
+      "telegram_input": false
+    },
+    {
+      "title": "Appraisal Assistant",
+      "company": "NightOwl Consulting",
+      "link": "https://himalayas.app/companies/nightowl-consulting/jobs/appraisal-assistant",
+      "location": "Worldwide",
+      "africa_eligible": true,
+      "published_at": "2026-10-03T11:22:53+00:00",
+      "link_status": "200",
+      "active_status": "active",
+      "experience": "1\u20132 years of administrative or mortgage operations experience",
       "telegram_input": false
     },
     {

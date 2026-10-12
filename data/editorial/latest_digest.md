@@ -2,9 +2,16 @@
 
 10 remote roles worth checking this week, including 8 entry/junior roles.
 
-Imagine finding two jobs before bed. The first has a glamorous title but tells you almost nothing about the work. The second names the task you would do and a skill you can prove. You spend twenty minutes preparing one relevant example for the second.
+Imagine this: it is 10 p.m. You finally find a role that sounds right. You rewrite the first paragraph of your CV, open the application, then see the line you missed: US residents only. You close the tab. The time is gone, and the job was never yours to apply for.
 
-That is the point of the “why this one” lines below: a detail from the actual work, so you can decide where your effort belongs.
+That is why this shortlist starts with eligibility. Every role below has evidence of worldwide or Africa hiring. Country-specific Africa roles still need a country check before you apply.
+
+Video Data Annotator — micro1
+Worldwide | Africa eligible
+Entry level
+Why this one — the actual work: “Review and annotate short video and audio clips, labeling content accurately based on project-specific guidelines.”
+Apply: https://himalayas.app/companies/micro1/jobs/video-data-annotator-966806508
+Listing credit: Himalayas: https://himalayas.app
 
 🌎 Data Analyst - Remote, Contact — Xperteez Technology
 Worldwide | Africa eligible
@@ -19,13 +26,6 @@ Entry level
 USD 30–100/hour
 Why this one — the actual work: “You'll create realistic, interesting and challenging coding tasks for AI to solve involving feature implementation and bug fixes.”
 Apply: https://himalayas.app/companies/xperteez-technology/jobs/software-engineer-backend-remote-contract
-Listing credit: Himalayas: https://himalayas.app
-
-Video Data Annotator — micro1
-Worldwide | Africa eligible
-Entry level
-Why this one — the actual work: “Review and annotate short video and audio clips, labeling content accurately based on project-specific guidelines.”
-Apply: https://himalayas.app/companies/micro1/jobs/video-data-annotator-966806508
 Listing credit: Himalayas: https://himalayas.app
 
 QA Tester — Vantum

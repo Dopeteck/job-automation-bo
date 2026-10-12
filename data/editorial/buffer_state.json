@@ -36,7 +36,8 @@
     "x-39a10a9498a86678b717",
     "x-5ebc8c5fe5825fa3a1b4",
     "x-dea5c3401855c54ac2b7",
-    "x-fbe0eea7b43a19620fa0"
+    "x-fbe0eea7b43a19620fa0",
+    "x-jobs-2026-W42-76418def2744350cbae4"
   ],
   "substack": [
     "note-12abc4e68d67628b52b1",
@@ -45,7 +46,8 @@
     "note-39a10a9498a86678b717",
     "note-5ebc8c5fe5825fa3a1b4",
     "note-dea5c3401855c54ac2b7",
-    "note-fbe0eea7b43a19620fa0"
+    "note-fbe0eea7b43a19620fa0",
+    "note-jobs-2026-W42-76418def2744350cbae4"
   ],
   "manual_revision_20261001": {
     "source_id": "5ebc8c5fe5825fa3a1b4",
@@ -58,8 +60,8 @@
     "x-7173f2ea8acf1821b7ad"
   ],
   "channel_latest_due": {
-    "6abe6f09ea19ca0bde441138": "2026-10-12T08:35:00Z",
-    "6abe70bfea19ca0bde441f84": "2026-10-12T08:35:00Z"
+    "6abe6f09ea19ca0bde441138": "2026-10-13T08:06:00.000Z",
+    "6abe70bfea19ca0bde441f84": "2026-10-13T08:06:00.000Z"
   },
   "x_guides": [
     "workflow-check-v1",
@@ -78,18 +80,18 @@
   },
   "pending_uploads": {},
   "last_publish_report": {
-    "x_draft_image_review_v1": {
+    "x": {
       "queued": 1,
       "skipped": 0,
-      "draft": true,
-      "with_image": 0,
-      "text_only": 1,
+      "draft": false,
+      "with_image": 1,
+      "text_only": 0,
       "image_fallbacks": 0
     },
-    "substack_draft_image_review_v1": {
+    "substack": {
       "queued": 1,
       "skipped": 0,
-      "draft": true,
+      "draft": false,
       "with_image": 1,
       "text_only": 0,
       "image_fallbacks": 0
@@ -576,6 +578,59 @@
       "image_license": "Pexels License",
       "buffer_asset_ids": [],
       "media_experiment": "stock-image-v1"
+    },
+    "x:x-jobs-2026-W42-76418def2744350cbae4": {
+      "post_id": "6acd30e9ebe016d7f5fc223f",
+      "channel_id": "6abe6f09ea19ca0bde441138",
+      "due_at": "2026-10-13T08:06:00.000Z",
+      "text": "Video Data Annotator\nmicro1\nWorldwide\nAfrica eligible\nHimalayas: https://himalayas.app\nhttps://himalayas.app/companies/micro1/jobs/video-data-annotator-966806508",
+      "confirmed_at": "2026-10-12T19:11:38.080964+00:00",
+      "draft": false,
+      "platform_key": "x",
+      "source_id": "76418def2744350cbae4",
+      "job_fingerprints": [
+        "c656beacb58e376baffa"
+      ],
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-33072751",
+      "image_topic": "remote",
+      "image_source_page": "https://www.pexels.com/photo/modern-workspace-with-smartphone-and-laptop-33072751/",
+      "image_creator": "I'm Zion",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
+    },
+    "substack:note-jobs-2026-W42-76418def2744350cbae4": {
+      "post_id": "6acd30ea7501053a1002803e",
+      "channel_id": "6abe70bfea19ca0bde441f84",
+      "due_at": "2026-10-13T08:06:00.000Z",
+      "text": "10 remote roles worth checking this week, including 8 entry/junior roles.\n\nImagine this: it is 10 p.m. You finally find a role that sounds right. You rewrite the first paragraph of your CV, open the application, then see the line you missed: US residents only. You close the tab. The time is gone, and the job was never yours to apply for.\n\nThat is why this shortlist starts with eligibility. Every role below has evidence of worldwide or Africa hiring. Country-specific Africa roles still need a country check before you apply.\n\nVideo Data Annotator \u2014 micro1\nWorldwide | Africa eligible\nEntry level\nWhy this one \u2014 the actual work: \u201cReview and annotate short video and audio clips, labeling content accurately based on project-specific guidelines.\u201d\nApply: https://himalayas.app/companies/micro1/jobs/video-data-annotator-966806508\nListing credit: Himalayas: https://himalayas.app\n\n\ud83c\udf0e Data Analyst - Remote, Contact \u2014 Xperteez Technology\nWorldwide | Africa eligible\nEntry level\nWhy this one \u2014 the actual work: \u201cReview and analyze extensive business data sets for accuracy, completeness, and relevance.\u201d\nApply: https://himalayas.app/companies/xperteez-technology/jobs/data-analyst-remote-contact\nListing credit: Himalayas: https://himalayas.app\n\nSoftware Engineer \u2013 Backend | Remote - Contract \u2014 Xperteez Technology\nWorldwide | Africa eligible\nEntry level\nUSD 30\u2013100/hour\nWhy this one \u2014 the actual work: \u201cYou'll create realistic, interesting and challenging coding tasks for AI to solve involving feature implementation and bug fixes.\u201d\nApply: https://himalayas.app/companies/xperteez-technology/jobs/software-engineer-backend-remote-contract\nListing credit: Himalayas: https://himalayas.app\n\nQA Tester \u2014 Vantum\nWorldwide | Africa eligible\nEntry level\nUSD 500\u20131000/monthly\nWhy this one \u2014 the actual work: \u201cWrite each bug so it can be reproduced. Steps, what you expected, and what actually happened. Include the page, the account state, and a screenshot when it helps.\u201d\nApply: https://himalayas.app/companies/vantum/jobs/qa-tester\nListing credit: Himalayas: https://himalayas.app\n\nSocial Media Marketing Intern \u2014 Pathways\nWorldwide | Africa eligible\nEntry level\nWhy this one \u2014 the actual work: \u201cIn this role, you will assist in creating and curating engaging content for our social media platforms, with a focus on Instagram and YouTube.\u201d\nApply: https://himalayas.app/companies/pathways/jobs/social-media-marketing-intern\nListing credit: Himalayas: https://himalayas.app\n\nPart-Time E-commerce Operator / Marketing Intern \u2014 Palette Studios\nWorldwide | Africa eligible\nEntry level\nUSD 20000\u201350000/annual\nWhy this one \u2014 the actual work: \u201cOptimize product listings, pricing, and promotions for maximum conversion.\u201d\nApply: https://himalayas.app/companies/palette-studios/jobs/part-time-e-commerce-operator-marketing-intern\nListing credit: Himalayas: https://himalayas.app\n\nVendor & Compliance Assistant \u2014 NightOwl Consulting\nWorldwide | Africa eligible\nEntry level\nPHP 40000\u201350000/monthly\nWhy this one \u2014 the actual work: \u201cAssist with vendor due diligence processes within Ncontracts.\u201d\nApply: https://himalayas.app/companies/nightowl-consulting/jobs/vendor-compliance-assistant\nListing credit: Himalayas: https://himalayas.app\n\nTheTravel | Junior Editor \u2014 Valnet Tech Sites\nWorldwide | Africa eligible\nEntry level\nWhy this one \u2014 the actual work: \u201cAssist in editing articles to ensure they meet the brand's editorial standards for grammar, accuracy, and style.\u201d\nApply: https://himalayas.app/companies/valnet-tech-sites/jobs/thetravel-junior-editor\nListing credit: Himalayas: https://himalayas.app\n\nFreelancer Support Specialist \u2014 Your Personal AI\nWorldwide | Africa eligible\n1-3 years of administrative or customer service experience\nWhy this one \u2014 the actual work: \u201cAnswer support emails from freelance data collectors regarding task questions, technical issues, and guidelines.\u201d\nApply: https://himalayas.app/companies/your-personal-ai/jobs/freelancer-support-specialist\nListing credit: Himalayas: https://himalayas.app\n\nJoin Our Team as a Freelance Recruiter for AI Annotation and Data Collection Pro \u2014 Your Personal AI\nWorldwide | Africa eligible\nExperience not stated\nWhy this one \u2014 the actual work: \u201cManage candidate pipelines and provide regular updates to stakeholders.\u201d\nApply: https://himalayas.app/companies/your-personal-ai/jobs/join-our-team-as-a-freelance-recruiter-for-ai-annotation-and-data-collection-pro\nListing credit: Himalayas: https://himalayas.app\n\nBefore you apply: check eligible countries, working hours and whether the pay is a salary, contractor rate or commission. \u201cRemote\u201d alone answers none of those questions.\n\nWhich role fits your experience? Reply with the role and the requirement you are unsure about.\n\nDaily roles in the channel: https://t.me/RemoteJobsTechHub",
+      "confirmed_at": "2026-10-12T19:11:38.619937+00:00",
+      "draft": false,
+      "platform_key": "substack",
+      "source_id": "76418def2744350cbae4",
+      "job_fingerprints": [
+        "c656beacb58e376baffa",
+        "762a75b8ed9721f07897",
+        "8680f0ecdeae6449a524",
+        "3483bc318ad2c2e65f4c",
+        "44ffb5d1478210c59d44",
+        "f28bb5d8fe194ea9b77c",
+        "4f36e24238583d482d94",
+        "b8db42bc3e421ef205d7",
+        "9b83b6918cc054fcfa5c",
+        "0c6683c74ed538dc4a1f"
+      ],
+      "media_variant": "image",
+      "media_reason": "image_candidate",
+      "image_id": "pexels-33072751",
+      "image_topic": "remote",
+      "image_source_page": "https://www.pexels.com/photo/modern-workspace-with-smartphone-and-laptop-33072751/",
+      "image_creator": "I'm Zion",
+      "image_license": "Pexels License",
+      "buffer_asset_ids": [],
+      "media_experiment": "stock-image-v1"
     }
   },
   "x_thread_draft_guides": [
@@ -641,5 +696,11 @@
   ],
   "substack_draft_image_review_v1_promotion_weeks": [
     "2026-W41"
+  ],
+  "x_promotion_weeks": [
+    "2026-W42"
+  ],
+  "substack_promotion_weeks": [
+    "2026-W42"
   ]
 }
