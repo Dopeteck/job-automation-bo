@@ -1,0 +1,20 @@
+[
+  {
+    "id": "builder-datadog-2026-10-11",
+    "kind": "builder",
+    "approved": true,
+    "evidence_ref": "https://github.com/Dopeteck/job-automation-bo/actions/runs/38177695065",
+    "body": "On 11 October 2026, a newsletter draft included a Datadog role called “Enterprise Sales Engineer - FED”. It had been tagged “Africa eligible”. But the listing text began “Virginia, USA, Remote”. The word that made the opportunity look accessible was sitting beside the words that restricted it.\n\nThat contradiction was caught during review. The role came out of the digest, and the correction went into the pipeline: a worldwide feed tag can no longer override a country or state restriction in the listing. Citizenship, clearance and federal requirements also became reasons to hold a role rather than recommend it to this audience.\n\nThe correction mattered beyond that one vacancy. A jobs list asks readers to spend time on someone else’s judgement. If the location check is wrong, a reader can do everything else carefully—read the duties, prepare a CV and write a useful opening—and still reach an application they were never eligible to make.\n\nThere is no reader success story to attach to this incident. It is a mistake in our draft and a check we changed after finding it. That is useful enough to share: the quality of this newsletter depends on what it removes as much as what it includes.\n\nBefore choosing a role below, read its country and experience lines first. Then read the actual duty. If those details conflict with the employer’s application page, trust the restriction on the page and tell us what you found. A shorter shortlist is worth more than an attractive label that cannot survive a careful read.",
+    "lesson": "Check location restrictions before investing time in an application; “remote” alone does not establish eligibility.",
+    "question": "Have you found a location restriction late in an application? Reply with the exact line and what happened. May we contact you about featuring your experience?"
+  },
+  {
+    "id": "builder-held-issue-2026-10-11",
+    "kind": "builder",
+    "approved": true,
+    "evidence_ref": "https://github.com/Dopeteck/job-automation-bo/actions/runs/38179526369",
+    "body": "On 11 October 2026, the newsletter automation reached the end of its checks with four suitable roles. Only one qualified as entry or junior level. At that point, the rules required six roles and three junior roles. The result was a private “Digest held for review” notice instead of a publishable issue.\n\nThat hold exposed a supply problem. Keeping the junior requirement was useful, but drawing mainly from a seven-day window made the pool unnecessarily narrow. An open vacancy did not suddenly become irrelevant because its posting date crossed into the previous week. At the same time, filling the gap with senior jobs would have changed who the newsletter was useful to.\n\nThe next revision widened the retention window to 21 days, added more public feeds and employer boards, and kept a record of featured roles. It also introduced a smaller-issue option: at least five roles, at least one junior role, and stated requirements of up to three years for the others. Location restrictions remained grounds for rejection.\n\nThose changes were tested on GitHub. One review draft reached ten roles, with eight tagged entry or junior after the checks. That was a better result for that run; it was not a guarantee that every future week would produce the same number.\n\nThe useful lesson is about the order of the decisions. First decide whether a role is genuinely open to the reader. Then decide whether the experience requirement fits. Only after that should the length of the newsletter matter. If a future issue is smaller, the country check should still be just as strict.",
+    "lesson": "Choose suitability before volume. A shorter issue should still protect your time.",
+    "question": "Would five suitable roles help you more than ten mixed-level roles? Reply with your experience level and the role you are seeking."
+  }
+]

@@ -47,7 +47,8 @@ class JobsDigestTests(unittest.TestCase):
         self.assertNotIn('Check experience',packet['newsletter_markdown'])
     def test_story_has_scene_and_does_not_claim_personal_testimonial(self):
         opening=editorial_opening(self.pool(),datetime(2026,10,11,tzinfo=timezone.utc))
-        self.assertIn('Imagine',opening)
+        self.assertIn('11 October',opening)
+        self.assertNotIn('Imagine',opening)
         self.assertNotIn('I applied',opening)
 
     def test_feed_worldwide_tag_cannot_override_job_country(self):

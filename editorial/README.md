@@ -1,3 +1,13 @@
+## Story-led newsletter format (2026-10-12)
+
+The email-ready newsletter starts with a 200–300-word grounded opening, then one practical lesson, the curated jobs, one reply question and the Telegram CTA. Substack Notes gets the short opening hook; X keeps its existing compact vacancy format.
+
+`editorial/story_bank.json` contains two documented builder events from the actual pipeline history. Entries need an ID, kind, approved flag, evidence reference, body, lesson and question. Reader entries additionally require explicit `publish_consent: true`; do not set approval or consent without the actual reader's permission and a verified account of the event. Evidence stays in the internal record rather than being printed as a story source footer.
+
+`editorial/newsletter_story.py` rotates unused approved builder/reader stories with measured run analysis and a worked application example based on one selected vacancy. Application examples are clearly marked, use placeholders for real evidence and never invent a client's result or a reader success. Run analysis names each actual funnel stage and never equates rejected listings with scams or implies that the counts represent the entire market.
+
+`data/editorial/story_history.json` records story IDs after scheduled private delivery. Manual previews and held issues do not consume stories. `story_context.json` accompanies the review artifact. If no true reader story is available, the automation continues with documented events, current measurements or a worked example. No paid AI call or new credential is required for this feature.
+
 ## Current weekly supply rules (2026-10-11)
 
 The digest keeps the Remote Jobs Worldwide brand and leads with early-career work open worldwide or across Africa.

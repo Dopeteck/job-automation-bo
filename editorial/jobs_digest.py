@@ -22,6 +22,7 @@ import logging
 from editorial.quality_jobs.pipeline import process
 from editorial.quality_jobs.text import shorten, clean_text
 from editorial.editorial_pipeline import x_weight
+from editorial.newsletter_story import choose_story, render_story, load_json
 
 OUT = ROOT / 'data/editorial'
 BRAND = 'Remote Jobs Worldwide'
@@ -192,16 +193,11 @@ def select_digest_jobs(jobs, now):
     return sorted(selected,key=lambda job:experience_info(job)[0])
 
 
-def editorial_opening(jobs, now):
-    stories = [
-        'Imagine this: it is 10 p.m. You finally find a role that sounds right. You rewrite the first paragraph of your CV, open the application, then see the line you missed: US residents only. You close the tab. The time is gone, and the job was never yours to apply for.\n\nThat is why this shortlist starts with eligibility. Every role below has evidence of worldwide or Africa hiring. Country-specific Africa roles still need a country check before you apply.',
-        'Picture an evening with twelve job tabs open. One is an old advert. One needs a medical licence. Another promises a big number that turns out to be commission. After an hour, you have not sent a single useful application.\n\nA longer list would not have helped. A better filter would. This week we have removed those detours and kept roles with evidence that applicants in Africa can apply.',
-        'Imagine finding two jobs before bed. The first has a glamorous title but tells you almost nothing about the work. The second names the task you would do and a skill you can prove. You spend twenty minutes preparing one relevant example for the second.\n\nThat is the point of the “why this one” lines below: a detail from the actual work, so you can decide where your effort belongs.',
-    ]
-    return stories[int(now.astimezone(ZoneInfo('Africa/Lagos')).strftime('%V')) % len(stories)]
+def editorial_opening(jobs, now, history=None, audit=None, bank=None):
+    return render_story(choose_story(jobs,role_evidence(jobs[0]),history,audit,bank))
 
 
-def build_digest(jobs, now=None):
+def build_digest(jobs, now=None, story_history=None, audit=None, story_bank=None):
     now = now or datetime.now(timezone.utc)
     jobs = select_digest_jobs(jobs, now)
     # The smaller issue contains only verified junior or explicitly 1–3-year roles.
@@ -219,7 +215,10 @@ def build_digest(jobs, now=None):
     promo = True  # User explicitly requested the newsletter funnel now.
     intro = f'{len(jobs)} remote roles worth checking this week, including {juniors} entry/junior roles.\n\n'
     if not ideal: intro += 'A smaller early-career issue: the other roles ask for up to three years of experience.\n\n'
-    intro += editorial_opening(jobs, now)
+    if audit is not None: audit=dict(audit,issue_juniors=juniors)
+    story=choose_story(jobs,role_evidence(jobs[0]),story_history,audit,story_bank)
+    packet['story_context']={k:story[k] for k in ('id','kind','question')}
+    opening=render_story(story)
     sections = []
     for job in jobs:
         section = f'{shorten(job.title, 110)} — {shorten(job.company, 60)}\n{detail(job)}'
@@ -228,11 +227,16 @@ def build_digest(jobs, now=None):
         if job.is_referral:
             section += '\nReferral link: we may earn if you are accepted and start paid work.'
         sections.append(section)
-    note = intro + '\n\n' + '\n\n'.join(sections) + '\n\nBefore you apply: check eligible countries, working hours and whether the pay is a salary, contractor rate or commission. “Remote” alone answers none of those questions.\n\nWhich role fits your experience? Reply with the role and the requirement you are unsure about.'
+    note = story['body'].split('\n\n')[0] + '\n\nThe lesson: '+story['lesson']+'\n\n'+intro + '\n\n' + '\n\n'.join(sections) + '\n\nBefore you apply: check eligible countries, working hours and whether the pay is a salary, contractor rate or commission. “Remote” alone answers none of those questions.\n\n{story_question}'
+    note=note.replace('{story_question}',story['question'])
     note += '\n\nDaily roles in the channel: ' + TELEGRAM
-    packet['newsletter_markdown'] += note + '\n'
+    # The email draft has room for the full narrative; Notes carries its short hook.
+    newsletter=opening+'\n\n'+intro+'\n\n'+'\n\n'.join(sections)
+    newsletter+='\n\nBefore you apply: check eligible countries, working hours and the pay arrangement.'
+    newsletter+='\n\n'+story['question']+'\n\nDaily roles in the channel: '+TELEGRAM
+    packet['newsletter_markdown'] += newsletter+'\n'
     job_keys = [job.fingerprint for job in jobs]
-    source_id = hashlib.sha256(('|'.join(job_keys)+'\n'+note).encode()).hexdigest()[:20]
+    source_id = hashlib.sha256(('|'.join(job_keys)+'\n'+newsletter).encode()).hexdigest()[:20]
     common = {'source_id': source_id, 'content_kind': 'jobs_digest', 'job_fingerprints': job_keys,
               'source_published_at': now.isoformat(), 'promotion_week': week if promo else None}
     packet['substack_notes'] = [dict(common, id='note-jobs-'+week+'-'+source_id, text=note)]
@@ -270,14 +274,18 @@ def main():
     print(f'Telegram preview: {len(channel_links)} links; {reused} full listings matched.')
     from editorial.quality_jobs.text import canonicalize_url
     for job in candidates: job.telegram_featured=canonicalize_url(job.effective_url) in channel_links or canonicalize_url(job.direct_url) in channel_links
+    pool_unique=len({canonicalize_url(j.direct_url) for j in candidates})
     candidates = [job for job in candidates if job.source != 'Remotive' and audience_eligible(classify(job))]
+    geography_pass_unique=len({canonicalize_url(j.direct_url) for j in candidates})
     selected, rejected = process(candidates, settings, existing_fingerprints=seen)
     with ThreadPoolExecutor(max_workers=8) as executor:
         active=list(executor.map(lambda j:still_open(j,settings,now),selected))
     selected=[job for job,open_now in zip(selected,active) if open_now]
     for job in selected:job.active_status='active'
-    outputs = build_digest(selected)
+    audit={'pool_unique':pool_unique,'geography_pass_unique':geography_pass_unique,'verified_shortlist':len(selected)}
+    outputs = build_digest(selected, story_history=load_json(OUT/'story_history.json',{}), audit=audit)
     outputs['tagline']=TAGLINE
+    (OUT/'story_context.json').write_text(json.dumps(outputs.get('story_context'),indent=2)+'\n')
     (OUT/'latest_digest.md').write_text(outputs['newsletter_markdown'])
     for file, key in [('x_queue.json','x_posts'), ('substack_notes_queue.json','substack_notes')]:
         (OUT/file).write_text(json.dumps(outputs[key], ensure_ascii=False, indent=2)+'\n')
@@ -286,7 +294,7 @@ def main():
                  'published_at': j.published_at.isoformat() if j.published_at else None,
                  'link_status': j.link_status, 'active_status':j.active_status, 'experience':experience_info(j)[1],
                  'telegram_input':j.direct_url.rstrip('/') in channel_links} for j in selected]
-    (OUT/'latest_items.json').write_text(json.dumps({'jobs': evidence, 'news': [], 'drafting_mode':'curated_jobs', 'held':outputs.get('held',False), 'featured_count':len(outputs['substack_notes'][0]['job_fingerprints']) if outputs['substack_notes'] else 0}, indent=2))
+    (OUT/'latest_items.json').write_text(json.dumps({'jobs': evidence, 'news': [], 'drafting_mode':'curated_jobs', 'held':outputs.get('held',False), 'story':outputs.get('story_context'), 'run_audit':audit, 'featured_count':len(outputs['substack_notes'][0]['job_fingerprints']) if outputs['substack_notes'] else 0}, indent=2))
     print(f'Job digest: {len(outputs["substack_notes"])} Notes; {len(outputs["x_posts"])} X posts. No tech-news copy generated.')
 
 if __name__ == '__main__': main()
