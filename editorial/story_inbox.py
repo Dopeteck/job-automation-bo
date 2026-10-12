@@ -188,6 +188,9 @@ def create_draft(state, notes, generator=generate, historical=False, history_id=
         item['errors'] = validate_draft(item['packet'], notes)
     except WorkshopError as exc:
         item['errors'] = [str(exc)]
+    except (TypeError, ValueError, AttributeError):
+        item['packet'] = None
+        item['errors'] = ['The editor returned an invalid draft structure. Your notes are saved; revise this draft later to retry.']
     return report(item)
 
 def next_history(state, generator=generate):

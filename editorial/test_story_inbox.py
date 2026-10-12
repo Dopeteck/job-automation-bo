@@ -5,7 +5,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from editorial.story_inbox import (WorkshopError, read_state, save_state, seed_history,
-    validate_draft, sentences, handle, poll, selected_notes, next_history)
+    validate_draft, sentences, handle, poll, selected_notes, next_history, seal_review, restore_review)
 
 class StoryInboxTests(unittest.TestCase):
     def state(self):
@@ -81,5 +81,19 @@ class StoryInboxTests(unittest.TestCase):
         def api(token,method,**kwargs):return {'type':'private','id':123} if method=='getChat' else {'url':'https://existing.example'}
         with patch('editorial.story_inbox.call',api):
             with self.assertRaises(WorkshopError):poll('token','123',self.state(),lambda t:None)
+    def test_multiline_command_and_skip(self):
+        s=self.state();p=self.packet();handle(s,'/story\n'+p['draft'],lambda *a,**k:p)
+        identifier=next(iter(s['drafts']))
+        handle(s,'/skip '+identifier);self.assertTrue(s['drafts'][identifier]['archived'])
+        self.assertFalse(s['drafts'][identifier]['approved'])
+    def test_editorial_archive_has_only_ciphertext(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);data=root/'data/editorial';data.mkdir(parents=True)
+            (data/'latest_digest.md').write_text('PRIVATE AUTHOR STORY')
+            review=root/'data/review.enc'
+            with patch('editorial.story_inbox.ROOT',root),patch('editorial.story_inbox.REVIEW_PATH',review):
+                seal_review('test-token');self.assertNotIn(b'PRIVATE AUTHOR STORY',review.read_bytes())
+                (data/'latest_digest.md').write_text('old')
+                restore_review('test-token');self.assertEqual((data/'latest_digest.md').read_text(),'PRIVATE AUTHOR STORY')
 
 if __name__=='__main__':unittest.main()
