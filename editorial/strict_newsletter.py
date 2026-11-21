@@ -254,6 +254,46 @@ def role_entry(job):
             f'Why this one: {why_line(job)}\nApply: [Apply on {source} ->]({job.direct_url})')
 
 
+def build_role_spotlights(valid, now):
+    """Create independent, factual Buffer candidates from individually vetted live roles.
+
+    The full weekly newsletter has stricter editorial requirements (author story,
+    issue history, six-to-ten roles). Those requirements must not suppress a
+    concise job spotlight when the role itself has passed every listing check.
+    """
+    notes=[];posts=[]
+    for job in valid:
+        key=job.fingerprint or fingerprint(job.title,job.company)
+        role_id=hashlib.sha256(key.encode()).hexdigest()[:20]
+        common={'source_id':role_id,'content_kind':'jobs_digest',
+                'job_fingerprints':[key],
+                'job_urls':[canonicalize_url(job.direct_url)],
+                'source_published_at':now.isoformat(),
+                'guide_id':'role:'+key}
+        title=cleaned_title(job.title)
+        basis=eligibility_basis(job)
+        details=[f'Location: {clean_text(job.location)}',
+                 f'Eligibility: {basis}',
+                 f'Experience: {experience(job)[1]}',
+                 f'Pay: {pay_label(job)}',
+                 f'Contract: {contract_type(job)}']
+        duty=why_line(job)
+        if duty!=DUTIES_UNKNOWN:details.append(f'What the role involves: {duty}')
+        note=(f'Role spotlight: {title} at {job.company}\n\n'
+              +'\n'.join(details)
+              +f'\n\nApply directly: {job.direct_url}'
+              +'\n\nCheck the employer page for current eligibility and terms before applying. Never pay to apply.')
+        notes.append(dict(common,id='role-note-'+role_id,text=note))
+        x_text=(f'{title} at {job.company} | {clean_text(job.location)} | '
+                f'{basis} | Apply: {job.direct_url}')
+        if x_weight(x_text)>280:
+            x_text=(f'{title[:48]} at {job.company[:28]} | '
+                    f'{basis[:40]} | Apply: {job.direct_url}')
+        if x_weight(x_text)<=280:
+            posts.append(dict(common,id='role-x-'+role_id,text=x_text))
+    return posts,notes
+
+
 def build_issue(jobs,now=None,story_notes=None,previous_issues=None,story_history=None,history_complete=True):
     now=now or datetime.now(timezone.utc)
     seen=set()
@@ -310,7 +350,8 @@ def build_issue(jobs,now=None,story_notes=None,previous_issues=None,story_histor
             'selected':valid,'held_roles':held,'checks':checks,'story_context':{'id':story['id'],'kind':story['kind']} if story else None}
     if failed:
         reasons=', '.join(failed)
-        packet['newsletter_markdown']=('STORY NEEDED\nPlease supply the author\'s true story notes.\n\n' if not story else '')+'ISSUE HELD\n'+reasons+f'\n{len(valid)} roles and {juniors} entry/junior roles passed. Nothing queued.\n\n'+review
+        packet['newsletter_markdown']=('STORY NEEDED\nPlease supply the author\'s true story notes.\n\n' if not story else '')+'ISSUE HELD\n'+reasons+f'\n{len(valid)} roles and {juniors} entry/junior roles passed. The full issue is held; individually verified role spotlights are prepared separately.\n\n'+review
+        packet['x_posts'],packet['substack_notes']=build_role_spotlights(valid,now)
         return packet
     body_id=hashlib.sha256(newsletter.encode()).hexdigest()[:20]
     common={'id':'strict-note-'+body_id,'source_id':body_id,'content_kind':'jobs_digest','job_fingerprints':[j.fingerprint or fingerprint(j.title,j.company) for j in valid],
