@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from datetime import datetime,timezone,timedelta
-from editorial.strict_newsletter import build_issue,eligibility_basis,hold_reasons,why_line,role_entry,cleaned_title,experience,record_issue,story_from_notes,DUTIES_UNKNOWN
+from editorial.strict_newsletter import build_issue,eligibility_basis,hold_reasons,why_line,role_entry,cleaned_title,experience,record_issue,story_from_notes,DUTIES_UNKNOWN\nfrom editorial.quality_jobs.config import Settings
 from editorial.quality_jobs.models import Job
 
 class StrictTests(unittest.TestCase):
@@ -23,6 +23,13 @@ class StrictTests(unittest.TestCase):
         paragraphs.append('I kept the check beside the listing so it could be repeated before the next issue. You can keep your own short record of the country line and the requirement you checked.')
         return {'id':'test-story','kind':'author','approved':True,'notes':'Author-supplied fixture matching the draft.','finder':'I found','how_found':'while reading the full listing','draft':'\n\n'.join(paragraphs),'lesson':'Check the employer’s location before preparing an application.','reply_prompt':'Which location line has stopped an application for you? Reply with the exact wording.'}
     def pool(self):return [self.job(i) for i in range(6)]
+    def test_editorial_default_scopes_cover_global_and_country_restricted_jobs(self):
+        scopes=Settings.from_env().allowed_remote_scopes
+        self.assertTrue({'worldwide','africa','emea','europe','eu','uk','us','canada',
+                         'us_canada','us_ca_uk_eu','latam','asia','middle_east','oceania',
+                         'africa_nigeria','africa_ghana','africa_kenya',
+                         'africa_south_africa','africa_egypt','africa_morocco'} <= scopes)
+
     def test_ready_format_and_checks(self):
         p=build_issue(self.pool(),story_notes=self.notes(),previous_issues=[])
         self.assertFalse(p['held'],p['checks']);self.assertTrue(all(p['checks'].values()))
