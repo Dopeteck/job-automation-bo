@@ -7,6 +7,12 @@ on:
         description: 'Upload generated posts as unpublished Buffer drafts'
         type: boolean
         default: false
+  pull_request:
+    branches: [main]
+    paths:
+      - 'editorial/**'
+      - 'publishers/**'
+      - '.github/workflows/editorial-engine.yml'
   push:
     branches: [main, feature/tech-career-editorial-v1]
     paths:
@@ -14,7 +20,7 @@ on:
       - 'publishers/**'
       - '.github/workflows/editorial-engine.yml'
   schedule:
-    - cron: "30 9 * * 1"
+    - cron: "30 9 * * *"
 
 permissions:
   contents: write
@@ -37,7 +43,7 @@ jobs:
       - name: Check quota fallback and promotion rules
         run: python -m unittest editorial.test_editorial editorial.test_jobs_digest editorial.test_digest_sources editorial.test_newsletter_story editorial.test_strict_newsletter publishers.test_telegram_draft editorial.test_story_inbox editorial.test_story_edition
       - name: Restore rolling vacancy pool
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         uses: actions/cache/restore@v4
         with:
           path: |
@@ -87,14 +93,15 @@ jobs:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_X_CHANNEL_ID: ${{ vars.BUFFER_X_CHANNEL_ID || '6abe6f09ea19ca0bde441138' }}
           BUFFER_SUBSTACK_CHANNEL_ID: ${{ vars.BUFFER_SUBSTACK_CHANNEL_ID || '6abe70bfea19ca0bde441f84' }}
-          BUFFER_SAVE_AS_DRAFT: ${{ inputs.buffer_drafts == true || vars.BUFFER_AUTOPUBLISH != 'true' }}
+          # Keep generated items as unpublished drafts until the owner approves them.
+          BUFFER_SAVE_AS_DRAFT: "true"
           BUFFER_MAX_X_PER_RUN: "1"
           BUFFER_MAX_SUBSTACK_PER_RUN: "1"
           # Manual draft runs exercise images without changing scheduled cadence.
           EDITORIAL_IMAGE_PERCENT: ${{ inputs.buffer_drafts == true && '100' || vars.EDITORIAL_IMAGE_PERCENT || '50' }}
         run: python publishers/buffer_publisher.py
       - name: Save rolling vacancy pool
-        if: ${{ always() && github.event_name != 'push' && hashFiles('data/editorial/candidate_pool.json') != '' }}
+        if: ${{ always() && github.event_name != 'push' && github.event_name != 'pull_request' && hashFiles('data/editorial/candidate_pool.json') != '' }}
         uses: actions/cache/save@v4
         with:
           path: |
