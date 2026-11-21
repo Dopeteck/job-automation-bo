@@ -6,7 +6,7 @@ on:
       buffer_drafts:
         description: 'Upload generated posts as unpublished Buffer drafts'
         type: boolean
-        default: false
+        default: true
   pull_request:
     branches: [main]
     paths:
@@ -52,13 +52,13 @@ jobs:
           key: digest-pool-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: digest-pool-
       - name: Restore private editorial state
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
           TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
         run: python editorial/story_inbox.py --restore-review
       - name: Prepare weekly story draft and receive author updates
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
           TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
@@ -67,7 +67,7 @@ jobs:
           STORY_HISTORY_SEED: ${{ secrets.STORY_HISTORY_SEED }}
         run: python editorial/story_inbox.py --weekly
       - name: Generate editorial drafts
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           GEMINI_API_KEY: ${{ github.event_name != 'push' && secrets.GEMINI_API_KEY || '' }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
@@ -79,14 +79,14 @@ jobs:
           SUBSTACK_URL: ${{ vars.SUBSTACK_URL || 'https://substack.com/@web3jobtechalphavault' }}
         run: python editorial/strict_newsletter.py
       - name: Deliver newsletter draft to personal Telegram
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           DIGEST_REVIEW_MODE: ${{ inputs.buffer_drafts == true }}
           TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
           TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
         run: python publishers/telegram_draft.py
       - name: Send X and Substack Notes to Buffer
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           JOBS_ONLY: "true"
           ALLOW_STORY_EDITION: "true"
@@ -109,19 +109,19 @@ jobs:
             data/editorial/source_snapshot.json
           key: digest-pool-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Encrypt private editorial review and posting history
-        if: ${{ always() && github.event_name != 'push' }}
+        if: ${{ always() && github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
           TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
         run: python editorial/story_inbox.py --seal-review
       - name: Upload encrypted review package
-        if: ${{ always() && github.event_name != 'push' }}
+        if: ${{ always() && github.event_name != 'push' && github.event_name != 'pull_request' }}
         uses: actions/upload-artifact@v4
         with:
           name: editorial-drafts-encrypted
           path: data/private_editorial_review.enc
       - name: Save encrypted drafts and posting history
-        if: ${{ always() && github.event_name != 'push' }}
+        if: ${{ always() && github.event_name != 'push' && github.event_name != 'pull_request' }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
