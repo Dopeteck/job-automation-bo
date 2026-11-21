@@ -3,7 +3,8 @@ import tempfile
 import unittest
 from pathlib import Path
 from datetime import datetime,timezone,timedelta
-from editorial.strict_newsletter import build_issue,eligibility_basis,hold_reasons,why_line,role_entry,cleaned_title,experience,record_issue,story_from_notes,DUTIES_UNKNOWN\nfrom editorial.quality_jobs.config import Settings
+from editorial.strict_newsletter import build_issue,eligibility_basis,hold_reasons,why_line,role_entry,cleaned_title,experience,record_issue,story_from_notes,DUTIES_UNKNOWN
+from editorial.quality_jobs.config import Settings
 from editorial.quality_jobs.models import Job
 
 class StrictTests(unittest.TestCase):
