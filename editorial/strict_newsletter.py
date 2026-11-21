@@ -374,7 +374,7 @@ def record_issue(out,notes,review=False):
 
 def main():
     OUT.mkdir(parents=True,exist_ok=True);logging.basicConfig(level=logging.INFO,format='%(levelname)s %(message)s')
-    settings=replace(Settings.from_env(),max_per_run=150,max_per_source=60,max_job_age_days=21,min_quality_score=6,allowed_remote_scopes=frozenset({'worldwide','africa'}),mercor_referral_url='',link_check_enabled=True)
+    settings=replace(Settings.from_env(),max_per_run=150,max_per_source=60,max_job_age_days=21,min_quality_score=6,mercor_referral_url='',link_check_enabled=True)
     now=datetime.now(timezone.utc);pool=cached_pool(collect_expanded(settings),OUT/'candidate_pool.json',now)
     # Pre-screen cheaply, but preserve every held listing in the review report.
     pre=[];preheld=[]
