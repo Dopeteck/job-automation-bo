@@ -6,7 +6,13 @@ on:
       buffer_drafts:
         description: 'Upload generated posts as unpublished Buffer drafts'
         type: boolean
-        default: false
+        default: true
+  pull_request:
+    branches: [main]
+    paths:
+      - 'editorial/**'
+      - 'publishers/**'
+      - '.github/workflows/editorial-engine.yml'
   push:
     branches: [main, feature/tech-career-editorial-v1]
     paths:
@@ -14,7 +20,7 @@ on:
       - 'publishers/**'
       - '.github/workflows/editorial-engine.yml'
   schedule:
-    - cron: "30 9 * * 1"
+    - cron: "30 9 * * *"
 
 permissions:
   contents: write
@@ -37,7 +43,7 @@ jobs:
       - name: Check quota fallback and promotion rules
         run: python -m unittest editorial.test_editorial editorial.test_jobs_digest editorial.test_digest_sources editorial.test_newsletter_story editorial.test_strict_newsletter publishers.test_telegram_draft editorial.test_story_inbox editorial.test_story_edition
       - name: Restore rolling vacancy pool
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         uses: actions/cache/restore@v4
         with:
           path: |
@@ -46,13 +52,13 @@ jobs:
           key: digest-pool-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: digest-pool-
       - name: Restore private editorial state
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
           TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
         run: python editorial/story_inbox.py --restore-review
       - name: Prepare weekly story draft and receive author updates
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
           TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
@@ -61,7 +67,7 @@ jobs:
           STORY_HISTORY_SEED: ${{ secrets.STORY_HISTORY_SEED }}
         run: python editorial/story_inbox.py --weekly
       - name: Generate editorial drafts
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           GEMINI_API_KEY: ${{ github.event_name != 'push' && secrets.GEMINI_API_KEY || '' }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL || 'gemini-3.5-flash-lite' }}
@@ -73,28 +79,29 @@ jobs:
           SUBSTACK_URL: ${{ vars.SUBSTACK_URL || 'https://substack.com/@web3jobtechalphavault' }}
         run: python editorial/strict_newsletter.py
       - name: Deliver newsletter draft to personal Telegram
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           DIGEST_REVIEW_MODE: ${{ inputs.buffer_drafts == true }}
           TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
           TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
         run: python publishers/telegram_draft.py
       - name: Send X and Substack Notes to Buffer
-        if: ${{ github.event_name != 'push' }}
+        if: ${{ github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           JOBS_ONLY: "true"
           ALLOW_STORY_EDITION: "true"
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           BUFFER_X_CHANNEL_ID: ${{ vars.BUFFER_X_CHANNEL_ID || '6abe6f09ea19ca0bde441138' }}
           BUFFER_SUBSTACK_CHANNEL_ID: ${{ vars.BUFFER_SUBSTACK_CHANNEL_ID || '6abe70bfea19ca0bde441f84' }}
-          BUFFER_SAVE_AS_DRAFT: ${{ inputs.buffer_drafts == true || vars.BUFFER_AUTOPUBLISH != 'true' }}
+          # Keep generated items as unpublished drafts until the owner approves them.
+          BUFFER_SAVE_AS_DRAFT: "true"
           BUFFER_MAX_X_PER_RUN: "1"
           BUFFER_MAX_SUBSTACK_PER_RUN: "1"
           # Manual draft runs exercise images without changing scheduled cadence.
           EDITORIAL_IMAGE_PERCENT: ${{ inputs.buffer_drafts == true && '100' || vars.EDITORIAL_IMAGE_PERCENT || '50' }}
         run: python publishers/buffer_publisher.py
       - name: Save rolling vacancy pool
-        if: ${{ always() && github.event_name != 'push' && hashFiles('data/editorial/candidate_pool.json') != '' }}
+        if: ${{ always() && github.event_name != 'push' && github.event_name != 'pull_request' && hashFiles('data/editorial/candidate_pool.json') != '' }}
         uses: actions/cache/save@v4
         with:
           path: |
@@ -102,19 +109,19 @@ jobs:
             data/editorial/source_snapshot.json
           key: digest-pool-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Encrypt private editorial review and posting history
-        if: ${{ always() && github.event_name != 'push' }}
+        if: ${{ always() && github.event_name != 'push' && github.event_name != 'pull_request' }}
         env:
           TELEGRAM_DRAFT_BOT_TOKEN: ${{ secrets.TELEGRAM_DRAFT_BOT_TOKEN }}
           TELEGRAM_DRAFT_CHAT_ID: ${{ secrets.TELEGRAM_DRAFT_CHAT_ID }}
         run: python editorial/story_inbox.py --seal-review
       - name: Upload encrypted review package
-        if: ${{ always() && github.event_name != 'push' }}
+        if: ${{ always() && github.event_name != 'push' && github.event_name != 'pull_request' }}
         uses: actions/upload-artifact@v4
         with:
           name: editorial-drafts-encrypted
           path: data/private_editorial_review.enc
       - name: Save encrypted drafts and posting history
-        if: ${{ always() && github.event_name != 'push' }}
+        if: ${{ always() && github.event_name != 'push' && github.event_name != 'pull_request' }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
